@@ -5,8 +5,9 @@
 """Debug and Log Encodings and Check for root/administrator,return Bool."""
 
 
- import logging as log
- import sys
+import logging as log
+import os
+import sys
 
 from getpass import getuser
 from platform import platform, python_version

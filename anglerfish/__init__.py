@@ -77,3 +77,30 @@ def make_logger(name=str(os.getpid())):
         log.getLogger().addHandler(handler)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
     return log
+
+
+from anglerfish.check_encoding import *  # noqa lint
+from anglerfish.check_updates import *  # noqa lint
+from anglerfish.check_working_folder import *  # noqa lint
+from anglerfish.get_clipboard import *  # noqa lint
+from anglerfish.get_pdb_on_exception import *  # noqa lint
+from anglerfish.make_atomic import *  # noqa lint
+from anglerfish.make_beep import *  # noqa lint
+from anglerfish.make_config import *  # noqa lint
+from anglerfish.make_info import *  # noqa lint
+from anglerfish.make_json_pretty import *  # noqa lint
+from anglerfish.make_log_exception import *  # noqa lint
+from anglerfish.make_multiprocess import *  # noqa lint
+from anglerfish.make_multithread import *  # noqa lint
+from anglerfish.make_postexec_message import *  # noqa lint
+from anglerfish.make_progressbar import *  # noqa lint
+from anglerfish.make_retry import *  # noqa lint
+from anglerfish.make_typecheck import *  # noqa lint
+from anglerfish.make_walkdir import *  # noqa lint
+from anglerfish.make_watch import *  # noqa lint
+from anglerfish.set_desktop_launcher import *  # noqa lint
+from anglerfish.set_process_name import *  # noqa lint
+from anglerfish.set_signals import *  # noqa lint
+from anglerfish.set_single_instance import *  # noqa lint
+from anglerfish.set_temp_folder import *  # noqa lint
+from anglerfish.set_terminal_title import *  # noqa lint

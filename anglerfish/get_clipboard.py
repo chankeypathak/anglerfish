@@ -43,7 +43,7 @@ def __gtk_clipboard():
 
 
 def __qt_clipboard():
-    from PyQt5.QtGui import QApplication
+    from PyQt5.QtWidgets import QApplication
     app = QApplication([])
 
     def copy_qt(text):
@@ -136,7 +136,7 @@ def __determine_clipboard():
         try:
             assert bool(os.getenv("DISPLAY", False))  # Qt needs a DISPLAY
             import PyQt5  # check if PyQt5 is installed
-        except ImportError, Exception:
+        except (ImportError, Exception):
             pass
         else:
             return __qt_clipboard()

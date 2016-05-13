@@ -24,7 +24,7 @@ def retry(tries=5, delay=3, backoff=2, timeout=None, silent=False, logger=None):
                 except Exception as e:
                     if end_time and time.time() > end_time:
                         raise
-                    msg = "{}, Retrying in {} seconds...".format(e, mdelay))
+                    msg = "{}, Retrying in {} seconds...".format(e, mdelay)
                     if not silent:
                         logger.warning(msg) if logger else print(msg)
                     time.sleep(mdelay + int(mtries % 2))

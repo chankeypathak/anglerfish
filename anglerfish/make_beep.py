@@ -6,10 +6,11 @@
 
 
 import logging as log
+import os
 import sys
 
- from subprocess import call
- from tempfile import gettempdir
+from subprocess import call
+from tempfile import gettempdir
 
 
 __8BIT_MUSIC = tuple([
@@ -43,7 +44,7 @@ def music8bit(music=__8BIT_MUSIC):
     wavefile = os.path.join(gettempdir(), "8bit_music.wav")
     if not os.path.isfile(wavefile) or not os.access(wavefile, os.R_OK):
         with open(wavefile, "w+") as wave_file:
-            wave_file.write(music)
+            wave_file.write(str(music))
     if sys.platform.startswith("linux"):
         return call("aplay -c2 -r4 '{fyle}'".format(fyle=wavefile), shell=1)
     if sys.platform.startswith("darwin"):
