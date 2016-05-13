@@ -5,6 +5,10 @@
 """Decorator for Python3 annotations to type-check inputs and outputs."""
 
 
+import functools
+import logging as log
+
+
 def typecheck(f):
     """Decorator for Python3 annotations to type-check inputs and outputs."""
     def __check_annotations(tipe):

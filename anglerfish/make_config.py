@@ -5,6 +5,15 @@
 """Get config folder cross-platform, try to always return a path."""
 
 
+import logging as log
+import os
+import sys
+
+from json import dumps, loads
+from shutil import make_archive, rmtree
+from webbrowser import open_new_tab
+
+
 def make_config(app):
     """Make a global config object."""
     global CONFIG

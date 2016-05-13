@@ -5,6 +5,11 @@
 """Add to autostart or launcher icon on the Desktop."""
 
 
+import logging as log
+import os
+import sys
+
+
 def set_desktop_launcher(app, desktop_file_content):
     """Add to autostart or launcher icon on the Desktop."""
     config_dir = os.path.join(os.path.expanduser("~"), ".config", "autostart")

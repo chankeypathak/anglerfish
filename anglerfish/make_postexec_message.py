@@ -5,6 +5,18 @@
 """Simple Post-Execution Message with information about RAM and Time."""
 
 
+import logging as log
+import os
+import sys
+
+from datetime import datetime
+
+try:
+    import resource
+except ImportError:
+    resource = None  # MS Window dont have resource
+
+
 def make_post_execution_message(app=__doc__.splitlines()[0].strip()):
     """Simple Post-Execution Message with information about RAM and Time."""
     use, al = 0, 0

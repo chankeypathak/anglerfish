@@ -5,6 +5,14 @@
 """Check working folder,from argument,for everything that can go wrong."""
 
 
+
+import logging as log
+import os
+import sys
+
+from shutil import disk_usage
+
+
 def check_working_folder(folder_to_check=os.path.expanduser("~")):
     """Check working folder,from argument,for everything that can go wrong."""
     folder_to_check = os.path.abspath(folder_to_check)  # More Safe on WinOS

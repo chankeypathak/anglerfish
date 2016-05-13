@@ -5,6 +5,11 @@
 """Install handler attach post-mortem pdb console on an exception."""
 
 
+import logging as log
+import sys
+import traceback
+
+
 def pdb_on_exception(debugger="pdb", limit=100):
     """Install handler attach post-mortem pdb console on an exception."""
     log.debug("Installing an automatic Debugger upon Exceptions...")

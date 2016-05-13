@@ -5,6 +5,13 @@
 """Cross-platform Sound Playing with StdLib only,No Sound file required."""
 
 
+import logging as log
+import sys
+
+ from subprocess import call
+ from tempfile import gettempdir
+
+
 __8BIT_MUSIC = tuple([
     (t >> 15 & (t >> (2 if (t % 2) else 4)) %
     (3 + (t >> (8 if (t % 2) else 11)) % 4) +

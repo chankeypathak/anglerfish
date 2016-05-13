@@ -5,6 +5,11 @@
 """Pretty-Printing JSON data from dictionary to string."""
 
 
+import logging as log
+
+from json import dumps, loads
+
+
 def json_pretty(json_dict: dict) -> str:
     """Pretty-Printing JSON data from dictionary to string."""
     log.debug("Pretty-Printing JSON data string...")

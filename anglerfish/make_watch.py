@@ -5,6 +5,13 @@
 """Watch a file path for changes run callback if modified. A WatchDog."""
 
 
+import logging as log
+import os
+import stat
+
+import time
+
+
 def watch(file_path, callback=None):
     """Watch a file path for changes run callback if modified. A WatchDog."""
     log.debug("Watching for changes on path: {0}.".format(file_path))

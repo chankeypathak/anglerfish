@@ -5,6 +5,11 @@
 """Method to check for updates from Git repo versus this version."""
 
 
+import logging as log
+import socket
+from urllib import request
+
+
 def check_updates():
     """Method to check for updates from Git repo versus this version."""
     try:

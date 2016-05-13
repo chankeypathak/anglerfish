@@ -5,6 +5,11 @@
 """Simple plain text progress bar."""
 
 
+import sys
+
+from datetime import datetime
+
+
 def progressbar(i, title=None, logger=None, started=None):
     """Simple plain text progress bar."""
     i = i + 1

@@ -5,6 +5,13 @@
 """Debug and Log Encodings and Check for root/administrator,return Bool."""
 
 
+ import logging as log
+ import sys
+
+from getpass import getuser
+from platform import platform, python_version
+
+
 def make_root_check_and_encoding_debug():
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
     log.debug("Python {0} on {1}.".format(python_version(), platform()))

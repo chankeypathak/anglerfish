@@ -5,6 +5,12 @@
 """Set process name and cpu priority."""
 
 
+import logging as log
+import os
+
+from ctypes import byref, cdll, create_string_buffer
+
+
 def set_process_name_and_cpu_priority(name):
     """Set process name and cpu priority."""
     try:

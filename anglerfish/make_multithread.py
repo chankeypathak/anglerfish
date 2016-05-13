@@ -5,6 +5,9 @@
 """Multithreading helper."""
 
 
+from concurrent.futures import ThreadPoolExecutor
+
+
 class Threaded():
 
     def __init__(self, future, timeout):

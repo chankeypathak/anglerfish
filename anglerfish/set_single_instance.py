@@ -5,6 +5,11 @@
 """Set process name and cpu priority,return socket.socket or None."""
 
 
+import logging as log
+import socket
+import sys
+
+
 def set_single_instance(name, port=8888):
     """Set process name and cpu priority,return socket.socket or None."""
     try:  # Single instance app ~crossplatform, uses udp socket.

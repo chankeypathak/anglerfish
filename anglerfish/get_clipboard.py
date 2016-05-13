@@ -5,6 +5,14 @@
 """Determine OS and set copy() and paste() functions accordingly."""
 
 
+import logging as log
+import os
+import sys
+
+from getpass import getuser
+import subprocess
+
+
 def __osx_clipboard():
     def copy_osx(text):
         subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE,

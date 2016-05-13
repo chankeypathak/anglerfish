@@ -5,6 +5,11 @@
 """Simple information helpers."""
 
 
+import logging as log
+
+from webbrowser import open_new_tab
+
+
 def about_python():
     """Open Python official homepage."""
     log.debug("Opening: https://python.org")

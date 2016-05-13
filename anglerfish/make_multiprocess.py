@@ -5,6 +5,12 @@
 """Multiprocessing helper."""
 
 
+import logging as log
+import sys
+
+from concurrent import futures
+
+
 class __MultiProcessed():
 
     def __init__(self, cpu_num, thread_num):

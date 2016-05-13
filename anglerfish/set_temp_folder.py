@@ -5,6 +5,13 @@
 """Get a temp Sub-folder for this App only, cross-platform, return path."""
 
 
+import logging as log
+import os
+import sys
+
+from tempfile import gettempdir
+
+
 def get_or_set_temp_folder(appname):
     """Get a temp Sub-folder for this App only, cross-platform, return path."""
     if appname and len(appname) and isinstance(appname, str):

@@ -8,6 +8,14 @@ These "part files" are created in the same directory as the destination
 path to ensure atomic move operations. Similar to Chrome Downloads."""
 
 
+import logging as log
+import os
+import stat
+import sys
+
+from tempfile import gettempdir
+
+
 def write_atomic(dest_path, **kwargs):
     """A convenient interface to AtomicWriter type."""
     log.debug("Atomic Writing File: {0}".format(dest_path))

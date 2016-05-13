@@ -5,6 +5,11 @@
 """Log Exceptions but pretty printing with more info, return string."""
 
 
+import logging as log
+import sys
+import traceback
+
+
 def log_exception():
     """Log Exceptions but pretty printing with more info, return string."""
     unfriendly_names = {"<module>": "Unnamed Anonymous Module Function",
