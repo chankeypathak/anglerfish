@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
+import atexit
+import codecs
 import functools
-import logging as log
+import glob
+import logging
 import os
 import socket
 import stat
 import sys
+import time
 import traceback
+import zipfile
 
+from logging.handlers import TimedRotatingFileHandler
 from copy import copy
 from ctypes import byref, cdll, create_string_buffer
 from datetime import datetime
@@ -30,11 +35,44 @@ except ImportError:
 
 
 CONFIG, start_time = None, datetime.now()
+F = "[%(asctime)s] %(levelname)s:%(name)s: %(message)s %(filename)s:%(lineno)d"
+
+
+def __zip_old_logs(log_file):
+    zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
+    log.debug("Compressing Old Rotated Logs on ZIP file: " + zip_file)
+    logs = [_ for _ in os.listdir(os.path.dirname(log_file))
+            if ".log." in _ and not _.endswith("-old.zip") and filename in _]
+    with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as myzip:
+        myzip.debug = 3  # Log ZIP inner working,and comment with datetime
+        for fyle in logs:
+            myzip.write(fyle)
+            os.remove(os.path.join(os.path.dirname(log_file), fyle))
+        myzip.printdir()
+    return zip_file
 
 
 def make_logger(name=str(os.getpid())):
     """Build and return a Logging Logger."""
+    global log
+    log_file = os.path.join(gettempdir(), str(name).lower().strip() + ".log")
+    zip_file = log_file + "s-old.zip"
+    comment = "{}'s Compressed Unused Old Rotated Logs since ~{}.".format(
+        name.title(), datetime.now().isoformat()[:-7])
+    if not os.path.isfile(zip_file):
+        with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as myzip:
+            myzip.comment = bytes(comment, encoding="utf-8")
+    atexit.register(__zip_old_logs, log_file)  # ZIP Old Logs
+    hand = TimedRotatingFileHandler(log_file, when='midnight', backupCount=99,
+                                    encoding="utf-8")
+    hand.setLevel(-1)
+    hand.setFormatter(logging.Formatter(fmt=F, datefmt="%Y-%m-%d %H:%M:%S"))
+    log = logging.getLogger()
+    log.addHandler(hand)
+    log.setLevel(-1)
+
     if not sys.platform.startswith("win") and sys.stderr.isatty():
+        log.debug("Using Colored Logs on current Terminal (256 Colors).")
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
             def new(*args):
@@ -64,17 +102,17 @@ def make_logger(name=str(os.getpid())):
                     print(reason)  # Do not use log here.
                 return fn(*new_args)
             return new
-        log.StreamHandler.emit = add_color_emit_ansi(log.StreamHandler.emit)
-    log_file = os.path.join(gettempdir(), str(name).lower().strip() + ".log")
-    log.basicConfig(level=-1, filemode="w", filename=log_file)
-    log.getLogger().addHandler(log.StreamHandler(sys.stderr))
+        logging.StreamHandler.emit = add_color_emit_ansi(logging.StreamHandler.emit)
+
+    logging.getLogger().addHandler(logging.StreamHandler(sys.stderr))
     adrs = "/dev/log" if sys.platform.startswith("lin") else "/var/run/syslog"
     try:
-        handler = log.handlers.SysLogHandler(address=adrs)
+        handler = logging.handlers.SysLogHandler(address=adrs)
     except Exception:
         log.debug("Unix SysLog Server not found, ignored Logging to SysLog.")
     else:
-        log.getLogger().addHandler(handler)
+        logging.getLogger().addHandler(handler)
+        log.debug("Unix SysLog Server found,trying to Log to SysLog: " + adrs)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
     return log
 
