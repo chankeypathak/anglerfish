@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 import atexit
 import codecs
 import functools
@@ -63,14 +64,13 @@ def make_logger(name=str(os.getpid())):
         with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as myzip:
             myzip.comment = bytes(comment, encoding="utf-8")
     atexit.register(__zip_old_logs, log_file)  # ZIP Old Logs
-    hand = TimedRotatingFileHandler(log_file, when='midnight', backupCount=99,
-                                    encoding="utf-8")
+    hand = TimedRotatingFileHandler(log_file, when='midnight',
+                                    backupCount=999, encoding="utf-8")
     hand.setLevel(-1)
     hand.setFormatter(logging.Formatter(fmt=F, datefmt="%Y-%m-%d %H:%M:%S"))
     log = logging.getLogger()
     log.addHandler(hand)
     log.setLevel(-1)
-
     if not sys.platform.startswith("win") and sys.stderr.isatty():
         log.debug("Using Colored Logs on current Terminal (256 Colors).")
         def add_color_emit_ansi(fn):
