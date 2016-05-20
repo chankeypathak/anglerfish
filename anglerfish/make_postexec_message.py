@@ -17,7 +17,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-def make_post_execution_message(app=__doc__.splitlines()[0], start_time=None, __url__=""):
+def make_post_exec_msg(app, start_time=None, __url__):
     """Simple Post-Execution Message with information about RAM and Time."""
     use, al = 0, 0
     if sys.platform.startswith("linux"):

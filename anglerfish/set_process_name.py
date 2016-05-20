@@ -11,7 +11,7 @@ import os
 from ctypes import byref, cdll, create_string_buffer
 
 
-def set_process_name_and_cpu_priority(name):
+def set_process_name(name):
     """Set process name and cpu priority."""
     try:
         os.nice(19)  # smooth cpu priority

@@ -9,7 +9,7 @@ import logging as log
 import os
 
 
-def walkdir2filelist(where, target, omit):
+def walk2list(where, target, omit):
     """Perform full walk of where, gather full path of all files."""
     log.debug("Scan {},searching {},ignoring {}".format(where, target, omit))
     return tuple([os.path.join(r, f)
