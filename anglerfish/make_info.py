@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-"""Simple information helpers."""
+"""Simple dumb information helpers."""
 
 
 import logging as log
@@ -18,17 +18,20 @@ def about_python():
 
 def about_self():
     """Open this App homepage."""
-    log.debug("Opening: {0}".format(__url__))
-    return open_new_tab(__url__)
+    if __url__:
+        log.debug("Opening: {0}".format(__url__))
+        return open_new_tab(__url__)
 
 
 def view_code():
     """Open this App local Python source code."""
-    log.debug("Opening: {0}".format(__file__))
-    return open_new_tab(__file__)
+    if __file__:
+        log.debug("Opening: {0}".format(__file__))
+        return open_new_tab(__file__)
 
 
 def report_bug():
     """Open this App Bug Tracker."""
-    log.debug("Opening: {0}/issues/new".format(__url__))
-    return open_new_tab(__url__ + "/issues/new")
+    if __url__:
+        log.debug("Opening: {0}/issues/new".format(__url__))
+        return open_new_tab(__url__ + "/issues/new")
