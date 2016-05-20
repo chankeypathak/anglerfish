@@ -6,11 +6,11 @@
 
 
 import functools
-import logging as log
 import time
 
 
-def retry(tries=5, delay=3, backoff=2, timeout=None, silent=False, logger=None):
+def retry(tries=5, delay=3, backoff=2,
+          timeout=None, silent=False, logger=None):
     """Retry calling the decorated function using an exponential backoff."""
     def deco_retry(f):
 
