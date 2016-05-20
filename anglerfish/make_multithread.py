@@ -5,10 +5,11 @@
 """Multithreading helper."""
 
 
+from functools import wraps
 from concurrent.futures import ThreadPoolExecutor
 
 
-class Threaded():
+class _Threaded():
 
     def __init__(self, future, timeout):
         self._future, self._timeout = future, timeout
@@ -21,7 +22,7 @@ class Threaded():
         return self._future.result(self._timeout)
 
 
-def __async(n, base_type, timeout=None):
+def _async(n, base_type, timeout=None):
 
     def decorator(f):
         if isinstance(n, int):
@@ -33,11 +34,11 @@ def __async(n, base_type, timeout=None):
 
         @wraps(f)
         def wrapped(*args, **kwargs):
-            return Threaded(pool.submit(f, *args, **kwargs), timeout=timeout)
+            return _Threaded(pool.submit(f, *args, **kwargs), timeout=timeout)
         return wrapped
 
     return decorator
 
 
 def threads(n, timeout=None):
-    return __async(n, ThreadPoolExecutor, timeout)
+    return _async(n, ThreadPoolExecutor, timeout)
