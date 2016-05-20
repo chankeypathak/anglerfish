@@ -5,9 +5,9 @@
 """Calculate time, with precision from seconds to days."""
 
 
-def seconds_time_to_human_string(self, time_on_seconds=0):
+def seconds2human(time_on_seconds=0):
     """Calculate time, with precision from seconds to days."""
-    minutes, seconds = divmod(int(time_on_seconds), 60)
+    minutes, seconds = divmod(int(abs(time_on_seconds)), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     human_time_string = ""

@@ -8,10 +8,13 @@
 import os
 
 
-def get_directory_structure(rootdir, strip=False):
+def walk2dict(rootdir, followlinks=False, showhidden=False, strip=False):
     """Return Nested Dictionary represents folder/file structure of rootdir."""
     ret = []
-    for path, dirs, files in os.walk(rootdir):
+    for path, dirs, files in os.walk(rootdir, followlinks=followlinks):
+        if not showhidden:
+            dirs = [_ for _ in dirs if not _.startswith(".")]
+            files = [_ for _ in files if not _.startswith(".")]
         a = {}
         if strip:
             p = path.strip(rootdir + os.sep)

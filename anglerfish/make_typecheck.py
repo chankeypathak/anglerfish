@@ -11,7 +11,7 @@ import logging as log
 
 def typecheck(f):
     """Decorator for Python3 annotations to type-check inputs and outputs."""
-    def __check_annotations(tipe):
+    def _check_annotations(tipe):
         _type, is_ok = None, isinstance(tipe, (type, tuple, type(None)))
         if is_ok:  # Annotations can be Type or Tuple or None
             _type = tipe if isinstance(tipe, tuple) else tuple((tipe, ))
@@ -26,7 +26,7 @@ def typecheck(f):
         for i, name in enumerate(f.__code__.co_varnames):
             if name not in notations:
                 continue  # this arg name has no annotation then skip it.
-            _type, is_ok = __check_annotations(f.__annotations__.get(name))
+            _type, is_ok = _check_annotations(f.__annotations__.get(name))
             if is_ok:  # Force to tuple
                 if i < len(args) and not isinstance(args[i], _type):
                     log.critical(msg.format(repr(args[i])[:50], _type,
@@ -35,7 +35,7 @@ def typecheck(f):
                     log.critical(msg.format(repr(kwargs[name])[:50], _type,
                                             type(kwargs[name]), f_name))
         out = f(*args, **kwargs)
-        _type, is_ok = __check_annotations(f.__annotations__.get("return"))
+        _type, is_ok = _check_annotations(f.__annotations__.get("return"))
         if is_ok and not isinstance(out, _type) and "return" in notations:
             log.critical(msg.format(repr(out)[:50], _type, type(out), f_name))
         return out    # The output result of function or method.
