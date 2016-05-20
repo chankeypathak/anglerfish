@@ -133,7 +133,6 @@ from anglerfish.make_log_exception import log_exception
 from anglerfish.make_multiprocess import multiprocessed
 from anglerfish.make_multithread import threads
 from anglerfish.make_postexec_message import make_post_exec_msg
-from anglerfish.make_progressbar import *  # noqa lint
 from anglerfish.make_retry import retry
 from anglerfish.make_typecheck import typecheck
 from anglerfish.walk2list import walk2list
