@@ -11,6 +11,7 @@ import os
 import socket
 import stat
 import sys
+import signal
 import time
 import traceback
 import zipfile
@@ -37,6 +38,7 @@ except ImportError:
 
 CONFIG, start_time = None, datetime.now()
 F = "[%(asctime)s] %(levelname)s:%(name)s: %(message)s %(filename)s:%(lineno)d"
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 def __zip_old_logs(log_file):
@@ -72,7 +74,7 @@ def make_logger(name=str(os.getpid())):
     log.addHandler(hand)
     log.setLevel(-1)
     if not sys.platform.startswith("win") and sys.stderr.isatty():
-        log.debug("Using Colored Logs on current Terminal (256 Colors).")
+        log.debug("Enabled Colored Logs on current Terminal.")
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
             def new(*args):
@@ -117,28 +119,31 @@ def make_logger(name=str(os.getpid())):
     return log
 
 
-from anglerfish.check_encoding import *  # noqa lint
-from anglerfish.check_updates import *  # noqa lint
-from anglerfish.check_working_folder import *  # noqa lint
-from anglerfish.get_clipboard import *  # noqa lint
-from anglerfish.get_pdb_on_exception import *  # noqa lint
-from anglerfish.make_atomic import *  # noqa lint
-from anglerfish.make_beep import *  # noqa lint
-from anglerfish.make_config import *  # noqa lint
-from anglerfish.make_info import *  # noqa lint
-from anglerfish.make_json_pretty import *  # noqa lint
-from anglerfish.make_log_exception import *  # noqa lint
-from anglerfish.make_multiprocess import *  # noqa lint
-from anglerfish.make_multithread import *  # noqa lint
-from anglerfish.make_postexec_message import *  # noqa lint
+from anglerfish.check_encoding import check_encoding
+from anglerfish.check_folder import check_folder
+from anglerfish.get_clipboard import *  # noqa lint  # FIXME
+from anglerfish.get_pdb_on_exception import pdb_on_exception, ipdb_on_exception
+from anglerfish.get_sanitized_string import get_sanitized_string
+from anglerfish.make_atomic import *  # noqa lint  # FIXME
+from anglerfish.make_beep import beep
+from anglerfish.make_config import *  # noqa lint  # FIXME
+from anglerfish.make_info import about_python, about_self, view_code, report_bug
+from anglerfish.make_json_pretty import json_pretty
+from anglerfish.make_log_exception import log_exception
+from anglerfish.make_multiprocess import multiprocessed
+from anglerfish.make_multithread import threads
+from anglerfish.make_postexec_message import make_post_exec_msg
 from anglerfish.make_progressbar import *  # noqa lint
-from anglerfish.make_retry import *  # noqa lint
-from anglerfish.make_typecheck import *  # noqa lint
-from anglerfish.make_walkdir import *  # noqa lint
-from anglerfish.make_watch import *  # noqa lint
+from anglerfish.make_retry import retry
+from anglerfish.make_typecheck import typecheck
+from anglerfish.walk2list import walk2list
+from anglerfish.make_watch import watch
 from anglerfish.set_desktop_launcher import *  # noqa lint
-from anglerfish.set_process_name import *  # noqa lint
-from anglerfish.set_signals import *  # noqa lint
+from anglerfish.set_process_name import set_process_name
 from anglerfish.set_single_instance import *  # noqa lint
 from anglerfish.set_temp_folder import *  # noqa lint
-from anglerfish.set_terminal_title import *  # noqa lint
+from anglerfish.set_terminal_title import set_terminal_title
+from anglerfish.bytes2human import bytes2human
+from anglerfish.walk2dict import walk2dict
+from anglerfish.get_colorized import *  # noqa lint
+from anglerfish.seconds2human import seconds2human
