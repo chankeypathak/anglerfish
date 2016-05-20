@@ -7,7 +7,7 @@
 
 import logging as log
 
-from json import dumps, loads
+from json import dumps
 
 
 def json_pretty(json_dict: dict) -> str:
