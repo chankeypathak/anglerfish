@@ -17,20 +17,18 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-def make_post_exec_msg(app, start_time=None, __url__):
+def make_post_exec_msg(start_time=None, comment=None):
     """Simple Post-Execution Message with information about RAM and Time."""
-    use, al = 0, 0
+    use, al, msg = 0, 0, ""
     if sys.platform.startswith("linux"):
         use = int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss *
                   resource.getpagesize() / 1024 / 1024 if resource else 0)
         al = int(os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES') /
                  1024 / 1024 if hasattr(os, "sysconf") else 0)
-    msg = "Total Maximum RAM Memory used: ~{0} of {1}MegaBytes".format(use, al)
-    log.info(msg)
+    msg += "Total Maximum RAM Memory use:{0} of {1}MegaBytes\n".format(use, al)
     if start_time and datetime:
-        log.info("Total Working Time: {0}".format(datetime.now() - start_time))
-    print("Thanks for using this App,share your experience! {0}".format("""
-    Twitter: https://twitter.com/home?status=I%20Like%20{n}!:%20{u}
-    Facebook: https://www.facebook.com/share.php?u={u}&t=I%20Like%20{n}
-    G+: https://plus.google.com/share?url={u}""".format(u=__url__, n=app)))
-    return msg  # see the message, but dont get on logs.
+        msg += "Total Working Time: {0}\n".format(datetime.now() - start_time)
+    if comment:
+        log.info(comment)
+    log.info(msg)
+    return msg

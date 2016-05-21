@@ -144,5 +144,4 @@ from anglerfish.set_temp_folder import *  # noqa lint
 from anglerfish.set_terminal_title import set_terminal_title
 from anglerfish.bytes2human import bytes2human
 from anglerfish.walk2dict import walk2dict
-from anglerfish.get_colorized import *  # noqa lint
 from anglerfish.seconds2human import seconds2human

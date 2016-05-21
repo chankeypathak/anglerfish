@@ -12,7 +12,7 @@ import sys
 from tempfile import gettempdir
 
 
-def get_or_set_temp_folder(appname):
+def get_temp_folder(appname):
     """Get a temp Sub-folder for this App only, cross-platform, return path."""
     if appname and len(appname) and isinstance(appname, str):
         temp_path = os.path.join(gettempdir(), appname.strip().lower())
