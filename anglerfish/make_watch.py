@@ -15,7 +15,7 @@ import time
 def watch(file_path, callback=None, interval=60):
     """Watch a file path for changes run callback if modified. A WatchDog."""
     log.debug("Watching for changes on path: {0}.".format(file_path))
-    previous = int(os.stat(file_path).st_mtime)
+    previous, file_path = int(os.stat(file_path).st_mtime), str(file_path)
     while True:
         actual = int(os.stat(file_path).st_mtime)
         if previous == actual:

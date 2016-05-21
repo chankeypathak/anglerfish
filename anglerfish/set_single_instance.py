@@ -24,7 +24,8 @@ def set_single_instance(name, port=8888):
         __lock = None
         log.critical("Another instance of App is already running!, Exiting!.")
         log.exception(e)
-        sys.exit(1)
+        sys.exit()
+        exit()
     else:
         log.info("Socket Lock for Single Instance: {}.".format(__lock))
     finally:

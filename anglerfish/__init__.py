@@ -46,12 +46,15 @@ def __zip_old_logs(log_file):
     log.debug("Compressing Old Rotated Logs on ZIP file: " + zip_file)
     logs = [_ for _ in os.listdir(os.path.dirname(log_file))
             if ".log." in _ and not _.endswith("-old.zip") and filename in _]
-    with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as myzip:
-        myzip.debug = 3  # Log ZIP inner working,and comment with datetime
+    with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as log_zip:
+        log_zip.debug = 3  # Log ZIP inner working,and comment with datetime
         for fyle in logs:
-            myzip.write(fyle)
-            os.remove(os.path.join(os.path.dirname(log_file), fyle))
-        myzip.printdir()
+            try:
+                log_zip.write(fyle)
+                os.remove(os.path.join(os.path.dirname(log_file), fyle))
+            except:
+                pass
+        log_zip.printdir()
     return zip_file
 
 
@@ -121,10 +124,9 @@ def make_logger(name=str(os.getpid())):
 
 from anglerfish.check_encoding import check_encoding
 from anglerfish.check_folder import check_folder
-from anglerfish.get_clipboard import *  # noqa lint  # FIXME
+from anglerfish.get_clipboard import get_clipboard
 from anglerfish.get_pdb_on_exception import pdb_on_exception, ipdb_on_exception
 from anglerfish.get_sanitized_string import get_sanitized_string
-from anglerfish.make_atomic import *  # noqa lint  # FIXME
 from anglerfish.make_beep import beep
 from anglerfish.make_config import *  # noqa lint  # FIXME
 from anglerfish.make_info import about_python, about_self, view_code, report_bug
@@ -137,10 +139,10 @@ from anglerfish.make_retry import retry
 from anglerfish.make_typecheck import typecheck
 from anglerfish.walk2list import walk2list
 from anglerfish.make_watch import watch
-from anglerfish.set_desktop_launcher import *  # noqa lint
+from anglerfish.set_desktop_launcher import set_desktop_launcher
 from anglerfish.set_process_name import set_process_name
-from anglerfish.set_single_instance import *  # noqa lint
-from anglerfish.set_temp_folder import *  # noqa lint
+from anglerfish.set_single_instance import set_single_instance
+from anglerfish.set_temp_folder import set_temp_folder
 from anglerfish.set_terminal_title import set_terminal_title
 from anglerfish.bytes2human import bytes2human
 from anglerfish.walk2dict import walk2dict
