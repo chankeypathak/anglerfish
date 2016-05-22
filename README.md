@@ -226,27 +226,231 @@ except Exception:
     log_exception()
 ```
 
-
-
-
-
-
 ---
 
-`make_logger()`
+`ipdb_on_exception(debugger: str="ipdb")`
 
-**Description:** .
+**Description:** Automatic iPDB Debugger when an Exception happens, 
+it install a handler to attach a post-mortem ipdb console on an exception on the fly,
+PDB, iPDB can be used as Debugger console.
 
-**Arguments:** .
+**Arguments:** `debugger` one of "ipdb", "pdb".
 
 **Keyword Arguments:** None.
 
-**Returns:** None
+**Returns:** None.
 
 **Usage Example:**
 
 python
 ```
-from anglerfish import 
+from anglerfish import ipdb_on_exception
+ipdb_on_exception()
+try:
+    0 / 0
+except Exception:
+    pass
+```
 
+---
+
+`seconds2human(time_on_seconds: int)`
+
+**Description:** From Time on seconds to very human friendly string representation,
+calculates time with precision from seconds to days, returns the string with representation.
+
+**Arguments:** `time_on_seconds` time on seconds, integer type.
+
+**Keyword Arguments:** None.
+
+**Returns:** string, human friendly representation.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import seconds2human
+seconds2human(490890)
+```
+
+---
+
+`set_process_name(name: str)`
+
+**Description:** Set the current process name to the argument `name`, 
+so instead of all your apps listing as `python` on the system monitor they will have proper names,
+this helps Debug, troubleshooting and system administration in general.
+
+**Arguments:** `name` the name of your app.
+
+**Keyword Arguments:** None.
+
+**Returns:** Boolean, True if it can change the process name.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import set_process_name
+set_process_name("MyApp")
+```
+
+---
+
+`walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
+
+**Description:** Perform full recursive walk of `where` folder path, 
+search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
+convert the output to `tuple` if `tuply` is `True`, else return the `list` containing the path of all the files.
+
+**Arguments:** `where` path to a folder to scan, string type.
+`target` type of files to search for, for example `.py`, string type, 
+`omit` type of files to ignote, for example `.pyc`, string type, 
+`links` a Boolean, `True` to follow simbolic links, 
+`tuply` a Boolean, `True` to convert the output `list` into a `tuple`.
+
+**Keyword Arguments:** None.
+
+**Returns:** `list` or `tuple`
+
+**Usage Example:**
+
+python
+```
+from anglerfish import walk2list
+walk2list(".")
+```
+
+---
+
+`walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
+
+**Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
+
+
+**Arguments:** `folder` path to folder to scan, string type, 
+`links` a Boolean, `True` to follow simbolic links,
+`showhidden` a Boolean, `True` to show hidden files and folders,
+`strip` a Boolean, `True` to strip the relative folder path, 
+`jsony` a Boolean, `True` to convert the `dict` to JSON.
+
+**Keyword Arguments:** None.
+
+**Returns:** `dict` or `str` with JSON.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import walk2dict
+walk2dict(".")
+```
+
+---
+
+`multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
+
+**Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
+with optional Timeout, on a quick and easy way.
+
+**Arguments:** `function` a function of Callable type to execute code, 
+`arguments` is an object that represent the arguments for the function, 
+`cpu_num` how many CPU Cores to use, integer type, 
+`thread_num` how many Threads per CPU Core to use, integer type, 
+`timeout` a Timeout on Seconds, integer type or None.
+
+**Keyword Arguments:** None.
+
+**Returns:** concurrent.futures object.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import multiprocessed
+import time
+
+def process_job(job):  # a simple function for testing only
+    time.sleep(1)
+    count = 100
+    while count > 0:
+        count -= 1
+    return job
+jobs = [str(i) for i in range(30)]  # a simple list
+
+print(multiprocessed(process_job, jobs, cpu_num=1, thread_num=4))
+print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
+```
+
+---
+
+`@threads(n: int, timeout=None)`
+
+**Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
+
+**Arguments:** `n` number of Threads to use for the function execution, integer type, 
+`timeout` a Timeout on seconds or None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Its a Decorator.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import threads
+import time
+@threads(4)
+def process_job():  # a simple function for testing only
+    return time.sleep(1)
+process_job()
+```
+
+---
+
+`@retry(tries: int=5, delay: int=3, backoff: int=2,
+          timeout: int=None, silent: Bool=False, logger=None)`
+
+**Description:** Retry calling the decorated function using an exponential backoff and timeout.
+
+**Arguments:** `tries` how many times retry the operation, defaults to 5, integer type, 
+`delay` delay between executions, defaults to 3, integer type, `backoff` an exponential backoff offset to apply to the `delay`, defaults to 2, integer type, `timeout` a timeout for the whole execution or None, defaults to None, 
+`silent` a boolean `True` to be Silent when running the reties, defaults to False, 
+`logger` a working logger to log into or None to use `print()`.
+
+**Keyword Arguments:** None.
+
+**Returns:** Its a Decorator.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import retry
+@retry(4)
+def retry_job():  # a simple function for testing only
+    return open("").read()  # Will Fail as expected
+retry_job()
+```
+
+---
+
+`set_single_instance(name: str, port: int=8888)`
+
+**Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
+
+**Arguments:** `name` the name of your app to be used as Lock name, 
+`port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, integer type.
+
+**Keyword Arguments:** None.
+
+**Returns:** socket.socket object or None.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import set_single_instance
+set_single_instance("MyApp")
 ```
