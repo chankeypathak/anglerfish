@@ -136,6 +136,98 @@ from anglerfish import get_sanitized_string
 get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 ```
 
+---
+
+`get_temp_folder(appname: str)`
+
+**Description:** Creates and returns a folder on the systems Temporary directory, 
+creating it or not if needed, the folder will have the same name as the App passed as argument,
+it means to be a liittle more safe than just writing everything to the systems temp folder where simple name collisions can overwrite and loss data.
+
+**Arguments:** `appname` the name of your app.
+
+**Keyword Arguments:** None.
+
+**Returns:** string, full path to the apps temp folder.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import get_temp_folder
+get_temp_folder("test")
+```
+
+---
+
+`beep(waveform: tuple)`
+
+**Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
+like old days Pc Speaker Buzzer Beep sound, meant for very long running operations and/or headless command line apps,
+it works on Linux, Windows and Mac and requires nothing to run.
+
+**Arguments:** `waveform` tuple containing integers, as the sinewave for the beep sound, defaults to `(79, 45, 32, 50, 99, 113, 126, 127)`.
+
+**Keyword Arguments:** None.
+
+**Returns:** Bool, True is sound playing went Ok.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import beep
+beep()
+```
+
+---
+
+`json_pretty(json_dict: dict)`
+
+**Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation, 
+similar to YML but still valid JSON, works perfectly with JavaScript too.
+
+**Arguments:** `json_dict` a dict with data that will be converted to JSON and pretty-printed as string.
+
+**Keyword Arguments:** None.
+
+**Returns:** string, the JSON data.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import json_pretty
+json_pretty({"foo": True, "bar": 42, "baz": []})
+```
+
+---
+
+`log_exception()`
+
+**Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood, 
+returns a string printing it via a working logger at the same time, 
+works for Exceptions like on `try...except...finally` constructions, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** string, the info about the exception.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import log_exception
+try:
+    0 / 0
+except Exception:
+    log_exception()
+```
+
+
+
 
 
 
