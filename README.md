@@ -4,6 +4,7 @@ Ugly but Enlightening
 
 # Description of functions
 
+# make_logger
 `make_logger(name: str, when: str)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
@@ -20,8 +21,7 @@ this should be the first one to use, since others may need a way to log out impo
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import make_logger
 log = make_logger("MyAppName")
 log.debug("This is a Test.")
@@ -29,7 +29,7 @@ log.debug("This is a Test.")
 
 ---
 
-
+# bytes2human
 `bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
@@ -45,14 +45,14 @@ uses a Byte Size of 1024 by default, is basically a Bytes to KiloBytes, MegaByte
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import bytes2human
 bytes2human(3284902384, "g")
 ```
 
 ---
 
+# check_encoding
 `check_encoding()`
 
 **Description:** Checks the all the Encodings of the System and Logs the results, to name a few like STDIN, STDERR, STDOUT, FileSystem, PYTHONIOENCODING and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
@@ -65,14 +65,14 @@ bytes2human(3284902384, "g")
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import check_encoding
 check_encoding()
 ```
 
 ---
 
+# check_folder
 `check_folder(folder_to_check: str)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
@@ -86,14 +86,14 @@ including no Read Permissions, that the folder does not exists, and no space lef
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import check_folder
 check_folder("/path/to/my/folder/")
 ```
 
 ---
 
+# get_clipboard
 `get_clipboard()`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
@@ -106,8 +106,7 @@ check_folder("/path/to/my/folder/")
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import get_clipboard
 clipboard_copy, clipboard_paste = get_clipboard()
 clipboard_copy("This is a Test.")
@@ -116,6 +115,7 @@ print(clipboard_paste())
 
 ---
 
+# get_sanitized_string
 `get_sanitized_string(stringy: str, repla: str="")`
 
 **Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
@@ -130,14 +130,14 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import get_sanitized_string
 get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 ```
 
 ---
 
+# get_temp_folder
 `get_temp_folder(appname: str)`
 
 **Description:** Creates and returns a folder on the systems Temporary directory, 
@@ -152,8 +152,7 @@ it means to be a liittle more safe than just writing everything to the systems t
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import get_temp_folder
 get_temp_folder("test")
 ```
@@ -174,14 +173,14 @@ it works on Linux, Windows and Mac and requires nothing to run.
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import beep
 beep()
 ```
 
 ---
 
+# json_pretty
 `json_pretty(json_dict: dict)`
 
 **Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation, 
@@ -195,14 +194,13 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import json_pretty
 json_pretty({"foo": True, "bar": 42, "baz": []})
 ```
 
 ---
-
+# log_exception
 `log_exception()`
 
 **Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood, 
@@ -217,8 +215,7 @@ works for Exceptions like on `try...except...finally` constructions, takes no ar
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import log_exception
 try:
     0 / 0
@@ -228,6 +225,7 @@ except Exception:
 
 ---
 
+# ipdb_on_exception
 `ipdb_on_exception(debugger: str="ipdb")`
 
 **Description:** Automatic iPDB Debugger when an Exception happens, 
@@ -242,8 +240,7 @@ PDB, iPDB can be used as Debugger console.
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import ipdb_on_exception
 ipdb_on_exception()
 try:
@@ -254,6 +251,7 @@ except Exception:
 
 ---
 
+# seconds2human
 `seconds2human(time_on_seconds: int)`
 
 **Description:** From Time on seconds to very human friendly string representation,
@@ -267,14 +265,14 @@ calculates time with precision from seconds to days, returns the string with rep
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import seconds2human
 seconds2human(490890)
 ```
 
 ---
 
+# set_process_name
 `set_process_name(name: str)`
 
 **Description:** Set the current process name to the argument `name`, 
@@ -289,14 +287,14 @@ this helps Debug, troubleshooting and system administration in general.
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import set_process_name
 set_process_name("MyApp")
 ```
 
 ---
 
+# walk2list
 `walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
 
 **Description:** Perform full recursive walk of `where` folder path, 
@@ -315,14 +313,14 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import walk2list
 walk2list(".")
 ```
 
 ---
 
+# walk2dict
 `walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
@@ -340,14 +338,14 @@ walk2list(".")
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import walk2dict
 walk2dict(".")
 ```
 
 ---
 
+# multiprocessed
 `multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
 
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
@@ -365,8 +363,7 @@ with optional Timeout, on a quick and easy way.
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import multiprocessed
 import time
 
@@ -384,6 +381,7 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 ---
 
+ # threads
 `@threads(n: int, timeout=None)`
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
@@ -397,8 +395,7 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import threads
 import time
 @threads(4)
@@ -425,8 +422,7 @@ process_job()
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import retry
 @retry(4)
 def retry_job():  # a simple function for testing only
@@ -436,6 +432,7 @@ retry_job()
 
 ---
 
+# set_single_instance
 `set_single_instance(name: str, port: int=8888)`
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
@@ -449,8 +446,7 @@ retry_job()
 
 **Usage Example:**
 
-python
-```
+```python
 from anglerfish import set_single_instance
 set_single_instance("MyApp")
 ```
