@@ -159,6 +159,7 @@ get_temp_folder("test")
 
 ---
 
+# beep
 `beep(waveform: tuple)`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
@@ -381,7 +382,7 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 ---
 
- # threads
+# threads
 `@threads(n: int, timeout=None)`
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
@@ -406,6 +407,7 @@ process_job()
 
 ---
 
+# retry
 `@retry(tries: int=5, delay: int=3, backoff: int=2,
           timeout: int=None, silent: Bool=False, logger=None)`
 
