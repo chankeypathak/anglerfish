@@ -514,3 +514,35 @@ env2globals()
 from anglerfish import html2ebook
 html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 ```
+
+---
+
+# Templar
+`Templar(template: str)`
+
+**Description:** Templar is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
+
+**Arguments:** 
+- `template` a template string with native Python 3 code between tags, or a file-like object that supports `.read()`.
+
+**Keyword Arguments:** None.
+
+**Returns:** a string with the Rendered HTML.
+
+**Usage Example:**
+
+```python
+from anglerfish import Templar
+demo = """<html><body>
+     {%
+     def say_hello(arg):
+         {{"<tr> hello ", arg, " </tr>"}}
+     %}
+     <table>
+         {% [say_hello(i) for i in range(9) if i % 2] %}
+     </table>
+     {% {{ testo }} {{ __doc__.title() }} %}
+     {% # this is a python comment %}  </body></html>"""
+templar_template = Templar(demo)
+print(templar_template(testo=9, mini=True))
+```
