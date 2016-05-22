@@ -10,7 +10,7 @@ Ugly but Enlightening
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
-this should be the first one to use, since others may need a way to log out important info.
+this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
 
 **Arguments:** `name` is a unique name of your App, optional will use PID if not provided, string type.
 `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
@@ -33,7 +33,7 @@ log.debug("This is a Test.")
 `bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
-uses a Byte Size of 1024 by default, is basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
+uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
 
 **Arguments:** `bites` is the number of bytes, integer type.
 `to` is one of 'k', 'm', 'g', 't', 'p', 'e', string type.
@@ -41,7 +41,7 @@ uses a Byte Size of 1024 by default, is basically a Bytes to KiloBytes, MegaByte
 
 **Keyword Arguments:** None.
 
-**Returns:** string.
+**Returns:** string, human friendly representation.
 
 **Usage Example:**
 
@@ -76,7 +76,7 @@ check_encoding()
 `check_folder(folder_to_check: str)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
-including no Read Permissions, that the folder does not exists, and no space left on it, returns Boolean.
+like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
 
 **Arguments:** `folder_to_check` path of the folder to check, string type.
 
@@ -102,7 +102,7 @@ check_folder("/path/to/my/folder/")
 
 **Keyword Arguments:** None.
 
-**Returns:** Tuple, `clipboard_copy()' and `clipboard_paste()`.
+**Returns:** Tuple, `clipboard_copy()` and `clipboard_paste()`.
 
 **Usage Example:**
 
@@ -122,11 +122,11 @@ print(clipboard_paste())
 ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
 
 **Arguments:** `stringy` string to be clean out of weird characters, string type. 
-`repla` a replacement string to be used instead of empty string `""` can be a single character.
+`repla` a replacement string to be used instead of empty string `""`, can be a single character.
 
 **Keyword Arguments:** None.
 
-**Returns:** string.
+**Returns:** string, the same as input but ASCII-only ready.
 
 **Usage Example:**
 
@@ -230,7 +230,7 @@ except Exception:
 `ipdb_on_exception(debugger: str="ipdb")`
 
 **Description:** Automatic iPDB Debugger when an Exception happens, 
-it install a handler to attach a post-mortem ipdb console on an exception on the fly,
+it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
 PDB, iPDB can be used as Debugger console.
 
 **Arguments:** `debugger` one of "ipdb", "pdb".
@@ -278,7 +278,7 @@ seconds2human(490890)
 
 **Description:** Set the current process name to the argument `name`, 
 so instead of all your apps listing as `python` on the system monitor they will have proper names,
-this helps Debug, troubleshooting and system administration in general.
+this helps debug, troubleshooting and system administration in general.
 
 **Arguments:** `name` the name of your app.
 
