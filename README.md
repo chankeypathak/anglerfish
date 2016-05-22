@@ -452,3 +452,51 @@ retry_job()
 from anglerfish import set_single_instance
 set_single_instance("MyApp")
 ```
+
+---
+
+# env2globals
+`env2globals(pattern: str)`
+
+**Description:** Auto add ENV environtment variables starting with `PY_` in upper case to python globals dict.
+
+**Arguments:** `pattern` the pattern to select which variables to add, default to `PY_`
+
+**Keyword Arguments:** None.
+
+**Returns:** Boolean, True if everything is Ok.
+
+**Usage Example:**
+
+```python
+from anglerfish import env2globals
+env2globals()
+```
+
+---
+
+# html2ebook
+`html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
+
+**Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
+
+**Arguments:** `files` a tuple with the list of HTML/CSS files to add to the eBook.
+`fyle` an output file path string, defaults to an uuid4 hexadecimal if not provided.
+
+**Keyword Arguments:** `meta` contains a dict with
+`title` is the eBook Title (Fallbacks to Filename if not provided).
+`author`  is the eBook Author (Fallbacks to Username if not provided).
+`lang` is the eBook Language (Fallbacks to English if not provided).
+`des` is a friendly eBook Description (Fallbacks to Filename if not provided).
+`copi` eBook CopyRights (Fallbacks to Creative Commons 'CC-BY-NC-SA v.4.0' if not provided).
+`pub` the eBook Publisher (Fallbacks to 'Python' if not provided).
+`date` Date and Time ISO format of eBook creation (Fallbacks to Current Date and Time if not provided).
+
+**Returns:** a string with the file path of the new eBook file.
+
+**Usage Example:**
+
+```python
+from anglerfish import html2ebook
+html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
+```
