@@ -20,6 +20,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
+sys.dont_write_bytecode = True
 CONFIG, start_time = None, datetime.now()
 F = "[%(asctime)s] %(levelname)s:%(name)s: %(message)s %(filename)s:%(lineno)d"
 signal.signal(signal.SIGINT, signal.SIG_DFL)
@@ -42,7 +43,7 @@ def __zip_old_logs(log_file):
     return zip_file
 
 
-def make_logger(name=str(os.getpid())):
+def make_logger(name=str(os.getpid()), when='midnight'):
     """Build and return a Logging Logger."""
     global log
     log_file = os.path.join(gettempdir(), str(name).lower().strip() + ".log")
@@ -53,7 +54,7 @@ def make_logger(name=str(os.getpid())):
         with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as myzip:
             myzip.comment = bytes(comment, encoding="utf-8")
     atexit.register(__zip_old_logs, log_file)  # ZIP Old Logs
-    hand = TimedRotatingFileHandler(log_file, when='midnight',
+    hand = TimedRotatingFileHandler(log_file, when=when,
                                     backupCount=999, encoding="utf-8")
     hand.setLevel(-1)
     hand.setFormatter(logging.Formatter(fmt=F, datefmt="%Y-%m-%d %H:%M:%S"))

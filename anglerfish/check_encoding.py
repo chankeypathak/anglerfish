@@ -23,7 +23,7 @@ def check_encoding():
     log.debug("FileSystem Encoding: {0}.".format(sys.getfilesystemencoding()))
     log.debug("PYTHONIOENCODING Encoding: {0}.".format(
         os.environ.get("PYTHONIOENCODING", None)))
-    os.environ["PYTHONIOENCODING"], sys.dont_write_bytecode = "utf-8", True
+    os.environ["PYTHONIOENCODING"] = "utf-8"
     if not sys.platform.startswith("windows"):  # root check
         if not os.geteuid():
             log.warning("Runing as root is not Recommended !.")
