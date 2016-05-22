@@ -3,32 +3,16 @@
 
 
 import atexit
-import codecs
-import functools
-import glob
 import logging
 import os
-import socket
-import stat
 import sys
 import signal
-import time
-import traceback
 import zipfile
 
 from logging.handlers import TimedRotatingFileHandler
 from copy import copy
-from ctypes import byref, cdll, create_string_buffer
 from datetime import datetime
-from getpass import getuser
-from json import dumps, loads
-from platform import platform, python_version
-from shutil import disk_usage, make_archive, rmtree
-from subprocess import call
 from tempfile import gettempdir
-from time import sleep
-from urllib import request
-from webbrowser import open_new_tab
 
 try:
     import resource
@@ -78,6 +62,7 @@ def make_logger(name=str(os.getpid())):
     log.setLevel(-1)
     if not sys.platform.startswith("win") and sys.stderr.isatty():
         log.debug("Enabled Colored Logs on current Terminal.")
+
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
             def new(*args):
@@ -107,7 +92,8 @@ def make_logger(name=str(os.getpid())):
                     print(reason)  # Do not use log here.
                 return fn(*new_args)
             return new
-        logging.StreamHandler.emit = add_color_emit_ansi(logging.StreamHandler.emit)
+        logging.StreamHandler.emit = add_color_emit_ansi(
+            logging.StreamHandler.emit)
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stderr))
     adrs = "/dev/log" if sys.platform.startswith("lin") else "/var/run/syslog"
@@ -122,28 +108,30 @@ def make_logger(name=str(os.getpid())):
     return log
 
 
-from anglerfish.check_encoding import check_encoding
-from anglerfish.check_folder import check_folder
-from anglerfish.get_clipboard import get_clipboard
-from anglerfish.get_pdb_on_exception import pdb_on_exception, ipdb_on_exception
-from anglerfish.get_sanitized_string import get_sanitized_string
-from anglerfish.make_beep import beep
-from anglerfish.make_config import *  # noqa lint  # FIXME
-from anglerfish.make_info import about_python, about_self, view_code, report_bug
-from anglerfish.make_json_pretty import json_pretty
-from anglerfish.make_log_exception import log_exception
-from anglerfish.make_multiprocess import multiprocessed
-from anglerfish.make_multithread import threads
-from anglerfish.make_postexec_message import make_post_exec_msg
-from anglerfish.make_retry import retry
-from anglerfish.make_typecheck import typecheck
-from anglerfish.walk2list import walk2list
-from anglerfish.make_watch import watch
-from anglerfish.set_desktop_launcher import set_desktop_launcher
-from anglerfish.set_process_name import set_process_name
-from anglerfish.set_single_instance import set_single_instance
-from anglerfish.set_temp_folder import set_temp_folder
-from anglerfish.set_terminal_title import set_terminal_title
-from anglerfish.bytes2human import bytes2human
-from anglerfish.walk2dict import walk2dict
-from anglerfish.seconds2human import seconds2human
+from anglerfish.check_encoding import check_encoding  # noqa
+from anglerfish.check_folder import check_folder  # noqa
+from anglerfish.get_clipboard import get_clipboard  # noqa
+from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
+                                             ipdb_on_exception)  # noqa
+from anglerfish.get_sanitized_string import get_sanitized_string  # noqa
+from anglerfish.make_beep import beep  # noqa
+from anglerfish.make_config import *  # noqa   # FIXME
+from anglerfish.make_info import (about_python, about_self,  # noqa
+                                  view_code, report_bug)  # noqa
+from anglerfish.make_json_pretty import json_pretty  # noqa
+from anglerfish.make_log_exception import log_exception  # noqa
+from anglerfish.make_multiprocess import multiprocessed  # noqa
+from anglerfish.make_multithread import threads  # noqa
+from anglerfish.make_postexec_message import make_post_exec_msg  # noqa
+from anglerfish.make_retry import retry  # noqa
+from anglerfish.make_typecheck import typecheck  # noqa
+from anglerfish.walk2list import walk2list  # noqa
+from anglerfish.make_watch import watch  # noqa
+from anglerfish.set_desktop_launcher import set_desktop_launcher  # noqa
+from anglerfish.set_process_name import set_process_name  # noqa
+from anglerfish.set_single_instance import set_single_instance  # noqa
+from anglerfish.get_temp_folder import get_temp_folder  # noqa
+from anglerfish.set_terminal_title import set_terminal_title  # noqa
+from anglerfish.bytes2human import bytes2human  # noqa
+from anglerfish.walk2dict import walk2dict  # noqa
+from anglerfish.seconds2human import seconds2human  # noqa
