@@ -34,21 +34,24 @@ def walk2dict(folder, links=False, showhidden=False, strip=False, jsony=False):
         a['dirs'] = dirs
         a['files'] = []
         for fyle in files:
-            f = {}
-            ff = path + os.sep + fyle
-            (mode, ino, dev, nlink, uid, gid, size,
-             atime, mtime, ctime) = os.stat(ff)
-            f['name'] = fyle
-            f['mode'] = mode
-            f['ino'] = ino
-            f['dev'] = dev
-            f['nlink'] = nlink
-            f['uid'] = uid
-            f['gid'] = gid
-            f['size'] = size
-            f['atime'] = atime
-            f['mtime'] = mtime
-            f['ctime'] = ctime
-            a['files'].append(f)
+            try:  # sometimes os.stat(ff) just fails,breaking all the loop.
+                f = {}
+                ff = path + os.sep + fyle
+                (mode, ino, dev, nlink, uid, gid, size,
+                 atime, mtime, ctime) = os.stat(ff)
+                f['name'] = fyle
+                f['mode'] = mode
+                f['ino'] = ino
+                f['dev'] = dev
+                f['nlink'] = nlink
+                f['uid'] = uid
+                f['gid'] = gid
+                f['size'] = size
+                f['atime'] = atime
+                f['mtime'] = mtime
+                f['ctime'] = ctime
+                a['files'].append(f)
+            except:
+                pass
         ret.append(a)
     return dumps(ret, sort_keys=1, indent=4) if jsony else ret

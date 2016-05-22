@@ -96,14 +96,16 @@ def make_logger(name=str(os.getpid())):
             logging.StreamHandler.emit)
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stderr))
-    adrs = "/dev/log" if sys.platform.startswith("lin") else "/var/run/syslog"
-    try:
-        handler = logging.handlers.SysLogHandler(address=adrs)
-    except Exception:
-        log.debug("Unix SysLog Server not found, ignored Logging to SysLog.")
-    else:
-        logging.getLogger().addHandler(handler)
-        log.debug("Unix SysLog Server found,trying to Log to SysLog: " + adrs)
+    if os.path.exists("/dev/log") or os.path.exists("/var/run/syslog"):
+        is_linux = sys.platform.startswith("linux")
+        adrs = "/dev/log" if is_linux else "/var/run/syslog"
+        try:
+            handler = logging.handlers.SysLogHandler(address=adrs)
+        except Exception:
+            log.debug("Unix SysLog Server not found,ignore Logging to SysLog")
+        else:
+            logging.getLogger().addHandler(handler)
+            log.debug("Unix SysLog Server trying to Log to SysLog: " + adrs)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
     return log
 
