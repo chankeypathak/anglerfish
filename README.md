@@ -61,7 +61,7 @@ bytes2human(3284902384, "g")
 
 **Keyword Arguments:** None.
 
-**Returns:** Bool.
+**Returns:** Bool, True if everything is Ok.
 
 **Usage Example:**
 
@@ -82,7 +82,7 @@ including no Read Permissions, that the folder does not exists, and no space lef
 
 **Keyword Arguments:** None.
 
-**Returns:** Bool.
+**Returns:** Bool, True if everything is Ok.
 
 **Usage Example:**
 
@@ -92,6 +92,49 @@ from anglerfish import check_folder
 check_folder("/path/to/my/folder/")
 ```
 
+---
+
+`get_clipboard()`
+
+**Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Tuple, `clipboard_copy()' and `clipboard_paste()`.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import get_clipboard
+clipboard_copy, clipboard_paste = get_clipboard()
+clipboard_copy("This is a Test.")
+print(clipboard_paste())
+```
+
+---
+
+`get_sanitized_string(stringy: str, repla: str="")`
+
+**Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
+ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
+
+**Arguments:** `stringy` string to be clean out of weird characters, string type. 
+`repla` a replacement string to be used instead of empty string `""` can be a single character.
+
+**Keyword Arguments:** None.
+
+**Returns:** string.
+
+**Usage Example:**
+
+python
+```
+from anglerfish import get_sanitized_string
+get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
+```
 
 
 
