@@ -14,8 +14,9 @@ it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
 
-**Arguments:** `name` is a unique name of your App, optional will use PID if not provided, string type.
-`when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
+**Arguments:** 
+- `name` is a unique name of your App, optional will use PID if not provided, string type.
+- `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
 
 **Keyword Arguments:** None.
 
@@ -37,9 +38,10 @@ log.debug("This is a Test.")
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
 uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
 
-**Arguments:** `bites` is the number of bytes, integer type.
-`to` is one of 'k', 'm', 'g', 't', 'p', 'e', string type.
-`bsize` is the Byte Size, default to 1024, since tipically is the desired byte size, integer type.
+**Arguments:** 
+- `bites` is the number of bytes, integer type.
+- `to` is one of 'k', 'm', 'g', 't', 'p', 'e', string type.
+- `bsize` is the Byte Size, default to 1024, since tipically is the desired byte size, integer type.
 
 **Keyword Arguments:** None.
 
@@ -123,8 +125,9 @@ print(clipboard_paste())
 **Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
 ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
 
-**Arguments:** `stringy` string to be clean out of weird characters, string type. 
-`repla` a replacement string to be used instead of empty string `""`, can be a single character.
+**Arguments:** 
+- `stringy` string to be clean out of weird characters, string type. 
+- `repla` a replacement string to be used instead of empty string `""`, can be a single character.
 
 **Keyword Arguments:** None.
 
@@ -304,11 +307,12 @@ set_process_name("MyApp")
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
 convert the output to `tuple` if `tuply` is `True`, else return the `list` containing the path of all the files.
 
-**Arguments:** `where` path to a folder to scan, string type.
-`target` type of files to search for, for example `.py`, string type, 
-`omit` type of files to ignote, for example `.pyc`, string type, 
-`links` a Boolean, `True` to follow simbolic links, 
-`tuply` a Boolean, `True` to convert the output `list` into a `tuple`.
+**Arguments:** 
+- `where` path to a folder to scan, string type.
+- `target` type of files to search for, for example `.py`, string type, 
+- `omit` type of files to ignote, for example `.pyc`, string type, 
+- `links` a Boolean, `True` to follow simbolic links, 
+- `tuply` a Boolean, `True` to convert the output `list` into a `tuple`.
 
 **Keyword Arguments:** None.
 
@@ -329,11 +333,12 @@ walk2list(".")
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
 
-**Arguments:** `folder` path to folder to scan, string type, 
-`links` a Boolean, `True` to follow simbolic links,
-`showhidden` a Boolean, `True` to show hidden files and folders,
-`strip` a Boolean, `True` to strip the relative folder path, 
-`jsony` a Boolean, `True` to convert the `dict` to JSON.
+**Arguments:** 
+- `folder` path to folder to scan, string type, 
+- `links` a Boolean, `True` to follow simbolic links,
+- `showhidden` a Boolean, `True` to show hidden files and folders,
+- `strip` a Boolean, `True` to strip the relative folder path, 
+- `jsony` a Boolean, `True` to convert the `dict` to JSON.
 
 **Keyword Arguments:** None.
 
@@ -354,11 +359,12 @@ walk2dict(".")
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
 with optional Timeout, on a quick and easy way.
 
-**Arguments:** `function` a function of Callable type to execute code, 
-`arguments` is an object that represent the arguments for the function, 
-`cpu_num` how many CPU Cores to use, integer type, 
-`thread_num` how many Threads per CPU Core to use, integer type, 
-`timeout` a Timeout on Seconds, integer type or None.
+**Arguments:** 
+- `function` a function of Callable type to execute code, 
+- `arguments` is an object that represent the arguments for the function, 
+- `cpu_num` how many CPU Cores to use, integer type, 
+- `thread_num` how many Threads per CPU Core to use, integer type, 
+- `timeout` a Timeout on Seconds, integer type or None.
 
 **Keyword Arguments:** None.
 
@@ -389,8 +395,9 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
 
-**Arguments:** `n` number of Threads to use for the function execution, integer type, 
-`timeout` a Timeout on seconds or None.
+**Arguments:** 
+- `n` number of Threads to use for the function execution, integer type, 
+- `timeout` a Timeout on seconds or None.
 
 **Keyword Arguments:** None.
 
@@ -415,10 +422,13 @@ process_job()
 
 **Description:** Retry calling the decorated function using an exponential backoff and timeout.
 
-**Arguments:** `tries` how many times retry the operation, defaults to 5, integer type, 
-`delay` delay between executions, defaults to 3, integer type, `backoff` an exponential backoff offset to apply to the `delay`, defaults to 2, integer type, `timeout` a timeout for the whole execution or None, defaults to None, 
-`silent` a boolean `True` to be Silent when running the reties, defaults to False, 
-`logger` a working logger to log into or None to use `print()`.
+**Arguments:** 
+- `tries` how many times retry the operation, defaults to 5, integer type.
+- `delay` delay between executions, defaults to 3, integer type.
+- `backoff` an exponential backoff offset to apply to the `delay`, defaults to 2, integer type.
+- `timeout` a timeout for the whole execution or None, defaults to None.
+- `silent` a boolean `True` to be Silent when running the reties, defaults to False.
+- `logger` a working logger to log into or None to use `print()`.
 
 **Keyword Arguments:** None.
 
@@ -441,8 +451,9 @@ retry_job()
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
 
-**Arguments:** `name` the name of your app to be used as Lock name, 
-`port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, integer type.
+**Arguments:** 
+- `name` the name of your app to be used as Lock name, 
+- `port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, integer type.
 
 **Keyword Arguments:** None.
 
@@ -482,17 +493,18 @@ env2globals()
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
 
-**Arguments:** `files` a tuple with the list of HTML/CSS files to add to the eBook.
-`fyle` an output file path string, defaults to an uuid4 hexadecimal if not provided.
+**Arguments:** 
+- `files` a tuple with the list of HTML/CSS files to add to the eBook.
+- `fyle` an output file path string, defaults to an uuid4 hexadecimal if not provided.
 
-**Keyword Arguments:** `meta` contains a dict with
-`title` is the eBook Title (Fallbacks to Filename if not provided).
-`author`  is the eBook Author (Fallbacks to Username if not provided).
-`lang` is the eBook Language (Fallbacks to English if not provided).
-`des` is a friendly eBook Description (Fallbacks to Filename if not provided).
-`copi` eBook CopyRights (Fallbacks to Creative Commons 'CC-BY-NC-SA v.4.0' if not provided).
-`pub` the eBook Publisher (Fallbacks to 'Python' if not provided).
-`date` Date and Time ISO format of eBook creation (Fallbacks to Current Date and Time if not provided).
+**Keyword Arguments:** `meta` contains a dict with:
+- `title` is the eBook Title (Fallbacks to Filename if not provided).
+- `author`  is the eBook Author (Fallbacks to Username if not provided).
+- `lang` is the eBook Language (Fallbacks to English if not provided).
+- `des` is a friendly eBook Description (Fallbacks to Filename if not provided).
+- `copi` eBook CopyRights (Fallbacks to Creative Commons 'CC-BY-NC-SA v.4.0' if not provided).
+- `pub` the eBook Publisher (Fallbacks to 'Python' if not provided).
+- `date` Date and Time ISO format of eBook creation (Fallbacks to Current Date and Time if not provided).
 
 **Returns:** a string with the file path of the new eBook file.
 
