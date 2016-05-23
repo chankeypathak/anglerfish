@@ -38,7 +38,8 @@ __all__ = [
     "env2globals", "html2ebook", "Templar", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
-    "autosave_config", "delete_config", "backup_config"
+    "autosave_config", "delete_config", "backup_config", "CONFIG",
+    "start_time"
 ]
 
 
