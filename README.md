@@ -546,3 +546,32 @@ demo = """<html><body>
 templar_template = Templar(demo)
 print(templar_template(testo=9, mini=True))
 ```
+
+---
+
+# Requisites:
+
+- [Python 3.x](https://www.python.org "Python Homepage") *(or PyPy 3.x)*
+
+
+# Coding Style Guide:
+
+- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort`
+- If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
+
+
+# Contributors:
+
+- **Please Star this Repo on Github !**, it helps to show up faster on searchs.
+- **Ad-Hocracy Meritocracy**: 3 Pull Requests Merged on Master you become Repo Admin. *Join us!*
+- [Help](https://help.github.com/articles/using-pull-requests) and more [Help](https://help.github.com/articles/fork-a-repo) and Interactive Quick [Git Tutorial](https://try.github.io).
+
+
+# Licence:
+
+- GNU GPL Latest Version *AND* GNU LGPL Latest Version *AND* any Licence [YOU Request via Bug Report](https://github.com/juancarlospaco/css-html-js-minify/issues/new).
+
+
+# Ethics and Humanism Policy:
+- May this FLOSS be always Pristine and Clean, No AdWare, No Spamm, No BundleWare, No Infomercial, No MalWare.
+- This project is [LGBTQQIAAP friendly](http://www.urbandictionary.com/define.php?term=LGBTQQIAAP "Whats LGBTQQIAAP").
