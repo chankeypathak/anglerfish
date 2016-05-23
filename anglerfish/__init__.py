@@ -138,3 +138,6 @@ from anglerfish.set_terminal_title import set_terminal_title  # noqa
 from anglerfish.bytes2human import bytes2human  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
 from anglerfish.seconds2human import seconds2human  # noqa
+from anglerfish.env2globals import env2globals  # noqa
+from anglerfish.html2ebook import html2ebook  # noqa
+from anglerfish.make_templar import Templar  # noqa
