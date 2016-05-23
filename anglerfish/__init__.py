@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
+"""Anglerfish."""
+
+
 import atexit
 import logging
 import os
