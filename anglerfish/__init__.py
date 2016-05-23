@@ -25,6 +25,20 @@ CONFIG, start_time = None, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
+__all__ = [
+    "make_logger", "check_encoding", "check_folder", "get_clipboard",
+    "get_sanitized_string", "beep", "json_pretty", "log_exception",
+    "multiprocessed", "threads", "make_post_exec_msg", "retry",
+    "typecheck", "walk2list", "watch", "set_desktop_launcher",
+    "set_process_name", "set_single_instance", "get_temp_folder",
+    "set_terminal_title", "bytes2human", "walk2dict", "seconds2human",
+    "env2globals", "html2ebook", "Templar", "pdb_on_exception",
+    "ipdb_on_exception", "about_python", "about_self", "view_code",
+    "report_bug", "get_config_folder", "make_config", "view_config",
+    "autosave_config", "delete_config", "backup_config"
+]
+
+
 def __zip_old_logs(log_file):
     zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
     log.debug("Compressing Old Rotated Logs on ZIP file: " + zip_file)
