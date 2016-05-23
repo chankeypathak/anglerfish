@@ -114,13 +114,8 @@ def make_logger(name=str(os.getpid()), when='midnight'):
 from anglerfish.check_encoding import check_encoding  # noqa
 from anglerfish.check_folder import check_folder  # noqa
 from anglerfish.get_clipboard import get_clipboard  # noqa
-from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
-                                             ipdb_on_exception)  # noqa
 from anglerfish.get_sanitized_string import get_sanitized_string  # noqa
 from anglerfish.make_beep import beep  # noqa
-from anglerfish.make_config import *  # noqa   # FIXME
-from anglerfish.make_info import (about_python, about_self,  # noqa
-                                  view_code, report_bug)  # noqa
 from anglerfish.make_json_pretty import json_pretty  # noqa
 from anglerfish.make_log_exception import log_exception  # noqa
 from anglerfish.make_multiprocess import multiprocessed  # noqa
@@ -141,3 +136,10 @@ from anglerfish.seconds2human import seconds2human  # noqa
 from anglerfish.env2globals import env2globals  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_templar import Templar  # noqa
+from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
+                                             ipdb_on_exception)  # noqa
+from anglerfish.make_info import (about_python, about_self,  # noqa
+                                  view_code, report_bug)  # noqa
+from anglerfish.make_config import (get_config_folder, make_config,  # noqa
+                                    view_config, autosave_config,  # noqa
+                                    delete_config, backup_config)  # noqa
