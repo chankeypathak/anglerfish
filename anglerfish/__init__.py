@@ -22,7 +22,6 @@ except ImportError:
 
 sys.dont_write_bytecode = True
 CONFIG, start_time = None, datetime.now()
-F = "[%(asctime)s] %(levelname)s:%(name)s: %(message)s %(filename)s:%(lineno)d"
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
@@ -57,7 +56,9 @@ def make_logger(name=str(os.getpid()), when='midnight'):
     hand = TimedRotatingFileHandler(log_file, when=when,
                                     backupCount=999, encoding="utf-8")
     hand.setLevel(-1)
-    hand.setFormatter(logging.Formatter(fmt=F, datefmt="%Y-%m-%d %H:%M:%S"))
+    _fmt = ("[%(asctime)s] %(levelname)s: %(name)s: "
+            "%(message)s %(filename)s:%(lineno)d")
+    hand.setFormatter(logging.Formatter(fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
     log = logging.getLogger()
     log.addHandler(hand)
     log.setLevel(-1)
