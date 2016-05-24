@@ -23,11 +23,11 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-sys.dont_write_bytecode = True
-CONFIG, start_time = None, datetime.now()
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-
-
+__version__ = '0.5.0'
+__license__ = ' GPLv3+ LGPLv3+ '
+__author__ = ' Juan Carlos '
+__email__ = ' juancarlospaco@gmail.com '
+__url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = [
     "make_logger", "check_encoding", "check_folder", "get_clipboard",
     "get_sanitized_string", "beep", "json_pretty", "log_exception",
@@ -41,6 +41,11 @@ __all__ = [
     "autosave_config", "delete_config", "backup_config", "CONFIG",
     "start_time"
 ]
+
+
+sys.dont_write_bytecode = True
+CONFIG, start_time = None, datetime.now()
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 def __zip_old_logs(log_file):
