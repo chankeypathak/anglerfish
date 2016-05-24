@@ -549,6 +549,23 @@ print(templar_template(testo=9, mini=True))
 
 ---
 
+# Install permanently on the system:
+
+**PIP:** *(Recommended!)*
+```
+```
+
+# Why?:
+
+- Too much repeated code across my projects, almost all of them doing tha same.
+- Look into other alternatives like Boltons but they dont solve or improve anything.
+- Other libs try to fix Python2 problems, that has been improved on Python3.
+- Anglerfish modules are less than 100 lines while other solutions are over-engineered and bloated.
+- Lots of functionalities on Anglerfish are a *"Must Have"* for modern Apps, like a Logger, etc.
+- 1 Module = 1 file = 1 feature, less than 100 lines per file, do 1 thing do it well.
+- No Dependencies at all, just Python 3 standard library, cross-platform.
+- Easy to use, KISS philosophy.
+
 # Requisites:
 
 - [Python 3.x](https://www.python.org "Python Homepage") *(or PyPy 3.x)*
