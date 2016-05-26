@@ -12,7 +12,7 @@
 # Description of functions
 
 # make_logger
-`make_logger(name: str, when: str)`
+`anglerfish.make_logger(name: str, when: str)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
@@ -38,7 +38,7 @@ log.debug("This is a Test.")
 ---
 
 # bytes2human
-`bytes2human(bites: int, to: str, bsize: int=1024)`
+`anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
 uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
@@ -62,7 +62,7 @@ bytes2human(3284902384, "g")
 ---
 
 # check_encoding
-`check_encoding()`
+`anglerfish.check_encoding()`
 
 **Description:** Checks the all the Encodings of the System and Logs the results, to name a few like STDIN, STDERR, STDOUT, FileSystem, PYTHONIOENCODING and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
 
@@ -82,7 +82,7 @@ check_encoding()
 ---
 
 # check_folder
-`check_folder(folder_to_check: str)`
+`anglerfish.check_folder(folder_to_check: str)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
@@ -103,7 +103,7 @@ check_folder("/path/to/my/folder/")
 ---
 
 # get_clipboard
-`get_clipboard()`
+`anglerfish.get_clipboard()`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
 
@@ -125,7 +125,7 @@ print(clipboard_paste())
 ---
 
 # get_sanitized_string
-`get_sanitized_string(stringy: str, repla: str="")`
+`anglerfish.get_sanitized_string(stringy: str, repla: str="")`
 
 **Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
 ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
@@ -148,7 +148,7 @@ get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 ---
 
 # get_temp_folder
-`get_temp_folder(appname: str)`
+`anglerfish.get_temp_folder(appname: str)`
 
 **Description:** Creates and returns a folder on the systems Temporary directory, 
 creating it or not if needed, the folder will have the same name as the App passed as argument,
@@ -170,7 +170,7 @@ get_temp_folder("test")
 ---
 
 # beep
-`beep(waveform: tuple)`
+`anglerfish.beep(waveform: tuple)`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
 like old days Pc Speaker Buzzer Beep sound, meant for very long running operations and/or headless command line apps,
@@ -192,7 +192,7 @@ beep()
 ---
 
 # json_pretty
-`json_pretty(json_dict: dict)`
+`anglerfish.json_pretty(json_dict: dict)`
 
 **Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation, 
 similar to YML but still valid JSON, works perfectly with JavaScript too.
@@ -212,7 +212,7 @@ json_pretty({"foo": True, "bar": 42, "baz": []})
 
 ---
 # log_exception
-`log_exception()`
+`anglerfish.log_exception()`
 
 **Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood, 
 returns a string printing it via a working logger at the same time, 
@@ -237,7 +237,7 @@ except Exception:
 ---
 
 # ipdb_on_exception
-`ipdb_on_exception(debugger: str="ipdb")`
+`anglerfish.ipdb_on_exception(debugger: str="ipdb")`
 
 **Description:** Automatic iPDB Debugger when an Exception happens, 
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
@@ -263,7 +263,7 @@ except Exception:
 ---
 
 # seconds2human
-`seconds2human(time_on_seconds: int)`
+`anglerfish.seconds2human(time_on_seconds: int)`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
@@ -284,7 +284,7 @@ seconds2human(490890)
 ---
 
 # set_process_name
-`set_process_name(name: str)`
+`anglerfish.set_process_name(name: str)`
 
 **Description:** Set the current process name to the argument `name`, 
 so instead of all your apps listing as `python` on the system monitor they will have proper names,
@@ -306,7 +306,7 @@ set_process_name("MyApp")
 ---
 
 # walk2list
-`walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
+`anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
 
 **Description:** Perform full recursive walk of `where` folder path, 
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
@@ -333,7 +333,7 @@ walk2list(".")
 ---
 
 # walk2dict
-`walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
+`anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
@@ -359,7 +359,7 @@ walk2dict(".")
 ---
 
 # multiprocessed
-`multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
+`anglerfish.multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
 
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
 with optional Timeout, on a quick and easy way.
@@ -452,7 +452,7 @@ retry_job()
 ---
 
 # set_single_instance
-`set_single_instance(name: str, port: int=8888)`
+`anglerfish.set_single_instance(name: str, port: int=8888)`
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
 
@@ -474,7 +474,7 @@ set_single_instance("MyApp")
 ---
 
 # env2globals
-`env2globals(pattern: str)`
+`anglerfish.env2globals(pattern: str)`
 
 **Description:** Auto add ENV environtment variables starting with `PY_` in upper case to python globals dict.
 
@@ -494,7 +494,7 @@ env2globals()
 ---
 
 # html2ebook
-`html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
+`anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
 
@@ -523,7 +523,7 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 ---
 
 # TemplatePython
-`TemplatePython(template: str)`
+`anglerfish.TemplatePython(template: str)`
 
 **Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
 
@@ -558,6 +558,7 @@ print(templar_template(testo=9, mini=True))
 
 **PIP:** *(Recommended!)*
 ```
+sudo pip3 install anglerfish
 ```
 
 # Why?:
