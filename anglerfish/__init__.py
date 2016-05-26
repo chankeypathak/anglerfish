@@ -35,10 +35,10 @@ __all__ = [
     "typecheck", "walk2list", "watch", "set_desktop_launcher",
     "set_process_name", "set_single_instance", "get_temp_folder",
     "set_terminal_title", "bytes2human", "walk2dict", "seconds2human",
-    "env2globals", "html2ebook", "Templar", "pdb_on_exception",
+    "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
-    "autosave_config", "delete_config", "backup_config", "CONFIG",
+    "save_config", "delete_config", "backup_config", "CONFIG",
     "start_time"
 ]
 
@@ -159,11 +159,11 @@ from anglerfish.walk2dict import walk2dict  # noqa
 from anglerfish.seconds2human import seconds2human  # noqa
 from anglerfish.env2globals import env2globals  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
-from anglerfish.make_templar import Templar  # noqa
+from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.make_info import (about_python, about_self,  # noqa
                                   view_code, report_bug)  # noqa
 from anglerfish.make_config import (get_config_folder, make_config,  # noqa
-                                    view_config, autosave_config,  # noqa
+                                    view_config, save_config,  # noqa
                                     delete_config, backup_config)  # noqa

@@ -16,15 +16,15 @@ from webbrowser import open_new_tab
 
 def make_config(app):
     """Make a global config object."""
-    global CONFIG
-    config_file = os.path.join(get_config_folder(app), "config.json")
+    config_file = os.path.join(get_config_folder(str(app)), "config.json")
     if not os.path.isfile(config_file):
         log.debug("Creating a new JSON Config file: " + config_file)
         with open(config_file, "w", encoding="utf-8") as config_object:
             config_object.write("{}\n")
     with open(config_file, "r", encoding="utf-8") as config_object:
         log.debug("Reading JSON Config file: " + config_file)
-        CONFIG = loads(config_object.read().strip())
+        config = loads(config_object.read().strip())
+    return config
 
 
 def view_config(app):
@@ -34,11 +34,12 @@ def view_config(app):
         os.path.join(get_config_folder(app), "config.json"))
 
 
-def autosave_config(app):
+def save_config(app, config):
     log.debug("Cleaning up, AutoSaving Configs and Shutting Down...")
-    config_file = os.path.join(get_config_folder(app), "config.json")
+    config_file = os.path.join(get_config_folder(str(app)), "config.json")
     with open(config_file, "w", encoding="utf-8") as config_object:
-        config_object.write(dumps(CONFIG, sort_keys=1, indent=4))
+        config_object.write(dumps(dict(config), sort_keys=1, indent=4))
+    return config_file
 
 
 def delete_config(app):

@@ -4,6 +4,7 @@
 
 """Templar is a tiny Template Engine that Render and Runs native Python."""
 # Renamed from Templar to TemplatePython for easy of use.
+# Was about to use TemplateString, but will confuse with string.Template
 
 
 import re

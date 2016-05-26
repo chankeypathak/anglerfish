@@ -122,7 +122,7 @@ test_typecheck(42, "test")
 print("Running anglerfish.make_post_execution_message()")
 make_post_exec_msg(None, "foo")
 
-print("Running anglerfish.Templar()")
+print("Running anglerfish.TemplatePython()")
 demo = """<html><body>
      {%
      def say_hello(arg):
@@ -133,7 +133,7 @@ demo = """<html><body>
      </table>
      {% {{ testo }} {{ __doc__.title() }} %}
      {% # this is a python comment %}  </body></html>"""
-templar_template = Templar(demo)
+templar_template = TemplatePython(demo)
 print(templar_template(testo=9, mini=True))
 
 
