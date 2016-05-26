@@ -522,10 +522,10 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 
 ---
 
-# Templar
-`Templar(template: str)`
+# TemplatePython
+`TemplatePython(template: str)`
 
-**Description:** Templar is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
+**Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
 
 **Arguments:** 
 - `template` a template string with native Python 3 code between tags, or a file-like object that supports `.read()`.
@@ -537,7 +537,7 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 **Usage Example:**
 
 ```python
-from anglerfish import Templar
+from anglerfish import TemplatePython
 demo = """<html><body>
      {%
      def say_hello(arg):
@@ -548,7 +548,7 @@ demo = """<html><body>
      </table>
      {% {{ testo }} {{ __doc__.title() }} %}
      {% # this is a python comment %}  </body></html>"""
-templar_template = Templar(demo)
+templar_template = TemplatePython(demo)
 print(templar_template(testo=9, mini=True))
 ```
 
