@@ -583,6 +583,11 @@ sudo pip3 install anglerfish
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
+# Name convention
+
+- For names we use: `get_*`, `set_*`, `check_*`, `make_*` and `*2*`.
+
+
 # Contributors:
 
 - **Please Star this Repo on Github !**, it helps to show up faster on searchs.
