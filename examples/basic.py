@@ -4,14 +4,18 @@
 
 import os
 import sys
+from datetime import datetime
 
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))  # Use local
 from anglerfish import *
 
 
+start_time = datetime.now()
+
+
 print("Running anglerfish.make_logger()")
-make_logger("test")
+log = make_logger("test", when='midnight', single_zip=False)
 
 print("Running anglerfish.get_config_folder()")
 print(get_config_folder("test"))
@@ -120,7 +124,7 @@ def test_typecheck(foo: int, bar: str) -> float:
 test_typecheck(42, "test")
 
 print("Running anglerfish.make_post_execution_message()")
-make_post_exec_msg(None, "foo")
+make_post_exec_msg(start_time, "foo")
 
 print("Running anglerfish.TemplatePython()")
 demo = """<html><body>
