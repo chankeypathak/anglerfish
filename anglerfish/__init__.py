@@ -48,39 +48,53 @@ CONFIG, start_time = None, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
-def __zip_old_logs(log_file):
+def __zip_old_logs(log_file, single_zip):
     zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
-    log.debug("Compressing Old Rotated Logs on ZIP file: " + zip_file)
-    logs = [_ for _ in os.listdir(os.path.dirname(log_file))
-            if ".log." in _ and not _.endswith("-old.zip") and filename in _]
-    with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as log_zip:
-        log_zip.debug = 3  # Log ZIP inner working,and comment with datetime
+    log.debug("ZIP Compressing Unused Old Rotated Logs.")
+    comment = "Compressed Unused Old Rotated Logs since ~{}.".format(
+        datetime.now().isoformat()[:-7])
+    logs = [os.path.join(os.path.dirname(log_file), _)
+            for _ in os.listdir(os.path.dirname(log_file))
+            if ".log." in _ and not _.endswith(".zip") and filename in _]
+    if single_zip:  # If 1 ZIP for all Logs, put all *.log inside 1 *.zip
+        with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as log_zip:
+            log_zip.debug = 3  # Log ZIP inner working,and comment with time
+            log_zip.comment = bytes(comment, encoding="utf-8")  # add a comment
+            for fyle in logs:
+                try:
+                    log_zip.write(fyle, os.path.basename(fyle))
+                    os.remove(fyle)
+                except:
+                    pass
+            log_zip.printdir()
+    else:  # If not 1 ZIP, put 1 *.log inside 1 *.zip, multiple zips
         for fyle in logs:
-            try:
-                log_zip.write(fyle)
-                os.remove(os.path.join(os.path.dirname(log_file), fyle))
-            except:
-                pass
-        log_zip.printdir()
-    return zip_file
+            newzip = fyle + ".zip"
+            with zipfile.ZipFile(newzip, 'w', zipfile.ZIP_DEFLATED) as log_zip:
+                log_zip.debug = 3  # Log ZIP inner working
+                log_zip.comment = bytes(comment, encoding="utf-8")
+                try:
+                    log_zip.write(fyle, os.path.basename(fyle))
+                    os.remove(fyle)
+                except:
+                    pass
+                # log_zip.printdir()
+    result = zip_file if single_zip else tuple([_ + ".zip" for _ in logs])
+    log.debug(result)
+    return result
 
 
-def make_logger(name=str(os.getpid()), when='midnight'):
+def make_logger(name, when='midnight', single_zip=False):
     """Build and return a Logging Logger."""
     global log
     log_file = os.path.join(gettempdir(), str(name).lower().strip() + ".log")
-    zip_file = log_file + "s-old.zip"
-    comment = "{}'s Compressed Unused Old Rotated Logs since ~{}.".format(
-        name.title(), datetime.now().isoformat()[:-7])
-    if not os.path.isfile(zip_file):
-        with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as myzip:
-            myzip.comment = bytes(comment, encoding="utf-8")
-    atexit.register(__zip_old_logs, log_file)  # ZIP Old Logs
+    atexit.register(__zip_old_logs, log_file, single_zip)  # ZIP Old Logs
     hand = TimedRotatingFileHandler(log_file, when=when,
                                     backupCount=999, encoding="utf-8")
     hand.setLevel(-1)
-    _fmt = ("[%(asctime)s] %(levelname)s: %(name)s: "
-            "%(message)s %(filename)s:%(lineno)d")
+    _fmt = ("%(asctime)s %(levelname)s: "
+            "%(processName)s (%(process)d) %(threadName)s (%(thread)d) "
+            "%(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
     hand.setFormatter(logging.Formatter(fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
     log = logging.getLogger()
     log.addHandler(hand)
