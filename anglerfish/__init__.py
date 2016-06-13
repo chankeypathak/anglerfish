@@ -39,7 +39,7 @@ __all__ = [
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
     "save_config", "delete_config", "backup_config", "CONFIG",
-    "start_time"
+    "start_time", "get_free_port", "path2import"
 ]
 
 
@@ -140,6 +140,8 @@ def make_logger(name, when='midnight', single_zip=False):
         adrs = "/dev/log" if is_linux else "/var/run/syslog"
         try:
             handler = logging.handlers.SysLogHandler(address=adrs)
+            handler.setFormatter(logging.Formatter(
+                fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
         except Exception:
             log.debug("Unix SysLog Server not found,ignore Logging to SysLog")
         else:
@@ -147,6 +149,9 @@ def make_logger(name, when='midnight', single_zip=False):
             log.debug("Unix SysLog Server trying to Log to SysLog: " + adrs)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
     return log
+
+
+##############################################################################
 
 
 from anglerfish.check_encoding import check_encoding  # noqa
@@ -174,6 +179,8 @@ from anglerfish.seconds2human import seconds2human  # noqa
 from anglerfish.env2globals import env2globals  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa
+from anglerfish.get_free_port import get_free_port  # noqa
+from anglerfish.path2import import path2import  # noqa
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.make_info import (about_python, about_self,  # noqa

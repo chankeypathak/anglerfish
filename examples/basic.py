@@ -140,6 +140,8 @@ demo = """<html><body>
 templar_template = TemplatePython(demo)
 print(templar_template(testo=9, mini=True))
 
+print("Running anglerfish.get_free_port()")
+print(get_free_port((8000, 9000)))
 
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))
