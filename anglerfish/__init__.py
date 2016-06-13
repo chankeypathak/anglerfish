@@ -23,7 +23,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-__version__ = '0.5.0'
+__version__ = '0.7.5'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -39,13 +39,16 @@ __all__ = [
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
     "save_config", "delete_config", "backup_config", "CONFIG",
-    "start_time", "get_free_port", "path2import"
+    "start_time", "get_free_port", "path2import", "make_notification"
 ]
 
 
 sys.dont_write_bytecode = True
 CONFIG, start_time = None, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+
+##############################################################################
 
 
 def __zip_old_logs(log_file, single_zip):
@@ -181,6 +184,7 @@ from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.get_free_port import get_free_port  # noqa
 from anglerfish.path2import import path2import  # noqa
+from anglerfish.make_notification import make_notification  # noqa
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.make_info import (about_python, about_self,  # noqa
