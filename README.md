@@ -11,7 +11,12 @@
 
 # Description of functions
 
+---
+
+<details>
+<summary>
 # make_logger
+</summary>
 `anglerfish.make_logger(name: str, when: str)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
@@ -34,10 +39,13 @@ from anglerfish import make_logger
 log = make_logger("MyAppName")
 log.debug("This is a Test.")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # get_free_port
+</summary>
 `anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
 
 **Description:** Returns a free unused port number integer.
@@ -56,10 +64,13 @@ Takes a tuple of 2 integers as argument, being the range of port numbers to scan
 from anglerfish import get_free_port
 get_free_port()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # make_notification
+</summary>
 `anglerfish.make_notification(title: str, message: str="", name: str="", icon: str="", timeout: int=3000))`
 
 **Description:** Makes a Passive Notification Bubble (Passive Popup), it works cross-desktop, using one of DBus, PyNotify, notify-send, kdialog, zenity or xmessage.
@@ -83,10 +94,13 @@ Best results are with D-Bus.
 from anglerfish import make_notification
 make_notification("test")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # bytes2human
+</summary>
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
@@ -107,10 +121,13 @@ uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaByt
 from anglerfish import bytes2human
 bytes2human(3284902384, "g")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # check_encoding
+</summary>
 `anglerfish.check_encoding()`
 
 **Description:** Checks the all the Encodings of the System and Logs the results, to name a few like STDIN, STDERR, STDOUT, FileSystem, PYTHONIOENCODING and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
@@ -127,10 +144,13 @@ bytes2human(3284902384, "g")
 from anglerfish import check_encoding
 check_encoding()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # check_folder
+</summary>
 `anglerfish.check_folder(folder_to_check: str)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
@@ -148,10 +168,13 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 from anglerfish import check_folder
 check_folder("/path/to/my/folder/")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # get_clipboard
+</summary>
 `anglerfish.get_clipboard()`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
@@ -170,10 +193,13 @@ clipboard_copy, clipboard_paste = get_clipboard()
 clipboard_copy("This is a Test.")
 print(clipboard_paste())
 ```
+</details>
 
----
 
+<details>
+<summary>
 # get_sanitized_string
+</summary>
 `anglerfish.get_sanitized_string(stringy: str, repla: str="")`
 
 **Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
@@ -193,10 +219,13 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 from anglerfish import get_sanitized_string
 get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # get_temp_folder
+</summary>
 `anglerfish.get_temp_folder(appname: str)`
 
 **Description:** Creates and returns a folder on the systems Temporary directory, 
@@ -215,10 +244,13 @@ it means to be a liittle more safe than just writing everything to the systems t
 from anglerfish import get_temp_folder
 get_temp_folder("test")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # beep
+</summary>
 `anglerfish.beep(waveform: tuple)`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
@@ -237,10 +269,13 @@ it works on Linux, Windows and Mac and requires nothing to run.
 from anglerfish import beep
 beep()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # json_pretty
+</summary>
 `anglerfish.json_pretty(json_dict: dict)`
 
 **Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation, 
@@ -258,10 +293,13 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 from anglerfish import json_pretty
 json_pretty({"foo": True, "bar": 42, "baz": []})
 ```
+</details>
 
----
 
+<details>
+<summary>
 # log_exception
+</summary>
 `anglerfish.log_exception()`
 
 **Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood, 
@@ -283,10 +321,13 @@ try:
 except Exception:
     log_exception()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # ipdb_on_exception
+</summary>
 `anglerfish.ipdb_on_exception(debugger: str="ipdb")`
 
 **Description:** Automatic iPDB Debugger when an Exception happens, 
@@ -309,10 +350,13 @@ try:
 except Exception:
     pass
 ```
+</details>
 
----
 
+<details>
+<summary>
 # seconds2human
+</summary>
 `anglerfish.seconds2human(time_on_seconds: int)`
 
 **Description:** From Time on seconds to very human friendly string representation,
@@ -330,10 +374,13 @@ calculates time with precision from seconds to days, returns the string with rep
 from anglerfish import seconds2human
 seconds2human(490890)
 ```
+</details>
 
----
 
+<details>
+<summary>
 # set_process_name
+</summary>
 `anglerfish.set_process_name(name: str)`
 
 **Description:** Set the current process name to the argument `name`, 
@@ -352,10 +399,13 @@ this helps debug, troubleshooting and system administration in general.
 from anglerfish import set_process_name
 set_process_name("MyApp")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # walk2list
+</summary>
 `anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
 
 **Description:** Perform full recursive walk of `where` folder path, 
@@ -379,10 +429,13 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 from anglerfish import walk2list
 walk2list(".")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # walk2dict
+</summary>
 `anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
@@ -405,10 +458,13 @@ walk2list(".")
 from anglerfish import walk2dict
 walk2dict(".")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # multiprocessed
+</summary>
 `anglerfish.multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
 
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
@@ -442,10 +498,13 @@ jobs = [str(i) for i in range(30)]  # a simple list
 print(multiprocessed(process_job, jobs, cpu_num=1, thread_num=4))
 print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 ```
+</details>
 
----
 
+<details>
+<summary>
 # threads
+</summary>
 `@threads(n: int, timeout=None)`
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
@@ -468,10 +527,13 @@ def process_job():  # a simple function for testing only
     return time.sleep(1)
 process_job()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # retry
+</summary>
 `@retry(tries: int=5, delay: int=3, backoff: int=2,
           timeout: int=None, silent: Bool=False, logger=None)`
 
@@ -498,10 +560,13 @@ def retry_job():  # a simple function for testing only
     return open("").read()  # Will Fail as expected
 retry_job()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # set_single_instance
+</summary>
 `anglerfish.set_single_instance(name: str, port: int=8888)`
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
@@ -520,10 +585,13 @@ retry_job()
 from anglerfish import set_single_instance
 set_single_instance("MyApp")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # env2globals
+</summary>
 `anglerfish.env2globals(pattern: str)`
 
 **Description:** Auto add ENV environtment variables starting with `PY_` in upper case to python globals dict.
@@ -540,10 +608,13 @@ set_single_instance("MyApp")
 from anglerfish import env2globals
 env2globals()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # html2ebook
+</summary>
 `anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
@@ -569,10 +640,13 @@ env2globals()
 from anglerfish import html2ebook
 html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 ```
+</details>
 
----
 
+<details>
+<summary>
 # TemplatePython
+</summary>
 `anglerfish.TemplatePython(template: str)`
 
 **Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
@@ -601,10 +675,12 @@ demo = """<html><body>
 templar_template = TemplatePython(demo)
 print(templar_template(testo=9, mini=True))
 ```
+</details>
 
----
-
+<details>
+<summary>
 # path2import
+</summary>
 `anglerfish.path2import(pat: str, name: str=None)`
 
 **Description:** Imports a Python module from a file path string.
@@ -629,10 +705,13 @@ will try to get it from the filename on the `pat` argument if omitted. String ty
 from anglerfish import path2import
 my_module = path2import("/path/to/module.py")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # make_post_exec_msg
+</summary>
 `anglerfish.make_post_exec_msg(start_time: object=None, comment: str=None)`
 
 **Description:** Simple Post-Execution Message with information about RAM used by your app and execution Time. Can also display an arbitrary string ideal for Donation links, Social, etc.
@@ -653,10 +732,13 @@ Its basically a *Goodbye* message.
 from anglerfish import make_post_exec_msg
 make_post_exec_msg()
 ```
+</details>
 
----
 
+<details>
+<summary>
 # watch
+</summary>
 `anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60)`
 
 **Description:** Watch a file path for changes run callback if modified. 
@@ -677,10 +759,13 @@ A WatchDog.
 from anglerfish import watch
 watch("/tmp/file.txt")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # watch
+</summary>
 `anglerfish.set_desktop_launcher(app: str, desktop_file_content: str, autostart: bool=False)`
 
 **Description:** Adds your app to autostart and/or launcher icon on the Desktop.
@@ -701,10 +786,13 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 from anglerfish import set_desktop_launcher
 set_desktop_launcher("mysuperapp", "")
 ```
+</details>
 
----
 
+<details>
+<summary>
 # set_terminal_title
+</summary>
 `anglerfish.set_terminal_title(titlez: str="")`
 
 **Description:** Set or Reset Bash CLI Window Titlebar Title.
@@ -723,6 +811,7 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 from anglerfish import set_terminal_title
 set_terminal_title("mysuperapp")
 ```
+</details>
 
 ---
 
