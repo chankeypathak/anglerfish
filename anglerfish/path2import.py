@@ -14,7 +14,7 @@ def path2import(pat, name=None):
     """Import a module from file path string.
 
     This is "as best as it can be" way to load a module from a file path string
-    that I can found from the official Python Docs, for Python 3.5+."""
+    that I can find from the official Python Docs, for Python 3.5+."""
     module = None
     try:
         name = name if name else os.path.splitext(os.path.basename(pat))[0]
