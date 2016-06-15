@@ -37,13 +37,62 @@ log.debug("This is a Test.")
 
 ---
 
+# get_free_port
+`anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
+
+**Description:** Returns a free unused port number integer.
+Takes a tuple of 2 integers as argument, being the range of port numbers to scan.
+
+**Arguments:**
+- `port_range` is the range of port numbers to scan. 2 items only are allowed. Tuple type.
+
+**Keyword Arguments:** None.
+
+**Returns:** Integer, a free unused port number.
+
+**Usage Example:**
+
+```python
+from anglerfish import get_free_port
+get_free_port()
+```
+
+---
+
+# make_notification
+`anglerfish.make_notification(title: str, message: str="", name: str="", icon: str="", timeout: int=3000))`
+
+**Description:** Makes a Passive Notification Bubble (Passive Popup), it works cross-desktop, using one of DBus, PyNotify, notify-send, kdialog, zenity or xmessage.
+Should degrade nicely on operating systems that dont have any of those.
+Best results are with D-Bus.
+
+**Arguments:**
+- `title` is the short title of your message, mandatory, string type.
+- `message` is body of your message, defaults to empty string, optional, string type.
+- `name` is the name of your App, defaults to empty string, optional, string type.
+- `icon` is the icon name of your App, defaults to empty string, optional, string type.
+- `timeout` is the timeout for your notification bubble, defaults to `3000`, optional, integer type.
+
+**Keyword Arguments:** None.
+
+**Returns:** None.
+
+**Usage Example:**
+
+```python
+from anglerfish import make_notification
+make_notification("test")
+```
+
+---
+
 # bytes2human
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
 uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
 
-**Arguments:** 
+**Arguments:**
 - `bites` is the number of bytes, integer type.
 - `to` is one of 'k', 'm', 'g', 't', 'p', 'e', string type.
 - `bsize` is the Byte Size, default to 1024, since tipically is the desired byte size, integer type.
@@ -211,6 +260,7 @@ json_pretty({"foo": True, "bar": 42, "baz": []})
 ```
 
 ---
+
 # log_exception
 `anglerfish.log_exception()`
 
@@ -498,7 +548,7 @@ env2globals()
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
 
-**Arguments:** 
+**Arguments:**
 - `files` a tuple with the list of HTML/CSS files to add to the eBook.
 - `fyle` an output file path string, defaults to an uuid4 hexadecimal if not provided.
 
@@ -527,7 +577,7 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 
 **Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
 
-**Arguments:** 
+**Arguments:**
 - `template` a template string with native Python 3 code between tags, or a file-like object that supports `.read()`.
 
 **Keyword Arguments:** None.
@@ -550,6 +600,128 @@ demo = """<html><body>
      {% # this is a python comment %}  </body></html>"""
 templar_template = TemplatePython(demo)
 print(templar_template(testo=9, mini=True))
+```
+
+---
+
+# path2import
+`anglerfish.path2import(pat: str, name: str=None)`
+
+**Description:** Imports a Python module from a file path string.
+This is *as best as it can be* way to load a module from a file path string that
+I can find from the official Python Docs, for Python 3.5+ or higher.
+This has been created after having `ImportError` trying to use a 1 line module,
+that only contains `__version__ = "1.0.0"`,
+not meant to replace the standard way of importing modules.
+
+**Arguments:**
+- `pat` is the file path on disk from where to load a Python module from, mandatory. String type.
+- `name` is the Python module name, optional,
+will try to get it from the filename on the `pat` argument if omitted. String type.
+
+**Keyword Arguments:** None.
+
+**Returns:** object, a *"live"* Python module object ready for use at runtime.
+
+**Usage Example:**
+
+```python
+from anglerfish import path2import
+my_module = path2import("/path/to/module.py")
+```
+
+---
+
+# make_post_exec_msg
+`anglerfish.make_post_exec_msg(start_time: object=None, comment: str=None)`
+
+**Description:** Simple Post-Execution Message with information about RAM used by your app and execution Time. Can also display an arbitrary string ideal for Donation links, Social, etc.
+It will register itself to be executed at exit via `atexit.register()`.
+Its basically a *Goodbye* message.
+
+**Arguments:**
+- `start_time` a `datetime` object, ideally should be `datetime.now()`.
+- `comment` an arbitrary string ideal for Donation links, Social links, Bitcoin, etc. String type.
+
+**Keyword Arguments:** None.
+
+**Returns:** The formatted message, string type.
+
+**Usage Example:**
+
+```python
+from anglerfish import make_post_exec_msg
+make_post_exec_msg()
+```
+
+---
+
+# watch
+`anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60)`
+
+**Description:** Watch a file path for changes run callback if modified. 
+A WatchDog.
+
+**Arguments:**
+- `file_path` an existent readable file path to watch for changes. String type.
+- `callback` a `Callable` callback function to execute when changes are detected. Callable type.
+- `interval` an integer number seconds of interval between chacks for changes. Integer type.
+
+**Keyword Arguments:** None.
+
+**Returns:** `Callable` output if theres a callable, else the file path that changed.
+
+**Usage Example:**
+
+```python
+from anglerfish import watch
+watch("/tmp/file.txt")
+```
+
+---
+
+# watch
+`anglerfish.set_desktop_launcher(app: str, desktop_file_content: str, autostart: bool=False)`
+
+**Description:** Adds your app to autostart and/or launcher icon on the Desktop.
+According to XDG standard. Runs on Linux. Other platforms simply does nothing.
+
+**Arguments:**
+- `app` the name of your app. String type.
+- `desktop_file_content` the content of the launcher file. String type.
+- `autostart` a Boolean True or False to choose if your app will be added to auto-start on the desktop.
+
+**Keyword Arguments:** None.
+
+**Returns:** the path of the newly created launcher. string type.
+
+**Usage Example:**
+
+```python
+from anglerfish import set_desktop_launcher
+set_desktop_launcher("mysuperapp", "")
+```
+
+---
+
+# set_terminal_title
+`anglerfish.set_terminal_title(titlez: str="")`
+
+**Description:** Set or Reset Bash CLI Window Titlebar Title.
+According to XDG standard. Runs on Linux. Other platforms simply does nothing.
+
+**Arguments:**
+- `titlez` the title for the terminal emulator window. Optional. String type.
+
+**Keyword Arguments:** None.
+
+**Returns:** `titlez` if the title has been set on the terminal emulator window or None. string type.
+
+**Usage Example:**
+
+```python
+from anglerfish import set_terminal_title
+set_terminal_title("mysuperapp")
 ```
 
 ---
