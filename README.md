@@ -17,7 +17,7 @@
 <summary>
 # make_logger
 </summary>
-`anglerfish.make_logger(name: str, when: str, single_zip: bool=False)`
+`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
@@ -39,12 +39,10 @@ this should be the first one to use, since others may need a way to log out impo
 from anglerfish import make_logger
 log = make_logger("MyAppName")
 log.debug("This is a Test.")
-log.debug("This is a Test.")
-log.debug("This is a Test.")
-log.debug("This is a Test.")
-log.debug("This is a Test.")
-log.debug("This is a Test.")
-log.debug("This is a Test.")
+log.info("This is a Test.")
+log.warning("This is a Test.")
+log.critical("This is a Test.")
+log.exception("This is a Test.")
 ```
 </details>
 
@@ -59,7 +57,7 @@ log.debug("This is a Test.")
 Takes a tuple of 2 integers as argument, being the range of port numbers to scan.
 
 **Arguments:**
-- `port_range` is the range of port numbers to scan. 2 items only are allowed. Tuple type.
+- `port_range` is the range of port numbers to scan, starting port and ending port numbers. 2 items only are allowed. Tuple type.
 
 **Keyword Arguments:** None.
 
