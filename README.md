@@ -17,7 +17,7 @@
 <summary>
 # make_logger
 </summary>
-`anglerfish.make_logger(name: str, when: str)`
+`anglerfish.make_logger(name: str, when: str, single_zip: bool=False)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
@@ -27,6 +27,7 @@ this should be the first one to use, since others may need a way to log out impo
 **Arguments:** 
 - `name` is a unique name of your App, optional will use PID if not provided, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
+- `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, True equals 1 ZIP per Log, False equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
 
 **Keyword Arguments:** None.
 
@@ -37,6 +38,12 @@ this should be the first one to use, since others may need a way to log out impo
 ```python
 from anglerfish import make_logger
 log = make_logger("MyAppName")
+log.debug("This is a Test.")
+log.debug("This is a Test.")
+log.debug("This is a Test.")
+log.debug("This is a Test.")
+log.debug("This is a Test.")
+log.debug("This is a Test.")
 log.debug("This is a Test.")
 ```
 </details>
