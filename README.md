@@ -25,9 +25,9 @@ if the App ends correctly it will automatically ZIP compress the old unused rota
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
 
 **Arguments:** 
-- `name` is a unique name of your App, optional will use PID if not provided, string type.
+- `name` is a unique name of your App, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
-- `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, True equals 1 ZIP per Log, False equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
+- `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
 
 **Keyword Arguments:** None.
 
@@ -109,12 +109,12 @@ make_notification("test")
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
-uses a Byte Size of 1024 by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
+uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
 
 **Arguments:**
 - `bites` is the number of bytes, integer type.
-- `to` is one of 'k', 'm', 'g', 't', 'p', 'e', string type.
-- `bsize` is the Byte Size, default to 1024, since tipically is the desired byte size, integer type.
+- `to` is one of 'k', 'm', 'g', 't', 'p', 'e', being KiloBytes, MegaBytes, GigaBytes (...), string type.
+- `bsize` is the Byte Size, defaults to `1024`, since tipically is the desired byte size, integer type.
 
 **Keyword Arguments:** None.
 
@@ -135,13 +135,13 @@ bytes2human(3284902384, "g")
 </summary>
 `anglerfish.check_encoding()`
 
-**Description:** Checks the all the Encodings of the System and Logs the results, to name a few like STDIN, STDERR, STDOUT, FileSystem, PYTHONIOENCODING and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
+**Description:** Checks the all the Encodings of the System and Logs the results, to name a few like `STDIN`, `STDERR`, `STDOUT`, FileSystem, `PYTHONIOENCODING` and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
 
 **Arguments:** None.
 
 **Keyword Arguments:** None.
 
-**Returns:** Bool, True if everything is Ok.
+**Returns:** Bool, `True` if everything is Ok.
 
 **Usage Example:**
 
@@ -339,7 +339,8 @@ except Exception:
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
 PDB, iPDB can be used as Debugger console.
 
-**Arguments:** `debugger` one of "ipdb", "pdb".
+**Arguments:** 
+- `debugger` one of `"ipdb"`, `"pdb"`.
 
 **Keyword Arguments:** None.
 
