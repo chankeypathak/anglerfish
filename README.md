@@ -819,8 +819,9 @@ set_terminal_title("mysuperapp")
 
 **PIP:** *(Recommended!)*
 ```
-sudo pip3 install anglerfish
+pip3 install anglerfish
 ```
+- Use `sudo pip3 install anglerfish` for installing System-wide.
 
 # Why?:
 
