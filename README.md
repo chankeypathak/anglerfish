@@ -764,7 +764,7 @@ watch("/tmp/file.txt")
 
 <details>
 <summary>
-# watch
+# set_desktop_launcher
 </summary>
 `anglerfish.set_desktop_launcher(app: str, desktop_file_content: str, autostart: bool=False)`
 
