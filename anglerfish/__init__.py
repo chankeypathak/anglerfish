@@ -23,7 +23,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-__version__ = '0.7.5'
+__version__ = '1.0.0'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -38,8 +38,9 @@ __all__ = [
     "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
-    "save_config", "delete_config", "backup_config", "CONFIG",
-    "start_time", "get_free_port", "path2import", "make_notification"
+    "save_config", "delete_config", "backup_config", "CONFIG", "json2xml",
+    "start_time", "get_free_port", "path2import", "make_notification",
+    "make_json_flat"
 ]
 
 
@@ -185,6 +186,8 @@ from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.get_free_port import get_free_port  # noqa
 from anglerfish.path2import import path2import  # noqa
 from anglerfish.make_notification import make_notification  # noqa
+from anglerfish.make_json_flat import make_json_flat  # noqa
+from anglerfish.json2xml import json2xml  # noqa
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.make_info import (about_python, about_self,  # noqa

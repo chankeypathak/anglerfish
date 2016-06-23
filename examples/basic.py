@@ -174,5 +174,9 @@ print("Running anglerfish.make_notification()")
 make_notification(title="Summary", message="This is the body", name="test")
 
 
+print("Running anglerfish.json2xml()")
+print(json2xml({"foo": True, "bar": 42, "baz": []}))
+
+
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))
