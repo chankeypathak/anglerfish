@@ -819,6 +819,51 @@ set_terminal_title("mysuperapp")
 ```
 </details>
 
+
+<details>
+<summary>
+# json2xml
+</summary>
+`anglerfish.json2xml(json_obj: dict, line_padding: str="")`
+
+**Description:** Takes a JSON and returns an XML, optional custom line paddings.
+
+**Arguments:** 
+- `json_obj` the json data, dict type.
+- `line_padding` optional custom line paddings, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** XML, string type.
+
+**Usage Example:**
+
+```python
+from anglerfish import json2xml
+json2xml({"foo": 42, "bar": 666})
+```
+</details>
+
+
+<details>
+<summary>
+# make_json_flat
+</summary>
+`anglerfish.make_json_flat(jsony: dict, delimiter: str="__")`
+
+**Description:** Takes a JSON and returns a JSON, but with Flatten out structure, from Nested to Flat, optional custom delimiter.
+
+**Arguments:** 
+- `jsony` the json data, dict type.
+- `delimiter` optional custom delimiter, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** JSON, a Flat JSON, dict type.
+
+</details>
+
+
 ---
 
 # Install permanently on the system:
