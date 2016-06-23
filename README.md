@@ -33,6 +33,8 @@ this should be the first one to use, since others may need a way to log out impo
 
 **Returns:** logging.logger object.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/__init__.py
+
 **Usage Example:**
 
 ```python
@@ -62,6 +64,8 @@ Takes a tuple of 2 integers as argument, being the range of port numbers to scan
 **Keyword Arguments:** None.
 
 **Returns:** Integer, a free unused port number.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_free_port.py
 
 **Usage Example:**
 
@@ -93,6 +97,8 @@ Best results are with D-Bus.
 
 **Returns:** None.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_notification.py
+
 **Usage Example:**
 
 ```python
@@ -120,6 +126,8 @@ uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaB
 
 **Returns:** string, human friendly representation.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/bytes2human.py
+
 **Usage Example:**
 
 ```python
@@ -142,6 +150,8 @@ bytes2human(3284902384, "g")
 **Keyword Arguments:** None.
 
 **Returns:** Bool, `True` if everything is Ok.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_encoding.py
 
 **Usage Example:**
 
@@ -167,6 +177,8 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 
 **Returns:** Bool, True if everything is Ok.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_folder.py
+
 **Usage Example:**
 
 ```python
@@ -189,6 +201,8 @@ check_folder("/path/to/my/folder/")
 **Keyword Arguments:** None.
 
 **Returns:** Tuple, `clipboard_copy()` and `clipboard_paste()`.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_clipboard.py
 
 **Usage Example:**
 
@@ -218,6 +232,8 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 
 **Returns:** string, the same as input but ASCII-only ready.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_sanitized_string.py
+
 **Usage Example:**
 
 ```python
@@ -242,6 +258,8 @@ it means to be a liittle more safe than just writing everything to the systems t
 **Keyword Arguments:** None.
 
 **Returns:** string, full path to the apps temp folder.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_temp_folder.py
 
 **Usage Example:**
 
@@ -268,6 +286,8 @@ it works on Linux, Windows and Mac and requires nothing to run.
 
 **Returns:** Bool, True is sound playing went Ok.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_beep.py
+
 **Usage Example:**
 
 ```python
@@ -291,6 +311,8 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 **Keyword Arguments:** None.
 
 **Returns:** string, the JSON data.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_json_pretty.py
 
 **Usage Example:**
 
@@ -316,6 +338,8 @@ works for Exceptions like on `try...except...finally` constructions, takes no ar
 **Keyword Arguments:** None.
 
 **Returns:** string, the info about the exception.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_log_exception.py
 
 **Usage Example:**
 
@@ -346,6 +370,8 @@ PDB, iPDB can be used as Debugger console.
 
 **Returns:** None.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_pdb_on_exception.py
+
 **Usage Example:**
 
 ```python
@@ -374,6 +400,8 @@ calculates time with precision from seconds to days, returns the string with rep
 
 **Returns:** string, human friendly representation.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
+
 **Usage Example:**
 
 ```python
@@ -398,6 +426,8 @@ this helps debug, troubleshooting and system administration in general.
 **Keyword Arguments:** None.
 
 **Returns:** Boolean, True if it can change the process name.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_process_name.py
 
 **Usage Example:**
 
@@ -429,6 +459,8 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 
 **Returns:** `list` or `tuple`
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/walk2list.py
+
 **Usage Example:**
 
 ```python
@@ -458,6 +490,8 @@ walk2list(".")
 
 **Returns:** `dict` or `str` with JSON.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/walk2dict.py
+
 **Usage Example:**
 
 ```python
@@ -486,6 +520,8 @@ with optional Timeout, on a quick and easy way.
 **Keyword Arguments:** None.
 
 **Returns:** concurrent.futures object.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_multiprocess.py
 
 **Usage Example:**
 
@@ -523,6 +559,8 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 **Returns:** Its a Decorator.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_multithread.py
+
 **Usage Example:**
 
 ```python
@@ -557,6 +595,8 @@ process_job()
 
 **Returns:** Its a Decorator.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_retry.py
+
 **Usage Example:**
 
 ```python
@@ -585,6 +625,8 @@ retry_job()
 
 **Returns:** socket.socket object or None.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_single_instance.py
+
 **Usage Example:**
 
 ```python
@@ -607,6 +649,8 @@ set_single_instance("MyApp")
 **Keyword Arguments:** None.
 
 **Returns:** Boolean, True if everything is Ok.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/env2globals.py
 
 **Usage Example:**
 
@@ -664,6 +708,8 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 
 **Returns:** a string with the Rendered HTML.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_template_python.py
+
 **Usage Example:**
 
 ```python
@@ -705,6 +751,8 @@ will try to get it from the filename on the `pat` argument if omitted. String ty
 
 **Returns:** object, a *"live"* Python module object ready for use at runtime.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/path2import.py
+
 **Usage Example:**
 
 ```python
@@ -731,6 +779,8 @@ Its basically a *Goodbye* message.
 **Keyword Arguments:** None.
 
 **Returns:** The formatted message, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_postexec_message.py
 
 **Usage Example:**
 
@@ -759,6 +809,8 @@ A WatchDog.
 
 **Returns:** `Callable` output if theres a callable, else the file path that changed.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_watch.py
+
 **Usage Example:**
 
 ```python
@@ -786,6 +838,8 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 
 **Returns:** the path of the newly created launcher. string type.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_desktop_launcher.py
+
 **Usage Example:**
 
 ```python
@@ -811,6 +865,8 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 
 **Returns:** `titlez` if the title has been set on the terminal emulator window or None. string type.
 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_terminal_title.py
+
 **Usage Example:**
 
 ```python
@@ -835,6 +891,8 @@ set_terminal_title("mysuperapp")
 **Keyword Arguments:** None.
 
 **Returns:** XML, string type.
+
+**Source Code file:** 
 
 **Usage Example:**
 
