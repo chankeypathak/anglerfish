@@ -893,7 +893,7 @@ set_terminal_title("mysuperapp")
 
 **Returns:** XML, string type.
 
-**Source Code file:** 
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/json2xml.py
 
 **Usage Example:**
 
@@ -919,6 +919,8 @@ json2xml({"foo": 42, "bar": 666})
 **Keyword Arguments:** None.
 
 **Returns:** JSON, a Flat JSON, dict type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_json_flat.py
 
 </details>
 
