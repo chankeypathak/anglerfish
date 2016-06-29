@@ -933,6 +933,7 @@ pip3 install anglerfish
 ```
 - Use `sudo pip3 install anglerfish` for installing System-wide.
 - Use `python3 examples/basic.py` to run an example of all the functionalities.
+- This project is oriented to Developers, NOT end-users.
 - Feel free to contact us if you need help integrating Anglerfish on your project.
 
 
