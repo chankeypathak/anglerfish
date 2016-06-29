@@ -924,6 +924,7 @@ json2xml({"foo": 42, "bar": 666})
 
 ---
 
+
 # Install permanently on the system:
 
 **PIP:** *(Recommended!)*
@@ -932,6 +933,8 @@ pip3 install anglerfish
 ```
 - Use `sudo pip3 install anglerfish` for installing System-wide.
 - Use `python3 examples/basic.py` to run an example of all the functionalities.
+- Feel free to contact us if you need help integrating Anglerfish on your project.
+
 
 # Why?:
 
@@ -943,6 +946,7 @@ pip3 install anglerfish
 - 1 Module = 1 file = 1 feature, less than 100 lines per file, do 1 thing do it well.
 - No Dependencies at all, just Python 3 standard library, cross-platform.
 - Easy to use, KISS philosophy.
+
 
 # Requisites:
 
