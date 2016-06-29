@@ -700,7 +700,7 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 </summary>
 `anglerfish.TemplatePython(template: str)`
 
-**Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML.
+**Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML. Notice this is a Class, not a Function.
 
 **Arguments:**
 - `template` a template string with native Python 3 code between tags, or a file-like object that supports `.read()`.
