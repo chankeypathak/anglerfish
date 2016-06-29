@@ -931,6 +931,7 @@ json2xml({"foo": 42, "bar": 666})
 pip3 install anglerfish
 ```
 - Use `sudo pip3 install anglerfish` for installing System-wide.
+- Use `python3 examples/basic.py` to run an example of all the functionalities.
 
 # Why?:
 
