@@ -23,6 +23,7 @@
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
+Please use a unique and distinctive name for your app, and use the same name every time Anglerfish needs an app name.
 
 **Arguments:** 
 - `name` is a unique name of your App, string type.
