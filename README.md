@@ -925,6 +925,109 @@ json2xml({"foo": 42, "bar": 666})
 </details>
 
 
+<details>
+<summary>
+# set_zip_comment
+</summary>
+`anglerfish.set_zip_comment(zip_path: str, comment: str="")`
+
+**Description:** Set a comment on a ZIP file, return a Boolean.
+
+**Arguments:** 
+- `zip_path` ZIP file path string, str type.
+- `comment` Comment for the ZIP file, optional, defaults to empty string, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if Ok, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_zip_comment.py
+
+**Usage Example:**
+
+```python
+from anglerfish import set_zip_comment
+set_zip_comment("test.zip", "This is a comment.")
+```
+</details>
+
+
+<details>
+<summary>
+# get_zip_comment
+</summary>
+`anglerfish.get_zip_comment(zip_path: str)`
+
+**Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
+
+**Arguments:** 
+- `zip_path` ZIP file path string, str type.
+
+**Keyword Arguments:** None.
+
+**Returns:** UTF-8 Comment, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_zip_comment.py
+
+**Usage Example:**
+
+```python
+from anglerfish import get_zip_comment
+get_zip_comment("test.zip")
+```
+</details>
+
+
+<details>
+<summary>
+# has_battery
+</summary>
+`anglerfish.has_battery()`
+
+**Description:** Check if computer has a Battery, return Boolean.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if has Battery, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
+
+**Usage Example:**
+
+```python
+from anglerfish import has_battery
+has_battery()
+```
+</details>
+
+
+<details>
+<summary>
+# on_battery
+</summary>
+`anglerfish.on_battery()`
+
+**Description:** Check if computer is running on Battery, return Boolean.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if computer is running Battery, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
+
+**Usage Example:**
+
+```python
+from anglerfish import on_battery
+on_battery()
+```
+</details>
+
+
 ---
 
 
