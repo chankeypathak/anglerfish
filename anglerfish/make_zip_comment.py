@@ -8,7 +8,7 @@
 from zipfile import ZipFile
 
 
-def set_zip_comment(zip_path, comment):
+def set_zip_comment(zip_path, comment=""):
     """Set a ZIP comment."""
     try:
         with ZipFile(str(zip_path), 'w') as myzip:
