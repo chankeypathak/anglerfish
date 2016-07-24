@@ -70,7 +70,7 @@ def __determine_clipboard():
         return __osx_clipboard()
     if sys.platform.startswith("windows"):
         try:  # Determine which command/module is installed, if any.
-            import win32clipboard  # check if win32clipboard is installed
+            import win32clipboard  # lint:ok noqa
         except ImportError:
             pass
         else:

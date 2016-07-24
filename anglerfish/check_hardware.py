@@ -15,7 +15,7 @@ def _get_prop(obj, iface, prop):
         return obj.Get(iface, prop, dbus_interface=dbus.PROPERTIES_IFACE)
     except (dbus.DBusException, dbus.exceptions.DBusException) as err:
         print(err)
-        return None
+        return
 
 
 def has_battery():
@@ -38,7 +38,7 @@ def on_battery():
         bus, upower_path = dbus.SystemBus(), '/org/freedesktop/UPower'
         upower = bus.get_object('org.freedesktop.UPower', upower_path)
         result = _get_prop(upower, upower_path, 'OnBattery')
-        if result == None:  # Cannot read property, something is wrong.
+        if result is None:  # Cannot read property, something is wrong.
             print("Failed to read D-Bus property: {0}.".format(upower_path))
             result = False  # Assume we are connected to a power supply.
         return result
