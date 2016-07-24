@@ -178,5 +178,23 @@ print("Running anglerfish.json2xml()")
 print(json2xml({"foo": True, "bar": 42, "baz": []}))
 
 
+print("Running anglerfish.has_battery()")
+print(has_battery())
+
+
+print("Running anglerfish.on_battery()")
+print(on_battery())
+
+
+print("Running anglerfish.set_zip_comment()")
+from zipfile import ZipFile
+ZipFile("test.zip", 'w').close()
+print(set_zip_comment("test.zip", "This is a comment."))
+
+
+print("Running anglerfish.get_zip_comment()")
+print(get_zip_comment("test.zip"))
+
+
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))

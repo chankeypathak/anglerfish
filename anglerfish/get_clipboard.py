@@ -78,6 +78,7 @@ def __determine_clipboard():
     if sys.platform.startswith("linux") and which("xclip"):
         return __xclip_clipboard()
     else:
+        print("ERROR: install XClip at least.")
         return None, None  # install Qt or GTK or Tk or XClip.
 
 
