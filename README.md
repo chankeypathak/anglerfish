@@ -1028,6 +1028,31 @@ on_battery()
 </details>
 
 
+<details>
+<summary>
+# set_display_off
+</summary>
+`anglerfish.set_display_off()`
+
+**Description:** Set Display monitor OFF, will Automatically turn ON when any Key or Mouse movement detected, return Boolean.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if Ok, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_display_off.py
+
+**Usage Example:**
+
+```python
+from anglerfish import set_display_off
+set_display_off()
+```
+</details>
+
+
 ---
 
 
