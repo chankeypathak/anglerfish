@@ -196,5 +196,9 @@ print("Running anglerfish.get_zip_comment()")
 print(get_zip_comment("test.zip"))
 
 
+print("Running anglerfish.set_display_off()")
+print(set_display_off())
+
+
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))

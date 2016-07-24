@@ -40,8 +40,8 @@ __all__ = [
     "report_bug", "get_config_folder", "make_config", "view_config",
     "save_config", "delete_config", "backup_config", "CONFIG", "json2xml",
     "start_time", "get_free_port", "path2import", "make_notification",
-    "make_json_flat", "has_battery", "on_battery",
-    "set_zip_comment", "get_zip_comment"
+    "make_json_flat", "has_battery", "on_battery", "set_zip_comment",
+    "get_zip_comment", "set_display_off"
 ]
 
 
@@ -191,6 +191,7 @@ from anglerfish.make_json_flat import make_json_flat  # noqa
 from anglerfish.json2xml import json2xml  # noqa
 from anglerfish.check_hardware import has_battery, on_battery  # noqa
 from anglerfish.make_zip_comment import set_zip_comment, get_zip_comment  # noqa
+from anglerfish.set_display_off import set_display_off  # noqa
 
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
