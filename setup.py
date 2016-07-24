@@ -34,10 +34,7 @@ import os
 import re
 import sys
 
-from setuptools import setup, Command
-from tempfile import TemporaryDirectory
-from shutil import copytree
-from zipapp import create_archive
+from setuptools import setup
 
 
 ##############################################################################
@@ -71,18 +68,6 @@ def find_this(search, source=SOURCE):
         what=search), re.S).match(source).group(1)).strip().replace("'", "")
 
 
-class ZipApp(Command):
-    description, user_options = "Creates a zipapp.", []
-
-    def initialize_options(self): pass  # Dont needed, but required.
-
-    def finalize_options(self): pass  # Dont needed, but required.
-
-    def run(self):
-        return create_archive('anglerfish', 'anglerfish.pyz',
-                              '/usr/bin/env python3')
-
-
 print("Starting build of setuptools.setup().")
 
 
@@ -112,8 +97,6 @@ setup(
     tests_require=['isort', 'pylama'],
 
     packages=["anglerfish"],
-
-    cmdclass={"zipapp": ZipApp},
 
     keywords=['helper', 'boilerplate', 'utils', 'minimalism'],
 
