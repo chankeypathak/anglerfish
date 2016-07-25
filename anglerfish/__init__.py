@@ -38,15 +38,14 @@ __all__ = [
     "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
-    "save_config", "delete_config", "backup_config", "CONFIG", "json2xml",
+    "save_config", "delete_config", "backup_config", "json2xml",
     "start_time", "get_free_port", "path2import", "make_notification",
     "make_json_flat", "has_battery", "on_battery", "set_zip_comment",
     "get_zip_comment", "set_display_off"
 ]
 
 
-sys.dont_write_bytecode = True
-CONFIG, start_time = None, datetime.now()
+sys.dont_write_bytecode, start_time = True, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
@@ -56,7 +55,7 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 def __zip_old_logs(log_file, single_zip):
     zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
     log.debug("ZIP Compressing Unused Old Rotated Logs.")
-    comment = "Compressed Unused Old Rotated Logs since ~{}.".format(
+    comment = "Compressed Unused Old Rotated Python Logs since ~{0}.".format(
         datetime.now().isoformat()[:-7])
     logs = [os.path.join(os.path.dirname(log_file), _)
             for _ in os.listdir(os.path.dirname(log_file))

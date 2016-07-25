@@ -8,6 +8,7 @@
 import os
 import sys
 import subprocess
+import logging as log
 
 from shutil import which
 
@@ -72,18 +73,20 @@ def __determine_clipboard():
         try:  # Determine which command/module is installed, if any.
             import win32clipboard  # lint:ok noqa
         except ImportError:
-            pass
+            log.error("Install Win32 API Python packages for Windows.")
+            return None, None  # install Win32.
         else:
             return __win32_clibboard()
     if sys.platform.startswith("linux") and which("xclip"):
         return __xclip_clipboard()
     else:
-        print("ERROR: install XClip at least.")
+        log.error("Install XClip and XSel Linux Packages at least.")
         return None, None  # install Qt or GTK or Tk or XClip.
 
 
 def get_clipboard():
     """Crossplatform crossdesktop Clipboard."""
+    log.debug("Querying Copy/Paste Clipboard functionality.")
     global clipboard_copy, clipboard_paste
     clipboard_copy, clipboard_paste = None, None
     clipboard_copy, clipboard_paste = __determine_clipboard()

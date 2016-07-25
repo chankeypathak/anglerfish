@@ -35,5 +35,6 @@ def make_post_exec_msg(start_time=None, comment=None):
                 datetime.now() - start_time)
     if comment:
         msg += str(comment).strip()
+    log.debug("Preparing Simple Post-Execution Messages.")
     atexit.register(log.info, msg)
     return msg

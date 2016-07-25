@@ -20,9 +20,9 @@ def path2import(pat, name=None):
         name = name if name else os.path.splitext(os.path.basename(pat))[0]
         spec = importlib.util.spec_from_file_location(name, pat)
         module = spec.loader.load_module()
-    except Exception as e:
+    except Exception as error:
         log.warning("Failed to Load Module {0} from {1}.".format(name, pat))
-        log.warning(e)
+        log.warning(error)
     else:
         log.debug("Loading Module {0} from file path {1}.".format(name, pat))
     finally:
