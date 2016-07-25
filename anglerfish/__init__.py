@@ -38,14 +38,14 @@ __all__ = [
     "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
     "report_bug", "get_config_folder", "make_config", "view_config",
-    "save_config", "delete_config", "backup_config", "json2xml",
+    "save_config", "delete_config", "backup_config", "json2xml", "CONFIG",
     "start_time", "get_free_port", "path2import", "make_notification",
     "make_json_flat", "has_battery", "on_battery", "set_zip_comment",
     "get_zip_comment", "set_display_off"
 ]
 
 
-sys.dont_write_bytecode, start_time = True, datetime.now()
+sys.dont_write_bytecode, start_time, CONFIG = True, datetime.now(), None
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
