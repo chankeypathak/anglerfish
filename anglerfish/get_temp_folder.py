@@ -7,7 +7,6 @@
 
 import logging as log
 import os
-import sys
 
 from tempfile import gettempdir
 
