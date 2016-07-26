@@ -29,7 +29,7 @@ def walk2dict(folder, links=False, showhidden=False, strip=False, jsony=False):
         if path == folder:
             parent = 'root'
         a['path'] = p
-        a['fullpath'] = path
+        a['fullpath'] = os.path.abspath(path)
         a['parent'] = parent
         a['dirs'] = dirs
         a['files'] = []

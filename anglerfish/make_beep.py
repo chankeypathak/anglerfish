@@ -23,8 +23,12 @@ def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):
                 for wav in range(0, 8, 1):
                     wave_file.write(chr(waveform[wav]))
     if sys.platform.startswith("linux"):
-        return call("chrt -i 0 aplay '{fyle}'".format(fyle=wavefile), shell=1)
+        return not bool(call(
+            "chrt -i 0 aplay '{fyle}'".format(fyle=wavefile), shell=True))
     if sys.platform.startswith("darwin"):
-        return call("afplay '{fyle}'".format(fyle=wavefile), shell=True)
+        return not bool(call(
+            "afplay '{fyle}'".format(fyle=wavefile), shell=True))
     if sys.platform.startswith("win"):  # FIXME: This is Ugly.
-        return call("start /low /min '{fyle}'".format(fyle=wavefile), shell=1)
+        log.debug("Playing Sound Natively not supported by this OS.")
+        return False  # this SHOULD work on all windows,but it doesnt :(
+        # return call("start /low /min '{fyle}'".format(fyle=wavefile),shell=1)

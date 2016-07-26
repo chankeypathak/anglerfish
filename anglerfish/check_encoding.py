@@ -24,7 +24,7 @@ def check_encoding():
     log.debug("PYTHONIOENCODING Encoding: {0}.".format(
         os.environ.get("PYTHONIOENCODING", None)))
     os.environ["PYTHONIOENCODING"] = "utf-8"
-    if not sys.platform.startswith("windows"):  # root check
+    if sys.platform.startswith(("linux", "darwin")):  # root check
         if not os.geteuid():
             log.warning("Runing as root is not Recommended !.")
             return False
