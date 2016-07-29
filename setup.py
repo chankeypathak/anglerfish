@@ -44,7 +44,8 @@ from setuptools import setup
 
 MODULE_PATH = os.path.join(os.path.dirname(__file__),
                            "anglerfish", "__init__.py")
-DESCRIPTION = "Helper Library for Python3 Apps."
+DESCRIPTION = """Anglerfish is a simple multipurpose K.I.S.S. Python 3 Helper
+Library to help Developers create Apps or Scripts faster, better and easily."""
 
 
 ##############################################################################
@@ -81,7 +82,7 @@ setup(
     name="anglerfish",
     version=find_this("version"),
 
-    description=DESCRIPTION,
+    description="Helper Library for Python3 Apps.",
     long_description=DESCRIPTION,
 
     url=find_this("url"),

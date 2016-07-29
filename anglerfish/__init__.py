@@ -23,7 +23,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-__version__ = '1.2.3'
+__version__ = '1.2.4'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '

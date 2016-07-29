@@ -13,7 +13,7 @@ from zipfile import ZipFile
 def set_zip_comment(zip_path, comment=""):
     """Set a ZIP comment."""
     try:
-        with ZipFile(str(zip_path), 'w') as myzip:
+        with ZipFile(str(zip_path), 'a') as myzip:
             myzip.comment = bytes(str(comment).strip().encode("utf-8"))
     except Exception as error:
         log.warning("Failed to set comment to ZIP file: {0}.".format(zip_path))
