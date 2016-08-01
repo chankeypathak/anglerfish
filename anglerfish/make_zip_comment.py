@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-"""Check if running on Battery, return Bool."""
+"""Set or Get a ZIP comment on its Metadata, return Bool."""
 
 
 import logging as log
