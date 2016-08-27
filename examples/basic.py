@@ -21,10 +21,6 @@ print("Running anglerfish.make_logger()")
 log = make_logger("test", when='midnight', single_zip=False)
 
 
-print("Running anglerfish.get_config_folder()")
-print(get_config_folder("test"))
-
-
 print("Running anglerfish.set_cli_title()")
 set_terminal_title("test")
 set_terminal_title("")
@@ -58,14 +54,6 @@ print(clipboard_paste())
 
 print("Running anglerfish.beep()")
 beep()
-
-
-print("Running anglerfish.make_config()")
-make_config("test")
-
-
-print("Running anglerfish.backup_config()")
-backup_config("test")
 
 
 print("Running anglerfish.log_exception()")

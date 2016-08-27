@@ -37,15 +37,13 @@ __all__ = [
     "set_terminal_title", "bytes2human", "walk2dict", "seconds2human",
     "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
     "ipdb_on_exception", "about_python", "about_self", "view_code",
-    "report_bug", "get_config_folder", "make_config", "view_config",
-    "save_config", "delete_config", "backup_config", "json2xml", "CONFIG",
-    "start_time", "get_free_port", "path2import", "make_notification",
-    "make_json_flat", "has_battery", "on_battery", "set_zip_comment",
-    "get_zip_comment", "set_display_off", "ChainableFuture"
+    "report_bug", "json2xml", "start_time", "get_free_port", "path2import",
+    "make_notification", "make_json_flat", "has_battery", "on_battery",
+    "set_zip_comment", "get_zip_comment", "set_display_off", "ChainableFuture"
 ]
 
 
-sys.dont_write_bytecode, start_time, CONFIG = True, datetime.now(), None
+sys.dont_write_bytecode, start_time = True, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
@@ -197,6 +195,3 @@ from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.make_info import (about_python, about_self,  # noqa
                                   view_code, report_bug)  # noqa
-from anglerfish.make_config import (get_config_folder, make_config,  # noqa
-                                    view_config, save_config,  # noqa
-                                    delete_config, backup_config)  # noqa
