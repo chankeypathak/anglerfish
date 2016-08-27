@@ -1126,7 +1126,7 @@ pip3 install anglerfish
 
 - Anglerfish will NOT provide any kind of Configuration/Settings Helpers.
 - We recommend: https://github.com/ssato/python-anyconfig#python-anyconfig
-- `python-anyconfig` only requires Python Standard Library.
+- `python-anyconfig` only requires Python Standard Library. Works with any kind of config file.
 
 
 # Coding Style Guide:
