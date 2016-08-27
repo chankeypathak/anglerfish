@@ -1129,6 +1129,11 @@ pip3 install anglerfish
 - `python-anyconfig` only requires Python Standard Library. Works with any kind of config file.
 
 
+# More must have helpers
+
+- We recommend: https://github.com/shazow/unstdlib.py#unstandard-library-for-python
+
+
 # Coding Style Guide:
 
 - Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort`
