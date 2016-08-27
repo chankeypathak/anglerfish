@@ -13,7 +13,7 @@ from getpass import getuser
 from platform import platform, python_version
 
 
-def check_encoding():
+def check_encoding(check_root=True):
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
     log.debug("Python {0} on {1}.".format(python_version(), platform()))
     log.debug("STDIN Encoding: {0}.".format(sys.stdin.encoding))
@@ -24,11 +24,11 @@ def check_encoding():
     log.debug("PYTHONIOENCODING Encoding: {0}.".format(
         os.environ.get("PYTHONIOENCODING", None)))
     os.environ["PYTHONIOENCODING"] = "utf-8"
-    if sys.platform.startswith(("linux", "darwin")):  # root check
+    if sys.platform.startswith(("linux", "darwin")) and check_root:  # root
         if not os.geteuid():
             log.warning("Runing as root is not Recommended !.")
             return False
-    elif sys.platform.startswith("windows"):  # administrator check
+    elif sys.platform.startswith("windows") and check_root:  # administrator
         if getuser().lower().startswith("admin"):
             log.warning("Runing as Administrator is not Recommended !.")
             return False

@@ -100,7 +100,7 @@ setup(
 
     packages=["anglerfish"],
 
-    keywords=['helper', 'boilerplate', 'utils', 'minimalism'],
+    keywords=['helper', 'boilerplate', 'utils', 'minimalism', 'utility'],
 
     classifiers=[
 
