@@ -79,7 +79,7 @@ print(get_sanitized_string(""))
 
 
 print("Running anglerfish.json_pretty()")
-print(json_pretty({"foo": True, "bar": 42, "baz": []}))
+print(json_pretty({"foo": True, "bar": 42, "links": ["https://github.com", "http://localhost"]}))
 print(json_pretty({}))
 
 
@@ -113,7 +113,6 @@ future1.set_result('This is an anglerfish.ChainableFuture demo')
 print(future1.result())  # Future 1 is Chained to Future 2.
 print(future2.result())
 
-
 #print("Running anglerfish.@retry")
 #@retry(4)
 #def retry_job():  # a simple function for testing only
@@ -133,7 +132,7 @@ print(seconds2human(83490890))
 
 
 print("Running anglerfish.walk2dict()")
-print(walk2dict(".", jsony=True))
+print(walk2dict(".", jsony=False))
 
 
 print("Running anglerfish.@typecheck")

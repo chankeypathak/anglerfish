@@ -22,9 +22,11 @@ def json_pretty(json_dict: dict) -> str:
             max_indent = lenght if lenght > max_indent else max_indent
             max_indent = max_indent if max_indent <= 80 else 80  # Limit indent
     for line_of_json in _json.splitlines():
+        is_str = line_of_json.strip().endswith(('"', '",')) and \
+            line_of_json.strip().startswith('"') and ":" in line_of_json
         condition_1 = max_indent > 1 and len(line_of_json.split(":")) >= 2
         condition_2 = line_of_json.endswith(posible_ends) and len(line_of_json)
-        if condition_1 and condition_2:
+        if condition_1 and condition_2 and not is_str:
             propert_len = len(line_of_json.split(":")[0].rstrip()) + 1
             xtra_spaces = " " * (max_indent + 1 - propert_len)
             xtra_spaces = ":" + xtra_spaces
