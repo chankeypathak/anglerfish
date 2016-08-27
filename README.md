@@ -1131,7 +1131,9 @@ pip3 install anglerfish
 
 # More must have helpers
 
-- We recommend: https://github.com/shazow/unstdlib.py#unstandard-library-for-python
+- https://github.com/shazow/unstdlib.py#unstandard-library-for-python
+- https://github.com/hynek/attrs#attrs-attributes-without-boilerplate
+- https://github.com/ssato/python-anyconfig#python-anyconfig
 
 
 # Coding Style Guide:
