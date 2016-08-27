@@ -143,11 +143,12 @@ bytes2human(3284902384, "g")
 <summary>
 # check_encoding
 </summary>
-`anglerfish.check_encoding()`
+`anglerfish.check_encoding(check_root: bool=True)`
 
 **Description:** Checks the all the Encodings of the System and Logs the results, to name a few like `STDIN`, `STDERR`, `STDOUT`, FileSystem, `PYTHONIOENCODING` and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
 
-**Arguments:** None.
+**Arguments:** 
+- `check_root` Check for root/administrator privileges, optional, boolean type.
 
 **Keyword Arguments:** None.
 
@@ -168,12 +169,14 @@ check_encoding()
 <summary>
 # check_folder
 </summary>
-`anglerfish.check_folder(folder_to_check: str)`
+`anglerfish.check_folder(folder_to_check: str, check_space: bool=True)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
 
-**Arguments:** `folder_to_check` path of the folder to check, string type.
+**Arguments:** 
+- `folder_to_check` path of the folder to check, string type.
+- `check_space` Check for a minimum of disk space, at least 1Gb, optional, boolean type.
 
 **Keyword Arguments:** None.
 
