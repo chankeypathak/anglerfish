@@ -1122,6 +1122,13 @@ pip3 install anglerfish
 - [Python 3.x](https://www.python.org "Python Homepage") *(or PyPy 3.x)*
 
 
+# Config Helper ?
+
+- Anglerfish will NOT provide any kind of Configuration/Settings Helpers.
+- We recommend: https://github.com/ssato/python-anyconfig#python-anyconfig
+- `python-anyconfig` only requires Python Standard Library.
+
+
 # Coding Style Guide:
 
 - Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort`
