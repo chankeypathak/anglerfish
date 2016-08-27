@@ -118,6 +118,14 @@ def process_job():  # a simple function for testing only
 process_job()
 
 
+print("Running anglerfish.ChainableFuture.then()")
+future1 = ChainableFuture()
+future2 = future1.then(lambda arg: arg + ' using ChainableFuture.then() !!!.')
+future1.set_result('This is an anglerfish.ChainableFuture demo')
+print(future1.result())  # Future 1 is Chained to Future 2.
+print(future2.result())
+
+
 #print("Running anglerfish.@retry")
 #@retry(4)
 #def retry_job():  # a simple function for testing only

@@ -26,7 +26,7 @@ if the App ends correctly it will automatically ZIP compress the old unused rota
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
 Please use a unique and distinctive name for your app, and use the same name every time Anglerfish needs an app name.
 
-**Arguments:** 
+**Arguments:**
 - `name` is a unique name of your App, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
@@ -116,7 +116,7 @@ make_notification("test")
 </summary>
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
-**Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...), 
+**Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...),
 uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
 
 **Arguments:**
@@ -223,11 +223,11 @@ print(clipboard_paste())
 </summary>
 `anglerfish.get_sanitized_string(stringy: str, repla: str="")`
 
-**Description:** Take string argument and sanitize non-printable weird characters and return a clean string, 
+**Description:** Take string argument and sanitize non-printable weird characters and return a clean string,
 ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
 
-**Arguments:** 
-- `stringy` string to be clean out of weird characters, string type. 
+**Arguments:**
+- `stringy` string to be clean out of weird characters, string type.
 - `repla` a replacement string to be used instead of empty string `""`, can be a single character.
 
 **Keyword Arguments:** None.
@@ -251,7 +251,7 @@ get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 </summary>
 `anglerfish.get_temp_folder(appname: str)`
 
-**Description:** Creates and returns a folder on the systems Temporary directory, 
+**Description:** Creates and returns a folder on the systems Temporary directory,
 creating it or not if needed, the folder will have the same name as the App passed as argument,
 it means to be a liittle more safe than just writing everything to the systems temp folder where simple name collisions can overwrite and loss data.
 
@@ -305,7 +305,7 @@ beep()
 </summary>
 `anglerfish.json_pretty(json_dict: dict)`
 
-**Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation, 
+**Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation,
 similar to YML but still valid JSON, works perfectly with JavaScript too.
 
 **Arguments:** `json_dict` a dict with data that will be converted to JSON and pretty-printed as string.
@@ -331,8 +331,8 @@ json_pretty({"foo": True, "bar": 42, "baz": []})
 </summary>
 `anglerfish.log_exception()`
 
-**Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood, 
-returns a string printing it via a working logger at the same time, 
+**Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood,
+returns a string printing it via a working logger at the same time,
 works for Exceptions like on `try...except...finally` constructions, takes no arguments.
 
 **Arguments:** None.
@@ -361,11 +361,11 @@ except Exception:
 </summary>
 `anglerfish.ipdb_on_exception(debugger: str="ipdb")`
 
-**Description:** Automatic iPDB Debugger when an Exception happens, 
+**Description:** Automatic iPDB Debugger when an Exception happens,
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
 PDB, iPDB can be used as Debugger console.
 
-**Arguments:** 
+**Arguments:**
 - `debugger` one of `"ipdb"`, `"pdb"`.
 
 **Keyword Arguments:** None.
@@ -419,7 +419,7 @@ seconds2human(490890)
 </summary>
 `anglerfish.set_process_name(name: str)`
 
-**Description:** Set the current process name to the argument `name`, 
+**Description:** Set the current process name to the argument `name`,
 so instead of all your apps listing as `python` on the system monitor they will have proper names,
 this helps debug, troubleshooting and system administration in general.
 
@@ -446,15 +446,15 @@ set_process_name("MyApp")
 </summary>
 `anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
 
-**Description:** Perform full recursive walk of `where` folder path, 
+**Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
 convert the output to `tuple` if `tuply` is `True`, else return the `list` containing the path of all the files.
 
-**Arguments:** 
+**Arguments:**
 - `where` path to a folder to scan, string type.
-- `target` type of files to search for, for example `.py`, string type, 
-- `omit` type of files to ignote, for example `.pyc`, string type, 
-- `links` a Boolean, `True` to follow simbolic links, 
+- `target` type of files to search for, for example `.py`, string type,
+- `omit` type of files to ignote, for example `.pyc`, string type,
+- `links` a Boolean, `True` to follow simbolic links,
 - `tuply` a Boolean, `True` to convert the output `list` into a `tuple`.
 
 **Keyword Arguments:** None.
@@ -481,11 +481,11 @@ walk2list(".")
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
 
-**Arguments:** 
-- `folder` path to folder to scan, string type, 
+**Arguments:**
+- `folder` path to folder to scan, string type,
 - `links` a Boolean, `True` to follow simbolic links,
 - `showhidden` a Boolean, `True` to show hidden files and folders,
-- `strip` a Boolean, `True` to strip the relative folder path, 
+- `strip` a Boolean, `True` to strip the relative folder path,
 - `jsony` a Boolean, `True` to convert the `dict` to JSON.
 
 **Keyword Arguments:** None.
@@ -512,11 +512,11 @@ walk2dict(".")
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
 with optional Timeout, on a quick and easy way.
 
-**Arguments:** 
-- `function` a function of Callable type to execute code, 
-- `arguments` is an object that represent the arguments for the function, 
-- `cpu_num` how many CPU Cores to use, integer type, 
-- `thread_num` how many Threads per CPU Core to use, integer type, 
+**Arguments:**
+- `function` a function of Callable type to execute code,
+- `arguments` is an object that represent the arguments for the function,
+- `cpu_num` how many CPU Cores to use, integer type,
+- `thread_num` how many Threads per CPU Core to use, integer type,
 - `timeout` a Timeout on Seconds, integer type or None.
 
 **Keyword Arguments:** None.
@@ -553,8 +553,8 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
 
-**Arguments:** 
-- `n` number of Threads to use for the function execution, integer type, 
+**Arguments:**
+- `n` number of Threads to use for the function execution, integer type,
 - `timeout` a Timeout on seconds or None.
 
 **Keyword Arguments:** None.
@@ -578,6 +578,42 @@ process_job()
 
 <details>
 <summary>
+# ChainableFuture
+</summary>
+`anglerfish.ChainableFuture.then(on_success: Callable=None, on_fail: Callable=None)`
+
+**Description:** Make a Chainable `concurrent.futures.Future` that has a `.then()` api.
+This copies the JavaScript-like promises `.then()` api on Python 3.
+For deep technical theory please see https://github.com/promises-aplus/promises-spec
+For Python 3 Futures (JS-like promises) please see https://www.python.org/dev/peps/pep-3148
+For simple human explanation this chains one Future with another Future.
+
+**Arguments:**
+- `on_success` a function to run when this Future success Ok,Callable type,Optional.
+- `on_fail` a function to run when this Future fails,Callable type,Optional.
+
+**Keyword Arguments:** None.
+
+**Returns:** concurrent.futures object. A Future chained to current Future.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_chainable_future.py
+
+**Usage Example:**
+
+```python
+from anglerfish import ChainableFuture
+
+future1 = ChainableFuture()
+future2 = future1.then(lambda arg: arg + ' using ChainableFuture.then() !!!.')
+future1.set_result('This is an anglerfish.ChainableFuture demo')
+print(future1.result())  # Future 1 is Chained to Future 2.
+print(future2.result())
+```
+</details>
+
+
+<details>
+<summary>
 # retry
 </summary>
 `@retry(tries: int=5, delay: int=3, backoff: int=2,
@@ -585,7 +621,7 @@ process_job()
 
 **Description:** Retry calling the decorated function using an exponential backoff and timeout.
 
-**Arguments:** 
+**Arguments:**
 - `tries` how many times retry the operation, defaults to 5, integer type.
 - `delay` delay between executions, defaults to 3, integer type.
 - `backoff` an exponential backoff offset to apply to the `delay`, defaults to 2, integer type.
@@ -619,8 +655,8 @@ retry_job()
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
 
-**Arguments:** 
-- `name` the name of your app to be used as Lock name, 
+**Arguments:**
+- `name` the name of your app to be used as Lock name,
 - `port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, integer type.
 
 **Keyword Arguments:** None.
@@ -799,7 +835,7 @@ make_post_exec_msg()
 </summary>
 `anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60)`
 
-**Description:** Watch a file path for changes run callback if modified. 
+**Description:** Watch a file path for changes run callback if modified.
 A WatchDog.
 
 **Arguments:**
@@ -886,7 +922,7 @@ set_terminal_title("mysuperapp")
 
 **Description:** Takes a JSON and returns an XML, optional custom line paddings.
 
-**Arguments:** 
+**Arguments:**
 - `json_obj` the json data, dict type.
 - `line_padding` optional custom line paddings, string type.
 
@@ -913,7 +949,7 @@ json2xml({"foo": 42, "bar": 666})
 
 **Description:** Takes a JSON and returns a JSON, but with Flatten out structure, from Nested to Flat, optional custom delimiter.
 
-**Arguments:** 
+**Arguments:**
 - `jsony` the json data, dict type.
 - `delimiter` optional custom delimiter, string type.
 
@@ -934,7 +970,7 @@ json2xml({"foo": 42, "bar": 666})
 
 **Description:** Set a comment on a ZIP file, return a Boolean.
 
-**Arguments:** 
+**Arguments:**
 - `zip_path` ZIP file path string, str type.
 - `comment` Comment for the ZIP file, optional, defaults to empty string, string type.
 
@@ -961,7 +997,7 @@ set_zip_comment("test.zip", "This is a comment.")
 
 **Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
 
-**Arguments:** 
+**Arguments:**
 - `zip_path` ZIP file path string, str type.
 
 **Keyword Arguments:** None.
