@@ -6,12 +6,19 @@
 
 
 import os
-import dbus
 import logging as log
+
+try:
+    import dbus
+except ImportError:
+    dbus = None
 
 
 def _get_prop(obj, iface, prop):
     """Get object interface properties."""
+    if not dbus:
+        log.warning("D-Bus module not found or not supported on this OS.")
+        return  # Windows probably.
     try:
         return obj.Get(iface, prop, dbus_interface=dbus.PROPERTIES_IFACE)
     except (dbus.DBusException, dbus.exceptions.DBusException) as err:
