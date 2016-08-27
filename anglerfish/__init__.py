@@ -29,17 +29,18 @@ __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = [
-    "make_logger", "check_encoding", "check_folder", "get_clipboard",
-    "get_sanitized_string", "beep", "json_pretty", "log_exception",
-    "multiprocessed", "threads", "make_post_exec_msg", "retry",
-    "typecheck", "walk2list", "watch", "set_desktop_launcher",
-    "set_process_name", "set_single_instance", "get_temp_folder",
-    "set_terminal_title", "bytes2human", "walk2dict", "seconds2human",
-    "env2globals", "html2ebook", "TemplatePython", "pdb_on_exception",
-    "ipdb_on_exception", "about_python", "about_self", "view_code",
-    "report_bug", "json2xml", "start_time", "get_free_port", "path2import",
-    "make_notification", "make_json_flat", "has_battery", "on_battery",
-    "set_zip_comment", "get_zip_comment", "set_display_off", "ChainableFuture"
+    'ChainableFuture', 'TemplatePython',  # Those are Classes.
+    'about_python', 'about_self', 'beep',  # All functions below.
+    'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
+    'get_clipboard', 'get_free_port', 'get_sanitized_string',
+    'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
+    'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
+    'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',
+    'multiprocessed', 'on_battery', 'path2import', 'pdb_on_exception',
+    'report_bug', 'retry', 'seconds2human', 'set_desktop_launcher',
+    'set_display_off', 'set_process_name', 'set_single_instance',
+    'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
+    'typecheck', 'view_code', 'walk2dict', 'walk2list', 'watch'
 ]
 
 
