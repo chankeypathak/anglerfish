@@ -99,7 +99,7 @@ def make_logger(name, when='midnight', single_zip=False):
             "%(processName)s (%(process)d) %(threadName)s (%(thread)d) "
             "%(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
     hand.setFormatter(logging.Formatter(fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
-    log = logging.getLogger(__name__)
+    log = logging.getLogger()
     log.addHandler(hand)
     log.setLevel(-1)
     if not sys.platform.startswith("win") and sys.stderr.isatty():
