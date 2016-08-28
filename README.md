@@ -1134,14 +1134,15 @@ pip3 install anglerfish
 
 # More must have helpers
 
+*All these tiny generic awesome helpers, utilities, etc only require Python standard lib.*
+
 - https://github.com/shazow/unstdlib.py#unstandard-library-for-python
 - https://github.com/hynek/attrs#attrs-attributes-without-boilerplate
 - https://github.com/ssato/python-anyconfig#python-anyconfig
 - https://github.com/dbader/schedule#usage
-- https://github.com/p-e-w/maybe#maybe
 - https://github.com/msiemens/tinydb#example-code
-- https://github.com/theodox/spelchek#spelchek
 - https://github.com/jsonpickle/jsonpickle#jsonpickle
+- https://github.com/theodox/spelchek#spelchek
 
 
 # Coding Style Guide:
