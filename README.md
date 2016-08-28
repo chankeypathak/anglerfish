@@ -1141,6 +1141,7 @@ pip3 install anglerfish
 - https://github.com/p-e-w/maybe#maybe
 - https://github.com/msiemens/tinydb#example-code
 - https://github.com/theodox/spelchek#spelchek
+- https://github.com/jsonpickle/jsonpickle#jsonpickle
 
 
 # Coding Style Guide:
