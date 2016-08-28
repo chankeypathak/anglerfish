@@ -198,7 +198,9 @@ print(set_display_off())
 print("Running anglerfish.path2import()")
 with open("test.py", "w", encoding="utf-8") as fyle:
     fyle.write("module_content = 42\n")
-print(path2import("test.py"))
+modulote = path2import("test.py", "modulote")
+print(modulote)
+print(modulote.module_content)
 
 
 print("Printing globals() keys...")
