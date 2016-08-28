@@ -23,7 +23,7 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-__version__ = '1.5.0'
+__version__ = '1.5.5'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -40,7 +40,8 @@ __all__ = [
     'report_bug', 'retry', 'seconds2human', 'set_desktop_launcher',
     'set_display_off', 'set_process_name', 'set_single_instance',
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
-    'typecheck', 'view_code', 'walk2dict', 'walk2list', 'watch'
+    'timedelta2human', 'typecheck', 'view_code', 'walk2dict', 'walk2list',
+    'watch'
 ]
 
 
@@ -178,7 +179,7 @@ from anglerfish.get_temp_folder import get_temp_folder  # noqa
 from anglerfish.set_terminal_title import set_terminal_title  # noqa
 from anglerfish.bytes2human import bytes2human  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
-from anglerfish.seconds2human import seconds2human  # noqa
+from anglerfish.seconds2human import seconds2human, timedelta2human  # noqa
 from anglerfish.env2globals import env2globals  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa

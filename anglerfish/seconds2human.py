@@ -19,3 +19,8 @@ def seconds2human(time_on_seconds=0):
         human_time_string += "%02d Minutes " % minutes
     human_time_string += "%02d Seconds" % seconds
     return human_time_string
+
+
+def timedelta2human(time_delta):
+    """Convert a TimeDelta object to human string representation."""
+    return seconds2human(time_delta.total_seconds())  # Just a shortcut :)

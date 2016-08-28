@@ -131,6 +131,10 @@ print(seconds2human(-666))
 print(seconds2human(83490890))
 
 
+print("Running anglerfish.timedelta2human()")
+print(timedelta2human(start_time - datetime.now()))
+
+
 print("Running anglerfish.walk2dict()")
 print(walk2dict(".", jsony=False))
 
