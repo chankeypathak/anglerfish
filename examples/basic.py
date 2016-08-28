@@ -195,5 +195,11 @@ print("Running anglerfish.set_display_off()")
 print(set_display_off())
 
 
+print("Running anglerfish.path2import()")
+with open("test.py", "w", encoding="utf-8") as fyle:
+    fyle.write("module_content = 42\n")
+print(path2import("test.py"))
+
+
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))
