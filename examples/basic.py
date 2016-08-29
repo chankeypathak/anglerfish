@@ -113,12 +113,6 @@ future1.set_result('This is an anglerfish.ChainableFuture demo')
 print(future1.result())  # Future 1 is Chained to Future 2.
 print(future2.result())
 
-#print("Running anglerfish.@retry")
-#@retry(4)
-#def retry_job():  # a simple function for testing only
-#    return open("").read()  # Will Fail as expected
-#retry_job()
-
 
 print("Running anglerfish.walkdir2filelist")
 print(walk2list(".", ".py", ".pyc"))

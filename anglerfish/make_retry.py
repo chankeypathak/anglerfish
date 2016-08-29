@@ -9,8 +9,8 @@ import functools
 import time
 
 
-def retry(tries=5, delay=3, backoff=2,
-          timeout=None, silent=False, logger=None):
+def retry(tries=5, delay=3, backoff=2, timeout=None,
+          silent=False, logger=None, exceptions=(Exception, )):
     """Retry calling the decorated function using an exponential backoff."""
     def deco_retry(f):
 
@@ -21,10 +21,12 @@ def retry(tries=5, delay=3, backoff=2,
             while mtries > 1:
                 try:
                     return f(*args, **kwargs)
-                except Exception as e:
+                except exceptions as e:
                     if end_time and time.time() > end_time:
                         raise
-                    msg = "{}, Retrying in {} seconds...".format(e, mdelay)
+                    msg = "{0}, Retrying in {1} seconds...".format(e, mdelay)
+                    if mtries < 3:
+                        msg += " (Warning: This is the last Retry!)."
                     if not silent:
                         logger.warning(msg) if logger else print(msg)
                     time.sleep(mdelay + int(mtries % 2))
