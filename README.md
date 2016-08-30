@@ -394,12 +394,14 @@ except Exception:
 <summary>
 # seconds2human
 </summary>
-`anglerfish.seconds2human(time_on_seconds: int)`
+`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True)`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
 
-**Arguments:** `time_on_seconds` time on seconds, integer type.
+**Arguments:** 
+- `time_on_seconds` time on seconds, integer type.
+- `do_year` True to calculate Years, optional, defaults to `True`,boolean type.
 
 **Keyword Arguments:** None.
 
@@ -412,6 +414,37 @@ calculates time with precision from seconds to days, returns the string with rep
 ```python
 from anglerfish import seconds2human
 seconds2human(490890)
+```
+</details>
+
+
+
+<details>
+<summary>
+# datetime2human
+</summary>
+`anglerfish.deltatime2human(time_delta, do_year: bool=True)`
+
+**Description:** Convert a TimeDelta object to human string representation. 
+From `deltatime` object to very human friendly string representation,
+calculates time with precision from seconds to years, returns the string with representation.
+Internally is just a shortcut to `anglerfish.seconds2human()`.
+
+**Arguments:** 
+- `time_delta` deltatime object, `datetime.deltatime` type.
+- `do_year` True to calculate Years, optional, defaults to `True`,boolean type.
+
+**Keyword Arguments:** None.
+
+**Returns:** string, human friendly representation.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
+
+**Usage Example:**
+
+```python
+from anglerfish import deltatime2human
+deltatime2human(deltatime_object)
 ```
 </details>
 
