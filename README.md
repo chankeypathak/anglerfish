@@ -418,7 +418,6 @@ seconds2human(490890)
 </details>
 
 
-
 <details>
 <summary>
 # datetime2human
@@ -1122,6 +1121,34 @@ on_battery()
 ```python
 from anglerfish import set_display_off
 set_display_off()
+```
+</details>
+
+
+
+<details>
+<summary>
+# make_test_terminal_color
+</summary>
+`anglerfish.make_test_terminal_color()`
+
+**Description:** Test the Terminal True-Color. 
+Prints 3 lines corresponding to Red, Green, Blue from darkest to brightest on the Terminal. 
+Does not Log anything to logger.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** None.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/__init__.py
+
+**Usage Example:**
+
+```python
+from anglerfish import make_test_terminal_color
+make_test_terminal_color()
 ```
 </details>
 
