@@ -41,7 +41,7 @@ __all__ = [
     'set_display_off', 'set_process_name', 'set_single_instance',
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'view_code', 'walk2dict', 'walk2list',
-    'watch'
+    'watch', 'make_test_terminal_color'
 ]
 
 
@@ -50,6 +50,21 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 ##############################################################################
+
+
+def make_test_terminal_color():
+    """Test the Terminal True-Color."""
+    print("Testing Terminal for True-Color...")
+    r = g = b = 0
+    for r in range(81):
+        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="" if r < 80 else "\n")
+    r = 0
+    for g in range(81):
+        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="" if g < 80 else "\n")
+    g = 0
+    for b in range(81):
+        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="")
+    print('\x1b[0m')
 
 
 def __zip_old_logs(log_file, single_zip):
@@ -105,6 +120,7 @@ def make_logger(name, when='midnight', single_zip=False):
     log.setLevel(-1)
     if not sys.platform.startswith("win") and sys.stderr.isatty():
         log.debug("Enabled Colored Logs on current Terminal.")
+        make_test_terminal_color()
 
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
