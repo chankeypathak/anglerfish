@@ -25,6 +25,6 @@ def seconds2human(time_on_seconds=0, do_year=True):
     return human_time_string
 
 
-def timedelta2human(time_delta):
+def timedelta2human(time_delta, do_year=True):  # Just a shortcut :)
     """Convert a TimeDelta object to human string representation."""
-    return seconds2human(time_delta.total_seconds())  # Just a shortcut :)
+    return seconds2human(time_delta.total_seconds(), do_year=do_year)
