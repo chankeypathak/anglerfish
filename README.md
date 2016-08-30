@@ -420,7 +420,7 @@ seconds2human(490890)
 
 <details>
 <summary>
-# datetime2human
+# deltatime2human
 </summary>
 `anglerfish.deltatime2human(time_delta, do_year: bool=True)`
 
@@ -431,7 +431,7 @@ Internally is just a shortcut to `anglerfish.seconds2human()`.
 
 **Arguments:** 
 - `time_delta` deltatime object, `datetime.deltatime` type.
-- `do_year` True to calculate Years, optional, defaults to `True`,boolean type.
+- `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
 
 **Keyword Arguments:** None.
 
