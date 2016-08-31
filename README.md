@@ -1203,6 +1203,7 @@ pip3 install anglerfish
 - https://github.com/msiemens/tinydb#example-code
 - https://github.com/jsonpickle/jsonpickle#jsonpickle
 - https://github.com/theodox/spelchek#spelchek
+- https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
 
 
 # Coding Style Guide:
