@@ -54,7 +54,7 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 def make_test_terminal_color():
     """Test the Terminal True-Color."""
-    print("Testing Terminal for True-Color...")
+    print("Testing Terminal Colors...")
     r = g = b = 0
     for r in range(81):
         print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="" if r < 80 else "\n")
