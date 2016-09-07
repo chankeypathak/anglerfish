@@ -30,4 +30,4 @@ def watch(file_path, callback=None, interval=60, backoff=1,
             previous, interval = actual, _interval
             if not silent:
                 logger.debug(msg) if logger else print(msg)
-            callback(file_path) if callback else file_path
+            return callback(file_path) if callback else file_path
