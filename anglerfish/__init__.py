@@ -30,14 +30,14 @@ __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = [
     'ChainableFuture', 'TemplatePython',  # Those are Classes.
-    'about_python', 'about_self', 'beep',  # All functions below.
+    'about_self', 'beep',  # All functions below.
     'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
     'get_clipboard', 'get_free_port', 'get_sanitized_string',
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',
     'multiprocessed', 'on_battery', 'path2import', 'pdb_on_exception',
-    'report_bug', 'retry', 'seconds2human', 'set_desktop_launcher',
+    'retry', 'seconds2human', 'set_desktop_launcher',
     'set_display_off', 'set_process_name', 'set_single_instance',
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'view_code', 'walk2dict', 'walk2list',
@@ -211,5 +211,4 @@ from anglerfish.make_chainable_future import ChainableFuture  # noqa
 
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
-from anglerfish.make_info import (about_python, about_self,  # noqa
-                                  view_code, report_bug)  # noqa
+from anglerfish.make_info import about_self, view_code  # noqa
