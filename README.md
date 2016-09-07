@@ -426,7 +426,7 @@ seconds2human(490890)
 
 **Description:** Convert a TimeDelta object to human string representation. 
 From `deltatime` object to very human friendly string representation,
-calculates time with precision from seconds to years, returns the string with representation.
+calculates time with precision from seconds to years, returns the string with representawation.
 Internally is just a shortcut to `anglerfish.seconds2human()`.
 
 **Arguments:** 
@@ -868,7 +868,7 @@ make_post_exec_msg()
 <summary>
 # watch
 </summary>
-`anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60)`
+`anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60, backoff: int=1, timeout: int=None, repetitions: int=-1, silent: bool=False, logger: object=None)`
 
 **Description:** Watch a file path for changes run callback if modified.
 A WatchDog.
@@ -877,6 +877,11 @@ A WatchDog.
 - `file_path` an existent readable file path to watch for changes. String type.
 - `callback` a `Callable` callback function to execute when changes are detected. Callable type.
 - `interval` an integer number seconds of interval between chacks for changes. Integer type.
+- `backoff` an exponential backoff offset to apply to the `interval`, defaults to 1, integer type.
+- `timeout` a timeout for the whole execution or None, defaults to None.
+- `repetitions` how many times to check or run, -1 or 0 is infinite, defaults to -1, integer type.
+- `silent` a boolean `True` to be Silent while running, defaults to False.
+- `logger` a working logger to log into or None to use `print()`.
 
 **Keyword Arguments:** None.
 
