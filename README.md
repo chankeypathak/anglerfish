@@ -908,6 +908,8 @@ watch("/tmp/file.txt")
 
 **Description:** Adds your app to autostart and/or launcher icon on the Desktop.
 According to XDG standard. Runs on Linux. Other platforms simply does nothing.
+Windows and Os X dont have a desktop launcher standard file.
+Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 
 **Arguments:**
 - `app` the name of your app. String type.
