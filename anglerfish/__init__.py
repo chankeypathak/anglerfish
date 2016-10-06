@@ -23,16 +23,15 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
-__version__ = '1.5.5'
+__version__ = '1.7.5'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = [
     'ChainableFuture', 'TemplatePython',  # Those are Classes.
-    'about_self', 'beep',  # All functions below.
-    'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
-    'get_clipboard', 'get_free_port', 'get_sanitized_string',
+    'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
+    'get_clipboard', 'get_free_port', 'get_sanitized_string', # All functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',
@@ -40,8 +39,8 @@ __all__ = [
     'retry', 'seconds2human', 'set_desktop_launcher',
     'set_display_off', 'set_process_name', 'set_single_instance',
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
-    'timedelta2human', 'typecheck', 'view_code', 'walk2dict', 'walk2list',
-    'watch', 'make_test_terminal_color'
+    'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
+    'make_test_terminal_color'
 ]
 
 
@@ -50,21 +49,6 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 ##############################################################################
-
-
-def make_test_terminal_color():
-    """Test the Terminal True-Color."""
-    print("Testing Terminal Colors...")
-    r = g = b = 0
-    for r in range(81):
-        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="" if r < 80 else "\n")
-    r = 0
-    for g in range(81):
-        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="" if g < 80 else "\n")
-    g = 0
-    for b in range(81):
-        print('\x1b[0;48;2;%s;%s;%sm ' % (r, g, b), end="")
-    print('\x1b[0m')
 
 
 def __zip_old_logs(log_file, single_zip):
@@ -103,13 +87,15 @@ def __zip_old_logs(log_file, single_zip):
     return result
 
 
-def make_logger(name, when='midnight', single_zip=False):
+def make_logger(name, when='midnight', single_zip=False,
+                log_file=None, backup_count=100):
     """Build and return a Logging Logger."""
     global log
-    log_file = os.path.join(gettempdir(), str(name).lower().strip() + ".log")
+    if not log_file:
+        log_file = os.path.join(gettempdir(), name.lower().strip() + ".log")
     atexit.register(__zip_old_logs, log_file, single_zip)  # ZIP Old Logs
     hand = TimedRotatingFileHandler(log_file, when=when,
-                                    backupCount=999, encoding="utf-8")
+                                    backupCount=backup_count, encoding="utf-8")
     hand.setLevel(-1)
     _fmt = ("%(asctime)s %(levelname)s: "
             "%(processName)s (%(process)d) %(threadName)s (%(thread)d) "
@@ -211,4 +197,4 @@ from anglerfish.make_chainable_future import ChainableFuture  # noqa
 
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
-from anglerfish.make_info import about_self, view_code  # noqa
+from anglerfish.make_test_terminal_color import make_test_terminal_color

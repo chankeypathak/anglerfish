@@ -30,6 +30,8 @@ Please use a unique and distinctive name for your app, and use the same name eve
 - `name` is a unique name of your App, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
+- `log_file` log filename path, optional, defaults to `None`, string type.
+- `backup_count` number of log backups to keep, optional, defaults to `100`, meaning 100 backups, integer type.
 
 **Keyword Arguments:** None.
 
