@@ -123,6 +123,12 @@ print(seconds2human(0))
 print(seconds2human(42))
 print(seconds2human(-666))
 print(seconds2human(83490890))
+__unit_words={"y": " Anios ", "d": " Dias ",
+              "h": " Horas ", "m": " Minutos ", "s": " Segundos "}
+print(seconds2human(0, do_year=False, unit_words=__unit_words))
+print(seconds2human(42, do_year=False, unit_words=__unit_words))
+print(seconds2human(-666, do_year=False, unit_words=__unit_words))
+print(seconds2human(83490890, do_year=False, unit_words=__unit_words))
 
 
 print("Running anglerfish.timedelta2human()")

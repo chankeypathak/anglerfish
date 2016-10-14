@@ -11,7 +11,7 @@ import os
 from shutil import disk_usage
 
 
-def check_folder(folder_to_check=os.path.expanduser("~"), check_space=True):
+def check_folder(folder_to_check=os.path.expanduser("~"), check_space=1):
     """Check working folder,from argument,for everything that can go wrong."""
     folder_to_check = os.path.abspath(folder_to_check)  # More Safe on WinOS
     log.debug("Checking the Working Folder: '{0}'".format(folder_to_check))
@@ -27,12 +27,12 @@ def check_folder(folder_to_check=os.path.expanduser("~"), check_space=True):
     elif not os.access(folder_to_check, os.W_OK):  # What if not Writable.
         log.critical("Folder {0} Not Writable !.".format(folder_to_check))
         return False
-    elif disk_usage and os.path.exists(folder_to_check) and check_space:
+    elif disk_usage and os.path.exists(folder_to_check) and bool(check_space):
         hdd = int(disk_usage(folder_to_check).free / 1024 / 1024 / 1024)
-        if hdd:  # > 1 Gb
+        if hdd >= int(check_space):  # >= check_space Gb.
             log.info("Folder Total Free Space: ~{0} GigaBytes.".format(hdd))
             return True
-        else:  # < 1 Gb
-            log.critical("Total Free Space is < 1 GigaByte; Epic Fail!.")
+        else:  # < check_space Gb.
+            log.critical("Total Free Space: {} GigaBytes.".format(check_space))
             return False
     return False

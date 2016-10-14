@@ -24,19 +24,20 @@ make_logger
 
 ## make_logger
 
-`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False)`
+`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False, log_file: str=None, backup_count: int=100)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
+Colored output may not be available on MS Windows OS,
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
 Please use a unique and distinctive name for your app, and use the same name every time Anglerfish needs an app name.
 
 **Arguments:**
-- `name` is a unique name of your App, string type.
+- `name` is a unique name of your App, like a unique identifier, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
-- `log_file` log filename path, optional, defaults to `None`, string type.
+- `log_file` log filename path or None, optional, defaults to `None`, `os.path.join(gettempdir(), name.lower().strip() + ".log")` will be used if left as `None`, log filename path on use will be printed to stdout automatically, string type.
 - `backup_count` number of log backups to keep, optional, defaults to `100`, meaning 100 backups, integer type.
 
 **Keyword Arguments:** None.
@@ -192,14 +193,14 @@ check_folder
 
 ## check_folder
 
-`anglerfish.check_folder(folder_to_check: str, check_space: bool=True)`
+`anglerfish.check_folder(folder_to_check: str, check_space: int=1)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
 
 **Arguments:**
 - `folder_to_check` path of the folder to check, string type.
-- `check_space` Check for a minimum of disk space, at least 1Gb, optional, boolean type.
+- `check_space` Check for a minimum of disk space, Units are GigaBytes, Defaults to at least 1Gb, optional, integer type.
 
 **Keyword Arguments:** None.
 
@@ -441,14 +442,17 @@ seconds2human
 
 ## seconds2human
 
-`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True)`
+`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ",
+"h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
 
 **Arguments:**
 - `time_on_seconds` time on seconds, integer type.
-- `do_year` True to calculate Years, optional, defaults to `True`,boolean type.
+- `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
+- `unit_words` dictionary with words representing human Time units,
+useful for internationalization of the output string, defaults to English, optional, dict type.
 
 **Keyword Arguments:** None.
 
@@ -472,7 +476,8 @@ deltatime2human
 
 ## deltatime2human
 
-`anglerfish.deltatime2human(time_delta, do_year: bool=True)`
+`anglerfish.deltatime2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ",
+"h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
 
 **Description:** Convert a TimeDelta object to human string representation.
 From `deltatime` object to very human friendly string representation,
@@ -482,6 +487,8 @@ Internally is just a shortcut to `anglerfish.seconds2human()`.
 **Arguments:**
 - `time_delta` deltatime object, `datetime.deltatime` type.
 - `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
+- `unit_words` dictionary with words representing human Time units,
+useful for internationalization of the output string, defaults to English, optional, dict type.
 
 **Keyword Arguments:** None.
 
@@ -492,7 +499,9 @@ Internally is just a shortcut to `anglerfish.seconds2human()`.
 **Usage Example:**
 
 ```python
+import datetime
 from anglerfish import deltatime2human
+deltatime_object = datetime.timedelta(seconds=123.456789)
 deltatime2human(deltatime_object)
 ```
 </details>
@@ -505,13 +514,15 @@ set_process_name
 
 ## set_process_name
 
-`anglerfish.set_process_name(name: str)`
+`anglerfish.set_process_name(name: str, nice: bool=True)`
 
 **Description:** Set the current process name to the argument `name`,
 so instead of all your apps listing as `python` on the system monitor they will have proper names,
 this helps debug, troubleshooting and system administration in general.
 
-**Arguments:** `name` the name of your app.
+**Arguments:**
+- `name` the name of your app.
+- `nice` set a soft CPU nice priority, optional, defaults to `True`, boolean type.
 
 **Keyword Arguments:** None.
 

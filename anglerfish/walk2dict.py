@@ -54,4 +54,4 @@ def walk2dict(folder, links=False, showhidden=False, strip=False, jsony=False):
             except:
                 pass
         ret.append(a)
-    return dumps(ret, sort_keys=1, indent=4) if jsony else ret
+    return dumps(ret, sort_keys=True, indent=4) if jsony else ret

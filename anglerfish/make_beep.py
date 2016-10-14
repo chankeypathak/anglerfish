@@ -11,6 +11,7 @@ import sys
 
 from subprocess import call
 from tempfile import gettempdir
+from shutil import which
 
 
 def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):
@@ -23,11 +24,13 @@ def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):
                 for wav in range(0, 8, 1):
                     wave_file.write(chr(waveform[wav]))
     if sys.platform.startswith("linux"):
-        return not bool(call(
-            "chrt -i 0 aplay '{fyle}'".format(fyle=wavefile), shell=True))
+        repro = which("aplay")
+        return not bool(call("{repro} '{fyle}'".format(
+            fyle=wavefile, repro=repro), shell=True))
     if sys.platform.startswith("darwin"):
-        return not bool(call(
-            "afplay '{fyle}'".format(fyle=wavefile), shell=True))
+        repro = which("afplay")
+        return not bool(call("{repro} '{fyle}'".format(
+            fyle=wavefile, repro=repro), shell=True))
     if sys.platform.startswith("win"):  # FIXME: This is Ugly.
         log.debug("Playing Sound Natively not supported by this OS.")
         return False  # this SHOULD work on all windows,but it doesnt :(

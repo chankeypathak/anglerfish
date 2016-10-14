@@ -9,13 +9,14 @@ import sys
 import logging as log
 
 from subprocess import call
+from shutil import which
 
 
 def set_display_off():
     """Set Monitor Display OFF, it should Auto-ON when needed, return Bool."""
     log.debug("Setting Monitor Display OFF.")
-    if sys.platform.startswith('linux'):
-        return not bool(call("xset dpms force off", shell=True))
+    if sys.platform.startswith('linux') and which("xset"):
+        return not bool(call(which("xset") + " dpms force off", shell=True))
     elif sys.platform.startswith('darwin'):
         return not bool(call(
             """echo 'tell application "Finder" to sleep' | osascript""",
