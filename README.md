@@ -5,19 +5,25 @@
 
 *Ugly but Enlightening* | https://pypi.python.org/pypi/anglerfish
 
-[![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0) [![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0) [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org)
+[![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0)
+[![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0)
+[![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org)
 
-[![Donate BitCoins](https://www.coinbase.com/assets/buttons/donation_large-5cf4f17cc2d2ae2f45b6b021ee498297409c94dcf0ba1bbf76fd5668e80b0d02.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Donate Bitcoins") [![Subscribe with BitCoins](https://www.coinbase.com/assets/buttons/subscription_large-11d991f628216af05156fae88a48ce25c0cb36447a265421a43a62e572af3853.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Subscribe with BitCoins") [![Pay with BitCoins](https://www.coinbase.com/assets/buttons/buy_now_large-6f15fa5979d25404827a7329e8a5ec332a42cf4fd73e27a2c3ccda017034e1b0.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Pay with BitCoins") [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif "Donate with or without Credit Card")](http://goo.gl/cB7PR)
+[![Donate BitCoins](https://www.coinbase.com/assets/buttons/donation_large-5cf4f17cc2d2ae2f45b6b021ee498297409c94dcf0ba1bbf76fd5668e80b0d02.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Donate Bitcoins")
+[![Subscribe with BitCoins](https://www.coinbase.com/assets/buttons/subscription_large-11d991f628216af05156fae88a48ce25c0cb36447a265421a43a62e572af3853.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Subscribe with BitCoins")
+[![Pay with BitCoins](https://www.coinbase.com/assets/buttons/buy_now_large-6f15fa5979d25404827a7329e8a5ec332a42cf4fd73e27a2c3ccda017034e1b0.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Pay with BitCoins")
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif "Donate with or without Credit Card")](http://goo.gl/cB7PR)
 
 
 # Description of functions
 
----
-
 <details>
 <summary>
-# make_logger
+make_logger
 </summary>
+
+## make_logger
+
 `anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
@@ -55,8 +61,11 @@ log.exception("This is a Test.")
 
 <details>
 <summary>
-# get_free_port
+get_free_port
 </summary>
+
+## get_free_port
+
 `anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
 
 **Description:** Returns a free unused port number integer.
@@ -82,8 +91,11 @@ get_free_port()
 
 <details>
 <summary>
-# make_notification
+make_notification
 </summary>
+
+## make_notification
+
 `anglerfish.make_notification(title: str, message: str="", name: str="", icon: str="", timeout: int=3000))`
 
 **Description:** Makes a Passive Notification Bubble (Passive Popup), it works cross-desktop, using one of DBus, PyNotify, notify-send, kdialog, zenity or xmessage.
@@ -114,8 +126,11 @@ make_notification("test")
 
 <details>
 <summary>
-# bytes2human
+bytes2human
 </summary>
+
+## bytes2human
+
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...),
@@ -143,13 +158,16 @@ bytes2human(3284902384, "g")
 
 <details>
 <summary>
-# check_encoding
+check_encoding
 </summary>
+
+## check_encoding
+
 `anglerfish.check_encoding(check_root: bool=True)`
 
 **Description:** Checks the all the Encodings of the System and Logs the results, to name a few like `STDIN`, `STDERR`, `STDOUT`, FileSystem, `PYTHONIOENCODING` and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
 
-**Arguments:** 
+**Arguments:**
 - `check_root` Check for root/administrator privileges, optional, boolean type.
 
 **Keyword Arguments:** None.
@@ -169,14 +187,17 @@ check_encoding()
 
 <details>
 <summary>
-# check_folder
+check_folder
 </summary>
+
+## check_folder
+
 `anglerfish.check_folder(folder_to_check: str, check_space: bool=True)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
 
-**Arguments:** 
+**Arguments:**
 - `folder_to_check` path of the folder to check, string type.
 - `check_space` Check for a minimum of disk space, at least 1Gb, optional, boolean type.
 
@@ -197,8 +218,11 @@ check_folder("/path/to/my/folder/")
 
 <details>
 <summary>
-# get_clipboard
+get_clipboard
 </summary>
+
+## get_clipboard
+
 `anglerfish.get_clipboard()`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
@@ -224,8 +248,11 @@ print(clipboard_paste())
 
 <details>
 <summary>
-# get_sanitized_string
+get_sanitized_string
 </summary>
+
+## get_sanitized_string
+
 `anglerfish.get_sanitized_string(stringy: str, repla: str="")`
 
 **Description:** Take string argument and sanitize non-printable weird characters and return a clean string,
@@ -252,8 +279,11 @@ get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 
 <details>
 <summary>
-# get_temp_folder
+get_temp_folder
 </summary>
+
+## get_temp_folder
+
 `anglerfish.get_temp_folder(appname: str)`
 
 **Description:** Creates and returns a folder on the systems Temporary directory,
@@ -279,8 +309,11 @@ get_temp_folder("test")
 
 <details>
 <summary>
-# beep
+beep
 </summary>
+
+## beep
+
 `anglerfish.beep(waveform: tuple)`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
@@ -306,8 +339,11 @@ beep()
 
 <details>
 <summary>
-# json_pretty
+json_pretty
 </summary>
+
+## json_pretty
+
 `anglerfish.json_pretty(json_dict: dict)`
 
 **Description:** Pretty-Printing JSON data from dictionary to string, very human friendly representation,
@@ -332,8 +368,11 @@ json_pretty({"foo": True, "bar": 42, "baz": []})
 
 <details>
 <summary>
-# log_exception
+log_exception
 </summary>
+
+## log_exception
+
 `anglerfish.log_exception()`
 
 **Description:** Log Exceptions but pretty printing with a lot more information of whats going on under the hood,
@@ -362,8 +401,11 @@ except Exception:
 
 <details>
 <summary>
-# ipdb_on_exception
+ipdb_on_exception
 </summary>
+
+## ipdb_on_exception
+
 `anglerfish.ipdb_on_exception(debugger: str="ipdb")`
 
 **Description:** Automatic iPDB Debugger when an Exception happens,
@@ -394,14 +436,17 @@ except Exception:
 
 <details>
 <summary>
-# seconds2human
+seconds2human
 </summary>
+
+## seconds2human
+
 `anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True)`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
 
-**Arguments:** 
+**Arguments:**
 - `time_on_seconds` time on seconds, integer type.
 - `do_year` True to calculate Years, optional, defaults to `True`,boolean type.
 
@@ -422,16 +467,19 @@ seconds2human(490890)
 
 <details>
 <summary>
-# deltatime2human
+deltatime2human
 </summary>
+
+## deltatime2human
+
 `anglerfish.deltatime2human(time_delta, do_year: bool=True)`
 
-**Description:** Convert a TimeDelta object to human string representation. 
+**Description:** Convert a TimeDelta object to human string representation.
 From `deltatime` object to very human friendly string representation,
 calculates time with precision from seconds to years, returns the string with representawation.
 Internally is just a shortcut to `anglerfish.seconds2human()`.
 
-**Arguments:** 
+**Arguments:**
 - `time_delta` deltatime object, `datetime.deltatime` type.
 - `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
 
@@ -452,8 +500,11 @@ deltatime2human(deltatime_object)
 
 <details>
 <summary>
-# set_process_name
+set_process_name
 </summary>
+
+## set_process_name
+
 `anglerfish.set_process_name(name: str)`
 
 **Description:** Set the current process name to the argument `name`,
@@ -479,8 +530,11 @@ set_process_name("MyApp")
 
 <details>
 <summary>
-# walk2list
+walk2list
 </summary>
+
+## walk2list
+
 `anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
 
 **Description:** Perform full recursive walk of `where` folder path,
@@ -511,8 +565,11 @@ walk2list(".")
 
 <details>
 <summary>
-# walk2dict
+walk2dict
 </summary>
+
+## walk2dict
+
 `anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
@@ -542,8 +599,11 @@ walk2dict(".")
 
 <details>
 <summary>
-# multiprocessed
+multiprocessed
 </summary>
+
+## multiprocessed
+
 `anglerfish.multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
 
 **Description:** Execute code on multiple CPU Cores and multiple Threads per CPU Core,
@@ -584,8 +644,11 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 
 <details>
 <summary>
-# threads
+threads
 </summary>
+
+## threads
+
 `@threads(n: int, timeout=None)`
 
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
@@ -615,8 +678,11 @@ process_job()
 
 <details>
 <summary>
-# ChainableFuture
+ChainableFuture
 </summary>
+
+## ChainableFuture
+
 `anglerfish.ChainableFuture.then(on_success: Callable=None, on_fail: Callable=None)`
 
 **Description:** Make a Chainable `concurrent.futures.Future` that has a `.then()` api.
@@ -651,8 +717,11 @@ print(future2.result())
 
 <details>
 <summary>
-# retry
+retry
 </summary>
+
+## retry
+
 `@retry(tries: int=5, delay: int=3, backoff: int=2,
           timeout: int=None, silent: Bool=False, logger=None)`
 
@@ -686,8 +755,11 @@ retry_job()
 
 <details>
 <summary>
-# set_single_instance
+set_single_instance
 </summary>
+
+## set_single_instance
+
 `anglerfish.set_single_instance(name: str, port: int=8888)`
 
 **Description:** Set a single instance Lock based on Sockets and return socket.socket object or None.
@@ -713,8 +785,11 @@ set_single_instance("MyApp")
 
 <details>
 <summary>
-# env2globals
+env2globals
 </summary>
+
+## env2globals
+
 `anglerfish.env2globals(pattern: str)`
 
 **Description:** Auto add ENV environtment variables starting with `PY_` in upper case to python globals dict.
@@ -738,8 +813,11 @@ env2globals()
 
 <details>
 <summary>
-# html2ebook
+html2ebook
 </summary>
+
+## html2ebook
+
 `anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
@@ -770,8 +848,11 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 
 <details>
 <summary>
-# TemplatePython
+TemplatePython
 </summary>
+
+## TemplatePython
+
 `anglerfish.TemplatePython(template: str)`
 
 **Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML. Notice this is a Class, not a Function.
@@ -806,8 +887,11 @@ print(templar_template(testo=9, mini=True))
 
 <details>
 <summary>
-# path2import
+path2import
 </summary>
+
+## path2import
+
 `anglerfish.path2import(pat: str, name: str=None)`
 
 **Description:** Imports a Python module from a file path string.
@@ -839,8 +923,11 @@ my_module = path2import("/path/to/module.py")
 
 <details>
 <summary>
-# make_post_exec_msg
+make_post_exec_msg
 </summary>
+
+## make_post_exec_msg
+
 `anglerfish.make_post_exec_msg(start_time: object=None, comment: str=None)`
 
 **Description:** Simple Post-Execution Message with information about RAM used by your app and execution Time. Can also display an arbitrary string ideal for Donation links, Social, etc.
@@ -868,8 +955,11 @@ make_post_exec_msg()
 
 <details>
 <summary>
-# watch
+watch
 </summary>
+
+## watch
+
 `anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60, backoff: int=1, timeout: int=None, repetitions: int=-1, silent: bool=False, logger: object=None)`
 
 **Description:** Watch a file path for changes run callback if modified.
@@ -902,8 +992,11 @@ watch("/tmp/file.txt")
 
 <details>
 <summary>
-# set_desktop_launcher
+set_desktop_launcher
 </summary>
+
+## set_desktop_launcher
+
 `anglerfish.set_desktop_launcher(app: str, desktop_file_content: str, autostart: bool=False)`
 
 **Description:** Adds your app to autostart and/or launcher icon on the Desktop.
@@ -933,8 +1026,11 @@ set_desktop_launcher("mysuperapp", "")
 
 <details>
 <summary>
-# set_terminal_title
+set_terminal_title
 </summary>
+
+## set_terminal_title
+
 `anglerfish.set_terminal_title(titlez: str="")`
 
 **Description:** Set or Reset Bash CLI Window Titlebar Title.
@@ -960,8 +1056,11 @@ set_terminal_title("mysuperapp")
 
 <details>
 <summary>
-# json2xml
+json2xml
 </summary>
+
+## json2xml
+
 `anglerfish.json2xml(json_obj: dict, line_padding: str="")`
 
 **Description:** Takes a JSON and returns an XML, optional custom line paddings.
@@ -987,8 +1086,11 @@ json2xml({"foo": 42, "bar": 666})
 
 <details>
 <summary>
-# make_json_flat
+make_json_flat
 </summary>
+
+## make_json_flat
+
 `anglerfish.make_json_flat(jsony: dict, delimiter: str="__")`
 
 **Description:** Takes a JSON and returns a JSON, but with Flatten out structure, from Nested to Flat, optional custom delimiter.
@@ -1008,8 +1110,11 @@ json2xml({"foo": 42, "bar": 666})
 
 <details>
 <summary>
-# set_zip_comment
+set_zip_comment
 </summary>
+
+## set_zip_comment
+
 `anglerfish.set_zip_comment(zip_path: str, comment: str="")`
 
 **Description:** Set a comment on a ZIP file, return a Boolean.
@@ -1035,8 +1140,11 @@ set_zip_comment("test.zip", "This is a comment.")
 
 <details>
 <summary>
-# get_zip_comment
+get_zip_comment
 </summary>
+
+## get_zip_comment
+
 `anglerfish.get_zip_comment(zip_path: str)`
 
 **Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
@@ -1061,8 +1169,11 @@ get_zip_comment("test.zip")
 
 <details>
 <summary>
-# has_battery
+has_battery
 </summary>
+
+## has_battery
+
 `anglerfish.has_battery()`
 
 **Description:** Check if computer has a Battery, return Boolean.
@@ -1086,8 +1197,11 @@ has_battery()
 
 <details>
 <summary>
-# on_battery
+on_battery
 </summary>
+
+## on_battery
+
 `anglerfish.on_battery()`
 
 **Description:** Check if computer is running on Battery, return Boolean.
@@ -1111,8 +1225,11 @@ on_battery()
 
 <details>
 <summary>
-# set_display_off
+set_display_off
 </summary>
+
+## set_display_off
+
 `anglerfish.set_display_off()`
 
 **Description:** Set Display monitor OFF, will Automatically turn ON when any Key or Mouse movement detected, return Boolean.
@@ -1137,12 +1254,15 @@ set_display_off()
 
 <details>
 <summary>
-# make_test_terminal_color
+make_test_terminal_color
 </summary>
+
+## make_test_terminal_color
+
 `anglerfish.make_test_terminal_color()`
 
-**Description:** Test the Terminal True-Color. 
-Prints 3 lines corresponding to Red, Green, Blue from darkest to brightest on the Terminal. 
+**Description:** Test the Terminal True-Color.
+Prints 3 lines corresponding to Red, Green, Blue from darkest to brightest on the Terminal.
 Does not Log anything to logger.
 
 **Arguments:** None.
@@ -1160,9 +1280,6 @@ from anglerfish import make_test_terminal_color
 make_test_terminal_color()
 ```
 </details>
-
-
----
 
 
 # Install permanently on the system:
