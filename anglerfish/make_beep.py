@@ -27,11 +27,11 @@ def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):
         repro = which("aplay")
         return not bool(call("{repro} '{fyle}'".format(
             fyle=wavefile, repro=repro), shell=True))
-    if sys.platform.startswith("darwin"):
+    elif sys.platform.startswith("darwin"):
         repro = which("afplay")
         return not bool(call("{repro} '{fyle}'".format(
             fyle=wavefile, repro=repro), shell=True))
-    if sys.platform.startswith("win"):  # FIXME: This is Ugly.
+    elif sys.platform.startswith("win"):  # FIXME: This is Ugly.
         log.debug("Playing Sound Natively not supported by this OS.")
         return False  # this SHOULD work on all windows,but it doesnt :(
         # return call("start /low /min '{fyle}'".format(fyle=wavefile),shell=1)
