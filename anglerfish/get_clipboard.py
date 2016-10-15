@@ -12,6 +12,9 @@ import logging as log
 
 from shutil import which
 
+from collections import namedtuple
+
+Clipboard = namedtuple('Clipboard', 'copy paste')
 
 def __osx_clipboard():
     def copy_osx(text):
@@ -69,7 +72,7 @@ def __determine_clipboard():
     """Determine OS and set copy() and paste() functions accordingly."""
     if sys.platform.startswith("darwin"):
         return __osx_clipboard()
-    if sys.platform.startswith("windows"):
+    elif sys.platform.startswith("win"):
         try:  # Determine which command/module is installed, if any.
             import win32clipboard  # lint:ok noqa
         except ImportError:
@@ -77,7 +80,7 @@ def __determine_clipboard():
             return None, None  # install Win32.
         else:
             return __win32_clibboard()
-    if sys.platform.startswith("linux") and which("xclip"):
+    elif sys.platform.startswith("linux") and which("xclip"):
         return __xclip_clipboard()
     else:
         log.error("Install XClip and XSel Linux Packages at least.")
@@ -90,4 +93,4 @@ def get_clipboard():
     global clipboard_copy, clipboard_paste
     clipboard_copy, clipboard_paste = None, None
     clipboard_copy, clipboard_paste = __determine_clipboard()
-    return clipboard_copy, clipboard_paste
+    return Clipboard(clipboard_copy, clipboard_paste)
