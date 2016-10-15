@@ -232,7 +232,7 @@ get_clipboard
 
 **Keyword Arguments:** None.
 
-**Returns:** Tuple, `clipboard_copy()` and `clipboard_paste()`.
+**Returns:** NamedTuple, `clipboard_copy()` and `clipboard_paste()`.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_clipboard.py
 
@@ -243,6 +243,10 @@ from anglerfish import get_clipboard
 clipboard_copy, clipboard_paste = get_clipboard()
 clipboard_copy("This is a Test.")
 print(clipboard_paste())
+
+# Or this way:
+get_clipboard().copy("This is a Test.")
+print(get_clipboard().paste())
 ```
 </details>
 

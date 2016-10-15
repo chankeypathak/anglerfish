@@ -12,6 +12,9 @@ import logging as log
 
 from shutil import which
 
+from collections import namedtuple
+
+Clipboard = namedtuple('Clipboard', 'copy paste')
 
 def __osx_clipboard():
     def copy_osx(text):
@@ -90,4 +93,4 @@ def get_clipboard():
     global clipboard_copy, clipboard_paste
     clipboard_copy, clipboard_paste = None, None
     clipboard_copy, clipboard_paste = __determine_clipboard()
-    return clipboard_copy, clipboard_paste
+    return Clipboard(clipboard_copy, clipboard_paste)
