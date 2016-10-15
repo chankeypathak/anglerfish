@@ -69,7 +69,7 @@ def __determine_clipboard():
     """Determine OS and set copy() and paste() functions accordingly."""
     if sys.platform.startswith("darwin"):
         return __osx_clipboard()
-    if sys.platform.startswith("windows"):
+    elif sys.platform.startswith("win"):
         try:  # Determine which command/module is installed, if any.
             import win32clipboard  # lint:ok noqa
         except ImportError:
@@ -77,7 +77,7 @@ def __determine_clipboard():
             return None, None  # install Win32.
         else:
             return __win32_clibboard()
-    if sys.platform.startswith("linux") and which("xclip"):
+    elif sys.platform.startswith("linux") and which("xclip"):
         return __xclip_clipboard()
     else:
         log.error("Install XClip and XSel Linux Packages at least.")
