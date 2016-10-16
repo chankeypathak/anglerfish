@@ -46,6 +46,12 @@ Please use a unique and distinctive name for your app, and use the same name eve
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/__init__.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -80,6 +86,12 @@ Takes a tuple of 2 integers as argument, being the range of port numbers to scan
 **Returns:** Integer, a free unused port number.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_free_port.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -116,6 +128,12 @@ Best results are with D-Bus.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_notification.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :x:                | **Windows** | No API    |
+
 **Usage Example:**
 
 ```python
@@ -148,6 +166,12 @@ uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaB
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/bytes2human.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -176,6 +200,12 @@ check_encoding
 **Returns:** Bool, `True` if everything is Ok.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_encoding.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -208,6 +238,12 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_folder.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -235,6 +271,12 @@ get_clipboard
 **Returns:** NamedTuple, `clipboard_copy()` and `clipboard_paste()`.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_clipboard.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :question:         | **Windows** | Untested    |
 
 **Usage Example:**
 
@@ -273,6 +315,12 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_sanitized_string.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -302,6 +350,12 @@ it means to be a liittle more safe than just writing everything to the systems t
 **Returns:** string, full path to the apps temp folder.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_temp_folder.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -333,6 +387,12 @@ it works on Linux, Windows and Mac and requires nothing to run.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_beep.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :question:         | **Windows** | Untested    |
+
 **Usage Example:**
 
 ```python
@@ -361,6 +421,12 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 **Returns:** string, the JSON data.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_json_pretty.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -391,6 +457,12 @@ works for Exceptions like on `try...except...finally` constructions, takes no ar
 **Returns:** string, the info about the exception.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_log_exception.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -425,6 +497,12 @@ PDB, iPDB can be used as Debugger console.
 **Returns:** None.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_pdb_on_exception.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -464,6 +542,12 @@ useful for internationalization of the output string, defaults to English, optio
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -500,6 +584,12 @@ useful for internationalization of the output string, defaults to English, optio
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -533,6 +623,12 @@ this helps debug, troubleshooting and system administration in general.
 **Returns:** Boolean, True if it can change the process name.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_process_name.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :question:         | **Windows** | Untested    |
 
 **Usage Example:**
 
@@ -569,6 +665,12 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/walk2list.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -603,6 +705,12 @@ walk2dict
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/walk2dict.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -636,6 +744,12 @@ with optional Timeout, on a quick and easy way.
 **Returns:** concurrent.futures object.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_multiprocess.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -678,6 +792,12 @@ threads
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_multithread.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -715,6 +835,12 @@ For simple human explanation this chains one Future with another Future.
 **Returns:** concurrent.futures object. A Future chained to current Future.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_chainable_future.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -756,6 +882,12 @@ retry
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_retry.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -789,6 +921,12 @@ set_single_instance
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_single_instance.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :question:         | **Windows** | Untested    |
+
 **Usage Example:**
 
 ```python
@@ -816,6 +954,12 @@ env2globals
 **Returns:** Boolean, True if everything is Ok.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/env2globals.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :question:         | **Windows** | Untested    |
 
 **Usage Example:**
 
@@ -852,6 +996,12 @@ html2ebook
 
 **Returns:** a string with the file path of the new eBook file.
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -880,6 +1030,12 @@ TemplatePython
 **Returns:** a string with the Rendered HTML.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_template_python.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -927,6 +1083,12 @@ will try to get it from the filename on the `pat` argument if omitted. String ty
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/path2import.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -958,6 +1120,12 @@ Its basically a *Goodbye* message.
 **Returns:** The formatted message, string type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_postexec_message.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -996,6 +1164,12 @@ A WatchDog.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_watch.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -1030,6 +1204,12 @@ Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_desktop_launcher.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
+
 **Usage Example:**
 
 ```python
@@ -1059,6 +1239,12 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 **Returns:** `titlez` if the title has been set on the terminal emulator window or None. string type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_terminal_title.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1090,6 +1276,12 @@ json2xml
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/json2xml.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -1120,6 +1312,12 @@ make_json_flat
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_json_flat.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 </details>
 
 
@@ -1143,6 +1341,12 @@ set_zip_comment
 **Returns:** True if Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_zip_comment.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1173,6 +1377,12 @@ get_zip_comment
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_zip_comment.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
 **Usage Example:**
 
 ```python
@@ -1200,6 +1410,12 @@ has_battery
 **Returns:** True if has Battery, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1229,6 +1445,12 @@ on_battery
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
 
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
+
 **Usage Example:**
 
 ```python
@@ -1256,6 +1478,12 @@ set_display_off
 **Returns:** True if Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_display_off.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1287,6 +1515,12 @@ Does not Log anything to logger.
 **Returns:** None.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/__init__.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :question:         | **Os X**    | Untested    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
