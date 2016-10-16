@@ -49,8 +49,8 @@ Please use a unique and distinctive name for your app, and use the same name eve
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -90,8 +90,8 @@ Takes a tuple of 2 integers as argument, being the range of port numbers to scan
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -132,7 +132,7 @@ Best results are with D-Bus.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Windows** | No API    |
 
 **Usage Example:**
 
@@ -169,8 +169,8 @@ uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaB
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -205,7 +205,7 @@ check_encoding
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -241,8 +241,8 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -318,8 +318,8 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -354,8 +354,8 @@ it means to be a liittle more safe than just writing everything to the systems t
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -425,8 +425,8 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -461,8 +461,8 @@ works for Exceptions like on `try...except...finally` constructions, takes no ar
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -501,8 +501,8 @@ PDB, iPDB can be used as Debugger console.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -545,8 +545,8 @@ useful for internationalization of the output string, defaults to English, optio
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -587,8 +587,8 @@ useful for internationalization of the output string, defaults to English, optio
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -668,8 +668,8 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -708,8 +708,8 @@ walk2dict
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -748,8 +748,8 @@ with optional Timeout, on a quick and easy way.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -795,8 +795,8 @@ threads
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -839,8 +839,8 @@ For simple human explanation this chains one Future with another Future.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -885,8 +885,8 @@ retry
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -924,7 +924,7 @@ set_single_instance
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
 | :question:         | **Windows** | Untested    |
 
 **Usage Example:**
@@ -999,8 +999,8 @@ html2ebook
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1034,8 +1034,8 @@ TemplatePython
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1086,8 +1086,8 @@ will try to get it from the filename on the `pat` argument if omitted. String ty
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1124,8 +1124,8 @@ Its basically a *Goodbye* message.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1167,8 +1167,8 @@ A WatchDog.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1244,7 +1244,7 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1279,8 +1279,8 @@ json2xml
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1315,8 +1315,8 @@ make_json_flat
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 </details>
 
@@ -1345,8 +1345,8 @@ set_zip_comment
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1380,8 +1380,8 @@ get_zip_comment
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1414,8 +1414,8 @@ has_battery
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1448,8 +1448,8 @@ on_battery
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1482,8 +1482,8 @@ set_display_off
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1520,7 +1520,7 @@ Does not Log anything to logger.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
