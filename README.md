@@ -1207,8 +1207,8 @@ Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Os X**    | No API      |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
