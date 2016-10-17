@@ -1230,6 +1230,7 @@ set_terminal_title
 
 **Description:** Set or Reset Bash CLI Window Titlebar Title.
 According to XDG standard. Runs on Linux. Other platforms simply does nothing.
+For Windows, use `title` command to approach that.
 
 **Arguments:**
 - `titlez` the title for the terminal emulator window. Optional. String type.
