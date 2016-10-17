@@ -132,7 +132,7 @@ Best results are with D-Bus.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :x:                | **Windows** | No API    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -276,7 +276,7 @@ get_clipboard
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -628,7 +628,7 @@ this helps debug, troubleshooting and system administration in general.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
+| :x:                | **Windows** | No API      |
 
 **Usage Example:**
 
@@ -1244,7 +1244,7 @@ According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
 | :question:         | **Os X**    | Untested    |
-| :x:                | **Windows** | No API      |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1514,7 +1514,7 @@ Does not Log anything to logger.
 
 **Returns:** None.
 
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/__init__.py
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_test_terminal_color.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
