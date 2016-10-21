@@ -7,6 +7,7 @@ import pytest
 import os
 from _utils import TempFile
 from anglerfish import path2import
+from anglerfish.exceptions import NamespaceConflictError
 
 
 def test_normal():
@@ -74,3 +75,24 @@ def test_reload():
 
         assert my_module2.export == 'anglerfish2'
         assert my_module1 == my_module2
+
+def test_check_namespace():
+    global global_module
+    global_module = None
+    assert 'global_module' in globals()
+
+    with TempFile('export = "anglerfish"') as tf:
+        my_module1 = path2import(tf.name, 'global_module')
+        global_module = my_module1
+
+        my_module2 = path2import(tf.name, 'global_module', check_namespace=True)
+        assert my_module2 == global_module
+
+    with TempFile('export = "anglerfish"') as tf:
+        with pytest.raises(NamespaceConflictError):
+            my_module3 = path2import(tf.name, name='os')
+
+            my_module3 = path2import(tf.name, name='os', ignore_exceptions=True) == None
+
+
+    del(global_module)

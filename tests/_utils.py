@@ -8,10 +8,14 @@ import os
 
 class TempFile:
     '''Make it easier to operate temp files'''
-    def __init__(self, content=None, mode='w', suffix='.py'):
+    def __init__(self, content=None, mode='w', suffix='.py', path=None):
         self.mode = mode
-        self.file = tempfile.NamedTemporaryFile('w', suffix=suffix, delete=False)
-        self.name = self.file.name
+        if path is None:
+            self.file = tempfile.NamedTemporaryFile(self.mode, suffix=suffix, delete=False)
+            self.name = self.file.name
+        else:
+            self.name = path
+            self.file = open(self.name, self.mode)
 
         if content != None:
             self.rewrite(content)
