@@ -44,10 +44,11 @@ def test_normal():
 
 def test_syntax_error():
     with TempFile('export = ') as tf: # invaild python statements
-        # TODO: Should raise an exception
-        # with pytest.raises(SyntaxError):
-        my_module = path2import(tf.name)
-        assert my_module is None
+        with pytest.raises(SyntaxError):
+            my_module = path2import(tf.name)
+
+        assert path2import(tf.name, ignore_exceptions=True) == None
+
 
 def test_permission_denied():
     pass
@@ -56,16 +57,26 @@ def test_permission_denied():
     #    my_module = path2import('permission_denied_module.py')
 
 def test_not_found():
-    # TODO: Should raise an exception
-    # with pytest.raises(FileNotFoundError):
-    my_module = path2import('not_existed_module.py')
-    assert my_module == None
+    with pytest.raises(FileNotFoundError):
+        my_module = path2import('not_existed_module.py')
+
+    assert path2import('not_existed_module.py', ignore_exceptions=True) == None
+
+
+def test_is_directory():
+    with pytest.raises(IsADirectoryError):
+        my_module = path2import('anglerfish')
+
+    assert path2import('anglerfish', ignore_exceptions=True) == None
+
 
 def test_invaild_module():
     with TempFile('export = "anglerfish"', suffix='.txt') as tf: # not a .py module
-        # TODO: Should raise an exception
-        my_module = path2import(tf.name)
-        assert my_module == None
+        with pytest.raises(ImportError):
+            my_module = path2import(tf.name)
+
+        assert path2import(tf.name, ignore_exceptions=True) == None
+
 
 def test_reimport():
     with TempFile('export = "anglerfish"') as tf:
