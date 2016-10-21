@@ -4,37 +4,9 @@
 '''Tests for path2import'''
 
 import pytest
-import tempfile
 import os
+from _utils import TempFile
 from anglerfish import path2import
-
-
-class TempFile:
-    '''Make it easier to operate temp files'''
-    def __init__(self, content=None, mode='w', suffix='.py'):
-        self.mode = mode
-        self.file = tempfile.NamedTemporaryFile('w', suffix=suffix, delete=False)
-        self.name = self.file.name
-
-        if content != None:
-            self.rewrite(content)
-
-    def rewrite(self, content):
-        if self.file.closed:
-            self.file = open(self.name, self.mode)
-
-        with self.file:
-             self.file.write(content)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc, value, tb):
-        self.remove()
-
-    def remove(self):
-        if os.path.exists(self.name):
-            os.remove(self.name)
 
 
 def test_normal():
@@ -47,8 +19,7 @@ def test_syntax_error():
         with pytest.raises(SyntaxError):
             my_module = path2import(tf.name)
 
-        assert path2import(tf.name, ignore_exceptions=True) == None
-
+        assert path2import(tf.name, ignore_exceptions=True) is None
 
 def test_permission_denied():
     pass
@@ -60,14 +31,14 @@ def test_not_found():
     with pytest.raises(FileNotFoundError):
         my_module = path2import('not_existed_module.py')
 
-    assert path2import('not_existed_module.py', ignore_exceptions=True) == None
+    assert path2import('not_existed_module.py', ignore_exceptions=True) is None
 
 
 def test_is_directory():
     with pytest.raises(IsADirectoryError):
         my_module = path2import('anglerfish')
 
-    assert path2import('anglerfish', ignore_exceptions=True) == None
+    assert path2import('anglerfish', ignore_exceptions=True) is None
 
 
 def test_invaild_module():
@@ -75,7 +46,7 @@ def test_invaild_module():
         with pytest.raises(ImportError):
             my_module = path2import(tf.name)
 
-        assert path2import(tf.name, ignore_exceptions=True) == None
+        assert path2import(tf.name, ignore_exceptions=True) is None
 
 
 def test_reimport():
