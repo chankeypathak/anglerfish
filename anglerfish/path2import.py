@@ -23,21 +23,18 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     elif os.path.isdir(pat):
         if not ignore_exceptions:
             raise IsADirectoryError(pat)
+    elif not os.access(pat, os.R_OK):
+        if not ignore_exceptions:
+            raise PermissionError(pat)
     else:
         try:
             name = name or os.path.splitext(os.path.basename(pat))[0]
 
             if check_namespace and name in globals():
-                if os.path.abspath(pat) == os.path.abspath(globals()[name].__file__):
-                    return globals()[name]
-                else:
-                    if not ignore_exceptions:
-                        raise NamespaceConflictError(
-                            'Failed to load module: The module named "{name}" '
-                            'already been imported at {path}.'.format(
-                                name = name,
-                                path= globals()[name].__file__
-                            ))
+                if not ignore_exceptions:
+                    raise NamespaceConflictError(
+                        'Module {name} already exists '
+                        'on global namespace.'.format(name = name))
             else:
                 spec = importlib.util.spec_from_file_location(name, pat)
                 if spec is None:
