@@ -34,7 +34,7 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
                 if not ignore_exceptions:
                     raise NamespaceConflictError(
                         'Module {name} already exists '
-                        'on global namespace.'.format(name = name))
+                        'on global namespace.'.format(name=name))
             else:
                 spec = importlib.util.spec_from_file_location(name, pat)
                 if spec is None:
