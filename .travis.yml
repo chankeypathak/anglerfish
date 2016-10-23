@@ -19,7 +19,7 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 script:
   - pytest tests/
-  - pylama anglerfish/*.py
+#  - pylama anglerfish/*.py
 
 
 after_script: true
