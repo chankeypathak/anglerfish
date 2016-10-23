@@ -22,9 +22,6 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
         if not ignore_exceptions:
             raise FileNotFoundError(
                 errno.ENOENT, os.strerror(errno.ENOENT), pat)
-    elif os.path.isdir(pat):
-        if not ignore_exceptions:
-            raise IsADirectoryError(pat)
     elif not os.access(pat, os.R_OK):
         if not ignore_exceptions:
             raise PermissionError(pat)

@@ -34,21 +34,12 @@ def test_not_found():
 
     assert path2import('not_existed_module.py', ignore_exceptions=True) is None
 
-
-def test_is_directory():
-    with pytest.raises(IsADirectoryError):
-        my_module = path2import('anglerfish')
-
-    assert path2import('anglerfish', ignore_exceptions=True) is None
-
-
 def test_invaild_module():
     with TempFile('export = "anglerfish"', suffix='.txt') as tf: # not a .py module
         with pytest.raises(ImportError):
             my_module = path2import(tf.name)
 
         assert path2import(tf.name, ignore_exceptions=True) is None
-
 
 def test_reimport():
     with TempFile('export = "anglerfish"') as tf:
