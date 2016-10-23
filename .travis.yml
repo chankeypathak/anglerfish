@@ -1,0 +1,37 @@
+sudo: false
+
+language: python
+
+python:
+  - 3.5
+
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+install: pip install --upgrade pytest pylama
+
+before_script: rm --recursive --force --verbose *.py[cod]
+
+script:
+  - pytest tests/
+  - pylama anglerfish/*.py
+
+
+after_script: true
+
+after_success: true
+
+after_failure: true
+
+notifications:
+  email:
+      recipients: juancarlospaco@gmail.com
+      template:
+          - "%{repository}@%{branch}: %{message}(%{build_url})"
+          - "Build: %{build_number}, SHA: %{commit}, Committer: %{author}, Diff: %{compare_url}"
+      on_success: change
+      on_failure: always
+
+cache: apt
