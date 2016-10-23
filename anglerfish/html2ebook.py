@@ -7,6 +7,7 @@
 
 import os
 import zipfile
+import codecs
 from getpass import getuser
 from datetime import datetime
 from uuid import uuid4

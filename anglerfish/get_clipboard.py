@@ -14,7 +14,9 @@ from shutil import which
 
 from collections import namedtuple
 
+
 Clipboard = namedtuple('Clipboard', 'copy paste')
+
 
 def __osx_clipboard():
     def copy_osx(text):

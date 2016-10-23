@@ -31,7 +31,7 @@ __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = [
     'ChainableFuture', 'TemplatePython',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
-    'get_clipboard', 'get_free_port', 'get_sanitized_string', # All functions.
+    'get_clipboard', 'get_free_port', 'get_sanitized_string',  # All functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',

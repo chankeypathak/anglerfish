@@ -6,8 +6,8 @@
 
 
 def seconds2human(time_on_seconds=0, do_year=True,
-                  unit_words={"y": " Years ", "d": " Days ",
-                  "h": " Hours ", "m": " Minutes ", "s": " Seconds "}):
+                  unit_words={"y": " Years ", "d": " Days ", "h": " Hours ",
+                              "m": " Minutes ", "s": " Seconds "}):
     """Calculate time, with precision from seconds to days."""
     minutes, seconds = divmod(int(abs(time_on_seconds)), 60)
     hours, minutes = divmod(minutes, 60)
@@ -33,8 +33,8 @@ def seconds2human(time_on_seconds=0, do_year=True,
 
 
 def timedelta2human(time_delta, do_year=True,  # Just a shortcut :)
-                    unit_words={"y": " Years ", "d": " Days ",
-                    "h": " Hours ", "m": " Minutes ", "s": " Seconds "}):
+                    unit_words={"y": " Years ", "d": " Days ", "h": " Hours ",
+                                "m": " Minutes ", "s": " Seconds "}):
     """Convert a TimeDelta object to human string representation."""
     return seconds2human(time_delta.total_seconds(),
                          do_year=do_year, unit_words=unit_words)
