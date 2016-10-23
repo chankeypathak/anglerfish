@@ -96,7 +96,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
 
-    tests_require=['isort', 'pylama'],
+    tests_require=['pytest', 'isort', 'pylama'],
 
     packages=["anglerfish"],
 
