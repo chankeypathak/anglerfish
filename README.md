@@ -1076,6 +1076,10 @@ not meant to replace the standard way of importing modules.
 - `pat` is the file path on disk from where to load a Python module from, mandatory. String type.
 - `name` is the Python module name, optional,
 will try to get it from the filename on the `pat` argument if omitted. String type.
+- `ignore_exceptions` optional, default to `False`. Set to `True` will not raising
+any exceptions and return `None` if loading failed.
+- `check_namespace` optional, default to `True`, will check if the `name` is already
+in `globals()` namespace, if it does, raising a `NamespaceConflictError` exception.
 
 **Keyword Arguments:** None.
 
