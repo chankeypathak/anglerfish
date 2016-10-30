@@ -26,7 +26,7 @@ class ChainableFuture(Future):
         return log
 
     def _chain_to_another_future(self, base_future):
-        """Chains a Future instance directly to another Future instance."""
+        """Chain a Future instance directly to another Future instance."""
         msg = "Circular chain error.Future {} is already in resolved chain {}."
         if base_future in self._chained_future_log:
             raise Exception(msg.format(base_future,
@@ -35,7 +35,7 @@ class ChainableFuture(Future):
             self._chained_future_log.add(base_future)
 
         def _done_handler(base_future):
-            """Converts return of previous Future to results of new Future."""
+            """Convert return of previous Future to results of new Future."""
             if not base_future.done():  # Never True. Avoid infinite timeout.
                 self.cancel()
                 return
@@ -56,7 +56,7 @@ class ChainableFuture(Future):
         base_future.add_done_callback(_done_handler)
 
     def then(self, on_success=None, on_fail=None):
-        """Chainable concurrent.futures.Future.then() JS-like
+        """Chainable concurrent.futures.Future.then() JS-like.
 
         - on_success: Optional,Callable to run when this Future success Ok.
         - on_fail: Optional,Callable to run when this Future fails.
@@ -65,7 +65,7 @@ class ChainableFuture(Future):
         new_future = self.__class__()
 
         def _done_handler(base_future):
-            """Converts result of previous Future to result of new Future."""
+            """Convert result of previous Future to result of new Future."""
             if not base_future.done():  # Never True. Avoid infinite timeout.
                 new_future.cancel()
                 return

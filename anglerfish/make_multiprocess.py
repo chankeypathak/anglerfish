@@ -13,6 +13,8 @@ from concurrent import futures
 
 class __MultiProcessed():
 
+    """Basic MultiProcessed class."""
+
     def __init__(self, cpu_num, thread_num):
         self.cpu_num, self.thread_num = cpu_num, thread_num
 
@@ -79,5 +81,6 @@ def _get_index(job_queue, split_num):
 
 
 def multiprocessed(function, arguments, cpu_num=1, thread_num=1, timeout=None):
+    """Run on multiple processes and threads the given callable."""
     multicpu_instance = __MultiProcessed(cpu_num, thread_num)
     return multicpu_instance._multi_cpu(function, arguments, timeout)
