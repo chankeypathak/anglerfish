@@ -19,7 +19,7 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 script:
   - pytest tests/
-  - pylama --linters "pep8,isort,pyflakes" anglerfish/*.py
+  - pylama --linters "pep8,isort,pyflakes,pycodestyle" anglerfish/*.py
 
 
 after_script: true
