@@ -7,7 +7,11 @@ import pytest
 import os
 from _utils import TempFile
 from anglerfish import path2import
-from anglerfish.exceptions import NamespaceConflictError
+
+try:
+    from anglerfish.exceptions import NamespaceConflictError
+except ImportError:
+    NamespaceConflictError = Exception
 
 
 def test_normal():
