@@ -27,10 +27,11 @@ def test_syntax_error():
         assert path2import(tf.name, ignore_exceptions=True) is None
 
 def test_permission_denied():
-    pass
-    # TODO: Make a premission error case
-    # with pytest.raises(PermissionError):
-    #    my_module = path2import('permission_denied_module.py')
+    with TempFile('export = "anglerfish"') as tf:
+        os.chmod(tf.name, 0o700)
+        with pytest.raises(PermissionError):
+            my_module = path2import(tf.name)
+            assert my_module.export == 'anglerfish'
 
 def test_not_found():
     with pytest.raises(FileNotFoundError):
