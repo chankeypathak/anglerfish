@@ -28,7 +28,7 @@ def test_syntax_error():
 
 def test_permission_denied():
     with TempFile('export = "anglerfish"') as tf:
-        os.chmod(tf.name, 0o700)
+        os.chmod(tf.name, 0o400)
         with pytest.raises(PermissionError):
             my_module = path2import(tf.name)
             assert my_module.export == 'anglerfish'
