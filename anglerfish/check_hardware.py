@@ -27,7 +27,7 @@ def _get_prop(obj, iface, prop):
 
 
 def has_battery():
-    """Checks if we are connected to a AC power or Battery."""
+    """Check if we are connected to a AC power or Battery."""
     log.debug("Checking if connected to AC-Power or Battery.")
     battery_path = "/sys/class/power_supply"  # is it universal on Linux ?
     if not os.path.exists(battery_path):
@@ -42,7 +42,7 @@ def has_battery():
 
 
 def on_battery():
-    """Checks if we are running on Battery power."""
+    """Check if we are running on Battery power."""
     log.debug("Checking if running on Battery power.")
     if has_battery():
         bus, upower_path = dbus.SystemBus(), '/org/freedesktop/UPower'
@@ -56,7 +56,7 @@ def on_battery():
 
 #
 # def on_wifi():
-#     """Checks if we are running on wifi."""
+#     """Check if we are running on wifi."""
 #     try:
 #         bus = dbus.SystemBus()
 #         manager = bus.get_object('org.freedesktop.NetworkManager',

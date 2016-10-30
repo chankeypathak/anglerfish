@@ -17,7 +17,8 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     """Import a module from file path string.
 
     This is "as best as it can be" way to load a module from a file path string
-    that I can find from the official Python Docs, for Python 3.5+."""
+    that I can find from the official Python Docs, for Python 3.5+.
+    """
     module = None
     if not os.path.isfile(pat):
         if not ignore_exceptions:

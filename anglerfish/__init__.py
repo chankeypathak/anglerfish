@@ -74,7 +74,7 @@ __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
-__all__ = [
+__all__ = (
     'ChainableFuture', 'TemplatePython',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
     'get_clipboard', 'get_free_port', 'get_sanitized_string',  # All functions.
@@ -87,7 +87,7 @@ __all__ = [
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
     'make_test_terminal_color'
-]
+)
 
 
 sys.dont_write_bytecode, start_time = True, datetime.now()
