@@ -76,6 +76,7 @@ def __determine_clipboard():
     elif sys.platform.startswith("win"):
         try:  # Determine which command/module is installed, if any.
             import win32clipboard  # lint:ok noqa
+            assert win32clipboard
         except ImportError:
             log.error("Install Win32 API Python packages for Windows.")
             return None, None  # install Win32.
