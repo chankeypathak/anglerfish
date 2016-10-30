@@ -5,9 +5,8 @@
 """Get and return a free unused port."""
 
 
-import socket
-
 import logging as log
+import socket
 
 
 def get_free_port(port_range=(8000, 9000)):

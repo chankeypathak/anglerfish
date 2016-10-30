@@ -5,11 +5,10 @@
 """Set Monitor Display OFF, return Bool."""
 
 
-import sys
 import logging as log
-
-from subprocess import call
+import sys
 from shutil import which
+from subprocess import call
 
 
 def set_display_off():

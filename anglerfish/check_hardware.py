@@ -5,8 +5,8 @@
 """Check if running on Battery, return Bool."""
 
 
-import os
 import logging as log
+import os
 
 try:
     import dbus

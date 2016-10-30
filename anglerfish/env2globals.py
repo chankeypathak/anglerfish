@@ -5,8 +5,8 @@
 """Add ENV environtment variables to python globals dict."""
 
 
-import os
 import logging as log
+import os
 
 
 def env2globals(pattern="PY_"):

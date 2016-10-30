@@ -5,14 +5,13 @@
 """Determine OS and set copy() and paste() functions accordingly."""
 
 
-import os
-import sys
-import subprocess
 import logging as log
-
-from shutil import which
+import os
+import subprocess
+import sys
 
 from collections import namedtuple
+from shutil import which
 
 
 Clipboard = namedtuple('Clipboard', 'copy paste')

@@ -5,10 +5,11 @@
 """Import a module from file path string."""
 
 
-import logging as log
-import importlib.util
-import os
 import errno
+import importlib.util
+import logging as log
+import os
+
 from .exceptions import NamespaceConflictError
 
 

@@ -5,15 +5,16 @@
 """HTML2eBook a tiny function that converts HTML5 to eBook,Mobile Friendly."""
 
 
-import os
-import zipfile
-import codecs
-from getpass import getuser
-from datetime import datetime
-from uuid import uuid4
 import base64
 import binascii
+import codecs
+import os
+import zipfile
 import zlib
+
+from datetime import datetime
+from getpass import getuser
+from uuid import uuid4
 
 
 def stealth_to_string(stringy: str, rot13: bool=False) -> str:

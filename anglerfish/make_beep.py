@@ -8,10 +8,9 @@
 import logging as log
 import os
 import sys
-
+from shutil import which
 from subprocess import call
 from tempfile import gettempdir
-from shutil import which
 
 
 def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):

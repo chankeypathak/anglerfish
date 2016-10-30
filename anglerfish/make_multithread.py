@@ -5,8 +5,8 @@
 """Multithreading helper."""
 
 
-from functools import wraps
 from concurrent.futures import ThreadPoolExecutor
+from functools import wraps
 
 
 class _Threaded():
