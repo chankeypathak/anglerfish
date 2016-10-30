@@ -23,6 +23,52 @@ except ImportError:
     resource = None  # MS Window dont have resource
 
 
+##############################################################################
+
+
+from anglerfish.check_encoding import check_encoding  # noqa
+from anglerfish.check_folder import check_folder  # noqa
+from anglerfish.get_clipboard import get_clipboard  # noqa
+from anglerfish.get_sanitized_string import get_sanitized_string  # noqa
+from anglerfish.make_beep import beep  # noqa
+from anglerfish.make_json_pretty import json_pretty  # noqa
+from anglerfish.make_log_exception import log_exception  # noqa
+from anglerfish.make_multiprocess import multiprocessed  # noqa
+from anglerfish.make_multithread import threads  # noqa
+from anglerfish.make_postexec_message import make_post_exec_msg  # noqa
+from anglerfish.make_retry import retry  # noqa
+from anglerfish.make_typecheck import typecheck  # noqa
+from anglerfish.walk2list import walk2list  # noqa
+from anglerfish.make_watch import watch  # noqa
+from anglerfish.set_desktop_launcher import set_desktop_launcher  # noqa
+from anglerfish.set_process_name import set_process_name  # noqa
+from anglerfish.set_single_instance import set_single_instance  # noqa
+from anglerfish.get_temp_folder import get_temp_folder  # noqa
+from anglerfish.set_terminal_title import set_terminal_title  # noqa
+from anglerfish.bytes2human import bytes2human  # noqa
+from anglerfish.walk2dict import walk2dict  # noqa
+from anglerfish.seconds2human import seconds2human, timedelta2human  # noqa
+from anglerfish.env2globals import env2globals  # noqa
+from anglerfish.html2ebook import html2ebook  # noqa
+from anglerfish.make_template_python import TemplatePython  # noqa
+from anglerfish.get_free_port import get_free_port  # noqa
+from anglerfish.path2import import path2import  # noqa
+from anglerfish.make_notification import make_notification  # noqa
+from anglerfish.make_json_flat import make_json_flat  # noqa
+from anglerfish.json2xml import json2xml  # noqa
+from anglerfish.check_hardware import has_battery, on_battery  # noqa
+from anglerfish.make_zip_comment import set_zip_comment, get_zip_comment  # noqa
+from anglerfish.set_display_off import set_display_off  # noqa
+from anglerfish.make_chainable_future import ChainableFuture  # noqa
+
+from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
+                                             ipdb_on_exception)  # noqa
+from anglerfish.make_test_terminal_color import make_test_terminal_color
+
+
+##############################################################################
+
+
 __version__ = '1.7.5'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
@@ -155,46 +201,3 @@ def make_logger(name, when='midnight', single_zip=False,
             log.debug("Unix SysLog Server trying to Log to SysLog: " + adrs)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
     return log
-
-
-##############################################################################
-
-
-from anglerfish.check_encoding import check_encoding  # noqa
-from anglerfish.check_folder import check_folder  # noqa
-from anglerfish.get_clipboard import get_clipboard  # noqa
-from anglerfish.get_sanitized_string import get_sanitized_string  # noqa
-from anglerfish.make_beep import beep  # noqa
-from anglerfish.make_json_pretty import json_pretty  # noqa
-from anglerfish.make_log_exception import log_exception  # noqa
-from anglerfish.make_multiprocess import multiprocessed  # noqa
-from anglerfish.make_multithread import threads  # noqa
-from anglerfish.make_postexec_message import make_post_exec_msg  # noqa
-from anglerfish.make_retry import retry  # noqa
-from anglerfish.make_typecheck import typecheck  # noqa
-from anglerfish.walk2list import walk2list  # noqa
-from anglerfish.make_watch import watch  # noqa
-from anglerfish.set_desktop_launcher import set_desktop_launcher  # noqa
-from anglerfish.set_process_name import set_process_name  # noqa
-from anglerfish.set_single_instance import set_single_instance  # noqa
-from anglerfish.get_temp_folder import get_temp_folder  # noqa
-from anglerfish.set_terminal_title import set_terminal_title  # noqa
-from anglerfish.bytes2human import bytes2human  # noqa
-from anglerfish.walk2dict import walk2dict  # noqa
-from anglerfish.seconds2human import seconds2human, timedelta2human  # noqa
-from anglerfish.env2globals import env2globals  # noqa
-from anglerfish.html2ebook import html2ebook  # noqa
-from anglerfish.make_template_python import TemplatePython  # noqa
-from anglerfish.get_free_port import get_free_port  # noqa
-from anglerfish.path2import import path2import  # noqa
-from anglerfish.make_notification import make_notification  # noqa
-from anglerfish.make_json_flat import make_json_flat  # noqa
-from anglerfish.json2xml import json2xml  # noqa
-from anglerfish.check_hardware import has_battery, on_battery  # noqa
-from anglerfish.make_zip_comment import set_zip_comment, get_zip_comment  # noqa
-from anglerfish.set_display_off import set_display_off  # noqa
-from anglerfish.make_chainable_future import ChainableFuture  # noqa
-
-from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
-                                             ipdb_on_exception)  # noqa
-from anglerfish.make_test_terminal_color import make_test_terminal_color
