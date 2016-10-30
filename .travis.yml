@@ -12,7 +12,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-    - pip install --upgrade pytest pylama pip setuptools wheel --quiet
+    - pip install --upgrade pytest pylama pip setuptools wheel isort --quiet
     - pip install .
 
 before_script: rm --recursive --force --verbose *.py[cod]
