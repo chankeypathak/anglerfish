@@ -29,7 +29,7 @@ def seconds2human(time_on_seconds=0, do_year=True,
     if minutes:
         human_time_string += minu % minutes
     human_time_string += seco % seconds
-    return human_time_string
+    return human_time_string.strip()
 
 
 def timedelta2human(time_delta, do_year=True,  # Just a shortcut :)
