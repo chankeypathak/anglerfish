@@ -5,6 +5,8 @@
 """Test for anglerfish.log_exception()."""
 
 
+import pytest
+
 from anglerfish import log_exception
 
 

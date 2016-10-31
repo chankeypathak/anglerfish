@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-"""Test for anglerfish.set_terminal_title()."""
+"""Test for anglerfish.get_clipboard()."""
 
 
-from anglerfish import set_terminal_title
+from anglerfish import get_clipboard
 
 
 def test_set_terminal_title():
