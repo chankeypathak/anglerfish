@@ -60,3 +60,10 @@ PASTE ACTUAL OUTPUT CODE HERE, TRACEBACK, CRASH, CORE DUMP, ERROR, ETC, IF ANY.
 ```
 PASTE EXPECTED OUTPUT CODE HERE, WHEN THE SOFTWARE WORKS OK, ETC, IF ANY.
 ```
+
+
+
+### Screenshots or Images
+*(if applicable)*
+
+![Screenshots_Here](https://... )
