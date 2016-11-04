@@ -24,7 +24,8 @@ Explain your changes. No narrative or conversational language.
 - [ ] Added Examples.
 - [ ] Added Unit Tests or Integration Tests or Automation Tests.
 - [ ] Added Documentation or DocStrings or code comments.
-- [ ] Travis C.I. Passes Ok.
+- [ ] Travis C.I. Passes Ok, if any.
+- [ ] I ran the code locally, it works on my machine, I dont know if Travis C.I. Passes.
 
 
 
