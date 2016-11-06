@@ -10,11 +10,13 @@ import os
 import subprocess
 import sys
 
-from collections import namedtuple
+from typing import NamedTuple
 from shutil import which
 
 
-Clipboard = namedtuple('Clipboard', 'copy paste')
+# Dot notation and static typed and built-in version of collections.namedtuple.
+Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
+                                            ("paste", callable)))
 
 
 def __osx_clipboard():
