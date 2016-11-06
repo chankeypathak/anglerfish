@@ -18,7 +18,12 @@ start_time = datetime.now()
 
 
 print("Running anglerfish.make_logger()")
-log = make_logger("test", when='midnight', single_zip=False)
+log = make_logger("test", when='midnight', single_zip=False, emoji=True)
+log.debug("This is a Test.")
+log.info("This is a Test.")
+log.warning("This is a Test.")
+log.critical("This is a Test.")
+log.exception("This is a Test.")
 
 
 print("Running anglerfish.set_cli_title()")

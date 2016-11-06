@@ -16,6 +16,7 @@ from logging.handlers import TimedRotatingFileHandler
 from copy import copy
 from datetime import datetime
 from tempfile import gettempdir
+from random import choice
 
 try:
     import resource
@@ -134,7 +135,7 @@ def __zip_old_logs(log_file, single_zip):
 
 
 def make_logger(name, when='midnight', single_zip=False,
-                log_file=None, backup_count=100):
+                log_file=None, backup_count=100, emoji=False):
     """Build and return a Logging Logger."""
     global log
     if not log_file:
@@ -164,21 +165,31 @@ def make_logger(name, when='midnight', single_zip=False,
                     new_args = (args[0], copy(args[1]), args[2:])
                 if hasattr(args[0], 'baseFilename'):
                     return fn(*args)
-                levelno = new_args[1].levelno
+                levelno, end = new_args[1].levelno, ' \x1b[0m'
                 if levelno >= 50:
                     color = '\x1b[31;5;7m\n '  # blinking red with black
+                    if emoji:
+                        end += choice((' 😿 \n', ' 🙀 \n', ' 💩 \n', ' ☠ \n'))
                 elif levelno >= 40:
                     color = '\x1b[31m'  # red
+                    if emoji:
+                        end += choice((' 😾 ', ' 😼 '))
                 elif levelno >= 30:
                     color = '\x1b[33m'  # yellow
+                    if emoji:
+                        end += choice((' 😺 ', ' 😻 '))
                 elif levelno >= 20:
                     color = '\x1b[32m'  # green
+                    if emoji:
+                        end += choice((' 😸 ', ' 😽 '))
                 elif levelno >= 10:
                     color = '\x1b[35m'  # pink
+                    if emoji:
+                        end += choice((' 🐱 ', ' 😹 '))
                 else:
                     color = '\x1b[0m'  # normal
                 try:
-                    new_args[1].msg = color + str(new_args[1].msg) + ' \x1b[0m'
+                    new_args[1].msg = color + str(new_args[1].msg) + end
                 except Exception as reason:
                     print(reason)  # Do not use log here.
                 return fn(*new_args)
