@@ -11,7 +11,7 @@ import os
 from typing import NamedTuple
 
 
-def walk2list(where, target, omit, links=False, tuply=True, namedtuple=False):
+def walk2list(where, target, omit, links=False, tuply=True, namedtuple=None):
     """Perform full walk of where, gather full path of all files."""
     log.debug("Scan {},searching {},ignoring {},{}following SymLinks.".format(
         where, target, omit, "" if links else "Not "))
@@ -25,7 +25,7 @@ def walk2list(where, target, omit, links=False, tuply=True, namedtuple=False):
         list_of_files = tuple(listy)
     if namedtuple:  # Return a NamedTuple with static typing.
         namedtuple_of_files = NamedTuple(  # You can work comfortably using
-            "walk2list",  # walk2list.path_9 instead of walk2list[9]
+            str(namedtuple).strip(),  # myfolder.path_9 instead of myfolder[9]
             fields=(("path_{0}".format(i), str) for i in range(len(listy))))
         list_of_files = namedtuple_of_files(*listy)
     return list_of_files

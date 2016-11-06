@@ -661,7 +661,7 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 - `omit` type of files to ignote, for example `.pyc`, string type.
 - `links` a Boolean, `True` to follow simbolic links, optional, defaults to `False`, boolean type.
 - `tuply` a Boolean, `True` to convert the output `list` into a `tuple`, optional, defaults to `True`, boolean type.
-- `namedtuple` a Boolean, `True` to convert the output `tuple` into a `NamedTuple`, optional, defaults to `False`, boolean type.
+- `namedtuple` String or None, string to use as the name of the `NamedTuple`, convert the output `tuple` into a `NamedTuple`, optional, defaults to `None`, string type.
 
 **Keyword Arguments:** None.
 

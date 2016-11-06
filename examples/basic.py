@@ -122,7 +122,7 @@ print(future2.result())
 print("Running anglerfish.walkdir2filelist")
 print(walk2list(".", ".py", ".pyc"))
 print(walk2list(".", ".py", ".pyc", tuply=False))
-print(walk2list(".", ".py", ".pyc", namedtuple=True))
+print(walk2list(".", ".py", ".pyc", namedtuple="my_folder"))
 
 
 print("Running anglerfish.seconds2human()")
