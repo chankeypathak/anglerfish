@@ -271,7 +271,7 @@ get_clipboard
 
 **Keyword Arguments:** None.
 
-**Returns:** NamedTuple, `clipboard_copy()` and `clipboard_paste()`.
+**Returns:** A `typing.NamedTuple` object, with type hinting, `clipboard_copy()` and `clipboard_paste()`.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_clipboard.py
 
@@ -649,7 +649,7 @@ walk2list
 
 ## walk2list
 
-`anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True)`
+`anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True, namedtuple: bool=False)`
 
 **Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
@@ -657,14 +657,15 @@ convert the output to `tuple` if `tuply` is `True`, else return the `list` conta
 
 **Arguments:**
 - `where` path to a folder to scan, string type.
-- `target` type of files to search for, for example `.py`, string type,
-- `omit` type of files to ignote, for example `.pyc`, string type,
-- `links` a Boolean, `True` to follow simbolic links,
-- `tuply` a Boolean, `True` to convert the output `list` into a `tuple`.
+- `target` type of files to search for, for example `.py`, string type.
+- `omit` type of files to ignote, for example `.pyc`, string type.
+- `links` a Boolean, `True` to follow simbolic links, optional, defaults to `False`, boolean type.
+- `tuply` a Boolean, `True` to convert the output `list` into a `tuple`, optional, defaults to `True`, boolean type.
+- `namedtuple` a Boolean, `True` to convert the output `tuple` into a `NamedTuple`, optional, defaults to `False`, boolean type.
 
 **Keyword Arguments:** None.
 
-**Returns:** `list` or `tuple`
+**Returns:** `list` or `tuple` or `NamedTuple`
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/walk2list.py
 
