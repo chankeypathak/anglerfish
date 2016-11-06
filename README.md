@@ -26,7 +26,7 @@ make_logger
 
 ## make_logger
 
-`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False, log_file: str=None, backup_count: int=100)`
+`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False, log_file: str=None, backup_count: int=100, emoji: bool=False)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
@@ -41,6 +41,7 @@ Please use a unique and distinctive name for your app, and use the same name eve
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
 - `log_file` log filename path or None, optional, defaults to `None`, `os.path.join(gettempdir(), name.lower().strip() + ".log")` will be used if left as `None`, log filename path on use will be printed to stdout automatically, string type.
 - `backup_count` number of log backups to keep, optional, defaults to `100`, meaning 100 backups, integer type.
+- `emoji` Kitten Emoji on logger *(ala Yarn)*, Optional, defaults to `False`, boolean type.
 
 **Keyword Arguments:** None.
 
