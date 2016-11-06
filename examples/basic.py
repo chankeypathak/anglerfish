@@ -143,7 +143,9 @@ print(timedelta2human(start_time - datetime.now()))
 
 
 print("Running anglerfish.walk2dict()")
-print(walk2dict(".", jsony=False))
+print(walk2dict(".")) # dict
+print(walk2dict(".", ordereddict=True)) # ordered dict
+print(walk2dict(".", jsony=True, ordereddict=True)) # json
 
 
 print("Running anglerfish.@typecheck")

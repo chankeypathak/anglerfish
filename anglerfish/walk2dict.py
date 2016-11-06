@@ -7,10 +7,12 @@
 
 import os
 
+from collections import OrderedDict
 from json import dumps
 
 
-def walk2dict(folder, links=False, showhidden=False, strip=False, jsony=False):
+def walk2dict(folder, links=False, showhidden=False,
+              strip=False, jsony=False, ordereddict=False):
     """Return Nested Dictionary represents folder/file structure of folder."""
     ret = []
     for path, dirs, files in os.walk(folder, followlinks=links):
@@ -54,4 +56,9 @@ def walk2dict(folder, links=False, showhidden=False, strip=False, jsony=False):
             except:
                 pass
         ret.append(a)
-    return dumps(ret, sort_keys=True, indent=4) if jsony else ret
+    dict_of_files = ret[0]
+    if ordereddict:  # dictionary sorted by key.
+        dict_of_files = OrderedDict(sorted(ret[0].items(), key=lambda t: t[0]))
+    if jsony:  # json
+        dict_of_files = dumps(dict(dict_of_files), sort_keys=True, indent=4)
+    return dict_of_files
