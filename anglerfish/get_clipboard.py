@@ -10,8 +10,8 @@ import os
 import subprocess
 import sys
 
-from typing import NamedTuple
 from shutil import which
+from typing import NamedTuple
 
 
 # Dot notation and static typed and built-in version of collections.namedtuple.
