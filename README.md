@@ -691,16 +691,17 @@ walk2dict
 
 ## walk2dict
 
-`anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False)`
+`anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False, ordereddict: bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
 
 **Arguments:**
-- `folder` path to folder to scan, string type,
-- `links` a Boolean, `True` to follow simbolic links,
-- `showhidden` a Boolean, `True` to show hidden files and folders,
-- `strip` a Boolean, `True` to strip the relative folder path,
+- `folder` path to folder to scan, string type.
+- `links` a Boolean, `True` to follow simbolic links.
+- `showhidden` a Boolean, `True` to show hidden files and folders.
+- `strip` a Boolean, `True` to strip the relative folder path.
+- `ordereddict` a Boolean, `True` to convert the `dict` to `OrderedDict`.
 - `jsony` a Boolean, `True` to convert the `dict` to JSON.
 
 **Keyword Arguments:** None.
