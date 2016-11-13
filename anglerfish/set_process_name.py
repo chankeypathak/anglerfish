@@ -6,7 +6,6 @@
 
 
 import logging as log
-import os
 
 from ctypes import byref, cdll, create_string_buffer
 
