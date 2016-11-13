@@ -68,6 +68,7 @@ from anglerfish.make_test_terminal_color import make_test_terminal_color
 from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.stealth2string import stealth2string  # noqa
 from anglerfish.get_public_ip import get_public_ip, is_online  # noqa
+from anglerfish.set_process_priority import set_process_priority  # noqa
 
 
 ##############################################################################
@@ -91,7 +92,7 @@ __all__ = (
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
     'make_test_terminal_color', 'string2stealth', 'stealth2string',
-    'get_public_ip', 'is_online'
+    'get_public_ip', 'is_online', 'set_process_priority'
 )
 
 
