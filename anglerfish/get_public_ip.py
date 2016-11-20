@@ -10,7 +10,7 @@ from urllib.request import urlopen
 
 def get_public_ip():
     """Get current public IP as string."""
-    return urlopen("https://api.ipify.org").read().decode("utf-8")
+    return urlopen("https://api.ipify.org").read().decode("utf-8").strip()
 
 
 def is_online():
