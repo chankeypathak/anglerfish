@@ -178,19 +178,19 @@ def make_logger(name, when='midnight', single_zip=False,
                 elif levelno >= 40:
                     color = '\x1b[31m'  # red
                     if emoji:
-                        end += choice((' 😾 ', ' 😼 '))
+                        end += choice((' 😾 ', ' 😼 ', ''))
                 elif levelno >= 30:
                     color = '\x1b[33m'  # yellow
                     if emoji:
-                        end += choice((' 😺 ', ' 😻 '))
+                        end += choice((' 😺 ', ' 😻 ', ''))
                 elif levelno >= 20:
                     color = '\x1b[32m'  # green
                     if emoji:
-                        end += choice((' 😸 ', ' 😽 '))
+                        end += choice((' 😸 ', ' 😽 ', ''))
                 elif levelno >= 10:
                     color = '\x1b[35m'  # pink
                     if emoji:
-                        end += choice((' 🐱 ', ' 😹 '))
+                        end += choice((' 🐱 ', ' 😹 ', ''))
                 else:
                     color = '\x1b[0m'  # normal
                 try:
