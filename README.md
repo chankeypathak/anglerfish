@@ -41,7 +41,7 @@ Please use a unique and distinctive name for your app, and use the same name eve
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
 - `log_file` log filename path or None, optional, defaults to `None`, `os.path.join(gettempdir(), name.lower().strip() + ".log")` will be used if left as `None`, log filename path on use will be printed to stdout automatically, string type.
 - `backup_count` number of log backups to keep, optional, defaults to `100`, meaning 100 backups, integer type.
-- `emoji` Kitten Emoji on logger *(ala Yarn)*, Optional, defaults to `False`, boolean type.
+- `emoji` Kitten Emoji on logger *(ala [Yarn](https://yarnpkg.com) )*, Optional, defaults to `False`, boolean type.
 
 **Keyword Arguments:** None.
 
@@ -1571,40 +1571,6 @@ get_public_ip
 ```python
 from anglerfish import get_public_ip
 get_public_ip()
-```
-</details>
-
-
-<details>
-<summary>
-is_online
-</summary>
-
-## is_online
-
-`anglerfish.is_online()`
-
-**Description:** Check if we got internet conectivity.
-
-**Arguments:** None.
-
-**Keyword Arguments:** None.
-
-**Returns:** True if Internet is working, bool type.
-
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
-
-| State              | OS          | Description |
-| ------------------ |:-----------:| -----------:|
-| :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
-| :x:                | **Windows** | Works Ok    |
-
-**Usage Example:**
-
-```python
-from anglerfish import is_online
-is_online()
 ```
 </details>
 
