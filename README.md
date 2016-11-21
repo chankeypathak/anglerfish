@@ -1784,6 +1784,13 @@ pip3 install anglerfish
 - For names we use: `get_*`, `set_*`, `check_*`, `make_*` and `*2*`.
 
 
+# Tests
+
+```bash
+pytest tests/
+```
+
+
 # Contributors:
 
 - **Please Star this Repo on Github !**, it helps to show up faster on searchs.

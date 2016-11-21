@@ -4,7 +4,7 @@
 '''Tests for path2import'''
 
 import pytest
-import os
+
 from _utils import TempFile
 from anglerfish import path2import
 
@@ -19,12 +19,15 @@ def test_normal():
         my_module = path2import(tf.name)
         assert my_module.export == 'anglerfish'
 
+
 def test_syntax_error():
-    with TempFile('export = ') as tf: # invaild python statements
+    with TempFile('export = ') as tf:  # invaild python statements
         with pytest.raises(SyntaxError):
             my_module = path2import(tf.name)
+            print(my_module)  # to avoid warning "assigned but never used"
 
         assert path2import(tf.name, ignore_exceptions=True) is None
+
 
 def test_permission_denied():
     pass
@@ -36,18 +39,23 @@ def test_permission_denied():
     #         my_module = path2import(tf.name)
     #         assert my_module.export == 'anglerfish'
 
+
 def test_not_found():
     with pytest.raises(FileNotFoundError):
         my_module = path2import('not_existed_module.py')
+        print(my_module)  # to avoid warning "assigned but never used"
 
     assert path2import('not_existed_module.py', ignore_exceptions=True) is None
+
 
 def test_invaild_module():
     with TempFile('export = "anglerfish"', suffix='.txt') as tf: # not a .py module
         with pytest.raises(ImportError):
             my_module = path2import(tf.name)
+            print(my_module)  # to avoid warning "assigned but never used"
 
         assert path2import(tf.name, ignore_exceptions=True) is None
+
 
 def test_reimport():
     with TempFile('export = "anglerfish"') as tf:
@@ -56,6 +64,7 @@ def test_reimport():
         my_module2 = path2import(tf.name)
         assert my_module1.export == my_module2.export
         assert my_module1 == my_module2
+
 
 def test_check_namespace():
     global global_module
@@ -72,8 +81,9 @@ def test_check_namespace():
     with TempFile('export = "anglerfish"') as tf:
         with pytest.raises(NamespaceConflictError):
             my_module3 = path2import(tf.name, name='os')
+            print(my_module3)  # to avoid warning "assigned but never used"
 
         my_module4 = path2import(tf.name, name='os', ignore_exceptions=True) == None
-
+        print(my_module4)  # to avoid warning "assigned but never used"
 
     del(global_module)
