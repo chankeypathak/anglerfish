@@ -611,15 +611,15 @@ set_process_name
 
 ## set_process_name
 
-`anglerfish.set_process_name(name: str, nice: bool=True)`
+`anglerfish.set_process_name(name: str)`
 
 **Description:** Set the current process name to the argument `name`,
 so instead of all your apps listing as `python` on the system monitor they will have proper names,
 this helps debug, troubleshooting and system administration in general.
+Its very recommended you use the same string passed to `anglerfish.make_logger()`
 
 **Arguments:**
-- `name` the name of your app.
-- `nice` set a soft CPU nice priority, optional, defaults to `True`, boolean type.
+- `name` the name of your app, string type.
 
 **Keyword Arguments:** None.
 
@@ -701,8 +701,8 @@ walk2dict
 - `links` a Boolean, `True` to follow simbolic links.
 - `showhidden` a Boolean, `True` to show hidden files and folders.
 - `strip` a Boolean, `True` to strip the relative folder path.
-- `ordereddict` a Boolean, `True` to convert the `dict` to `OrderedDict`.
 - `jsony` a Boolean, `True` to convert the `dict` to JSON.
+- `ordereddict` a Boolean, `True` to convert the `dict` to `OrderedDict`.
 
 **Keyword Arguments:** None.
 
@@ -869,7 +869,7 @@ retry
 ## retry
 
 `@retry(tries: int=5, delay: int=3, backoff: int=2,
-          timeout: int=None, silent: Bool=False, logger=None)`
+          timeout: int=None, silent: Bool=False, logger=None, exceptions=(Exception, ))`
 
 **Description:** Retry calling the decorated function using an exponential backoff and timeout.
 
@@ -880,6 +880,7 @@ retry
 - `timeout` a timeout for the whole execution or None, defaults to None.
 - `silent` a boolean `True` to be Silent when running the reties, defaults to False.
 - `logger` a working logger to log into or None to use `print()`.
+- `exceptions` A Tuple of exceptions to fail to, defaults to `(Exception, )`, optional, tuple type.
 
 **Keyword Arguments:** None.
 
@@ -918,7 +919,7 @@ set_single_instance
 
 **Arguments:**
 - `name` the name of your app to be used as Lock name,
-- `port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, integer type.
+- `port` port number to be used when Unix Socket is not available, mostly on MS Windows, defaults to 8888, optional, integer type.
 
 **Keyword Arguments:** None.
 
@@ -1068,7 +1069,7 @@ path2import
 
 ## path2import
 
-`anglerfish.path2import(pat: str, name: str=None)`
+`anglerfish.path2import(pat: str, name: str=None, ignore_exceptions: bool=False, check_namespace: bool=True)`
 
 **Description:** Imports a Python module from a file path string.
 This is *as best as it can be* way to load a module from a file path string that
@@ -1081,10 +1082,10 @@ not meant to replace the standard way of importing modules.
 - `pat` is the file path on disk from where to load a Python module from, mandatory. String type.
 - `name` is the Python module name, optional,
 will try to get it from the filename on the `pat` argument if omitted. String type.
-- `ignore_exceptions` optional, default to `False`. Set to `True` will not raising
+- `ignore_exceptions` optional, default to `False`, boolean type. Set to `True` will not raise
 any exceptions and return `None` if loading failed.
-- `check_namespace` optional, default to `True`, will check if the `name` is already
-in `globals()` namespace, if it does, raising a `NamespaceConflictError` exception.
+- `check_namespace` optional, default to `True`, boolean type,  will check if the `name` is already
+in `globals()` namespace, if it does, raises a `NamespaceConflictError` exception.
 
 **Keyword Arguments:** None.
 
@@ -1492,7 +1493,7 @@ set_display_off
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | No API      |
+| :x:                | **Os X**    | Works Ok      |
 | :x:                | **Windows** | No API      |
 
 **Usage Example:**
@@ -1502,7 +1503,6 @@ from anglerfish import set_display_off
 set_display_off()
 ```
 </details>
-
 
 
 <details>
@@ -1529,7 +1529,7 @@ Does not Log anything to logger.
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
+| :question:         | **Os X**    | Works Ok    |
 | :x:                | **Windows** | No API      |
 
 **Usage Example:**
@@ -1539,6 +1539,222 @@ from anglerfish import make_test_terminal_color
 make_test_terminal_color()
 ```
 </details>
+
+
+<details>
+<summary>
+get_public_ip
+</summary>
+
+## get_public_ip
+
+`anglerfish.get_public_ip()`
+
+**Description:** Get current public IP address as string.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** current public IP address, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_public_ip
+get_public_ip()
+```
+</details>
+
+
+<details>
+<summary>
+is_online
+</summary>
+
+## is_online
+
+`anglerfish.is_online()`
+
+**Description:** Check if we got internet conectivity.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if Internet is working, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import is_online
+is_online()
+```
+</details>
+
+
+<details>
+<summary>
+is_online
+</summary>
+
+## is_online
+
+`anglerfish.is_online()`
+
+**Description:** Check if we got internet conectivity.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if Internet is working, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import is_online
+is_online()
+```
+</details>
+
+
+<details>
+<summary>
+set_process_priority
+</summary>
+
+## set_process_priority
+
+`anglerfish.set_process_priority(nice=True, ionice=False)`
+
+**Description:** Set process I/O and CPU priority..
+
+**Arguments:**
+- `nice` Use a smooth cpu priority, if your app dont need real-time using this will be good, defaults to `True`, optional, bool type.
+- `ionice` Use a smooth I/O priority, I/O Nice may delay I/O Operations, not recommended on user-facing GUI!, recomended leaving it as `False`!, unless you know what you are doing, defaults to `False`, optional, bool type.
+
+**Keyword Arguments:** None.
+
+**Returns:** True if its working, bool type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | No API      |
+
+**Usage Example:**
+
+```python
+from anglerfish import set_process_priority
+set_process_priority()
+```
+</details>
+
+
+<details>
+<summary>
+string2stealth
+</summary>
+
+## string2stealth
+
+`anglerfish.string2stealth(stringy)`
+
+**Description:** Stealth Strings, hidden and dangerous.
+No information is lost, both ways, supports everything that UTF-8 supports.
+Makes invisible strings, a *"stealth"* string, you can pack lots of source code
+and they remain invisible hidden, or make screenshot-proof encryptions.
+String Unicode :fast_forward: ZLib Compress :fast_forward: Base64 :fast_forward: Binary :fast_forward: Stealth String
+
+**Arguments:**
+- `stringy` A string to convert to Stealth, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** Stealth string, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/string2stealth.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import string2stealth
+string2stealth("test")
+```
+</details>
+
+
+<details>
+<summary>
+stealth2string
+</summary>
+
+## stealth2string
+
+`anglerfish.stealth2string(stringy)`
+
+**Description:** Stealth Strings, hidden and dangerous.
+No information is lost, both ways, supports everything that UTF-8 supports.
+Makes invisible strings back to visible normal strings, a *"normal"* string, you can unpack back lots of source code to visible normal string, or undo screenshot-proof encryptions.
+Stealth String :fast_forward: Binary :fast_forward: Base64 :fast_forward: ZLib DeCompress :fast_forward: String Unicode
+
+**Arguments:**
+- `stringy` A string to convert to Stealth, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** Stealth string, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/stealth2string.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :x:                | **Os X**    | Works Ok    |
+| :x:                | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import stealth2string
+stealth2string("")
+```
+</details>
+
 
 
 # Install permanently on the system:
