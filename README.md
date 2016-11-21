@@ -1781,10 +1781,12 @@ pip3 install anglerfish
 
 # Name convention
 
-- For names we use: `get_*`, `set_*`, `check_*`, `make_*` and `*2*`.
+- For names we use: `get_*`, `set_*`, `check_*`, `make_*`, `is_*`, `has_*` and `*2*`.
 
 
 # Tests
+
+- Tests use PyTest. Pull requests to improve tests are welcome.
 
 ```bash
 pytest tests/
