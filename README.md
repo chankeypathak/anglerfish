@@ -1563,8 +1563,8 @@ get_public_ip
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
-| :x:                | **Windows** | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1597,8 +1597,8 @@ is_online
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
-| :x:                | **Windows** | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1633,7 +1633,7 @@ set_process_priority
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
 | :x:                | **Windows** | No API      |
 
 **Usage Example:**
@@ -1672,8 +1672,8 @@ String Unicode :fast_forward: ZLib Compress :fast_forward: Base64 :fast_forward:
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
-| :x:                | **Windows** | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
@@ -1710,8 +1710,8 @@ Stealth String :fast_forward: Binary :fast_forward: Base64 :fast_forward: ZLib D
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
 | :white_check_mark: | **Linux**   | Works Ok    |
-| :x:                | **Os X**    | Works Ok    |
-| :x:                | **Windows** | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
 
 **Usage Example:**
 
