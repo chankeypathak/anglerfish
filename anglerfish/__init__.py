@@ -18,9 +18,6 @@ from datetime import datetime
 from tempfile import gettempdir
 from random import choice
 
-sys.dont_write_bytecode, start_time = True, datetime.now()
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-
 try:
     import resource
 except ImportError:
@@ -102,8 +99,11 @@ __all__ = (
     'get_public_ip', 'is_online', 'set_process_priority', 'number2currency',
     'get_random_pastelight_color', 'get_random_pasteldark_color',
     'get_random_pastel_color',
-    'AnglerfishException', 'NamespaceConflictError' # Exceptions
+    'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
+
+sys.dont_write_bytecode, start_time = True, datetime.now()
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 ##############################################################################
