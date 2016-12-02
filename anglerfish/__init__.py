@@ -78,7 +78,7 @@ from anglerfish.get_random_pastel_color import (get_random_pastelight_color,
 ##############################################################################
 
 
-__version__ = '1.7.5'
+__version__ = '2.0.0'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
