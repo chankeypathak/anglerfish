@@ -1723,6 +1723,112 @@ stealth2string("")
 
 
 
+<details>
+<summary>
+get_random_pastel_color
+</summary>
+
+## get_random_pastel_color
+
+`anglerfish.get_random_pastel_color()`
+
+**Description:** Return a random [pastel color](https://en.wikipedia.org/wiki/Pastel_%28color%29), can be Dark or Light, as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random pastel color, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_pastel_color.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_pastel_color
+get_random_pastel_color()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_pasteldark_color
+</summary>
+
+## get_random_pasteldark_color
+
+`anglerfish.get_random_pasteldark_color()`
+
+**Description:** Return a random [pastel color](https://en.wikipedia.org/wiki/Pastel_%28color%29), only Dark colors, as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random pastel color, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_pastel_color.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_pasteldark_color
+get_random_pasteldark_color()
+```
+</details>
+
+
+
+
+<details>
+<summary>
+get_random_pastelight_color
+</summary>
+
+## get_random_pastelight_color
+
+`anglerfish.get_random_pastelight_color()`
+
+**Description:** Return a random [pastel color](https://en.wikipedia.org/wiki/Pastel_%28color%29), only Light colors, as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random pastel color, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_pastel_color.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_pastelight_color
+get_random_pastelight_color()
+```
+</details>
+
+
+
 # Install permanently on the system:
 
 **PIP:** *(Recommended!)*
