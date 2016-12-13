@@ -12,6 +12,11 @@ import os
 
 from .exceptions import NamespaceConflictError
 
+try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
+    not_found_exception = ModuleNotFoundError
+except NameError:
+    not_found_exception = FileNotFoundError
+
 
 def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     """Import a module from file path string.
@@ -22,7 +27,7 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     module = None
     if not os.path.isfile(pat):
         if not ignore_exceptions:
-            raise FileNotFoundError(
+            raise not_found_exception(
                 errno.ENOENT, os.strerror(errno.ENOENT), pat)
     elif not os.access(pat, os.R_OK):
         if not ignore_exceptions:

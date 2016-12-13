@@ -13,6 +13,11 @@ try:
 except ImportError:
     NamespaceConflictError = Exception
 
+try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
+    not_found_exception = ModuleNotFoundError
+except NameError:
+    not_found_exception = FileNotFoundError
+
 
 def test_normal():
     with TempFile('export = "anglerfish"') as tf:
@@ -41,7 +46,7 @@ def test_permission_denied():
 
 
 def test_not_found():
-    with pytest.raises(FileNotFoundError):
+    with pytest.raises(not_found_exception):
         my_module = path2import('not_existed_module.py')
         print(my_module)  # to avoid warning "assigned but never used"
 
