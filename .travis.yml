@@ -1,9 +1,8 @@
-sudo: false
-
 language: python
 
 python:
     - 3.5
+    - 3.6
     - nightly
 
 
@@ -12,7 +11,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-    - pip install --upgrade pytest pylama pip setuptools wheel isort --quiet
+    - pip install --upgrade pylama isort --quiet
     - pip install .
 
 before_script: rm --recursive --force --verbose *.py[cod]
@@ -21,12 +20,6 @@ script:
   - pytest tests/
   - pylama --linters "pep8,isort,pyflakes,pycodestyle" anglerfish/*.py
 
-
-after_script: true
-
-after_success: true
-
-after_failure: true
 
 notifications:
     email:
