@@ -1,11 +1,5 @@
 language: python
 
-
-os:
-  - linux
-  - osx
-
-
 python:
     - 3.5
     - nightly
@@ -15,11 +9,14 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
+
 install:
     - pip install --upgrade pytest pylama isort --quiet
     - pip install .
 
+
 before_script: rm --recursive --force --verbose *.py[cod]
+
 
 script:
   - pytest tests/
@@ -31,6 +28,7 @@ notifications:
         recipients: juancarlospaco@gmail.com
         on_success: change
         on_failure: always
+
 
 cache:
   apt: true
