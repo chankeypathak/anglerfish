@@ -11,7 +11,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-    - pip install --upgrade pylama isort --quiet
+    - pip install --upgrade pytest pylama isort --quiet
     - pip install .
 
 before_script: rm --recursive --force --verbose *.py[cod]
