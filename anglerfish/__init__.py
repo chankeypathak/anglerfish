@@ -67,18 +67,24 @@ from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
 from anglerfish.make_test_terminal_color import make_test_terminal_color
 from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.stealth2string import stealth2string  # noqa
+from anglerfish.exceptions import AnglerfishException, NamespaceConflictError
 from anglerfish.get_public_ip import get_public_ip, is_online  # noqa
 from anglerfish.set_process_priority import set_process_priority  # noqa
 from anglerfish.number2currency import number2currency  # noqa
 from anglerfish.get_random_pastel_color import (get_random_pastelight_color,
                                                 get_random_pasteldark_color,
                                                 get_random_pastel_color)
-
+from anglerfish.get_random_font import (get_random_handwriting_font,
+                                        get_random_mono_font,
+                                        get_random_display_font,
+                                        get_random_sans_font,
+                                        get_random_serif_font,
+                                        get_random_font)  # noqa
 
 ##############################################################################
 
 
-__version__ = '2.0.0'
+__version__ = '2.2.0'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -98,7 +104,9 @@ __all__ = (
     'make_test_terminal_color', 'string2stealth', 'stealth2string',
     'get_public_ip', 'is_online', 'set_process_priority', 'number2currency',
     'get_random_pastelight_color', 'get_random_pasteldark_color',
-    'get_random_pastel_color',
+    'get_random_pastel_color', 'get_random_handwriting_font',
+    'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
+    'get_random_serif_font', 'get_random_font',
     'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
 

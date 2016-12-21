@@ -216,5 +216,45 @@ print(modulote)
 print(modulote.module_content)
 
 
+print("Running anglerfish.get_random_pastelight_color()")
+print(get_random_pastelight_color())
+
+
+print("Running anglerfish.get_random_pasteldark_color()")
+print(get_random_pasteldark_color())
+
+
+print("Running anglerfish.get_random_pastel_color()")
+print(get_random_pastel_color())
+
+
+print("Running anglerfish.get_random_handwriting_font()")
+print(get_random_handwriting_font())
+
+
+print("Running anglerfish.get_random_mono_font()")
+print(get_random_mono_font())
+
+
+print("Running anglerfish.get_random_display_font()")
+print(get_random_display_font())
+
+print("Running anglerfish.get_random_sans_font()")
+print(get_random_sans_font())
+
+print("Running anglerfish.get_random_serif_font()")
+print(get_random_serif_font())
+
+
+print("Running anglerfish.get_random_font()")
+print(get_random_font())
+
+
+print("Running anglerfish.number2currency()")
+print(number2currency(0))
+print(number2currency(999999999999999999999))
+print(number2currency(42))
+
+
 print("Printing globals() keys...")
 print(tuple(sorted(globals().keys())))
