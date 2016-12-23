@@ -2094,20 +2094,20 @@ DataURI
 
 ## DataURI
 
-`anglerfish.DataURI`
-`anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
-`anglerfish.DataURI.from_file(filename: str, base64: bool=True, webp: bool=True)`
-`anglerfish.DataURI.from_url(url: str, base64: bool=True, webp: bool=True)`
-`anglerfish.DataURI.wrap(width: int=80, newline: str="\n")`
+- `anglerfish.DataURI`
+- `anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
+- `anglerfish.DataURI.from_file(filename: str, base64: bool=True, webp: bool=True)`
+- `anglerfish.DataURI.from_url(url: str, base64: bool=True, webp: bool=True)`
+- `anglerfish.DataURI.wrap(width: int=80, newline: str="\n")`
 
 **Description:** Return a Data URI Base64 URL-Safe UTF-8 string,
 from URL, or file, or string, with WebP Support, designed for HTML/CSS/JS and Images.
 WebP `cwebp` needs to be installed for WebP capability.
-If WebP `cwebp` is not installed images will be JPG.
+If WebP `cwebp` is not installed images will be JPG. `DataURI` is subclass of `str`.
 
-**Arguments:** None. Uses methods build the Data URI.
+**Arguments:** None. Uses methods to build the Data URI.
 
-**Keyword Arguments:** None. Uses methods build the Data URI.
+**Keyword Arguments:** None. Uses methods to build the Data URI.
 
 **Returns:** Data URI Base64 URL-Safe UTF-8, string type.
 
