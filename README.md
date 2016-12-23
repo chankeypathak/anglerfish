@@ -2103,7 +2103,12 @@ DataURI
 **Description:** Return a Data URI Base64 URL-Safe UTF-8 string,
 from URL, or file, or string, with WebP Support, designed for HTML/CSS/JS and Images.
 WebP `cwebp` needs to be installed for WebP capability.
-If WebP `cwebp` is not installed images will be JPG. `DataURI` is subclass of `str`.
+If WebP `cwebp` is not installed images will be JPG.
+`anglerfish.DataURI.wrap()` uses `textwrap.wrap()` to wrap.
+`anglerfish.DataURI.make()` makes a Data URI from args.
+`anglerfish.DataURI.from_file()` pass args to `anglerfish.DataURI.make()`.
+`anglerfish.DataURI.from_url()` pass args to `anglerfish.DataURI.from_file()`.
+`DataURI` is subclass of `str`.
 
 **Arguments:** None. Uses methods to build the Data URI.
 
