@@ -80,11 +80,13 @@ from anglerfish.get_random_font import (get_random_handwriting_font,
                                         get_random_sans_font,
                                         get_random_serif_font,
                                         get_random_font)  # noqa
+from anglerfish.make_datauri import DataURI, img2webp  # noqa
+
 
 ##############################################################################
 
 
-__version__ = '2.2.0'
+__version__ = '2.2.2'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -106,7 +108,7 @@ __all__ = (
     'get_random_pastelight_color', 'get_random_pasteldark_color',
     'get_random_pastel_color', 'get_random_handwriting_font',
     'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
-    'get_random_serif_font', 'get_random_font',
+    'get_random_serif_font', 'get_random_font', 'DataURI', 'img2webp',
     'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
 

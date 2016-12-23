@@ -1793,7 +1793,6 @@ get_random_pasteldark_color()
 
 
 
-
 <details>
 <summary>
 get_random_pastelight_color
@@ -1824,6 +1823,378 @@ get_random_pastelight_color
 ```python
 from anglerfish import get_random_pastelight_color
 get_random_pastelight_color()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_handwriting_font
+</summary>
+
+## get_random_handwriting_font
+
+`anglerfish.get_random_handwriting_font()`
+
+**Description:** Return a random open source free [handwriting font](https://fonts.google.com/?category=Handwriting) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+from Design point of view this fonts are good for Titles/SubTitles/big text,
+as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_handwriting_font
+get_random_handwriting_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_mono_font
+</summary>
+
+## get_random_mono_font
+
+`anglerfish.get_random_mono_font()`
+
+**Description:** Return a random open source free [Monospaced font](https://fonts.google.com/?category=Monospace) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+the names of this fonts contain spaces ` `,
+from Design point of view this fonts are good for source code text,
+as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_mono_font
+get_random_mono_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_display_font
+</summary>
+
+## get_random_display_font
+
+`anglerfish.get_random_display_font()`
+
+**Description:** Return a random open source free [decorative display cosmetic font](https://fonts.google.com/?category=Display) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+from Design point of view this fonts are good "for Fun",
+as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_display_font
+get_random_display_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_sans_font
+</summary>
+
+## get_random_sans_font
+
+`anglerfish.get_random_sans_font()`
+
+**Description:** Return a random open source free [Sans-Serif font](https://fonts.google.com/?category=Sans+Serif) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+from Design point of view this fonts are good for serious stuff and formal text,
+as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_sans_font
+get_random_sans_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_serif_font
+</summary>
+
+## get_random_serif_font
+
+`anglerfish.get_random_serif_font()`
+
+**Description:** Return a random open source free [Serif font](https://fonts.google.com/?category=Serif) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+from Design point of view this fonts are good for serious stuff and formal text,
+as string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_serif_font
+get_random_serif_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+get_random_font
+</summary>
+
+## get_random_font
+
+`anglerfish.get_random_font()`
+
+**Description:** Return a random open source free [font](https://fonts.google.com) family name,
+all fonts are available from online CDN, font names are keep Case-Sensitive,
+font families have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are Not Designers,
+but this is useful for quick templating and boilerplate styling,
+too extreme weird font designs are not included, is a one-by-one curated list,
+from Design point of view this fonts are good for generic multipurpose text,
+internally this function calls all other font functions and then choose 1 at random,
+this function calls `anglerfish.get_random_sans_font()` and
+`anglerfish.get_random_serif_font()` and
+`anglerfish.get_random_mono_font()` and
+`anglerfish.get_random_handwriting_font()` and
+`anglerfish.get_random_display_font()`.
+return a string, takes no arguments.
+
+**Arguments:** None.
+
+**Keyword Arguments:** None.
+
+**Returns:** Random open source free font family name, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_random_font.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_random_font
+get_random_font()
+```
+</details>
+
+
+
+<details>
+<summary>
+DataURI
+</summary>
+
+## DataURI
+
+`anglerfish.DataURI`
+`anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
+`anglerfish.DataURI.from_file(filename: str, base64: bool=True, webp: bool=True)`
+`anglerfish.DataURI.from_url(url: str, base64: bool=True, webp: bool=True)`
+`anglerfish.DataURI.wrap(width: int=80, newline: str="\n")`
+
+**Description:** Return a Data URI Base64 URL-Safe UTF-8 string,
+from URL, or file, or string, with WebP Support, designed for HTML/CSS/JS and Images.
+WebP `cwebp` needs to be installed for WebP capability.
+If WebP `cwebp` is not installed images will be JPG.
+
+**Arguments:** None. Uses methods build the Data URI.
+
+**Keyword Arguments:** None. Uses methods build the Data URI.
+
+**Returns:** Data URI Base64 URL-Safe UTF-8, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_datauri.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import DataURI
+uri = DataURI('data:text/plain;charset=utf-8;base64,VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2cu')
+uri.mimetype
+'text/plain'
+uri.charset
+'utf-8'
+uri.is_base64
+True
+uri.data
+'The quick brown fox jumped over the lazy dog.'
+uri = DataURI.make('text/plain', base64=True, data='This is a message.')
+uri
+DataURI('data:text/plain;charset=utf-8;base64,VGhpcyBpcyBhIG1lc3NhZ2Uu')
+uri.data
+'This is a message.'
+uri = DataURI.from_file('image.png', webp=False)
+uri.mimetype
+'image/png'
+uri.data
+b'\x89PNG...'
+uri = DataURI.from_url('example.com/image.jpg')  # webp=False to Disable WebP
+uri
+DataURI('data:image/webp;charset=utf-8;base64,...')
+print(uri)
+'data:image/webp;charset=utf-8;base64,...'
+isinstance(uri, str)
+True
+```
+</details>
+
+
+
+<details>
+<summary>
+img2webp
+</summary>
+
+## img2webp
+
+`anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text")`
+
+**Description:** Convert `*.png, *.jpeg, *.jpg, *.tiff` Images to WebP `*.webp`.
+
+**Arguments:**
+- `image_path`: Full path string to input `*.png, *.jpeg, *.jpg, *.tiff` image,
+if image is not `*.png, *.jpeg, *.jpg, *.tiff` then the same image format and filename is returned,
+if not WebP `cwebp` installed then the same image format and filename is returned,
+WebP `cwebp` is autodetected using `shutil.which("cwebp")`, required, string type.
+- `webp_path`: Full path string to output `*.webp` image or `None`,
+if `None` then `image_path + ".webp"` will be used,
+path to output image should end with extension `*.webp`, optional, string type.
+- `preset`: Preset name string for conversion,
+which is 1 of `default photo picture drawing icon text`,
+if not in `default photo picture drawing icon text` then `text` will be used,
+optional, string type.
+
+**Keyword Arguments:** None.
+
+**Returns:** Full path string to output `*.webp` image, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_datauri.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import img2webp
+img2webp("test.jpg")
 ```
 </details>
 
