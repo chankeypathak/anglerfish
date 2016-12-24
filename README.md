@@ -2286,7 +2286,7 @@ pytest tests/
 
 # Presentation
 
-- htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html
+- http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html
 
 
 # Contributors:
