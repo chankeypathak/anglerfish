@@ -237,7 +237,7 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 
 **Keyword Arguments:** None.
 
-**Returns:** Bool, True if everything is Ok.
+**Returns:** `True` if everything is Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_folder.py
 
@@ -386,7 +386,7 @@ it works on Linux, Windows and Mac and requires nothing to run.
 
 **Keyword Arguments:** None.
 
-**Returns:** Bool, True is sound playing went Ok.
+**Returns:** `True` is sound playing went Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_beep.py
 
@@ -491,6 +491,7 @@ ipdb_on_exception
 **Description:** Automatic iPDB Debugger when an Exception happens,
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
 PDB, iPDB can be used as Debugger console.
+`ipdb` Python package must be installed for `ipdb` option to work.
 
 **Arguments:**
 - `debugger` one of `"ipdb"`, `"pdb"`.
@@ -535,7 +536,7 @@ calculates time with precision from seconds to days, returns the string with rep
 
 **Arguments:**
 - `time_on_seconds` time on seconds, integer type.
-- `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
+- `do_year` `True` to calculate Years, optional, defaults to `True`, bool type.
 - `unit_words` dictionary with words representing human Time units,
 useful for internationalization of the output string, defaults to English, optional, dict type.
 
@@ -577,7 +578,7 @@ Internally is just a shortcut to `anglerfish.seconds2human()`.
 
 **Arguments:**
 - `time_delta` deltatime object, `datetime.deltatime` type.
-- `do_year` True to calculate Years, optional, defaults to `True`, boolean type.
+- `do_year` `True` to calculate Years, optional, defaults to `True`, bool type.
 - `unit_words` dictionary with words representing human Time units,
 useful for internationalization of the output string, defaults to English, optional, dict type.
 
@@ -623,7 +624,7 @@ Its very recommended you use the same string passed to `anglerfish.make_logger()
 
 **Keyword Arguments:** None.
 
-**Returns:** Boolean, True if it can change the process name.
+**Returns:** `True` if it can change the process name, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_process_name.py
 
@@ -830,6 +831,7 @@ This copies the JavaScript-like promises `.then()` api on Python 3.
 For deep technical theory please see https://github.com/promises-aplus/promises-spec
 For Python 3 Futures (JS-like promises) please see https://www.python.org/dev/peps/pep-3148
 For simple human explanation this chains one Future with another Future.
+`ChainableFuture` is subclass of `Future`.
 
 **Arguments:**
 - `on_success` a function to run when this Future success Ok,Callable type,Optional.
@@ -957,7 +959,7 @@ env2globals
 
 **Keyword Arguments:** None.
 
-**Returns:** Boolean, True if everything is Ok.
+**Returns:** `True` if everything is Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/env2globals.py
 
@@ -1027,6 +1029,7 @@ TemplatePython
 `anglerfish.TemplatePython(template: str)`
 
 **Description:** TemplatePython is a tiny generic Template Engine that Render and Runs native Python code. Template syntax is similar to Django Templates and Mustache. Fastest way to run Python on HTML and Render the results. No Markup enforced, it can work with HTML/CSS/JS or any kind of Markup. Has built-in optional Minification for HTML. Notice this is a Class, not a Function.
+`TemplatePython` is subclass of `str`.
 
 **Arguments:**
 - `template` a template string with native Python 3 code between tags, or a file-like object that supports `.read()`.
@@ -1206,7 +1209,7 @@ Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 **Arguments:**
 - `app` the name of your app. String type.
 - `desktop_file_content` the content of the launcher file. String type.
-- `autostart` a Boolean True or False to choose if your app will be added to auto-start on the desktop.
+- `autostart` `True` to add your app to auto-start on the desktop.
 
 **Keyword Arguments:** None.
 
@@ -1241,6 +1244,8 @@ set_terminal_title
 **Description:** Set or Reset Bash CLI Window Titlebar Title.
 According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 For Windows, use `title` command to approach that.
+This uses a standard documented way to set title on each operating system,
+so if your Terminal app wont work fill a bug for them, not an Anglerfish problem.
 
 **Arguments:**
 - `titlez` the title for the terminal emulator window. Optional. String type.
@@ -1341,7 +1346,7 @@ set_zip_comment
 
 `anglerfish.set_zip_comment(zip_path: str, comment: str="")`
 
-**Description:** Set a comment on a ZIP file, return a Boolean.
+**Description:** Set a comment on a ZIP file, return a Boolean. ZIP file must be Valid.
 
 **Arguments:**
 - `zip_path` ZIP file path string, str type.
@@ -1349,7 +1354,7 @@ set_zip_comment
 
 **Keyword Arguments:** None.
 
-**Returns:** True if Ok, bool type.
+**Returns:** `True` if Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_zip_comment.py
 
@@ -1378,6 +1383,7 @@ get_zip_comment
 `anglerfish.get_zip_comment(zip_path: str)`
 
 **Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
+ZIP file must be Valid.
 
 **Arguments:**
 - `zip_path` ZIP file path string, str type.
@@ -1418,7 +1424,7 @@ has_battery
 
 **Keyword Arguments:** None.
 
-**Returns:** True if has Battery, bool type.
+**Returns:** `True` if has Battery, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
 
@@ -1452,7 +1458,7 @@ on_battery
 
 **Keyword Arguments:** None.
 
-**Returns:** True if computer is running Battery, bool type.
+**Returns:** `True` if computer is running Battery, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/check_hardware.py
 
@@ -1486,7 +1492,7 @@ set_display_off
 
 **Keyword Arguments:** None.
 
-**Returns:** True if Ok, bool type.
+**Returns:** `True` if Ok, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_display_off.py
 
@@ -1550,13 +1556,15 @@ get_public_ip
 
 `anglerfish.get_public_ip()`
 
-**Description:** Get current public IP address as string.
+**Description:** Get current public IP address as `ipaddress.ip_address()`.
+Can be IPv4 or IPv6. See Python standard lib official Docs for more info.
+`ipaddress.ip_address()` converted to string with `str(ipaddress.ip_address())`.
 
 **Arguments:** None.
 
 **Keyword Arguments:** None.
 
-**Returns:** current public IP address, string type.
+**Returns:** Current public IP address, `ipaddress.ip_address()` type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
 
@@ -1590,7 +1598,7 @@ is_online
 
 **Keyword Arguments:** None.
 
-**Returns:** True if Internet is working, bool type.
+**Returns:** `True` if Internet is working, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
 
@@ -1626,7 +1634,7 @@ set_process_priority
 
 **Keyword Arguments:** None.
 
-**Returns:** True if its working, bool type.
+**Returns:** `True` if its working, bool type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
 
@@ -2169,6 +2177,7 @@ img2webp
 `anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text")`
 
 **Description:** Convert `*.png, *.jpeg, *.jpg, *.tiff` Images to WebP `*.webp`.
+`anglerfish.DataURI()` internally uses `anglerfish.img2webp()` for conversions.
 
 **Arguments:**
 - `image_path`: Full path string to input `*.png, *.jpeg, *.jpg, *.tiff` image,
