@@ -655,6 +655,10 @@ walk2list
 **Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
 convert the output to `tuple` if `tuply` is `True`, else return the `list` containing the path of all the files.
+Using a named tuple the maximum limit of items on that tuple is `255` because of the under low level Python implementation,
+on CPython < 3.7 it will cause `SyntaxError: more than 255 arguments` if more than `255` items on the tuple,
+[on CPython >= 3.7 this has been fixed allowing more than `255` items on that tuple](https://bugs.python.org/issue18896),
+this is not an Angler Bug but a limitation of Python itself.
 
 **Arguments:**
 - `where` path to a folder to scan, string type.
