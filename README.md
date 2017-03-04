@@ -11,12 +11,6 @@
 [![PyPI Version](https://img.shields.io/pypi/v/anglerfish.svg)](https://pypi.python.org/pypi/anglerfish)
 [![Build Status](https://img.shields.io/travis/juancarlospaco/anglerfish/master.svg)](https://travis-ci.org/juancarlospaco/anglerfish)
 
-[![Donate BitCoins](https://www.coinbase.com/assets/buttons/donation_large-5cf4f17cc2d2ae2f45b6b021ee498297409c94dcf0ba1bbf76fd5668e80b0d02.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Donate Bitcoins")
-[![Subscribe with BitCoins](https://www.coinbase.com/assets/buttons/subscription_large-11d991f628216af05156fae88a48ce25c0cb36447a265421a43a62e572af3853.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Subscribe with BitCoins")
-[![Pay with BitCoins](https://www.coinbase.com/assets/buttons/buy_now_large-6f15fa5979d25404827a7329e8a5ec332a42cf4fd73e27a2c3ccda017034e1b0.png)](https://www.coinbase.com/checkouts/c3538d335faee0c30c81672ea0223877 "Pay with BitCoins")
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif "Donate with or without Credit Card")](http://goo.gl/cB7PR)
-
-
 # Description of functions
 
 <details>
@@ -655,6 +649,10 @@ walk2list
 **Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
 convert the output to `tuple` if `tuply` is `True`, else return the `list` containing the path of all the files.
+Using a named tuple the maximum limit of items on that tuple is `255` because of the under low level Python implementation,
+on CPython < 3.7 it will cause `SyntaxError: more than 255 arguments` if more than `255` items on the tuple,
+[on CPython >= 3.7 this has been fixed allowing more than `255` items on that tuple](https://bugs.python.org/issue18896),
+this is not an Angler Bug but a limitation of Python itself.
 
 **Arguments:**
 - `where` path to a folder to scan, string type.
@@ -2286,13 +2284,12 @@ pytest tests/
 
 # Presentation
 
-- http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html
+- [Angler Intro Presentation](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html "Angler Intro Presentation")
 
 
 # Contributors:
 
 - **Please Star this Repo on Github !**, it helps to show up faster on searchs.
-- **Ad-Hocracy Meritocracy**: 3 Pull Requests Merged on Master you become Repo Admin. *Join us!*
 - [Help](https://help.github.com/articles/using-pull-requests) and more [Help](https://help.github.com/articles/fork-a-repo) and Interactive Quick [Git Tutorial](https://try.github.io).
 
 
@@ -2302,5 +2299,5 @@ pytest tests/
 
 
 # Ethics and Humanism Policy:
-- May this FLOSS be always Pristine and Clean, No AdWare, No Spamm, No BundleWare, No Infomercial, No MalWare.
+
 - This project is [LGBTQQIAAP friendly](http://www.urbandictionary.com/define.php?term=LGBTQQIAAP "Whats LGBTQQIAAP").
