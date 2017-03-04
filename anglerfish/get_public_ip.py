@@ -18,7 +18,7 @@ def is_online():
     """Check if we got internet conectivity."""
     try:
         get_public_ip()
-    except:
+    except Exception:
         return False
     else:
         return True

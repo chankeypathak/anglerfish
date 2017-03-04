@@ -53,7 +53,7 @@ def walk2dict(folder, links=False, showhidden=False,
                 f['mtime'] = mtime
                 f['ctime'] = ctime
                 a['files'].append(f)
-            except:
+            except Exception:
                 pass
         ret.append(a)
     dict_of_files = ret[0]

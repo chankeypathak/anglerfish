@@ -86,7 +86,7 @@ from anglerfish.make_datauri import DataURI, img2webp  # noqa
 ##############################################################################
 
 
-__version__ = '2.2.2'
+__version__ = '2.5.0'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -135,7 +135,7 @@ def __zip_old_logs(log_file, single_zip):
                 try:
                     log_zip.write(fyle, os.path.basename(fyle))
                     os.remove(fyle)
-                except:
+                except Exception:
                     pass
             log_zip.printdir()
     else:  # If not 1 ZIP, put 1 *.log inside 1 *.zip, multiple zips
@@ -147,7 +147,7 @@ def __zip_old_logs(log_file, single_zip):
                 try:
                     log_zip.write(fyle, os.path.basename(fyle))
                     os.remove(fyle)
-                except:
+                except Exception:
                     pass
                 # log_zip.printdir()
     result = zip_file if single_zip else tuple([_ + ".zip" for _ in logs])
