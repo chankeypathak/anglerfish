@@ -2284,13 +2284,12 @@ pytest tests/
 
 # Presentation
 
-- http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html
+- [Angler Intro Presentation](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/angler-presentation.html "Angler Intro Presentation")
 
 
 # Contributors:
 
 - **Please Star this Repo on Github !**, it helps to show up faster on searchs.
-- **Ad-Hocracy Meritocracy**: 3 Pull Requests Merged on Master you become Repo Admin. *Join us!*
 - [Help](https://help.github.com/articles/using-pull-requests) and more [Help](https://help.github.com/articles/fork-a-repo) and Interactive Quick [Git Tutorial](https://try.github.io).
 
 
@@ -2300,5 +2299,5 @@ pytest tests/
 
 
 # Ethics and Humanism Policy:
-- May this FLOSS be always Pristine and Clean, No AdWare, No Spamm, No BundleWare, No Infomercial, No MalWare.
+
 - This project is [LGBTQQIAAP friendly](http://www.urbandictionary.com/define.php?term=LGBTQQIAAP "Whats LGBTQQIAAP").
