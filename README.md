@@ -986,6 +986,7 @@ html2ebook
 `anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
+If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly CSS.
 
 **Arguments:**
 - `files` a tuple with the list of HTML/CSS files to add to the eBook.
