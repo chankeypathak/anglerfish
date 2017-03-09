@@ -21,33 +21,28 @@ Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
 
 def __osx_clipboard():
     def copy_osx(text):
-        subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE,
-                         close_fds=True).communicate(text.encode("utf-8"))
+        subprocess.run(["pbcopy"], timeout=9, input=text.encode('utf-8'))
 
     def paste_osx():
         os.environ["LANG"] = "en_US.utf-8"
-        return str(subprocess.Popen(
-            ["pbpaste"], stdout=subprocess.PIPE, close_fds=True
-            ).communicate()[0].decode("utf-8"))
+        return subprocess.run(["pbpaste"], stdout=subprocess.PIPE,
+                              timeout=9).stdout.decode("utf-8")
 
     return copy_osx, paste_osx
 
 
 def __xclip_clipboard():
     def copy_xclip(text):
-        subprocess.Popen(["xclip", "-selection", "clipboard"],
-                         stdin=subprocess.PIPE, close_fds=True).communicate(
-                         text.encode('utf-8'))
+        subprocess.run(("xclip", "-selection", "clipboard"),
+                       timeout=9, input=text.encode('utf-8'))
         if which("xsel"):
-            subprocess.Popen(["xclip", "-selection", "primary"],
-                             stdin=subprocess.PIPE, close_fds=True
-                             ).communicate(text.encode('utf-8'))
+            subprocess.run(("xclip", "-selection", "primary"),
+                           timeout=9, input=text.encode('utf-8'))
 
     def paste_xclip():
-        return subprocess.Popen(["xclip", "-selection",
-                                 "primary" if which("xsel") else "clipboard",
-                                 "-o"], stdout=subprocess.PIPE, close_fds=True
-                                ).communicate()[0].decode("utf-8")
+        return subprocess.run((
+            "xclip", "-selection", "primary" if which("xsel") else "clipboard",
+            "-o"), stdout=subprocess.PIPE, timeout=9).stdout.decode("utf-8")
 
     return copy_xclip, paste_xclip
 
