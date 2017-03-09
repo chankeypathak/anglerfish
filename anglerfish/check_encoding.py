@@ -28,7 +28,7 @@ def check_encoding(check_root=True):
         if not os.geteuid():
             log.warning("Runing as root is not Recommended !.")
             return False
-    elif sys.platform.startswith("windows") and check_root:  # administrator
+    elif sys.platform.startswith("win") and check_root:  # administrator
         if getuser().lower().startswith("admin"):
             log.warning("Runing as Administrator is not Recommended !.")
             return False
