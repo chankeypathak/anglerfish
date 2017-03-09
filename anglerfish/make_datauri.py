@@ -12,7 +12,7 @@ import textwrap
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from mimetypes import guess_type
 from shutil import which
-from subprocess import call
+from subprocess import run
 from tempfile import NamedTemporaryFile
 from typing import NamedTuple
 from urllib.parse import quote_plus, unquote_plus
@@ -42,7 +42,7 @@ def img2webp(image_path, webp_path=None, preset="text"):
         preset = "text"  # Text Preset is still Ok,looks like JPG,but tiny.
     command = "{cwebp} -preset {preset} {yn} -o {out}".format(
         cwebp=which("cwebp"), preset=preset, yn=image_path, out=webp_path)
-    return image_path if call(command, shell=True, timeout=9) else webp_path
+    return image_path if run(command, shell=True, timeout=9) else webp_path
 
 
 class DataURI(str):
