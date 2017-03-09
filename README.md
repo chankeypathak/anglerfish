@@ -2239,7 +2239,7 @@ pip3 install anglerfish
 
 # Requisites:
 
-- [Python 3.x](https://www.python.org "Python Homepage") *(or PyPy 3.x)*
+- [Python 3.5+](https://www.python.org "Python Homepage") *(or PyPy 3.5+)*
 
 
 # Config Helper ?
