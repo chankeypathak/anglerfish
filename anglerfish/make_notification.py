@@ -6,9 +6,8 @@
 
 
 import logging as log
-
 from shutil import which
-from subprocess import call
+from subprocess import run
 
 try:
     import dbus
@@ -37,23 +36,23 @@ def make_notification(title, message="", name="", icon="", timeout=3000):
         log.debug("Sending Notification message via notify-send command.")
         comand = (which("notify-send"), "--app-name=" + name,
                   "--expire-time=" + str(timeout), title, message)
-        return not bool(call(comand, timeout=timeout // 1000 + 1))
+        return not bool(run(comand, timeout=timeout // 1000 + 1, shell=True))
     elif which("kdialog"):
         log.debug("Sending Notification message via KDialog command.")
         comand = (which("kdialog"), "--name=" + name, "--title=" + title,
                   "--icon=" + icon, "--caption=" + name, "--passivepopup",
                   title + message, str(timeout // 1000))
-        return not bool(call(comand, timeout=timeout // 1000 + 1))
+        return not bool(run(comand, timeout=timeout // 1000 + 1, shell=True))
     elif which("zenity"):
         log.debug("Sending Notification message via Zenity command.")
         comand = (which("zenity"), "--name=" + name, "--title=" + title,
                   "--notification", "--timeout=" + str(timeout // 1000),
                   "--text=" + title + message)
-        return not bool(call(comand, timeout=timeout // 1000 + 1))
+        return not bool(run(comand, timeout=timeout // 1000 + 1, shell=True))
     elif which("xmessage"):  # This one is Ugly, but I hope you never get here.
         log.warning("Sending Notification message via XMessage command.")
         comand = (which("xmessage"), "-center", title + message)
-        return not bool(call(comand, timeout=timeout // 1000 + 1))
+        return not bool(run(comand, timeout=timeout // 1000 + 1, shell=True))
     else:  # Windows and Mac dont have API for that, complain to them.
         log.warning("Sending Notifications not supported by this OS.")
         return False
