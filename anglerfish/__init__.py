@@ -81,6 +81,7 @@ from anglerfish.get_random_font import (get_random_handwriting_font,
                                         get_random_serif_font,
                                         get_random_font)  # noqa
 from anglerfish.make_datauri import DataURI, img2webp  # noqa
+from anglerfish.get_human_datetime import get_human_datetime  # noqa
 
 
 ##############################################################################
@@ -109,6 +110,7 @@ __all__ = (
     'get_random_pastel_color', 'get_random_handwriting_font',
     'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
     'get_random_serif_font', 'get_random_font', 'DataURI', 'img2webp',
+    'get_human_datetime',
     'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
 
@@ -121,9 +123,9 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 def __zip_old_logs(log_file, single_zip):
     zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
-    log.debug("ZIP Compressing Unused Old Rotated Logs.")
-    comment = "Compressed Unused Old Rotated Python Logs since ~{0}.".format(
-        datetime.now().isoformat()[:-7])
+    comment = "Compressed Unused Old Rotated Python Logs since: ~{0}.".format(
+        get_human_datetime())
+    log.debug(comment)
     logs = [os.path.join(os.path.dirname(log_file), _)
             for _ in os.listdir(os.path.dirname(log_file))
             if ".log." in _ and not _.endswith(".zip") and filename in _]
@@ -168,7 +170,8 @@ def make_logger(name, when='midnight', single_zip=False,
     _fmt = ("%(asctime)s %(levelname)s: "
             "%(processName)s (%(process)d) %(threadName)s (%(thread)d) "
             "%(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
-    hand.setFormatter(logging.Formatter(fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
+    hand.setFormatter(logging.Formatter(fmt=_fmt,
+                                        datefmt=r"%Y-%m-%d %H:%M:%S%z"))
     log = logging.getLogger()
     log.addHandler(hand)
     log.setLevel(-1)
