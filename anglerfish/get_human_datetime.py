@@ -16,5 +16,5 @@ def get_human_datetime(date_time=None):
     if date_time and isinstance(date_time, datetime.datetime):  # arg datetime
         return date_time.replace(microsecond=0).astimezone().isoformat(" ")
     else:  # now datetime
-        return datetime.datetime.now(datetime.timezone.utc
-            ).replace(microsecond=0).astimezone().isoformat(" ")
+        return datetime.datetime.now(datetime.timezone.utc).replace(
+            microsecond=0).astimezone().isoformat(" ")
