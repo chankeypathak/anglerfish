@@ -1,9 +1,9 @@
 language: python
 
 python:
-    - 3.5
-    - 3.6
-    - nightly
+  - 3.5
+  - 3.6
+  - nightly
 
 
 before_install:
@@ -12,8 +12,8 @@ before_install:
 
 
 install:
-    - pip install --upgrade pytest pylama isort --quiet
-    - pip install .
+  - pip install --upgrade pytest pylama isort --quiet
+  - pip install .
 
 
 before_script: rm --recursive --force --verbose *.py[cod]
@@ -25,10 +25,10 @@ script:
 
 
 notifications:
-    email:
-        recipients: juancarlospaco@gmail.com
-        on_success: change
-        on_failure: always
+  email:
+    recipients: juancarlospaco@gmail.com
+    on_success: change
+    on_failure: always
 
 
 cache:
