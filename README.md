@@ -2213,6 +2213,49 @@ img2webp("test.jpg")
 
 
 
+<details>
+<summary>
+get_human_datetime
+</summary>
+
+## get_human_datetime
+
+`anglerfish.get_human_datetime(date_time: datetime.datetime=None)`
+
+**Description:**
+Get a Human string ISO-8601 representation of datetime.datetime with UTC info.
+Other solutions I found on the internet needs importing 'time' this one dont.
+ISO-8601 standard: Its permitted to omit the 'T' character by mutual agreement.
+Internally is a shortcut to:
+`datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).astimezone().isoformat(" ")`
+
+**Arguments:**
+- `date_time`: A `datetime.datetime` object,
+optional, if omitted an UTC-aware `datetime.datetime.now()` will be used.
+
+**Keyword Arguments:** None.
+
+**Returns:** Human friendly ISO-8601 date, time and UTC info string,
+eg. `"2017-03-10 18:08:03-03:00"`, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_human_datetime.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+from anglerfish import get_human_datetime
+get_human_datetime()
+```
+</details>
+
+
+
 # Install permanently on the system:
 
 **PIP:** *(Recommended!)*
