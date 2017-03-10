@@ -42,7 +42,8 @@ def img2webp(image_path, webp_path=None, preset="text"):
         preset = "text"  # Text Preset is still Ok,looks like JPG,but tiny.
     command = "{cwebp} -preset {preset} {yn} -o {out}".format(
         cwebp=which("cwebp"), preset=preset, yn=image_path, out=webp_path)
-    return image_path if run(command, shell=True, timeout=9) else webp_path
+    return image_path if run(
+        command, shell=True, timeout=9).returncode else webp_path
 
 
 class DataURI(str):
