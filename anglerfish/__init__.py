@@ -82,6 +82,7 @@ from anglerfish.get_random_font import (get_random_handwriting_font,
                                         get_random_font)  # noqa
 from anglerfish.make_datauri import DataURI, img2webp  # noqa
 from anglerfish.get_human_datetime import get_human_datetime  # noqa
+from anglerfish.make_async import Sync2Async  # noqa
 
 
 ##############################################################################
@@ -93,7 +94,7 @@ __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
-    'ChainableFuture', 'TemplatePython',  # Those are Classes.
+    'ChainableFuture', 'TemplatePython', 'Sync2Async', # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
     'get_clipboard', 'get_free_port', 'get_sanitized_string',  # All functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
