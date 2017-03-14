@@ -79,7 +79,7 @@ class _AsyncThreadingCall(object):
         sync_function = functools.partial(self.sync_code, *args, **kwargs)
         future, results = asyncio.Future(), None
         asyncio.ensure_future(self._run_thread(sync_function, future),
-                                  loop=self.event_loop)
+                              loop=self.event_loop)
         while True:
             if future.done():
                 results = future.result()
