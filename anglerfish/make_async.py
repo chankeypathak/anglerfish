@@ -8,8 +8,8 @@ Forces any module NOT compatible with asyncio to run Ok with asyncio.
 """
 
 
-import atexit
 import asyncio
+import atexit
 import functools
 import threading
 
@@ -78,7 +78,7 @@ class _AsyncThreadingCall(object):
     async def __call__(self, *args, **kwargs):
         sync_function = functools.partial(self.sync_code, *args, **kwargs)
         future, results = asyncio.Future(), None
-        _ = asyncio.ensure_future(self._run_thread(sync_function, future),
+        asyncio.ensure_future(self._run_thread(sync_function, future),
                                   loop=self.event_loop)
         while True:
             if future.done():
