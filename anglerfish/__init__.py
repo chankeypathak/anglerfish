@@ -94,7 +94,7 @@ __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
-    'ChainableFuture', 'TemplatePython', 'Sync2Async', # Those are Classes.
+    'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
     'get_clipboard', 'get_free_port', 'get_sanitized_string',  # All functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
