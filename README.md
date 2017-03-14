@@ -2256,6 +2256,73 @@ get_human_datetime()
 
 
 
+<details>
+<summary>
+Sync2Async
+</summary>
+
+## Sync2Async
+
+`anglerfish.Sync2Async.run_async(sync_code)`
+`anglerfish.Sync2Async.run_async_on_process(sync_code)`
+`anglerfish.Sync2Async.run_async_on_thread(sync_code)`
+
+**Description:** Run synchronous code as asynchronous.
+Forces any module NOT compatible with `asyncio` to run Ok with `asyncio`.
+Use synchronous blocking modules seamlessly on asynchronous code.
+This is NOT to run async code as synchronous.
+You can use this to skip re-writing your modules for asynchronous programming.
+This can also be used on Angler modules itself to run them as async.
+Please read Pythons `asyncio` official Documentation for more info.
+`run_async_on_process()` runs the code as async on a separate Process.
+`run_async_on_thread()` runs the code as async on a separate Thread.
+
+**Arguments:**
+- `sync_code`: A `Callable` object, a function or method or whatever callable,
+anything that you want to run on an async code context,
+it acts as an auto-wrapper to run your sync code as async.
+
+**Keyword Arguments:** None.
+
+**Returns:** Returns whatever the passed argument callable should return,
+but it `await` a `Future` result.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_async.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+import asyncio, time
+from anglerfish import Sync2Async
+
+def blocking_function():  # This is any common normal blocking function.
+    print("Executing Synchronous Blocking code 'time.sleep(1)' as Async!.")
+    return time.sleep(1)  # Can be any for, open, with, slow operation, etc.
+
+async def async_function(sync_code):
+    return await Sync2Async.run_async(sync_code)
+
+async def async_on_process(sync_code):
+    return await Sync2Async.run_async_on_process(sync_code)
+
+async def async_on_thread(sync_code):
+    return await Sync2Async.run_async_on_thread(sync_code)
+
+async_tasks = (asyncio.ensure_future(async_function(blocking_function)),
+               asyncio.ensure_future(async_on_process(blocking_function)),
+               asyncio.ensure_future(async_on_thread(blocking_function)))
+asyncio.get_event_loop().run_until_complete(asyncio.wait(async_tasks))
+```
+</details>
+
+
+
 # Install permanently on the system:
 
 **PIP:** *(Recommended!)*
