@@ -1800,12 +1800,8 @@ get_random_pasteldark_color()
 
 
 
+##### get_random_pastelight_color
 <details>
-<summary>
-get_random_pastelight_color
-</summary>
-
-## get_random_pastelight_color
 
 `anglerfish.get_random_pastelight_color()`
 
@@ -1835,12 +1831,8 @@ get_random_pastelight_color()
 
 
 
+##### get_random_handwriting_font
 <details>
-<summary>
-get_random_handwriting_font
-</summary>
-
-## get_random_handwriting_font
 
 `anglerfish.get_random_handwriting_font()`
 
@@ -1877,12 +1869,8 @@ get_random_handwriting_font()
 
 
 
+##### get_random_mono_font
 <details>
-<summary>
-get_random_mono_font
-</summary>
-
-## get_random_mono_font
 
 `anglerfish.get_random_mono_font()`
 
@@ -1919,13 +1907,8 @@ get_random_mono_font()
 </details>
 
 
-
+##### get_random_display_font
 <details>
-<summary>
-get_random_display_font
-</summary>
-
-## get_random_display_font
 
 `anglerfish.get_random_display_font()`
 
@@ -1962,12 +1945,8 @@ get_random_display_font()
 
 
 
+##### get_random_sans_font
 <details>
-<summary>
-get_random_sans_font
-</summary>
-
-## get_random_sans_font
 
 `anglerfish.get_random_sans_font()`
 
@@ -2004,12 +1983,8 @@ get_random_sans_font()
 
 
 
+##### get_random_serif_font
 <details>
-<summary>
-get_random_serif_font
-</summary>
-
-## get_random_serif_font
 
 `anglerfish.get_random_serif_font()`
 
@@ -2046,12 +2021,8 @@ get_random_serif_font()
 
 
 
+##### get_random_font
 <details>
-<summary>
-get_random_font
-</summary>
-
-## get_random_font
 
 `anglerfish.get_random_font()`
 
@@ -2094,12 +2065,8 @@ get_random_font()
 
 
 
+##### DataURI
 <details>
-<summary>
-DataURI
-</summary>
-
-## DataURI
 
 - `anglerfish.DataURI`
 - `anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
@@ -2166,12 +2133,8 @@ True
 
 
 
+##### img2webp
 <details>
-<summary>
-img2webp
-</summary>
-
-## img2webp
 
 `anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text")`
 
@@ -2213,12 +2176,8 @@ img2webp("test.jpg")
 
 
 
+##### get_human_datetime
 <details>
-<summary>
-get_human_datetime
-</summary>
-
-## get_human_datetime
 
 `anglerfish.get_human_datetime(date_time: datetime.datetime=None)`
 
