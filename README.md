@@ -49,13 +49,19 @@ Please use a unique and distinctive name for your app, and use the same name eve
 **Usage Example:**
 
 ```python
-from anglerfish import make_logger
-log = make_logger("MyAppName")
-log.debug("This is a Test.")
-log.info("This is a Test.")
-log.warning("This is a Test.")
-log.critical("This is a Test.")
-log.exception("This is a Test.")
+>>> from anglerfish import make_logger
+>>> log = make_logger("MyAppName")
+Logger created with Log file at: /tmp/myappname.log.
+>>> log.debug("This is a Test.")
+This is a Test.
+>>> log.info("This is a Test.")
+This is a Test.
+>>> log.warning("This is a Test.")
+This is a Test.
+>>> log.critical("This is a Test.")
+This is a Test.
+>>> log.exception("This is a Test.")
+This is a Test.
 ```
 </details>
 
@@ -87,8 +93,10 @@ Takes a tuple of 2 integers as argument, being the range of port numbers to scan
 **Usage Example:**
 
 ```python
-from anglerfish import get_free_port
-get_free_port()
+>>> from anglerfish import get_free_port
+>>> get_free_port()
+Found free unused port number: 8000
+8000
 ```
 </details>
 
@@ -125,8 +133,9 @@ Best results are with D-Bus.
 **Usage Example:**
 
 ```python
-from anglerfish import make_notification
-make_notification("test")
+>>> from anglerfish import make_notification
+>>> make_notification("test")
+Sending Notification message via D-Bus API.
 ```
 </details>
 
@@ -160,8 +169,10 @@ uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaB
 **Usage Example:**
 
 ```python
-from anglerfish import bytes2human
-bytes2human(3284902384, "g")
+>>> from anglerfish import bytes2human
+>>> bytes2human(3284902384, "g")
+Converting 3284902384 Bytes to G.
+"3 Gigabytes"
 ```
 </details>
 
@@ -192,8 +203,15 @@ bytes2human(3284902384, "g")
 **Usage Example:**
 
 ```python
-from anglerfish import check_encoding
-check_encoding()
+>>> from anglerfish import check_encoding
+>>> check_encoding()
+STDIN Encoding: UTF-8.
+STDERR Encoding: UTF-8.
+STDOUT Encoding: UTF-8.
+Default Encoding: utf-8.
+FileSystem Encoding: utf-8.
+PYTHONIOENCODING Encoding: utf-8.
+True
 ```
 </details>
 
