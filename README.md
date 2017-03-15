@@ -11,6 +11,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/anglerfish.svg)](https://pypi.python.org/pypi/anglerfish)
 [![Build Status](https://img.shields.io/travis/juancarlospaco/anglerfish/master.svg)](https://travis-ci.org/juancarlospaco/anglerfish)
 
+
 # Description of functions
 
 ##### make_logger
@@ -2142,9 +2143,9 @@ asyncio.get_event_loop().run_until_complete(asyncio.wait(async_tasks))
 
 **PIP:** *(Recommended!)*
 ```
-pip3 install anglerfish
+pip install anglerfish
 ```
-- Use `sudo pip3 install anglerfish` for installing System-wide.
+- Use `sudo pip install anglerfish` for installing System-wide.
 - Use `python3 examples/basic.py` to run an example of all the functionalities.
 - This project is oriented to Developers, NOT end-users.
 - Feel free to contact us if you need help integrating Angler on your project.
@@ -2187,7 +2188,7 @@ pip3 install anglerfish
 
 # Coding Style Guide:
 
-- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort pytest`
+- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install --upgrade pep8 pep257 pylama isort pytest`
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
