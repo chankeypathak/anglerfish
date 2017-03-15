@@ -2258,14 +2258,13 @@ get_human_datetime()
 
 <details>
 <summary>
-Sync2Async
+##### Sync2Async
 </summary>
-
-## Sync2Async
 
 `anglerfish.Sync2Async.run_async(sync_code)`
 `anglerfish.Sync2Async.run_async_on_process(sync_code)`
 `anglerfish.Sync2Async.run_async_on_thread(sync_code)`
+`anglerfish.Sync2Async.get_event_loop()`
 
 **Description:** Run synchronous code as asynchronous.
 Forces any module NOT compatible with `asyncio` to run Ok with `asyncio`.
@@ -2276,6 +2275,8 @@ This can also be used on Angler modules itself to run them as async.
 Please read Pythons `asyncio` official Documentation for more info.
 `run_async_on_process()` runs the code as async on a separate Process.
 `run_async_on_thread()` runs the code as async on a separate Thread.
+`get_event_loop()` returns the current actual event loop in use, takes no arguments.
+`get_event_loop()` is similar to `asyncio.get_event_loop()`
 
 **Arguments:**
 - `sync_code`: A `Callable` object, a function or method or whatever callable,
@@ -2332,29 +2333,26 @@ pip3 install anglerfish
 - Use `sudo pip3 install anglerfish` for installing System-wide.
 - Use `python3 examples/basic.py` to run an example of all the functionalities.
 - This project is oriented to Developers, NOT end-users.
-- Feel free to contact us if you need help integrating Anglerfish on your project.
+- Feel free to contact us if you need help integrating Angler on your project.
 
 
 # Why?:
 
 - Too much repeated code across my projects, almost all of them doing tha same.
 - Look into other alternatives like Boltons but they dont solve or improve anything.
-- Other libs try to fix Python2 problems, that has been improved on Python3.
-- Anglerfish modules are less than 100 lines while other solutions are over-engineered and bloated.
-- Lots of functionalities on Anglerfish are a *"Must Have"* for modern Apps, like a Logger, etc.
-- 1 Module = 1 file = 1 feature, less than 100 lines per file, do 1 thing do it well.
+- Lots of functionalities on Angler are a *"Must Have"* for modern Apps, like a Logger, etc.
 - No Dependencies at all, just Python 3 standard library, cross-platform.
 - Easy to use, KISS philosophy.
 
 
 # Requisites:
 
-- [Python 3.5+](https://www.python.org "Python Homepage") *(or PyPy 3.5+)*
+- [Python 3.5+](https://www.python.org "Python Homepage")
 
 
 # Config Helper ?
 
-- Anglerfish will NOT provide any kind of Configuration/Settings Helpers.
+- Angler will NOT provide any kind of Configuration/Settings Helpers.
 - We recommend: https://github.com/ssato/python-anyconfig#python-anyconfig
 - `python-anyconfig` only requires Python Standard Library. Works with any kind of config file.
 
@@ -2375,7 +2373,7 @@ pip3 install anglerfish
 
 # Coding Style Guide:
 
-- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort`
+- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install pep8 pep257 pylama isort pytest`
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
@@ -2411,4 +2409,5 @@ pytest tests/
 
 # Ethics and Humanism Policy:
 
-- This project is [LGBTQQIAAP friendly](http://www.urbandictionary.com/define.php?term=LGBTQQIAAP "Whats LGBTQQIAAP").
+- Politics and Religions is not allowed.
+- This project has Feminism Ally conduct.
