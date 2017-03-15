@@ -2258,7 +2258,7 @@ get_human_datetime()
 
 <details>
 <summary>
-[#Sync2Async](Sync2Async "Sync2Async")
+<a href="#Sync2Async" title=Sync2Async >Sync2Async</a>
 </summary>
 
 `anglerfish.Sync2Async.run_async(sync_code)`
