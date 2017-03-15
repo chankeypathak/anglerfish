@@ -244,8 +244,11 @@ like no Read Permissions, that the folder does not exists, and no space left on 
 **Usage Example:**
 
 ```python
-from anglerfish import check_folder
-check_folder("/path/to/my/folder/")
+>>> from anglerfish import check_folder
+>>> check_folder("/path/to/my/folder/")
+Checking the Working Folder: "/path/to/my/folder/"
+Folder Total Free Space: ~88 GigaBytes.
+True
 ```
 </details>
 
@@ -275,14 +278,16 @@ check_folder("/path/to/my/folder/")
 **Usage Example:**
 
 ```python
-from anglerfish import get_clipboard
-clipboard_copy, clipboard_paste = get_clipboard()
-clipboard_copy("This is a Test.")
-print(clipboard_paste())
-
-# Or this way:
-get_clipboard().copy("This is a Test.")
-print(get_clipboard().paste())
+>>> from anglerfish import get_clipboard
+>>> clipboard_copy, clipboard_paste = get_clipboard()
+Querying Copy/Paste Clipboard functionality.
+>>> clipboard_copy("This is a Test.")
+>>> print(clipboard_paste())
+"This is a Test."
+>>> # Or this way:
+>>> get_clipboard().copy("This is a Test.")
+>>> print(get_clipboard().paste())
+"This is a Test."
 ```
 </details>
 
@@ -315,8 +320,9 @@ ready to use on ASCII-only if required, optionally you can pass a replacement st
 **Usage Example:**
 
 ```python
-from anglerfish import get_sanitized_string
-get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
+>>> from anglerfish import get_sanitized_string
+>>> get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
+"_()_"
 ```
 </details>
 
@@ -348,8 +354,11 @@ it means to be a liittle more safe than just writing everything to the systems t
 **Usage Example:**
 
 ```python
-from anglerfish import get_temp_folder
-get_temp_folder("test")
+>>> from anglerfish import get_temp_folder
+>>> get_temp_folder("test")
+Temp folder for test is: /tmp/test.
+Creating new Temp folder: /tmp/test.
+'/tmp/test'
 ```
 </details>
 
@@ -381,8 +390,11 @@ it works on Linux, Windows and Mac and requires nothing to run.
 **Usage Example:**
 
 ```python
-from anglerfish import beep
-beep()
+>>> from anglerfish import beep
+>>> beep()
+Generating and Playing Sound...
+Playing raw data '/tmp/beep.wav' : Unsigned 8 bit, Rate 8000 Hz, Mono
+True
 ```
 </details>
 
@@ -413,8 +425,10 @@ similar to YML but still valid JSON, works perfectly with JavaScript too.
 **Usage Example:**
 
 ```python
-from anglerfish import json_pretty
-json_pretty({"foo": True, "bar": 42, "baz": []})
+>>> from anglerfish import json_pretty
+>>> json_pretty({"foo": True, "bar": 42, "baz": []})
+Pretty-Printing JSON data string...
+'\n\n{\n    "bar":  42,\n\n    "baz":  [],\n\n    "foo":  true\n}\n'
 ```
 </details>
 
@@ -446,11 +460,31 @@ works for Exceptions like on `try...except...finally` constructions, takes no ar
 **Usage Example:**
 
 ```python
-from anglerfish import log_exception
-try:
-    0 / 0
-except Exception:
-    log_exception()
+>>> from anglerfish import log_exception
+>>> try:
+>>>     0 / 0
+>>> except Exception:
+>>>     log_exception()
+
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+ZeroDivisionError: division by zero
+
+################################ D E B U G ###############################
+Listing all Local objects by context frame, ordered by innermost last:
+
+The Unnamed Anonymous Module Function from file <stdin> at line 4 failed!.
+Unnamed Anonymous Module Function
+|
+|___ __name__ = '__main__'  # Type: <class 'str'>, Size: 57Bytes, ID: 139686962655984
+|___ __annotations__ = {}  # Type: <class 'dict'>, Size: 64Bytes, ID: 139686962997360
+|___ __builtins__ = <module 'builtins' (built-in)>  # Type: <class 'module'>, Size: 61Bytes, ID: 139686982977000
+|___ make_logger = <function make_logger at 0x7f0b613650d0>  # Type: <class 'function'>, Size: 60Bytes, ID: 139686852317392
+|___ log = <RootLogger root (Level -1)>  # Type: <class 'logging.RootLogge, Size: 52Bytes, ID: 139686951311120
+|___ log_exception = <function log_exception at 0x7f0b657dba60>  # Type: <class 'function'>, Size: 62Bytes, ID: 139686924106336
+
+Thats all we know about the error, check the LOG file and StdOut.
+############################### D E B U G #############################
 ```
 </details>
 
@@ -484,12 +518,9 @@ PDB, iPDB can be used as Debugger console.
 **Usage Example:**
 
 ```python
-from anglerfish import ipdb_on_exception
-ipdb_on_exception()
-try:
-    0 / 0
-except Exception:
-    pass
+>>> from anglerfish import ipdb_on_exception
+>>> ipdb_on_exception()
+Installing an automatic Debugger upon Exceptions...
 ```
 </details>
 
@@ -524,25 +555,26 @@ useful for internationalization of the output string, defaults to English, optio
 **Usage Example:**
 
 ```python
-from anglerfish import seconds2human
-seconds2human(490890)
+>>> from anglerfish import seconds2human
+>>> seconds2human(490890)
+'05 Days 16 Hours 21 Minutes 30 Seconds'
 ```
 </details>
 
 
 
-##### deltatime2human
+##### timedelta2human
 <details>
 
-`anglerfish.deltatime2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.timedelta2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
 
 **Description:** Convert a TimeDelta object to human string representation.
-From `deltatime` object to very human friendly string representation,
+From `timedelta` object to very human friendly string representation,
 calculates time with precision from seconds to years, returns the string with representawation.
 Internally is just a shortcut to `anglerfish.seconds2human()`.
 
 **Arguments:**
-- `time_delta` deltatime object, `datetime.deltatime` type.
+- `time_delta` timedelta object, `datetime.timedelta` type.
 - `do_year` `True` to calculate Years, optional, defaults to `True`, bool type.
 - `unit_words` dictionary with words representing human Time units,
 useful for internationalization of the output string, defaults to English, optional, dict type.
@@ -562,10 +594,11 @@ useful for internationalization of the output string, defaults to English, optio
 **Usage Example:**
 
 ```python
-import datetime
-from anglerfish import deltatime2human
-deltatime_object = datetime.timedelta(seconds=123.456789)
-deltatime2human(deltatime_object)
+>>> import datetime
+>>> from anglerfish import timedelta2human
+>>> deltatime_object = datetime.timedelta(seconds=123.456789)
+>>> timedelta2human(deltatime_object)
+'02 Minutes 03 Seconds'
 ```
 </details>
 
@@ -599,8 +632,9 @@ Its very recommended you use the same string passed to `anglerfish.make_logger()
 **Usage Example:**
 
 ```python
-from anglerfish import set_process_name
-set_process_name("MyApp")
+>>> from anglerfish import set_process_name
+>>> set_process_name("MyApp")
+True
 ```
 </details>
 
@@ -642,8 +676,9 @@ this is not an Angler Bug but a limitation of Python itself.
 **Usage Example:**
 
 ```python
-from anglerfish import walk2list
-walk2list(".")
+>>> from anglerfish import walk2list
+>>> walk2list(".")
+("file.py", "readme.md")
 ```
 </details>
 
@@ -680,8 +715,8 @@ walk2list(".")
 **Usage Example:**
 
 ```python
-from anglerfish import walk2dict
-walk2dict(".")
+>>> from anglerfish import walk2dict
+>>> walk2dict(".")
 ```
 </details>
 
@@ -717,19 +752,18 @@ with optional Timeout, on a quick and easy way.
 **Usage Example:**
 
 ```python
-from anglerfish import multiprocessed
-import time
-
-def process_job(job):  # a simple function for testing only
-    time.sleep(1)
-    count = 100
-    while count > 0:
-        count -= 1
-    return job
-jobs = [str(i) for i in range(30)]  # a simple list
-
-print(multiprocessed(process_job, jobs, cpu_num=1, thread_num=4))
-print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
+>>> from anglerfish import multiprocessed
+>>> import time
+>>>
+>>> def process_job(job):  # a simple function for testing only
+>>>     time.sleep(1)
+>>>     count = 100
+>>>     while count > 0:
+>>>         count -= 1
+>>>     return job
+>>> jobs = [str(i) for i in range(30)]  # a simple list
+>>> print(multiprocessed(process_job, jobs, cpu_num=1, thread_num=4))
+>>> print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 ```
 </details>
 
@@ -761,12 +795,12 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 **Usage Example:**
 
 ```python
-from anglerfish import threads
-import time
-@threads(4)
-def process_job():  # a simple function for testing only
-    return time.sleep(1)
-process_job()
+>>> from anglerfish import threads
+>>> import time
+>>> @threads(4)
+>>> def process_job():  # a simple function for testing only
+>>>     return time.sleep(1)
+>>> process_job()
 ```
 </details>
 
@@ -803,13 +837,14 @@ For simple human explanation this chains one Future with another Future.
 **Usage Example:**
 
 ```python
-from anglerfish import ChainableFuture
-
-future1 = ChainableFuture()
-future2 = future1.then(lambda arg: arg + ' using ChainableFuture.then() !!!.')
-future1.set_result('This is an anglerfish.ChainableFuture demo')
-print(future1.result())  # Future 1 is Chained to Future 2.
-print(future2.result())
+>>> from anglerfish import ChainableFuture
+>>> future1 = ChainableFuture()
+>>> future2 = future1.then(lambda arg: arg + ' using ChainableFuture.then() !!!.')
+>>> future1.set_result('This is an anglerfish.ChainableFuture demo')
+>>> print(future1.result())  # Future 1 is Chained to Future 2.
+This is an anglerfish.ChainableFuture demo
+>>> print(future2.result())
+This is an anglerfish.ChainableFuture demo using ChainableFuture.then() !!!.
 ```
 </details>
 
@@ -846,11 +881,11 @@ print(future2.result())
 **Usage Example:**
 
 ```python
-from anglerfish import retry
-@retry(4)
-def retry_job():  # a simple function for testing only
-    return open("").read()  # Will Fail as expected
-retry_job()
+>>> from anglerfish import retry
+>>> @retry(4)
+>>> def retry_job():  # a simple function for testing only
+>>>     return open("").read()  # Will Fail as expected
+>>> retry_job()
 ```
 </details>
 
@@ -882,8 +917,9 @@ retry_job()
 **Usage Example:**
 
 ```python
-from anglerfish import set_single_instance
-set_single_instance("MyApp")
+>>> from anglerfish import set_single_instance
+>>> set_single_instance("MyApp")
+<socket.socket fd=3, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=b'\x00_myapp__lock'>
 ```
 </details>
 
@@ -913,8 +949,9 @@ set_single_instance("MyApp")
 **Usage Example:**
 
 ```python
-from anglerfish import env2globals
-env2globals()
+>>> from anglerfish import env2globals
+>>> env2globals()
+True
 ```
 </details>
 
@@ -952,8 +989,8 @@ If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly C
 **Usage Example:**
 
 ```python
-from anglerfish import html2ebook
-html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
+>>> from anglerfish import html2ebook
+>>> html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 ```
 </details>
 
@@ -985,8 +1022,8 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 **Usage Example:**
 
 ```python
-from anglerfish import TemplatePython
-demo = """<html><body>
+>>> from anglerfish import TemplatePython
+>>> demo = """<html><body>
      {%
      def say_hello(arg):
          {{"<tr> hello ", arg, " </tr>"}}
@@ -996,8 +1033,8 @@ demo = """<html><body>
      </table>
      {% {{ testo }} {{ __doc__.title() }} %}
      {% # this is a python comment %}  </body></html>"""
-templar_template = TemplatePython(demo)
-print(templar_template(testo=9, mini=True))
+>>> templar_template = TemplatePython(demo)
+>>> print(templar_template(testo=9, mini=True))
 ```
 </details>
 
@@ -1039,8 +1076,8 @@ in `globals()` namespace, if it does, raises a `NamespaceConflictError` exceptio
 **Usage Example:**
 
 ```python
-from anglerfish import path2import
-my_module = path2import("/path/to/module.py")
+>>> from anglerfish import path2import
+>>> my_module = path2import("/path/to/module.py")
 ```
 </details>
 
@@ -1074,8 +1111,9 @@ Its basically a *Goodbye* message.
 **Usage Example:**
 
 ```python
-from anglerfish import make_post_exec_msg
-make_post_exec_msg()
+>>> from anglerfish import make_post_exec_msg
+>>> make_post_exec_msg()
+'Total Maximum RAM Memory used: 203 of 32080MegaBytes.\n'
 ```
 </details>
 
@@ -1114,8 +1152,8 @@ A WatchDog.
 **Usage Example:**
 
 ```python
-from anglerfish import watch
-watch("/tmp/file.txt")
+>>> from anglerfish import watch
+>>> watch("/tmp/file.txt")
 ```
 </details>
 
@@ -1151,8 +1189,8 @@ Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 **Usage Example:**
 
 ```python
-from anglerfish import set_desktop_launcher
-set_desktop_launcher("mysuperapp", "")
+>>> from anglerfish import set_desktop_launcher
+>>> set_desktop_launcher("mysuperapp", "")
 ```
 </details>
 
@@ -1187,8 +1225,9 @@ so if your Terminal app wont work fill a bug for them, not an Anglerfish problem
 **Usage Example:**
 
 ```python
-from anglerfish import set_terminal_title
-set_terminal_title("mysuperapp")
+>>> from anglerfish import set_terminal_title
+>>> set_terminal_title("mysuperapp")
+'mysuperapp'
 ```
 </details>
 
@@ -1220,8 +1259,9 @@ set_terminal_title("mysuperapp")
 **Usage Example:**
 
 ```python
-from anglerfish import json2xml
-json2xml({"foo": 42, "bar": 666})
+>>> from anglerfish import json2xml
+>>> json2xml({"foo": 42, "bar": 666})
+'<foo>\n    42\n</foo>\n<bar>\n    666\n</bar>'
 ```
 </details>
 
@@ -1280,8 +1320,9 @@ json2xml({"foo": 42, "bar": 666})
 **Usage Example:**
 
 ```python
-from anglerfish import set_zip_comment
-set_zip_comment("test.zip", "This is a comment.")
+>>> from anglerfish import set_zip_comment
+>>> set_zip_comment("test.zip", "This is a comment.")
+True
 ```
 </details>
 
@@ -1313,8 +1354,9 @@ ZIP file must be Valid.
 **Usage Example:**
 
 ```python
-from anglerfish import get_zip_comment
-get_zip_comment("test.zip")
+>>> from anglerfish import get_zip_comment
+>>> get_zip_comment("test.zip")
+"This is a comment."
 ```
 </details>
 
@@ -1344,8 +1386,9 @@ get_zip_comment("test.zip")
 **Usage Example:**
 
 ```python
-from anglerfish import has_battery
-has_battery()
+>>> from anglerfish import has_battery
+>>> has_battery()
+False
 ```
 </details>
 
@@ -1375,8 +1418,9 @@ has_battery()
 **Usage Example:**
 
 ```python
-from anglerfish import on_battery
-on_battery()
+>>> from anglerfish import on_battery
+>>> on_battery()
+False
 ```
 </details>
 
@@ -1406,8 +1450,9 @@ on_battery()
 **Usage Example:**
 
 ```python
-from anglerfish import set_display_off
-set_display_off()
+>>> from anglerfish import set_display_off
+>>> set_display_off()
+True
 ```
 </details>
 
@@ -1439,8 +1484,8 @@ Does not Log anything to logger.
 **Usage Example:**
 
 ```python
-from anglerfish import make_test_terminal_color
-make_test_terminal_color()
+>>> from anglerfish import make_test_terminal_color
+>>> make_test_terminal_color()
 ```
 </details>
 
@@ -1472,8 +1517,9 @@ Can be IPv4 or IPv6. See Python standard lib official Docs for more info.
 **Usage Example:**
 
 ```python
-from anglerfish import get_public_ip
-get_public_ip()
+>>> from anglerfish import get_public_ip
+>>> get_public_ip()
+'181.95.185.82'
 ```
 </details>
 
@@ -1503,8 +1549,9 @@ get_public_ip()
 **Usage Example:**
 
 ```python
-from anglerfish import is_online
-is_online()
+>>> from anglerfish import is_online
+>>> is_online()
+True
 ```
 </details>
 
@@ -1536,8 +1583,9 @@ is_online()
 **Usage Example:**
 
 ```python
-from anglerfish import set_process_priority
-set_process_priority()
+>>> from anglerfish import set_process_priority
+>>> set_process_priority()
+True
 ```
 </details>
 
@@ -1572,8 +1620,9 @@ String Unicode :fast_forward: ZLib Compress :fast_forward: Base64 :fast_forward:
 **Usage Example:**
 
 ```python
-from anglerfish import string2stealth
-string2stealth("test")
+>>> from anglerfish import string2stealth
+>>> string2stealth("test")
+""
 ```
 </details>
 
@@ -1607,8 +1656,9 @@ Stealth String :fast_forward: Binary :fast_forward: Base64 :fast_forward: ZLib D
 **Usage Example:**
 
 ```python
-from anglerfish import stealth2string
-stealth2string("")
+>>> from anglerfish import stealth2string
+>>> stealth2string("")
+"test"
 ```
 </details>
 
@@ -1638,8 +1688,9 @@ stealth2string("")
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_pastel_color
-get_random_pastel_color()
+>>> from anglerfish import get_random_pastel_color
+>>> get_random_pastel_color()
+'seagreen'
 ```
 </details>
 
@@ -1669,8 +1720,9 @@ get_random_pastel_color()
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_pasteldark_color
-get_random_pasteldark_color()
+>>> from anglerfish import get_random_pasteldark_color
+>>> get_random_pasteldark_color()
+'darkolivegreen'
 ```
 </details>
 
@@ -1700,8 +1752,9 @@ get_random_pasteldark_color()
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_pastelight_color
-get_random_pastelight_color()
+>>> from anglerfish import get_random_pastelight_color
+>>> get_random_pastelight_color()
+'aquamarine'
 ```
 </details>
 
@@ -1738,8 +1791,9 @@ as string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_handwriting_font
-get_random_handwriting_font()
+>>> from anglerfish import get_random_handwriting_font
+>>> get_random_handwriting_font()
+'Calligraffitti'
 ```
 </details>
 
@@ -1777,8 +1831,9 @@ as string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_mono_font
-get_random_mono_font()
+>>> from anglerfish import get_random_mono_font
+>>> get_random_mono_font()
+'Oxygen Mono'
 ```
 </details>
 
@@ -1814,8 +1869,9 @@ as string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_display_font
-get_random_display_font()
+>>> from anglerfish import get_random_display_font
+>>> get_random_display_font()
+'Comfortaa'
 ```
 </details>
 
@@ -1852,8 +1908,9 @@ as string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_sans_font
-get_random_sans_font()
+>>> from anglerfish import get_random_sans_font
+>>> get_random_sans_font()
+'Roboto'
 ```
 </details>
 
@@ -1890,8 +1947,9 @@ as string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_serif_font
-get_random_serif_font()
+>>> from anglerfish import get_random_serif_font
+>>> get_random_serif_font()
+'Amethysta'
 ```
 </details>
 
@@ -1934,8 +1992,9 @@ return a string, takes no arguments.
 **Usage Example:**
 
 ```python
-from anglerfish import get_random_font
-get_random_font()
+>>> from anglerfish import get_random_font
+>>> get_random_font()
+'Roboto'
 ```
 </details>
 
@@ -1977,32 +2036,32 @@ If WebP `cwebp` is not installed images will be JPG.
 **Usage Example:**
 
 ```python
-from anglerfish import DataURI
-uri = DataURI('data:text/plain;charset=utf-8;base64,VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2cu')
-uri.mimetype
+>>> from anglerfish import DataURI
+>>> uri = DataURI('data:text/plain;charset=utf-8;base64,VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2cu')
+>>> uri.mimetype
 'text/plain'
-uri.charset
+>>> uri.charset
 'utf-8'
-uri.is_base64
+>>> uri.is_base64
 True
-uri.data
+>>> uri.data
 'The quick brown fox jumped over the lazy dog.'
-uri = DataURI.make('text/plain', base64=True, data='This is a message.')
-uri
+>>> uri = DataURI.make('text/plain', base64=True, data='This is a message.')
+>>> uri
 DataURI('data:text/plain;charset=utf-8;base64,VGhpcyBpcyBhIG1lc3NhZ2Uu')
-uri.data
+>>> uri.data
 'This is a message.'
-uri = DataURI.from_file('image.png', webp=False)
-uri.mimetype
+>>> uri = DataURI.from_file('image.png', webp=False)
+>>> uri.mimetype
 'image/png'
-uri.data
+>>> uri.data
 b'\x89PNG...'
-uri = DataURI.from_url('example.com/image.jpg')  # webp=False to Disable WebP
-uri
+>>> uri = DataURI.from_url('example.com/image.jpg')  # webp=False to Disable WebP
+>>> uri
 DataURI('data:image/webp;charset=utf-8;base64,...')
-print(uri)
+>>> print(uri)
 'data:image/webp;charset=utf-8;base64,...'
-isinstance(uri, str)
+>>> isinstance(uri, str)
 True
 ```
 </details>
@@ -2045,8 +2104,9 @@ optional, string type.
 **Usage Example:**
 
 ```python
-from anglerfish import img2webp
-img2webp("test.jpg")
+>>> from anglerfish import img2webp
+>>> img2webp("test.jpg")
+"test.webp"
 ```
 </details>
 
@@ -2070,8 +2130,7 @@ optional, if omitted an UTC-aware `datetime.datetime.now()` will be used.
 
 **Keyword Arguments:** None.
 
-**Returns:** Human friendly ISO-8601 date, time and UTC info string,
-eg. `"2017-03-10 18:08:03-03:00"`, string type.
+**Returns:** Human friendly ISO-8601 date, time and UTC info string, string type.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_human_datetime.py
 
@@ -2084,8 +2143,9 @@ eg. `"2017-03-10 18:08:03-03:00"`, string type.
 **Usage Example:**
 
 ```python
-from anglerfish import get_human_datetime
-get_human_datetime()
+>>> from anglerfish import get_human_datetime
+>>> get_human_datetime()
+"2017-03-10 18:08:03-03:00"
 ```
 </details>
 
@@ -2132,26 +2192,29 @@ but it `await` a `Future` result.
 **Usage Example:**
 
 ```python
-import asyncio, time
-from anglerfish import Sync2Async
-
-def blocking_function():  # This is any common normal blocking function.
-    print("Executing Synchronous Blocking code 'time.sleep(1)' as Async!.")
-    return time.sleep(1)  # Can be any for, open, with, slow operation, etc.
-
-async def async_function(sync_code):
-    return await Sync2Async.run_async(sync_code)
-
-async def async_on_process(sync_code):
-    return await Sync2Async.run_async_on_process(sync_code)
-
-async def async_on_thread(sync_code):
-    return await Sync2Async.run_async_on_thread(sync_code)
-
-async_tasks = (asyncio.ensure_future(async_function(blocking_function)),
-               asyncio.ensure_future(async_on_process(blocking_function)),
-               asyncio.ensure_future(async_on_thread(blocking_function)))
-asyncio.get_event_loop().run_until_complete(asyncio.wait(async_tasks))
+>>> import asyncio, time
+>>> from anglerfish import Sync2Async
+>>>
+>>> def blocking_function():  # This is any common normal blocking function.
+>>>     print("Executing Synchronous Blocking code 'time.sleep(1)' as Async!.")
+>>>     return time.sleep(1)  # Can be any for, open, with, slow operation, etc.
+>>>
+>>> async def async_function(sync_code):
+>>>     return await Sync2Async.run_async(sync_code)
+>>>
+>>> async def async_on_process(sync_code):
+>>>     return await Sync2Async.run_async_on_process(sync_code)
+>>>
+>>> async def async_on_thread(sync_code):
+>>>     return await Sync2Async.run_async_on_thread(sync_code)
+>>>
+>>> async_tasks = (asyncio.ensure_future(async_function(blocking_function)),
+>>>                asyncio.ensure_future(async_on_process(blocking_function)),
+>>>                asyncio.ensure_future(async_on_thread(blocking_function)))
+>>> asyncio.get_event_loop().run_until_complete(asyncio.wait(async_tasks))
+"Executing Synchronous Blocking code 'time.sleep(1)' as Async!."
+"Executing Synchronous Blocking code 'time.sleep(1)' as Async!."
+"Executing Synchronous Blocking code 'time.sleep(1)' as Async!."
 ```
 </details>
 
