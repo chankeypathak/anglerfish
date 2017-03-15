@@ -2258,9 +2258,6 @@ get_human_datetime()
 
 ##### Sync2Async
 <details>
-<summary>
-Sync2Async
-</summary>
 
 `anglerfish.Sync2Async.run_async(sync_code)`
 `anglerfish.Sync2Async.run_async_on_process(sync_code)`
