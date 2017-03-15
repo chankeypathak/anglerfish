@@ -2141,7 +2141,6 @@ asyncio.get_event_loop().run_until_complete(asyncio.wait(async_tasks))
 
 # Install permanently on the system:
 
-**PIP:** *(Recommended!)*
 ```
 pip install anglerfish
 ```
