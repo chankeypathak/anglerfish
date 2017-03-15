@@ -13,12 +13,8 @@
 
 # Description of functions
 
+##### make_logger
 <details>
-<summary>
-make_logger
-</summary>
-
-## make_logger
 
 `anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False, log_file: str=None, backup_count: int=100, emoji: bool=False)`
 
@@ -63,12 +59,9 @@ log.exception("This is a Test.")
 </details>
 
 
-<details>
-<summary>
-get_free_port
-</summary>
 
-## get_free_port
+##### get_free_port
+<details>
 
 `anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
 
@@ -99,12 +92,9 @@ get_free_port()
 </details>
 
 
-<details>
-<summary>
-make_notification
-</summary>
 
-## make_notification
+##### make_notification
+<details>
 
 `anglerfish.make_notification(title: str, message: str="", name: str="", icon: str="", timeout: int=3000))`
 
@@ -140,12 +130,9 @@ make_notification("test")
 </details>
 
 
-<details>
-<summary>
-bytes2human
-</summary>
 
-## bytes2human
+##### bytes2human
+<details>
 
 `anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
 
@@ -178,12 +165,9 @@ bytes2human(3284902384, "g")
 </details>
 
 
-<details>
-<summary>
-check_encoding
-</summary>
 
-## check_encoding
+##### check_encoding
+<details>
 
 `anglerfish.check_encoding(check_root: bool=True)`
 
@@ -213,12 +197,9 @@ check_encoding()
 </details>
 
 
-<details>
-<summary>
-check_folder
-</summary>
 
-## check_folder
+##### check_folder
+<details>
 
 `anglerfish.check_folder(folder_to_check: str, check_space: int=1)`
 
@@ -250,12 +231,9 @@ check_folder("/path/to/my/folder/")
 </details>
 
 
-<details>
-<summary>
-get_clipboard
-</summary>
 
-## get_clipboard
+##### get_clipboard
+<details>
 
 `anglerfish.get_clipboard()`
 
@@ -290,12 +268,9 @@ print(get_clipboard().paste())
 </details>
 
 
-<details>
-<summary>
-get_sanitized_string
-</summary>
 
-## get_sanitized_string
+##### get_sanitized_string
+<details>
 
 `anglerfish.get_sanitized_string(stringy: str, repla: str="")`
 
@@ -327,12 +302,9 @@ get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
 </details>
 
 
-<details>
-<summary>
-get_temp_folder
-</summary>
 
-## get_temp_folder
+##### get_temp_folder
+<details>
 
 `anglerfish.get_temp_folder(appname: str)`
 
@@ -363,12 +335,9 @@ get_temp_folder("test")
 </details>
 
 
-<details>
-<summary>
-beep
-</summary>
 
-## beep
+##### beep
+<details>
 
 `anglerfish.beep(waveform: tuple)`
 
@@ -399,12 +368,9 @@ beep()
 </details>
 
 
-<details>
-<summary>
-json_pretty
-</summary>
 
-## json_pretty
+##### json_pretty
+<details>
 
 `anglerfish.json_pretty(json_dict: dict)`
 
@@ -434,12 +400,9 @@ json_pretty({"foo": True, "bar": 42, "baz": []})
 </details>
 
 
-<details>
-<summary>
-log_exception
-</summary>
 
-## log_exception
+##### log_exception
+<details>
 
 `anglerfish.log_exception()`
 
@@ -473,12 +436,9 @@ except Exception:
 </details>
 
 
-<details>
-<summary>
-ipdb_on_exception
-</summary>
 
-## ipdb_on_exception
+##### ipdb_on_exception
+<details>
 
 `anglerfish.ipdb_on_exception(debugger: str="ipdb")`
 
@@ -515,15 +475,11 @@ except Exception:
 </details>
 
 
+
+##### seconds2human
 <details>
-<summary>
-seconds2human
-</summary>
 
-## seconds2human
-
-`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ",
-"h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
@@ -555,15 +511,11 @@ seconds2human(490890)
 </details>
 
 
+
+##### deltatime2human
 <details>
-<summary>
-deltatime2human
-</summary>
 
-## deltatime2human
-
-`anglerfish.deltatime2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ",
-"h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.deltatime2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
 
 **Description:** Convert a TimeDelta object to human string representation.
 From `deltatime` object to very human friendly string representation,
@@ -599,12 +551,9 @@ deltatime2human(deltatime_object)
 </details>
 
 
-<details>
-<summary>
-set_process_name
-</summary>
 
-## set_process_name
+##### set_process_name
+<details>
 
 `anglerfish.set_process_name(name: str)`
 
@@ -637,12 +586,9 @@ set_process_name("MyApp")
 </details>
 
 
-<details>
-<summary>
-walk2list
-</summary>
 
-## walk2list
+##### walk2list
+<details>
 
 `anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True, namedtuple: bool=False)`
 
@@ -683,12 +629,9 @@ walk2list(".")
 </details>
 
 
-<details>
-<summary>
-walk2dict
-</summary>
 
-## walk2dict
+##### walk2dict
+<details>
 
 `anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False, ordereddict: bool=False)`
 
@@ -724,12 +667,9 @@ walk2dict(".")
 </details>
 
 
-<details>
-<summary>
-multiprocessed
-</summary>
 
-## multiprocessed
+##### multiprocessed
+<details>
 
 `anglerfish.multiprocessed(function: Callable, arguments: object, cpu_num: int=1, thread_num: int=1, timeout: int=None)`
 
@@ -775,12 +715,9 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=1))
 </details>
 
 
-<details>
-<summary>
-threads
-</summary>
 
-## threads
+##### threads
+<details>
 
 `@threads(n: int, timeout=None)`
 
@@ -815,12 +752,9 @@ process_job()
 </details>
 
 
-<details>
-<summary>
-ChainableFuture
-</summary>
 
-## ChainableFuture
+##### ChainableFuture
+<details>
 
 `anglerfish.ChainableFuture.then(on_success: Callable=None, on_fail: Callable=None)`
 
@@ -861,15 +795,11 @@ print(future2.result())
 </details>
 
 
+
+##### retry
 <details>
-<summary>
-retry
-</summary>
 
-## retry
-
-`@retry(tries: int=5, delay: int=3, backoff: int=2,
-          timeout: int=None, silent: Bool=False, logger=None, exceptions=(Exception, ))`
+`@retry(tries: int=5, delay: int=3, backoff: int=2, timeout: int=None, silent: Bool=False, logger=None, exceptions=(Exception, ))`
 
 **Description:** Retry calling the decorated function using an exponential backoff and timeout.
 
@@ -906,12 +836,9 @@ retry_job()
 </details>
 
 
-<details>
-<summary>
-set_single_instance
-</summary>
 
-## set_single_instance
+##### set_single_instance
+<details>
 
 `anglerfish.set_single_instance(name: str, port: int=8888)`
 
@@ -942,12 +869,9 @@ set_single_instance("MyApp")
 </details>
 
 
-<details>
-<summary>
-env2globals
-</summary>
 
-## env2globals
+##### env2globals
+<details>
 
 `anglerfish.env2globals(pattern: str)`
 
@@ -976,12 +900,9 @@ env2globals()
 </details>
 
 
-<details>
-<summary>
-html2ebook
-</summary>
 
-## html2ebook
+##### html2ebook
+<details>
 
 `anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
 
@@ -1018,12 +939,9 @@ html2ebook(("/mybook/html/index.html", "/mybook/html/chapter1.html"))
 </details>
 
 
-<details>
-<summary>
-TemplatePython
-</summary>
 
-## TemplatePython
+##### TemplatePython
+<details>
 
 `anglerfish.TemplatePython(template: str)`
 
@@ -1064,12 +982,10 @@ print(templar_template(testo=9, mini=True))
 ```
 </details>
 
-<details>
-<summary>
-path2import
-</summary>
 
-## path2import
+
+##### path2import
+<details>
 
 `anglerfish.path2import(pat: str, name: str=None, ignore_exceptions: bool=False, check_namespace: bool=True)`
 
@@ -1110,12 +1026,9 @@ my_module = path2import("/path/to/module.py")
 </details>
 
 
-<details>
-<summary>
-make_post_exec_msg
-</summary>
 
-## make_post_exec_msg
+##### make_post_exec_msg
+<details>
 
 `anglerfish.make_post_exec_msg(start_time: object=None, comment: str=None)`
 
@@ -1148,12 +1061,9 @@ make_post_exec_msg()
 </details>
 
 
-<details>
-<summary>
-watch
-</summary>
 
-## watch
+##### watch
+<details>
 
 `anglerfish.watch(file_path: str, callback: Callable=None, interval: int=60, backoff: int=1, timeout: int=None, repetitions: int=-1, silent: bool=False, logger: object=None)`
 
@@ -1191,12 +1101,9 @@ watch("/tmp/file.txt")
 </details>
 
 
-<details>
-<summary>
-set_desktop_launcher
-</summary>
 
-## set_desktop_launcher
+##### set_desktop_launcher
+<details>
 
 `anglerfish.set_desktop_launcher(app: str, desktop_file_content: str, autostart: bool=False)`
 
@@ -1231,12 +1138,9 @@ set_desktop_launcher("mysuperapp", "")
 </details>
 
 
-<details>
-<summary>
-set_terminal_title
-</summary>
 
-## set_terminal_title
+##### set_terminal_title
+<details>
 
 `anglerfish.set_terminal_title(titlez: str="")`
 
@@ -1270,12 +1174,9 @@ set_terminal_title("mysuperapp")
 </details>
 
 
-<details>
-<summary>
-json2xml
-</summary>
 
-## json2xml
+##### json2xml
+<details>
 
 `anglerfish.json2xml(json_obj: dict, line_padding: str="")`
 
@@ -1306,12 +1207,9 @@ json2xml({"foo": 42, "bar": 666})
 </details>
 
 
-<details>
-<summary>
-make_json_flat
-</summary>
 
-## make_json_flat
+##### make_json_flat
+<details>
 
 `anglerfish.make_json_flat(jsony: dict, delimiter: str="__")`
 
@@ -1336,12 +1234,9 @@ make_json_flat
 </details>
 
 
-<details>
-<summary>
-set_zip_comment
-</summary>
 
-## set_zip_comment
+##### set_zip_comment
+<details>
 
 `anglerfish.set_zip_comment(zip_path: str, comment: str="")`
 
@@ -1372,12 +1267,9 @@ set_zip_comment("test.zip", "This is a comment.")
 </details>
 
 
-<details>
-<summary>
-get_zip_comment
-</summary>
 
-## get_zip_comment
+##### get_zip_comment
+<details>
 
 `anglerfish.get_zip_comment(zip_path: str)`
 
@@ -1408,12 +1300,9 @@ get_zip_comment("test.zip")
 </details>
 
 
-<details>
-<summary>
-has_battery
-</summary>
 
-## has_battery
+##### has_battery
+<details>
 
 `anglerfish.has_battery()`
 
@@ -1442,12 +1331,9 @@ has_battery()
 </details>
 
 
-<details>
-<summary>
-on_battery
-</summary>
 
-## on_battery
+##### on_battery
+<details>
 
 `anglerfish.on_battery()`
 
@@ -1476,12 +1362,9 @@ on_battery()
 </details>
 
 
-<details>
-<summary>
-set_display_off
-</summary>
 
-## set_display_off
+##### set_display_off
+<details>
 
 `anglerfish.set_display_off()`
 
@@ -1510,12 +1393,9 @@ set_display_off()
 </details>
 
 
-<details>
-<summary>
-make_test_terminal_color
-</summary>
 
-## make_test_terminal_color
+##### make_test_terminal_color
+<details>
 
 `anglerfish.make_test_terminal_color()`
 
@@ -1546,12 +1426,9 @@ make_test_terminal_color()
 </details>
 
 
-<details>
-<summary>
-get_public_ip
-</summary>
 
-## get_public_ip
+##### get_public_ip
+<details>
 
 `anglerfish.get_public_ip()`
 
@@ -1582,12 +1459,9 @@ get_public_ip()
 </details>
 
 
-<details>
-<summary>
-is_online
-</summary>
 
-## is_online
+##### is_online
+<details>
 
 `anglerfish.is_online()`
 
@@ -1616,12 +1490,9 @@ is_online()
 </details>
 
 
-<details>
-<summary>
-set_process_priority
-</summary>
 
-## set_process_priority
+##### set_process_priority
+<details>
 
 `anglerfish.set_process_priority(nice=True, ionice=False)`
 
@@ -1652,12 +1523,9 @@ set_process_priority()
 </details>
 
 
-<details>
-<summary>
-string2stealth
-</summary>
 
-## string2stealth
+##### string2stealth
+<details>
 
 `anglerfish.string2stealth(stringy)`
 
@@ -1691,12 +1559,9 @@ string2stealth("test")
 </details>
 
 
-<details>
-<summary>
-stealth2string
-</summary>
 
-## stealth2string
+##### stealth2string
+<details>
 
 `anglerfish.stealth2string(stringy)`
 
@@ -1730,12 +1595,8 @@ stealth2string("")
 
 
 
+##### get_random_pastel_color
 <details>
-<summary>
-get_random_pastel_color
-</summary>
-
-## get_random_pastel_color
 
 `anglerfish.get_random_pastel_color()`
 
@@ -1765,12 +1626,8 @@ get_random_pastel_color()
 
 
 
+##### get_random_pasteldark_color
 <details>
-<summary>
-get_random_pasteldark_color
-</summary>
-
-## get_random_pasteldark_color
 
 `anglerfish.get_random_pasteldark_color()`
 
