@@ -1,5 +1,5 @@
 
-# anglerfish
+# Angler
 
 ![anglerfish](https://raw.githubusercontent.com/juancarlospaco/anglerfish/master/temp.jpg "Ugly but Enlightening")
 
@@ -24,7 +24,7 @@ it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
 Colored output may not be available on MS Windows OS,
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
-Please use a unique and distinctive name for your app, and use the same name every time Anglerfish needs an app name.
+Please use a unique and distinctive name for your app, and use the same name every time Angler needs an app name.
 
 **Arguments:**
 - `name` is a unique name of your App, like a unique identifier, string type.
@@ -1205,7 +1205,7 @@ Windows only have `*.lnk` but thats meant to be an Internet-only shortcut.
 According to XDG standard. Runs on Linux. Other platforms simply does nothing.
 For Windows, use `title` command to approach that.
 This uses a standard documented way to set title on each operating system,
-so if your Terminal app wont work fill a bug for them, not an Anglerfish problem.
+so if your Terminal app wont work fill a bug for them, not an Angler problem.
 
 **Arguments:**
 - `titlez` the title for the terminal emulator window. Optional. String type.
