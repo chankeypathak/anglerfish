@@ -21,7 +21,7 @@ def set_terminal_title(titlez=""):
         return titlez
     else:
         if sys.platform.startswith('win') and which("title"):
-            run(which("title"), shell=True, timeout=3)
+            run(str(which("title")), shell=True, timeout=3)
         else:
             print(r"\x1B]0;\x07")
         return ""  # Title should be "" so we return ""
