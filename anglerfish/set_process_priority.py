@@ -10,7 +10,7 @@ import logging as log
 import os
 
 from shutil import which
-from subprocess import call, Popen
+from subprocess import Popen, call
 
 
 def set_process_priority(nice=True, ionice=False, cpulimit=0):
