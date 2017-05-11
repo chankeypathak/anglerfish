@@ -30,7 +30,6 @@ except ImportError:
 from anglerfish.check_encoding import check_encoding  # noqa
 from anglerfish.check_folder import check_folder  # noqa
 from anglerfish.get_clipboard import get_clipboard  # noqa
-from anglerfish.get_sanitized_string import get_sanitized_string  # noqa
 from anglerfish.make_beep import beep  # noqa
 from anglerfish.make_json_pretty import json_pretty  # noqa
 from anglerfish.make_log_exception import log_exception  # noqa
@@ -96,7 +95,7 @@ __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
-    'get_clipboard', 'get_free_port', 'get_sanitized_string',  # All functions.
+    'get_clipboard', 'get_free_port',  # All functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',

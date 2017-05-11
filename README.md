@@ -293,41 +293,6 @@ Querying Copy/Paste Clipboard functionality.
 
 
 
-##### get_sanitized_string
-<details>
-
-`anglerfish.get_sanitized_string(stringy: str, repla: str="")`
-
-**Description:** Take string argument and sanitize non-printable weird characters and return a clean string,
-ready to use on ASCII-only if required, optionally you can pass a replacement string to be used.
-
-**Arguments:**
-- `stringy` string to be clean out of weird characters, string type.
-- `repla` a replacement string to be used instead of empty string `""`, can be a single character.
-
-**Keyword Arguments:** None.
-
-**Returns:** string, the same as input but ASCII-only ready.
-
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_sanitized_string.py
-
-| State              | OS          | Description |
-| ------------------ |:-----------:| -----------:|
-| :white_check_mark: | **Linux**   | Works Ok    |
-| :white_check_mark: | **Os X**    | Works Ok    |
-| :white_check_mark: | **Windows** | Works Ok    |
-
-**Usage Example:**
-
-```python
->>> from anglerfish import get_sanitized_string
->>> get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮")
-"_()_"
-```
-</details>
-
-
-
 ##### get_temp_folder
 <details>
 
