@@ -35,8 +35,12 @@ print("Running anglerfish.set_single_instance()")
 lock = set_single_instance("test")
 
 
-print("Running anglerfish.set_process_name_and_cpu_priority()")
+print("Running anglerfish.set_process_name()")
 set_process_name("test")
+
+
+print("Running anglerfish.set_process_priority()")
+set_process_priority(nice=True, ionice=False, cpulimit=5)
 
 
 print("Running anglerfish.make_root_check_and_encoding_debug()")
@@ -45,6 +49,10 @@ check_encoding()
 
 print("Running anglerfish.check_working_folder()")
 check_folder()
+
+
+print("Running anglerfish.app_is_ready()")
+app_is_ready(start_time)
 
 
 print("Running anglerfish.get_or_set_temp_folder()")
@@ -247,6 +255,12 @@ print("Running anglerfish.number2currency()")
 print(number2currency(0))
 print(number2currency(999999999999999999999))
 print(number2currency(42))
+
+
+print("Running anglerfish.autochecksum()")
+new_file = autochecksum("test.zip")
+print(new_file)
+print(autochecksum(new_file))
 
 
 print("Printing globals() keys...")
