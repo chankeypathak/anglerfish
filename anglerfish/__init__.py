@@ -35,7 +35,7 @@ from anglerfish.make_json_pretty import json_pretty  # noqa
 from anglerfish.make_log_exception import log_exception  # noqa
 from anglerfish.make_multiprocess import multiprocessed  # noqa
 from anglerfish.make_multithread import threads  # noqa
-from anglerfish.make_postexec_message import make_post_exec_msg  # noqa
+from anglerfish.make_postexec_message import make_post_exec_msg, app_is_ready
 from anglerfish.make_retry import retry  # noqa
 from anglerfish.make_typecheck import typecheck  # noqa
 from anglerfish.walk2list import walk2list  # noqa
@@ -96,7 +96,8 @@ __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
-    'get_clipboard', 'get_free_port', 'get_autochecksum', 'autochecksum',
+    'get_clipboard', 'get_free_port', 'app_is_ready',
+    'get_autochecksum', 'autochecksum',  # Functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',

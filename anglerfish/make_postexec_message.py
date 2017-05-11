@@ -38,3 +38,8 @@ def make_post_exec_msg(start_time=None, comment=None):
     log.debug("Preparing Simple Post-Execution Messages.")
     atexit.register(log.info, msg)
     return msg
+
+
+def app_is_ready(start_time):  # this goes at end of your apps __init__()
+    """Simple Post-StartUp Message with Start-Up time.."""
+    log.debug("Total Start-Up Time: ~{0}.".format(datetime.now() - start_time))
