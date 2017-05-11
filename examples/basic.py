@@ -76,13 +76,6 @@ print(bytes2human(-6666, "k"))
 print(bytes2human(1024, "k"))
 
 
-print("Running anglerfish.get_sanitized_string()")
-print(get_sanitized_string("\m/_(>_<)_\m/", "."))
-print(get_sanitized_string("╭∩╮_(҂≖̀‿≖́)_╭∩╮"))
-print(get_sanitized_string("abcd1234"))
-print(get_sanitized_string(""))
-
-
 print("Running anglerfish.json_pretty()")
 print(json_pretty({"foo": True, "bar": 42, "links": ["https://github.com", "http://localhost"]}))
 print(json_pretty({}))
