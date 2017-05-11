@@ -1525,13 +1525,26 @@ True
 ##### set_process_priority
 <details>
 
-`anglerfish.set_process_priority(nice=True, ionice=False)`
+`anglerfish.set_process_priority(nice=True, ionice=False, cpulimit=0)`
 
-**Description:** Set process I/O and CPU priority..
+**Description:** Set process I/O and CPU priority. Requires `ionice` and `cpulimit` installed on the system.
+If `ionice` or `cpulimit` are Not installed on the system its usage is ignored.
+Nice is very safe to use, and its Enabled by default, no performance hit.
+IONice is NOT safe to use, and its Disabled by default, big performance hit.
+CPULimit is safe to use, its Disabled by default, almost no performance hit depending on the value passed.
+If your App has a GUI updating on real-time then `ionice` and `cpulimit` are probably not recommended.
+If your App is a background, headless, CLI, slow-running process then `ionice` and `cpulimit` are recommended.
+The purpose of this is to make your App very lightweight, dont eat battery, cpu, etc. freeing up more resources on the system.
 
 **Arguments:**
 - `nice` Use a smooth cpu priority, if your app dont need real-time using this will be good, defaults to `True`, optional, bool type.
-- `ionice` Use a smooth I/O priority, I/O Nice may delay I/O Operations, not recommended on user-facing GUI!, recomended leaving it as `False`!, unless you know what you are doing, defaults to `False`, optional, bool type.
+- `ionice` Use a smooth I/O priority, I/O Nice may delay I/O Operations, not recommended on user-facing GUI!, recommended leaving it as `False`!, unless you know what you are doing, defaults to `False`, optional, bool type.
+- `cpulimit` Use a cpu max limit, if your app dont need real-time using this will be good,
+its a percentage from the minimum `9` to maximum of your CPU cores multiplied by 100%,
+meaning if you have 8 Cores, the maximum is 800%, 800% means 8 Cores at 100%,
+100% means 1 Core at 100%, `0` means is Disabled and not used, defaults to `0`,
+`cpulimit` may delay Processing Operations, not recommended on user-facing GUI!,
+recommended use for background or non-critical apps, optional, integer type.
 
 **Keyword Arguments:** None.
 
