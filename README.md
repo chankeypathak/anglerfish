@@ -2185,6 +2185,70 @@ but it `await` a `Future` result.
 
 
 
+
+
+##### autochecksum
+<details>
+
+`anglerfish.autochecksum(filename: str, update: bool=False)`
+
+**Description:**
+Make a automagic-checksuming file using Adler32 Hash and Hexadecimal.
+Resulting on a short ~8 character checksum added to the filename,
+easy to parse with standard pattern,not crypto secure but useful for checksum,
+is more human friendly than SHA512 checksum and its builtin on the filename,
+Adler32 is standard on all ZIP files and its builtin on Python std lib.
+The Checksum operation is `hex( zlib.adler32(data) )`.
+A standard pattern of a Check and a Sum `✔+` is appended to easy parse checksums from filenames.
+I do this tired of people not using SHA512 on 1 separate txt file for checksum,
+this not require user command line skills to check the checksum, its automagic.
+
+**Arguments:**
+- `filename`: Filename path, string type, required.
+- `update`: Force update Checksum if its wrong,
+set to `True` to update existing checksums, defaults to `False`, bool type, optional.
+
+**Keyword Arguments:** None.
+
+**Returns:** `True` if checksum is Ok and file integrity is Ok.
+`False` if checksum is **NOT** Ok and file integrity is **NOT** Ok.
+New filename path string is the checksum has been just created.
+New filename path string is the checksum has been just updated.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_autochecksum.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+>>> from anglerfish import autochecksum
+>>> open("example.txt", "w").close()  # Write a new empty blank txt file.
+>>> open("example.txt").read()
+""
+>>> autochecksum("example.txt")  # If no checksum it adds a checksum
+"example.✔+1.txt"
+>>> autochecksum("example.✔+1.txt")  # Check the integrity of the empty blank txt file.
+True
+>>> with open("example.✔+1.txt", "w") as txt_file:
+        txt_file.write("Test.")  # Write something new to the file.
+>>> autochecksum("example.✔+1.txt")  # Check of integrity fails, file is not empty anymore.
+False
+>>> autochecksum("example.✔+1.txt", update=True)  # Update the checksum.
+"example.✔+5ac01cf.txt"
+>>> autochecksum("example.✔+5ac01cf.txt")  # Check the integrity of the txt file.
+True
+>>> open("example.✔+5ac01cf.txt").read()
+"Test."
+```
+</details>
+
+
+
 # Install permanently on the system:
 
 ```
