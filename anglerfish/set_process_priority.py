@@ -30,7 +30,7 @@ def set_process_priority(nice=True, ionice=False, cpulimit=0):
         elif cpulimit and which("cpulimit"):
             log.warning("cpulimit" + w)
             log.debug("Launching 1 background 'cpulimit' child subprocess...")
-            cpulimit = int(cpulimit if cpulimit > 8 else 9)  # makes 9 the min.
+            cpulimit = int(cpulimit if cpulimit > 4 else 5)  # makes 5 the min.
             command = "{0} --include-children --pid={1} --limit={2}".format(
                 which("cpulimit"), os.getpid(), cpulimit)
             proces = Popen(command, shell=True)  # This launch a subprocess.

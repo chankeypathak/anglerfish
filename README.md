@@ -1540,7 +1540,7 @@ The purpose of this is to make your App very lightweight, dont eat battery, cpu,
 - `nice` Use a smooth cpu priority, if your app dont need real-time using this will be good, defaults to `True`, optional, bool type.
 - `ionice` Use a smooth I/O priority, I/O Nice may delay I/O Operations, not recommended on user-facing GUI!, recommended leaving it as `False`!, unless you know what you are doing, defaults to `False`, optional, bool type.
 - `cpulimit` Use a cpu max limit, if your app dont need real-time using this will be good,
-its a percentage from the minimum `9` to maximum of your CPU cores multiplied by 100%,
+its a percentage from the minimum `5` to maximum of your CPU cores multiplied by 100%,
 meaning if you have 8 Cores, the maximum is 800%, 800% means 8 Cores at 100%,
 100% means 1 Core at 100%, `0` means is Disabled and not used, defaults to `0`,
 `cpulimit` may delay Processing Operations, not recommended on user-facing GUI!,
