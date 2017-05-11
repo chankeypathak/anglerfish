@@ -34,7 +34,7 @@ def log_exception():
     stack.reverse()
     traceback.print_exc()
     for frame in stack:
-        if frame.f_code.co_name in unfriendly_names.keys():
+        if frame.f_code.co_name in set(unfriendly_names.keys()):
             fun = unfriendly_names[frame.f_code.co_name]
         else:
             fun = "Function {0}()".format(frame.f_code.co_name)
