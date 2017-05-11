@@ -15,7 +15,7 @@ def typecheck(f):
         _type, is_ok = None, isinstance(tipe, (type, tuple, type(None)))
         if is_ok:  # Annotations can be Type or Tuple or None
             _type = tipe if isinstance(tipe, tuple) else tuple((tipe, ))
-            if None in _type:  # if None on tuple replace with type(None)
+            if None in set(_type):  # if None on tuple replace with type(None)
                 _type = tuple([_ if _ is not None else type(_) for _ in _type])
         return _type, is_ok
 
@@ -24,7 +24,7 @@ def typecheck(f):
         msg = "Type check error: {0} must be {1} but is {2} on function {3}()."
         notations, f_name = tuple(f.__annotations__.keys()), f.__code__.co_name
         for i, name in enumerate(f.__code__.co_varnames):
-            if name not in notations:
+            if name not in set(notations):
                 continue  # this arg name has no annotation then skip it.
             _type, is_ok = _check_annotations(f.__annotations__.get(name))
             if is_ok:  # Force to tuple
