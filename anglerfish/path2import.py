@@ -35,7 +35,7 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     else:
         try:
             name = name or os.path.splitext(os.path.basename(pat))[0]
-            if check_namespace and name in globals():
+            if check_namespace and name in set(globals().keys()):
                 e = "Module {0} already exist on global namespace".format(name)
                 if not ignore_exceptions:
                     raise NamespaceConflictError(e)
