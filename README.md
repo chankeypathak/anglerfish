@@ -2199,7 +2199,7 @@ easy to parse with standard pattern,not crypto secure but useful for checksum,
 is more human friendly than SHA512 checksum and its builtin on the filename,
 Adler32 is standard on all ZIP files and its builtin on Python std lib.
 The Checksum operation is `hex( zlib.adler32(data) )`.
-A standard pattern of a Check and a Sum `✔+` is appended to easy parse checksums from filenames.
+A standard pattern of a **Check** and a **Sum** `✔+` is appended to easy parse checksums from filenames.
 I do this tired of people not using SHA512 on 1 separate txt file for checksum,
 this not require user command line skills to check the checksum, its automagic.
 
@@ -2210,10 +2210,11 @@ set to `True` to update existing checksums, defaults to `False`, bool type, opti
 
 **Keyword Arguments:** None.
 
-**Returns:** `True` if checksum is Ok and file integrity is Ok.
-`False` if checksum is **NOT** Ok and file integrity is **NOT** Ok.
-New filename path string is the checksum has been just created.
-New filename path string is the checksum has been just updated.
+**Returns:**
+- `True` if checksum is Ok and file integrity is Ok.
+- `False` if checksum is **NOT** Ok and file integrity is **NOT** Ok.
+- New filename path string is the checksum has been just created.
+- New filename path string is the checksum has been just updated.
 
 **Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_autochecksum.py
 
