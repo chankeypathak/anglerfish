@@ -1529,11 +1529,11 @@ True
 
 **Description:** Set process I/O and CPU priority. Requires `ionice` and `cpulimit` installed on the system.
 If `ionice` or `cpulimit` are Not installed on the system its usage is ignored.
-Nice is very safe to use, and its Enabled by default, no performance hit.
-IONice is NOT safe to use, and its Disabled by default, big performance hit.
-CPULimit is safe to use, its Disabled by default, almost no performance hit depending on the value passed.
-If your App has a GUI updating on real-time then `ionice` and `cpulimit` are probably not recommended.
-If your App is a background, headless, CLI, slow-running process then `ionice` and `cpulimit` are recommended.
+- Nice is very safe to use, and its Enabled by default, no performance hit.
+- IONice is NOT safe to use, and its Disabled by default, big performance hit.
+- CPULimit is safe to use, its Disabled by default, almost no performance hit depending on the value passed.
+- If your App has a GUI updating on real-time then `ionice` and `cpulimit` are probably not recommended.
+- If your App is a background, headless, CLI, slow-running process then `ionice` and `cpulimit` are recommended.
 The purpose of this is to make your App very lightweight, dont eat battery, cpu, etc. freeing up more resources on the system.
 
 **Arguments:**
