@@ -890,38 +890,6 @@ This is an anglerfish.ChainableFuture demo using ChainableFuture.then() !!!.
 
 
 
-##### env2globals
-<details>
-
-`anglerfish.env2globals(pattern: str)`
-
-**Description:** Auto add ENV environtment variables starting with `PY_` in upper case to python globals dict.
-
-**Arguments:** `pattern` the pattern to select which variables to add, default to `PY_`
-
-**Keyword Arguments:** None.
-
-**Returns:** `True` if everything is Ok, bool type.
-
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/env2globals.py
-
-| State              | OS          | Description |
-| ------------------ |:-----------:| -----------:|
-| :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Untested    |
-| :question:         | **Windows** | Untested    |
-
-**Usage Example:**
-
-```python
->>> from anglerfish import env2globals
->>> env2globals()
-True
-```
-</details>
-
-
-
 ##### html2ebook
 <details>
 
@@ -2302,6 +2270,7 @@ pip install anglerfish
 - https://github.com/shazow/unstdlib.py#unstandard-library-for-python
 - https://github.com/hynek/attrs#attrs-attributes-without-boilerplate
 - https://github.com/ssato/python-anyconfig#python-anyconfig
+- https://github.com/theskumar/python-dotenv
 - https://github.com/dbader/schedule#usage
 - https://github.com/msiemens/tinydb#example-code
 - https://github.com/jsonpickle/jsonpickle#jsonpickle
