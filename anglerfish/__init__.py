@@ -48,7 +48,6 @@ from anglerfish.set_terminal_title import set_terminal_title  # noqa
 from anglerfish.bytes2human import bytes2human  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
 from anglerfish.seconds2human import seconds2human, timedelta2human  # noqa
-from anglerfish.env2globals import env2globals  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.get_free_port import get_free_port  # noqa
@@ -95,7 +94,7 @@ __email__ = ' juancarlospaco@gmail.com '
 __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
-    'beep', 'bytes2human', 'check_encoding', 'check_folder', 'env2globals',
+    'beep', 'bytes2human', 'check_encoding', 'check_folder',
     'get_clipboard', 'get_free_port', 'app_is_ready',
     'get_autochecksum', 'autochecksum',  # Functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
