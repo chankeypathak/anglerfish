@@ -19,7 +19,7 @@ import pathlib
 from zlib import adler32
 
 
-# _REGEX = re.compile(r"(.✔\+)([\da-f]{6})", re.I)  # (.✔+)(6 Hex char)8 total
+# _REGEX = re.compile(r"(.✔\+)([\da-f])", re.I)  # (.✔+)(6 Hex char)8 total
 _STANDARD_PATTERN = ".✔+"  # (check sum) use this to signal a selfchecksum
 
 
