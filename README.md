@@ -2275,6 +2275,8 @@ pip install anglerfish
 - https://github.com/msiemens/tinydb#example-code
 - https://github.com/jsonpickle/jsonpickle#jsonpickle
 - https://github.com/theodox/spelchek#spelchek
+- https://github.com/amoffat/sh
+- https://github.com/pybuilder/pybuilder#pybuilder
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
 
 
