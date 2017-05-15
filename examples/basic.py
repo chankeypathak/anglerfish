@@ -263,12 +263,12 @@ print(new_file)
 print(autochecksum(new_file))
 
 
-# print("Running anglerfish.url2path()")
+print("Running anglerfish.url2path()")
 # URL = 'http://ports.ubuntu.com/ubuntu-ports/dists/zesty/main/installer-arm64/current/images/netboot/mini.iso'
-# URL = "http://www.nasa.gov/images/content/607800main_kepler1200_1600-1200.jpg"
+URL = "http://www.nasa.gov/images/content/607800main_kepler1200_1600-1200.jpg"
 # URL = "http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso"
-# print(URL)
-# print(url2path(URL, force_concurrent=True, name_from_url=True, checksum=True))
+print(URL)
+print(url2path(URL, force_concurrent=True, name_from_url=True, checksum=True))
 
 
 print("Printing globals() keys...")
