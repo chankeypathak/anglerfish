@@ -82,6 +82,7 @@ from anglerfish.make_datauri import DataURI, img2webp  # noqa
 from anglerfish.get_human_datetime import get_human_datetime  # noqa
 from anglerfish.make_async import Sync2Async  # noqa
 from anglerfish.make_autochecksum import get_autochecksum, autochecksum  # noqa
+from anglerfish.url2path import url2path  # noqa
 
 
 ##############################################################################
@@ -95,7 +96,7 @@ __url__ = 'https://github.com/juancarlospaco/anglerfish'
 __all__ = (
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder',
-    'get_clipboard', 'get_free_port', 'app_is_ready',
+    'get_clipboard', 'get_free_port', 'app_is_ready', 'url2path',
     'get_autochecksum', 'autochecksum',  # Functions.
     'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
