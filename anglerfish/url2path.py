@@ -5,14 +5,14 @@
 """Download accelerator with multiple concurrent downloads for 1 file."""
 
 
+import logging as log
 import os
 import ssl
 import threading
 
 from datetime import datetime
 from tempfile import NamedTemporaryFile
-from urllib.request import urlopen, Request
-import logging as log
+from urllib.request import Request, urlopen
 
 try:
     from make_autochecksum import autochecksum
