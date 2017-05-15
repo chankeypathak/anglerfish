@@ -2166,8 +2166,6 @@ but it `await` a `Future` result.
 
 
 
-
-
 ##### autochecksum
 <details>
 
@@ -2226,6 +2224,83 @@ False
 True
 >>> open("example.✔+5ac01cf.txt").read()
 "Test."
+```
+</details>
+
+
+
+##### url2path
+<details>
+
+`anglerfish.url2path(url, data=None, timeout=None, cafile=None, capath=None, filename=None, suffix=None, name_from_url=False, concurrent_downloads=5, force_concurrent=False, checksum=False)`
+
+**Description:** Take an URL or Path filename, return path if its not an URL,
+download to a temporary file and return filename path if its an URL,
+use multiple async concurrent multi-threaded multi-segment binary downloads for the same file,
+as many other **Download Accelerators** (eg. Aria, Aria2C, Axel, Flareget, etc),
+it can try to determine the filename from the URL, use a temporary file, or accept an argument one,
+it can automatically determine to use multiple downloads based on file sizes,
+it will use a single normal download if its faster that way, you can force to be concurrent too,
+it can automagically generate a checksum for the file using `anglerfish.autochecksum()`,
+will Not fail if the Certificate is self-signed, etc, making it ideal for dev/test envs,
+does Not depend on `requests`, is faster than `requests` download, not meant as `requests` replacement,
+if you pass as argument a file path instead of an HTTP url it will pass thru and return the same file path,
+if the file is small and the download very quick it will be almost silent,
+if the file is big and the download takes awhile it will have very detailed log,
+this is also designed to be able to use an URL as a path filename on command line arguments.
+
+
+**Arguments:**
+- `url`: URL or Path, will download to file or pass thru if its already a path, will always return a path, string type, required.
+- `data`: data for `urlopen()`, pass thru to `urlopen()`, optional, see `urlopen()` documentation.
+- `timeout`: Timeout on integer for the download, defaults to `None`, integer type, optional.
+- `cafile`: `cafile` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
+- `capath`: `capath` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
+- `filename`: Path, will download remote URL to this file path, will always return this path, defaults to `None`, uses a temporary file if set to `None`, string type, optional.
+- `suffix`: File suffix, defaults to `None`, string type, optional.
+- `name_from_url`: Try to determine the file name from the URL, uses `url.split('/')[-1]`, defaults to `False`, bool type, optional.
+- `concurrent_downloads`: How many concurrent downloads to use to speed up, defaults to `5`, minimum is `2`, maximum is `10`, integer type, optional.
+- `force_concurrent`: Force to be concurrent even if its not needed, it can make downloads slower if the file is small, defaults to `False`, bool type, optional.
+- `checksum`: Automatically generate a checksum for the file, uses `anglerfish.autochecksum()`, defaults to `False`, bool type, optional.
+
+**Keyword Arguments:** None.
+
+**Returns:** Filename path, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/url2path.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+>>> from anglerfish import url2path
+>>> url2path("example.txt")
+"example.txt"
+>>> url2path("http://example.com/example.txt", suffix="txt")
+"angler_dkj3423.txt"
+>>> url2path("http://example.com/example.iso", force_concurrent=True, name_from_url=True)
+Angler download accelerator start.
+From: http://example.com/example.iso
+To: example.iso
+Time: 2017-05-15 14:38:26-03:00 (2017-05-15 14:38:26.150302).
+27 Megabytes(28551168Bytes) download
+Using 5 async concurrent downloads for 1 file
+Thread 0 is downloading bytes=0-5710234
+Thread 1 is downloading bytes=5710235-11420467
+Thread 2 is downloading bytes=11420468-17130701
+Thread 3 is downloading bytes=17130702-22840934
+Thread 4 is downloading bytes=22840935-28551168
+Downloaded 5 binary data chunks total.
+Finished writing downloaded output file: example.iso
+Size:27 Megabytes (28551168 Bytes)
+Time: 44 Seconds (0:00:44.837995).
+Finished:2017-05-15 14:39:10-03:00 (2017-05-15 14:39:10.989296)
+"example.iso"
 ```
 </details>
 
