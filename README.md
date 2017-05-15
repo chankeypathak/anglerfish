@@ -2257,11 +2257,11 @@ this is also designed to be able to use an URL as a path filename on command lin
 - `cafile`: `cafile` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
 - `capath`: `capath` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
 - `filename`: Path, will download remote URL to this file path, will always return this path, defaults to `None`, uses a temporary file if set to `None`, string type, optional.
-- `suffix`: File suffix, defaults to `None`, string type, optional.
+- `suffix`: File suffix, a file extension, defaults to `None`, string type, optional.
 - `name_from_url`: Try to determine the file name from the URL, uses `url.split('/')[-1]`, defaults to `False`, bool type, optional.
-- `concurrent_downloads`: How many concurrent downloads to use to speed up, defaults to `5`, minimum is `2`, maximum is `10`, integer type, optional.
-- `force_concurrent`: Force to be concurrent even if its not needed, it can make downloads slower if the file is small, defaults to `False`, bool type, optional.
-- `checksum`: Automatically generate a checksum for the file, uses `anglerfish.autochecksum()`, defaults to `False`, bool type, optional.
+- `concurrent_downloads`: How many concurrent downloads to use to speed up, defaults to `5`, minimum is `2`, maximum is `10`, some servers tend to cut the connection for more than 10 connections per file, integer type, optional.
+- `force_concurrent`: Force to be concurrent even if its not needed, it can make downloads slower if the file is small, if set to `False` it will try to automatically determine the best based on file size, defaults to `False`, bool type, optional.
+- `checksum`: Automatically generate a checksum for the file, uses `anglerfish.autochecksum()`, this checksum is super fast to calculate, see `anglerfish.autochecksum()` documentation, defaults to `False`, bool type, optional.
 
 **Keyword Arguments:** None.
 
