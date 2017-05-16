@@ -2353,6 +2353,7 @@ pip install anglerfish
 - https://github.com/amoffat/sh
 - https://github.com/pybuilder/pybuilder#pybuilder
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
+- https://github.com/JosephSalisbury/python-bittorrent#python-bittorent
 
 
 # Coding Style Guide:
