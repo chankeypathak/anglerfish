@@ -12,8 +12,8 @@ from getpass import getuser
 from uuid import uuid4
 
 try:
-    from stealth2string import stealth2string
-    from get_human_datetime import get_human_datetime
+    from .stealth2string import stealth2string
+    from .get_human_datetime import get_human_datetime
 except ImportError:
     from anglerfish import stealth2string
     from anglerfish import get_human_datetime
