@@ -52,11 +52,6 @@ def make_notification(title, message="", name="", icon="", timeout=3000):
                   "--text=" + title + message)
         return not bool(
             run(comand, timeout=timeout // 1000 + 1, shell=True).returncode)
-    elif which("xmessage"):  # This one is Ugly, but I hope you never get here.
-        log.warning("Sending Notification message via XMessage command.")
-        comand = (which("xmessage"), "-center", title + message)
-        return not bool(
-            run(comand, timeout=timeout // 1000 + 1, shell=True).returncode)
     else:  # Windows and Mac dont have API for that, complain to them.
         log.warning("Sending Notifications not supported by this OS.")
         return False
