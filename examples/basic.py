@@ -259,7 +259,7 @@ print(number2currency(42))
 
 print("Running anglerfish.autochecksum()")
 new_file = autochecksum("test.zip")
-print(new_file)
+print("test.zip", new_file)
 print(autochecksum(new_file))
 
 
