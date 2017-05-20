@@ -16,11 +16,11 @@ from platform import platform, python_version
 def check_encoding(check_root=True):
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
     log.debug("Python {0} on {1}.".format(python_version(), platform()))
-    log.debug("STDIN Encoding: {0}.".format(sys.stdin.encoding))
-    log.debug("STDERR Encoding: {0}.".format(sys.stderr.encoding))
-    log.debug("STDOUT Encoding:{}".format(getattr(sys.stdout, "encoding", "")))
     log.debug("Default Encoding: {0}.".format(sys.getdefaultencoding()))
-    log.debug("FileSystem Encoding: {0}.".format(sys.getfilesystemencoding()))
+    log.debug("File System Encoding: {0}.".format(sys.getfilesystemencoding()))
+    log.debug("STDIN Encoding: {0}".format(getattr(sys.stdin, "encoding", "")))
+    log.debug("STDERR Encoding:{}".format(getattr(sys.stderr, "encoding", "")))
+    log.debug("STDOUT Encoding:{}".format(getattr(sys.stdout, "encoding", "")))
     log.debug("PYTHONIOENCODING Encoding: {0}.".format(
         os.environ.get("PYTHONIOENCODING", None)))
     os.environ["PYTHONIOENCODING"] = "utf-8"
