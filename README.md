@@ -2330,6 +2330,17 @@ pip install anglerfish
 
 - [Python 3.5+](https://www.python.org "Python Homepage")
 
+**Optional Suggested Extras:**
+
+These are fully optional but enable extra features (most Linux distros already have them).
+
+- `cpulimit` Control CPU usage on your App.
+- `libwebp` WebP support for images on Base64 Data-URIs.
+- `python-dbus` Freedesktop native notifications and hardware status support.
+- `xsel` Clipboard selection support.
+- `xclip` Clipboard copy and paste support.
+- `xorg-xset` Display support to turn OFF the display.
+
 
 # Config Helper ?
 
