@@ -2334,12 +2334,12 @@ pip install anglerfish
 
 These are fully optional but enable extra features (most Linux distros already have them).
 
-- `cpulimit` Control CPU usage on your App.
-- `libwebp` WebP support for images on Base64 Data-URIs.
-- `python-dbus` Freedesktop native notifications and hardware status support.
-- `xsel` Clipboard selection support.
-- `xclip` Clipboard copy and paste support.
-- `xorg-xset` Display support to turn OFF the display.
+- `cpulimit` Control CPU usage on your App, if not installed ignores CPU limits.
+- `libwebp` WebP support for images on Base64 Data-URIs, if not installed uses JPG.
+- `python-dbus` Freedesktop native notifications and hardware status support, if not installed no hardware status.
+- `xsel` Clipboard selection support, if not installed ignores clipboard selection.
+- `xclip` Clipboard copy and paste support, if not installed no clipboard support.
+- `xorg-xset` Display support to turn OFF the display, if not installed ignores display off call.
 
 
 # Config Helper ?
