@@ -55,11 +55,9 @@ def _get_size(url, data, timeout, cafile, capath):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, cafile=cafile, capath=capath,
                  context=_get_context()) as urly:
-        size = int(urly.headers.get('content-length', None))
-    if size:
-        log.info("{0}({1}Bytes) download".format(bytes2human(size, "m"), size))
-    else:
-        log.info("File size to download cant be determined from HTTP Headers.")
+        size = int(urly.headers.get('content-length', 0))
+    log.info("~{0} ({1} Bytes) Download.".format(bytes2human(size, "m"), size))
+    log.info("Full Headers data:\n{0}.\n".format(urly.headers))
     return size
 
 
