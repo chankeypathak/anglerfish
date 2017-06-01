@@ -39,11 +39,11 @@ def autochecksum(filepath, update=False):
         elif checksum not in filepath and not update:
             return False  # File SelfChecksum is Wrong, Integrity is NOT Ok.
         elif checksum not in filepath and update:
-            new_file = "{}{}{}".format(filepath.split(_STANDARD_PATTERN)[0],
-                                       checksum, ext)
+            new_file = "{0}{1}{2}".format(
+                filepath.split(_STANDARD_PATTERN)[0], checksum, ext)
             os.rename(filepath, new_file)
             return new_file  # File SelfChecksum is Wrong, Update selfchecksum.
     elif os.path.isfile(filepath):  # File has no selfchecksum,get selfchecksum
-        new_file =  "{}{}{}".format(filepath.replace(ext, ""), checksum, ext)
+        new_file = "{0}{1}{2}".format(filepath.replace(ext, ""), checksum, ext)
         os.rename(filepath, new_file)
         return new_file
