@@ -42,18 +42,19 @@ class TemplatePython(str):
     def render(__self, __namespace={}, mini=False, **kw):
         """Render template from __namespace dict + **kw added to namespace."""
         html = []
+        html_append = html.append  # Optimization.
         __namespace.update(kw, **globals())
 
         def spit(*args, **kwargs):
             for _ in args:
-                html.append(str(_))
+                html_append(str(_))
             if kwargs:
                 for _ in tuple(kwargs.items()):
-                    html.append(str(_))
+                    html_append(str(_))
 
         __namespace["spit"] = spit
         for is_code, value in __self.tokens:
-            eval(value, __namespace) if is_code else html.append(value)
+            eval(value, __namespace) if is_code else html_append(value)
         return re.sub('>\s+<', '> <', "".join(html)) if mini else "".join(html)
 
     __call__ = render  # shorthand
