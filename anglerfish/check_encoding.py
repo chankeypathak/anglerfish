@@ -13,16 +13,23 @@ from getpass import getuser
 from platform import platform, python_version
 
 
+_MSG = """Python {ver} on {so}.
+Default Encoding: {d}.
+STDIN   Encoding: {i}.
+STDERR  Encoding: {e}.
+STDOUT  Encoding: {o}.
+I/O File Systems Encoding: {f}.
+PYTHONIOENCODING Encoding: {io}.""".format(
+    ver=python_version(), so=platform(), d=sys.getdefaultencoding(),
+    f=sys.getfilesystemencoding(), i=getattr(sys.stdin, "encoding", "???"),
+    e=getattr(sys.stderr, "encoding", "???"),
+    o=getattr(sys.stdout, "encoding", "???"),
+    io=os.environ.get("PYTHONIOENCODING", "???"))
+
+
 def check_encoding(check_root=True):
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
-    log.debug("Python {0} on {1}.".format(python_version(), platform()))
-    log.debug("Default Encoding: {0}.".format(sys.getdefaultencoding()))
-    log.debug("File System Encoding: {0}.".format(sys.getfilesystemencoding()))
-    log.debug("STDIN Encoding: {0}".format(getattr(sys.stdin, "encoding", "")))
-    log.debug("STDERR Encoding:{}".format(getattr(sys.stderr, "encoding", "")))
-    log.debug("STDOUT Encoding:{}".format(getattr(sys.stdout, "encoding", "")))
-    log.debug("PYTHONIOENCODING Encoding: {0}.".format(
-        os.environ.get("PYTHONIOENCODING", None)))
+    log.debug(_MSG)
     os.environ["PYTHONIOENCODING"] = "utf-8"
     if sys.platform.startswith(("linux", "darwin")) and check_root:  # root
         if not os.geteuid():
