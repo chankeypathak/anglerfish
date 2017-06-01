@@ -19,16 +19,15 @@ from urllib.parse import quote_plus, unquote_plus
 from urllib.request import urlretrieve
 
 
-MIMETYPE_REGEX = r'[\w]+\/[\w\-\+\.]+'
-_MIMETYPE_RE = re.compile('^{0}$'.format(MIMETYPE_REGEX))
-CHARSET_REGEX = r'[\w\-\+\.]+'
-DATA_URI_REGEX = (
+_MIMETYPE_REGEX, _CHARSET_REGEX = r'[\w]+\/[\w\-\+\.]+', r'[\w\-\+\.]+'
+_MIMETYPE_RE = re.compile('^{0}$'.format(_MIMETYPE_REGEX))
+_DATA_URI_REGEX = (
     r'data:' +
-    r'(?P<mimetype>{0})?'.format(MIMETYPE_REGEX) +
-    r'(?:\;charset\=(?P<charset>{0}))?'.format(CHARSET_REGEX) +
+    r'(?P<mimetype>{0})?'.format(_MIMETYPE_REGEX) +
+    r'(?:\;charset\=(?P<charset>{0}))?'.format(_CHARSET_REGEX) +
     r'(?P<base64>\;base64)?' +
     r',(?P<data>.*)')
-_DATA_URI_RE = re.compile(r'^{0}$'.format(DATA_URI_REGEX), re.DOTALL)
+_DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
 _EXTENSIONS = (".png", ".jpeg", ".jpg", ".tiff")  # WEBP-to-WEBP is Ok tho.
 
 
@@ -56,9 +55,8 @@ class DataURI(str):
         parts = ['data:']
         if mimetype is not None:
             if not _MIMETYPE_RE.match(mimetype):
-                raise ValueError("Invalid mimetype: {0}.".format(mimetype))
-            parts.append(mimetype)
-            parts.append(';charset=utf-8')
+                raise ValueError("Invalid MIME Type: {0}.".format(mimetype))
+            parts.append(mimetype + ';charset=utf-8')
         if base64:
             parts.append(';base64')
             encoded_data = urlsafe_b64encode(data).decode("utf-8")
@@ -81,8 +79,8 @@ class DataURI(str):
     @classmethod
     def from_url(cls, url, base64=True, webp=True):
         """Make a new Data URI Base64 string from a remote HTTP URL."""
-        temp = NamedTemporaryFile(suffix=os.path.basename(url)).name
-        return cls.from_file(urlretrieve(url, temp)[0],
+        _temp = NamedTemporaryFile(suffix=os.path.basename(url)).name
+        return cls.from_file(urlretrieve(url, _temp)[0],
                              base64=base64, webp=webp)
 
     def __new__(cls, *args, **kwargs):
@@ -124,7 +122,7 @@ class DataURI(str):
         """Auxiliary property method for attributes and parsing."""
         match = _DATA_URI_RE.match(self)
         if not match:
-            raise ValueError("Not a valid Data URI: {0}".format(self))
+            raise ValueError("Invalid or malformed Data URI:{0}.".format(self))
         mimetype = match.group('mimetype') or None
         if match.group('base64'):
             data = urlsafe_b64decode(match.group('data').encode("utf-8"))
