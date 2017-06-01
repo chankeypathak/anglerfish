@@ -6,6 +6,7 @@
 
 
 import atexit
+import faulthandler
 import logging
 import os
 import sys
@@ -159,8 +160,8 @@ def __zip_old_logs(log_file, single_zip):
     return result
 
 
-def make_logger(name, when='midnight', single_zip=False,
-                log_file=None, backup_count=100, emoji=False):
+def make_logger(name, when='midnight', single_zip=False, log_file=None,
+                backup_count=100, emoji=False, crashandler=None):
     """Build and return a Logging Logger."""
     global log
     if not log_file:
@@ -237,4 +238,7 @@ def make_logger(name, when='midnight', single_zip=False,
             log.addHandler(handler)
             log.debug("Unix SysLog Server trying to Log to SysLog: " + adrs)
     log.debug("Logger created with Log file at: {0}.".format(log_file))
+    if crashandler:
+        log.debug("FaultHander ON Logs Fatal Errors to:{}".format(crashandler))
+        faulthandler.enable(crashandler)
     return log
