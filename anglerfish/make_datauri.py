@@ -11,6 +11,7 @@ import textwrap
 
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from mimetypes import guess_type
+from pathlib import Path
 from shutil import which
 from subprocess import run
 from tempfile import NamedTemporaryFile
@@ -71,10 +72,8 @@ class DataURI(str):
         filename = os.path.abspath(filename)
         if webp and which("cwebp") and filename.lower().endswith(_EXTENSIONS):
             filename = img2webp(filename)
-        mimetype = guess_type(filename, strict=False)[0]
-        with open(filename, "rb") as fp:
-            data = fp.read()
-        return cls.make(mimetype, base64, data)
+        return cls.make(guess_type(filename, strict=False)[0],
+                        base64, Path(filename).read_bytes())
 
     @classmethod
     def from_url(cls, url, base64=True, webp=True):
