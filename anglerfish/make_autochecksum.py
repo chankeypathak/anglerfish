@@ -14,8 +14,8 @@ this not require user command line skills to check the checksum, its automagic.
 
 
 import os
-import pathlib
 
+from pathlib import Path
 from zlib import adler32
 
 
@@ -24,26 +24,26 @@ _STANDARD_PATTERN = ".✔+"  # (check sum) use this to signal a selfchecksum
 
 
 def get_autochecksum(filepath):
-    with open(os.path.abspath(filepath), "rb") as fyle:
-        return _STANDARD_PATTERN + hex(adler32(fyle.read()) & 0xffffffff)[2:]
+    return _STANDARD_PATTERN + hex(adler32(
+        Path(filepath).read_bytes()) & 0xffffffff)[2:]
 
 
 def autochecksum(filepath, update=False):
-    ext = "".join([_ for _ in pathlib.Path(filepath).suffixes
-                   if _STANDARD_PATTERN not in _])
-    filepath = os.path.abspath(filepath)
-    checksum = get_autochecksum(filepath)  # Get a selfchecksum string.
-    if _STANDARD_PATTERN in filepath and os.path.isfile(filepath):
-        if checksum in filepath:
+    filepath = Path(filepath)
+    ext = "".join([_ for _ in filepath.suffixes if _STANDARD_PATTERN not in _])
+    checksum = get_autochecksum(filepath.as_posix())  # Get a selfchecksum str.
+    if _STANDARD_PATTERN in filepath.as_posix() and filepath.is_file():
+        if checksum in filepath.as_posix():
             return True  # File SelfChecksum is Ok, Integrity is Ok.
-        elif checksum not in filepath and not update:
+        elif checksum not in filepath.as_posix() and not update:
             return False  # File SelfChecksum is Wrong, Integrity is NOT Ok.
-        elif checksum not in filepath and update:
+        elif checksum not in filepath.as_posix() and update:
             new_file = "{0}{1}{2}".format(
-                filepath.split(_STANDARD_PATTERN)[0], checksum, ext)
-            os.rename(filepath, new_file)
-            return new_file  # File SelfChecksum is Wrong, Update selfchecksum.
-    elif os.path.isfile(filepath):  # File has no selfchecksum,get selfchecksum
-        new_file = "{0}{1}{2}".format(filepath.replace(ext, ""), checksum, ext)
-        os.rename(filepath, new_file)
+                filepath.as_posix().split(_STANDARD_PATTERN)[0], checksum, ext)
+            os.rename(filepath.as_posix(), new_file)
+            return new_file  # SelfChecksum Wrong,Update checksum.
+    elif filepath.is_file():  # File has no selfchecksum,get selfchecksum
+        new_file = "{0}{1}{2}".format(
+            filepath.as_posix().replace(ext, ""), checksum, ext)
+        os.rename(filepath.as_posix(), new_file)
         return new_file
