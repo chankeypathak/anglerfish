@@ -6,7 +6,6 @@
 
 
 import logging as log
-import os
 import sys
 
 from pathlib import Path
