@@ -49,6 +49,6 @@ def html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={}) -> str:
         epub.writestr('content.opf', INDEX_HTML.format(  # Metadata from meta
             manifest=mani, spine=spine, title=meta.get("title", fyle.title()),
             author=meta.get("author", getuser()), lang=meta.get("lang", "en"),
-            des=meta.get("des", fyle), copi=meta.get("copi", "CC-BY-NC-SA 4"),
+            des=meta.get("des", fyle), copi=meta.get("copi", "CC-BY-NC-SA 4+"),
             pub=meta.get("pub", "Python"), date=get_human_datetime()))
         return str(fyle)  # Return file name str of the new eBook *.epub file.
