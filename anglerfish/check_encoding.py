@@ -19,12 +19,19 @@ STDIN   Encoding: {i}.
 STDERR  Encoding: {e}.
 STDOUT  Encoding: {o}.
 I/O File Systems Encoding: {f}.
-PYTHONIOENCODING Encoding: {io}.""".format(
+PYTHONIOENCODING Encoding: {io}.
+PYTHONLEGACYWINDOWSFSENCODING Encoding: {leg}.
+PYTHONLEGACYWINDOWSSTDIO      Encoding: {wio}.
+Default File Systems Encode Errors:     {er}.""".format(
     ver=python_version(), so=platform(), d=sys.getdefaultencoding(),
     f=sys.getfilesystemencoding(), i=getattr(sys.stdin, "encoding", "???"),
     e=getattr(sys.stderr, "encoding", "???"),
     o=getattr(sys.stdout, "encoding", "???"),
-    io=os.environ.get("PYTHONIOENCODING", "???"))
+    io=os.environ.get("PYTHONIOENCODING", "???")
+    leg=os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???"),
+    wiog=os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???")
+    er=sys.getfilesystemencodeerrors() if hasattr(
+        sys, "getfilesystemencodeerrors") else "???")
 
 
 def check_encoding(check_root=True):
