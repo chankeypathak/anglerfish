@@ -16,6 +16,7 @@ import zipfile
 from logging.handlers import TimedRotatingFileHandler
 from copy import copy
 from datetime import datetime
+from pathlib import Path
 from tempfile import gettempdir
 from random import choice
 
@@ -125,24 +126,23 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 def __zip_old_logs(log_file, single_zip):
-    zip_file, filename = log_file + "s-old.zip", os.path.basename(log_file)
-    comment = "Compressed Unused Old Rotated Python Logs since: ~{0}.".format(
-        get_human_datetime())
-    log.debug(comment)
-    logs = [os.path.join(os.path.dirname(log_file), _)
-            for _ in os.listdir(os.path.dirname(log_file))
-            if ".log." in _ and not _.endswith(".zip") and filename in _]
+    zf = Path(log_file.as_posix() + "s-old.zip")
+    comment = "ZIP Old Rotated Logs since: ~{0}.".format(get_human_datetime())
+    log.debug("Compressing to {0} ({0!r}). {1}".format(log_file, comment))
+    logs = [os.path.join(log_file.parent.as_posix(), _)
+            for _ in os.listdir(log_file.parent.as_posix())
+            if ".log." in _ and not _.endswith(".zip") and log_file.name in _]
     if single_zip:  # If 1 ZIP for all Logs, put all *.log inside 1 *.zip
-        with zipfile.ZipFile(zip_file, 'a', zipfile.ZIP_DEFLATED) as log_zip:
-            log_zip.debug = 3  # Log ZIP inner working,and comment with time
-            log_zip.comment = bytes(comment, encoding="utf-8")  # add a comment
+        with zipfile.ZipFile(zf.as_posix(), 'a', zipfile.ZIP_DEFLATED) as lzip:
+            lzip.debug = 3  # Log ZIP inner working,and comment with time
+            lzip.comment = bytes(comment, encoding="utf-8")  # add a comment
             for fyle in logs:
                 try:
-                    log_zip.write(fyle, os.path.basename(fyle))
+                    lzip.write(fyle, os.path.basename(fyle))
                     os.remove(fyle)
                 except Exception:
                     pass
-            log_zip.printdir()
+            lzip.printdir()
     else:  # If not 1 ZIP, put 1 *.log inside 1 *.zip, multiple zips
         for fyle in logs:
             newzip = fyle + ".zip"
@@ -155,7 +155,7 @@ def __zip_old_logs(log_file, single_zip):
                 except Exception:
                     pass
                 # log_zip.printdir()
-    result = zip_file if single_zip else tuple([_ + ".zip" for _ in logs])
+    result = zf.as_posix() if single_zip else tuple([_ + ".zip" for _ in logs])
     log.debug(result)
     return result
 
@@ -165,9 +165,9 @@ def make_logger(name, when='midnight', single_zip=False, log_file=None,
     """Build and return a Logging Logger."""
     global log
     if not log_file:
-        log_file = os.path.join(gettempdir(), name.lower().strip() + ".log")
+        log_file = gettempdir() / Path(name.lower().strip() + ".log")
     atexit.register(__zip_old_logs, log_file, single_zip)  # ZIP Old Logs
-    hand = TimedRotatingFileHandler(log_file, when=when,
+    hand = TimedRotatingFileHandler(log_file.as_posix(), when=when,
                                     backupCount=backup_count, encoding="utf-8")
     hand.setLevel(-1)
     _fmt = ("%(asctime)s %(levelname)s: "
@@ -225,20 +225,20 @@ def make_logger(name, when='midnight', single_zip=False, log_file=None,
             logging.StreamHandler.emit)
 
     log.addHandler(logging.StreamHandler(sys.stderr))
-    if os.path.exists("/dev/log") or os.path.exists("/var/run/syslog"):
+    if Path("/dev/log").exists() or Path("/var/run/syslog").exists():
         is_linux = sys.platform.startswith("linux")
-        adrs = "/dev/log" if is_linux else "/var/run/syslog"
+        adrs = Path("/dev/log" if is_linux else "/var/run/syslog")
         try:
-            handler = logging.handlers.SysLogHandler(address=adrs)
+            handler = logging.handlers.SysLogHandler(address=str(adrs))
             handler.setFormatter(logging.Formatter(
                 fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
         except Exception:
-            log.debug("Unix SysLog Server not found,ignore Logging to SysLog")
+            log.debug("Unix SysLog Server not found,ignore Logging to SysLog.")
         else:
             log.addHandler(handler)
-            log.debug("Unix SysLog Server trying to Log to SysLog: " + adrs)
-    log.debug("Logger created with Log file at: {0}.".format(log_file))
+            log.debug("Unix SysLog Server Logs to: {0}  ({0!r}).".format(adrs))
+    log.debug("Logger created with Log file at: {0} ({0!r}).".format(log_file))
     if crashandler:
-        log.debug("FaultHander ON Logs Fatal Errors to:{}".format(crashandler))
+        log.debug("FaultHander ON,Logs Fatal Errors to:{}".format(crashandler))
         faulthandler.enable(crashandler)
     return log
