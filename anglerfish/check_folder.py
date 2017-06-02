@@ -8,31 +8,37 @@
 import logging as log
 import os
 
+from pathlib import Path
 from shutil import disk_usage
 
+try:
+    from anglerfish.bytes2human import bytes2human
+except ImportError:
+    from anglerfish import bytes2human
 
-def check_folder(folder_to_check=os.path.expanduser("~"), check_space=1):
+
+def check_folder(folder_to_check=Path.home().as_posix(), check_space=1):
     """Check working folder,from argument,for everything that can go wrong."""
-    folder_to_check = os.path.abspath(folder_to_check)  # More Safe on WinOS
-    log.debug("Checking the Working Folder: '{0}'".format(folder_to_check))
-    if not isinstance(folder_to_check, str):  # What if folder is not a string.
-        log.critical("Folder {0} is not String type!.".format(folder_to_check))
+    folder = Path(str(folder_to_check))
+    m = "Folder {0} ({0!r}) free space {1} ({2} Bytes) of Minimum {3} GigaByte"
+    log.debug("Checking Working Folder: {0} ({0!r}).".format(folder))
+    if not folder.is_dir():  # What if folder not a folder.
+        log.critical("Folder does not exist: {0} ({0!r}).".format(folder))
         return False
-    elif not os.path.isdir(folder_to_check):  # What if folder is not a folder.
-        log.critical("Folder {0} does not exist!.".format(folder_to_check))
+    elif not os.access(folder.as_posix(), os.R_OK):  # What if not Readable.
+        log.critical("Folder not readable: {0} ({0!r}).".format(folder))
         return False
-    elif not os.access(folder_to_check, os.R_OK):  # What if not Readable.
-        log.critical("Folder {0} not Readable !.".format(folder_to_check))
+    elif not os.access(folder.as_posix(), os.W_OK):  # What if not Writable.
+        log.critical("Folder not writable: {0} ({0!r}).".format(folder))
         return False
-    elif not os.access(folder_to_check, os.W_OK):  # What if not Writable.
-        log.critical("Folder {0} Not Writable !.".format(folder_to_check))
-        return False
-    elif disk_usage and os.path.exists(folder_to_check) and bool(check_space):
-        hdd = int(disk_usage(folder_to_check).free / 1024 / 1024 / 1024)
-        if hdd >= int(check_space):  # >= check_space Gb.
-            log.info("Folder Total Free Space: ~{0} GigaBytes.".format(hdd))
+    elif disk_usage and folder.exists() and bool(check_space):
+        hdd = int(disk_usage(folder.as_posix()).free)
+        if int(hdd / 1024 / 1024 / 1024) >= int(check_space):  # Check_space Gb
+            log.info(m.format(
+                folder, bytes2human(hdd, "g"), hdd, check_space))
             return True
         else:  # < check_space Gb.
-            log.critical("Total Free Space: {} GigaBytes.".format(check_space))
+            log.critical(m.format(
+                folder, bytes2human(hdd, "g"), hdd, check_space))
             return False
     return False
