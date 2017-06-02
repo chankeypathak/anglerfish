@@ -8,6 +8,8 @@
 import logging as log
 import os
 
+from pathlib import Path
+
 try:
     import dbus
 except ImportError:
@@ -29,15 +31,14 @@ def _get_prop(obj, iface, prop):
 def has_battery():
     """Check if we are connected to a AC power or Battery."""
     log.debug("Checking if connected to AC-Power or Battery.")
-    battery_path = "/sys/class/power_supply"  # is it universal on Linux ?
-    if not os.path.exists(battery_path):
+    battery_path = Path("/sys/class/power_supply")  # is universal on Linux ?
+    if not battery_path.exists():
         return False
-    for folder in os.listdir(battery_path):
-        type_path = os.path.join(battery_path, folder, 'type')
-        if os.path.exists(type_path):
-            with open(type_path) as power_file:
-                if power_file.read().lower().startswith('battery'):
-                    return True
+    for folder in os.listdir(battery_path.as_posix()):
+        type_path = battery_path / folder / 'type'
+        if type_path.is_file():
+            if type_path.read_text().lower().strip().startswith('battery'):
+                return True
     return False
 
 
