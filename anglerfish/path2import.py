@@ -10,6 +10,8 @@ import importlib.util
 import logging as log
 import os
 
+from pathlib import Path
+
 from .exceptions import NamespaceConflictError
 
 try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
@@ -24,23 +26,24 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     This is "as best as it can be" way to load a module from a file path string
     that I can find from the official Python Docs, for Python 3.5+.
     """
-    module = None
-    if not os.path.isfile(pat):
+    module, pat = None, Path(pat)
+    if not pat.is_file():
         if not ignore_exceptions:
             raise not_found_exception(
-                errno.ENOENT, os.strerror(errno.ENOENT), pat)
-    elif not os.access(pat, os.R_OK):
+                errno.ENOENT, os.strerror(errno.ENOENT), pat.as_posix())
+    elif not os.access(pat.as_posix(), os.R_OK):
         if not ignore_exceptions:
-            raise PermissionError(pat)
+            raise PermissionError(pat.as_posix())
     else:
         try:
-            name = name or os.path.splitext(os.path.basename(pat))[0]
+            name = name or pat.stem
             if check_namespace and name in set(globals().keys()):
                 e = "Module {0} already exist on global namespace".format(name)
                 if not ignore_exceptions:
                     raise NamespaceConflictError(e)
             else:
-                spec = importlib.util.spec_from_file_location(name, pat)
+                spec = importlib.util.spec_from_file_location(name,
+                                                              pat.as_posix())
                 if spec is None:
                     e = 'Failed to load module {0} from {1}.'.format(name, pat)
                     if not ignore_exceptions:
@@ -53,5 +56,5 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
                 raise
             module = None
         else:
-            log.debug("Loading Module {0} from path {1}.".format(name, pat))
+            log.debug("Loading Module {0} from {1} ({1!r}).".format(name, pat))
     return module
