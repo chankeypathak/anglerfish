@@ -29,7 +29,7 @@ Default File Systems Encode Errors:     {er}.""".format(
     o=getattr(sys.stdout, "encoding", "???"),
     io=os.environ.get("PYTHONIOENCODING", "???"),
     leg=os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???"),
-    wiog=os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???"),
+    wio=os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???"),
     er=sys.getfilesystemencodeerrors() if hasattr(
         sys, "getfilesystemencodeerrors") else "???")
 
