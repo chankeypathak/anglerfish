@@ -20,28 +20,32 @@ Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
 
 
 def __osx_clipboard():
+    pbcopy, pbpaste = which("pbcopy"), which("pbpaste")
+    os.environ["LANG"] = "en_US.utf-8"
+
     def copy_osx(text):
-        subprocess.run(["pbcopy"], timeout=9, input=text.encode('utf-8'))
+        subprocess.run([pbcopy], timeout=9, input=text.encode('utf-8'))
 
     def paste_osx():
-        os.environ["LANG"] = "en_US.utf-8"
-        return subprocess.run(["pbpaste"], stdout=subprocess.PIPE,
+        return subprocess.run([pbpaste], stdout=subprocess.PIPE,
                               timeout=9).stdout.decode("utf-8")
 
     return copy_osx, paste_osx
 
 
 def __xclip_clipboard():
+    xclip, xsel = which("xclip"), which("xsel")
+
     def copy_xclip(text):
-        subprocess.run(("xclip", "-selection", "clipboard"),
+        subprocess.run((xclip, "-selection", "clipboard"),
                        timeout=9, input=text.encode('utf-8'))
-        if which("xsel"):
-            subprocess.run(("xclip", "-selection", "primary"),
+        if xsel:
+            subprocess.run((xclip, "-selection", "primary"),
                            timeout=9, input=text.encode('utf-8'))
 
     def paste_xclip():
         return subprocess.run((
-            "xclip", "-selection", "primary" if which("xsel") else "clipboard",
+            xclip, "-selection", "primary" if xsel else "clipboard",
             "-o"), stdout=subprocess.PIPE, timeout=9).stdout.decode("utf-8")
 
     return copy_xclip, paste_xclip
@@ -82,13 +86,13 @@ def __determine_clipboard():
     elif sys.platform.startswith("linux") and which("xclip"):
         return __xclip_clipboard()
     else:
-        log.error("Install XClip and XSel Linux Packages at least.")
+        log.error("Install XClip & XSel Linux Packages for Clipboard support.")
         return None, None  # install Qt or GTK or Tk or XClip.
 
 
 def get_clipboard():
     """Crossplatform crossdesktop Clipboard."""
-    log.debug("Querying Copy/Paste Clipboard functionality.")
+    log.debug("Querying Copy / Paste Clipboard functionality from the OS.")
     global clipboard_copy, clipboard_paste
     clipboard_copy, clipboard_paste = None, None
     clipboard_copy, clipboard_paste = __determine_clipboard()
