@@ -9,6 +9,8 @@
 
 import re
 
+from pathlib import Path
+
 
 class TemplatePython(str):
 
@@ -21,7 +23,7 @@ class TemplatePython(str):
     @classmethod
     def from_file(cls, fl):
         """Load template from file.A str/file-like object supporting read()."""
-        return cls(str(open(fl).read() if isinstance(fl, str) else fl.read()))
+        return cls(Path(fl).read_text() if isinstance(fl, str) else fl.read())
 
     def compile(self, t):
         """Parse and Compile all Tokens found on the template string t."""
