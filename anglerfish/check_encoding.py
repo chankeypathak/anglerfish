@@ -13,13 +13,10 @@ from getpass import getuser
 from platform import platform, python_version
 
 
-_MSG = """Python {ver} on {so}.
-Default Encoding: {d}.
-STDIN   Encoding: {i}.
-STDERR  Encoding: {e}.
-STDOUT  Encoding: {o}.
-I/O File Systems Encoding: {f}.
-PYTHONIOENCODING Encoding: {io}.
+_MSG = """Python {ver} on {so}.\nChecking All System Encodings...
+Default Encoding: {d}.\nSTDIN   Encoding: {i}.
+STDERR  Encoding: {e}.\nSTDOUT  Encoding: {o}.
+I/O File Systems Encoding: {f}.\nPYTHONIOENCODING Encoding: {io}.
 PYTHONLEGACYWINDOWSFSENCODING Encoding: {leg}.
 PYTHONLEGACYWINDOWSSTDIO      Encoding: {wio}.
 Default File Systems Encode Errors:     {er}.""".format(
