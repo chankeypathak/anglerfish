@@ -2376,6 +2376,7 @@ These are fully optional but enable extra features (most Linux distros already h
 # Name convention: Obvius Names
 
 - For names we use: `get_*`, `set_*`, `check_*`, `make_*`, `is_*`, `has_*` and `*2*`.
+- Packages can have nice and cool names, but its classes, functions and methods must have obvious names.
 
 
 # Tests
