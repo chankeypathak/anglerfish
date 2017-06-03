@@ -55,10 +55,6 @@ print("Running anglerfish.app_is_ready()")
 app_is_ready(start_time)
 
 
-print("Running anglerfish.get_or_set_temp_folder()")
-get_temp_folder("test")
-
-
 print("Running anglerfish.get_clipboard()")
 clipboard_copy, clipboard_paste = get_clipboard()  # FIXME
 clipboard_copy("42")
