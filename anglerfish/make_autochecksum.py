@@ -19,8 +19,7 @@ from pathlib import Path
 from zlib import adler32
 
 
-# _REGEX = re.compile(r"(.✔\+)([\da-f])", re.I)  # (.✔+)(6 Hex char)8 total
-_STANDARD_PATTERN = ".✔+"  # (check sum) use this to signal a selfchecksum
+_STANDARD_PATTERN = ".✔"  # (check mark) use this to signal a selfchecksum
 
 
 def get_autochecksum(filepath):
