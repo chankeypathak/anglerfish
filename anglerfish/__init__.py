@@ -45,7 +45,6 @@ from anglerfish.make_watch import watch  # noqa
 from anglerfish.set_desktop_launcher import set_desktop_launcher  # noqa
 from anglerfish.set_process_name import set_process_name  # noqa
 from anglerfish.set_single_instance import set_single_instance  # noqa
-from anglerfish.get_temp_folder import get_temp_folder  # noqa
 from anglerfish.set_terminal_title import set_terminal_title  # noqa
 from anglerfish.bytes2human import bytes2human  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
@@ -85,6 +84,7 @@ from anglerfish.get_human_datetime import get_human_datetime  # noqa
 from anglerfish.make_async import Sync2Async  # noqa
 from anglerfish.make_autochecksum import get_autochecksum, autochecksum  # noqa
 from anglerfish.url2path import url2path  # noqa
+from anglerfish.make_tinyslation import tinyslation  # noqa
 
 
 ##############################################################################
@@ -100,7 +100,7 @@ __all__ = (
     'beep', 'bytes2human', 'check_encoding', 'check_folder',
     'get_clipboard', 'get_free_port', 'app_is_ready', 'url2path',
     'get_autochecksum', 'autochecksum',  # Functions.
-    'get_temp_folder', 'get_zip_comment', 'has_battery', 'html2ebook',
+    'get_zip_comment', 'has_battery', 'html2ebook',
     'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
     'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',
     'multiprocessed', 'on_battery', 'path2import', 'pdb_on_exception',
@@ -114,7 +114,7 @@ __all__ = (
     'get_random_pastel_color', 'get_random_handwriting_font',
     'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
     'get_random_serif_font', 'get_random_font', 'DataURI', 'img2webp',
-    'get_human_datetime',
+    'get_human_datetime', 'tinyslation',
     'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
 

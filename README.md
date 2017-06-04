@@ -293,42 +293,6 @@ Querying Copy/Paste Clipboard functionality.
 
 
 
-##### get_temp_folder
-<details>
-
-`anglerfish.get_temp_folder(appname: str)`
-
-**Description:** Creates and returns a folder on the systems Temporary directory,
-creating it or not if needed, the folder will have the same name as the App passed as argument,
-it means to be a liittle more safe than just writing everything to the systems temp folder where simple name collisions can overwrite and loss data.
-
-**Arguments:** `appname` the name of your app.
-
-**Keyword Arguments:** None.
-
-**Returns:** string, full path to the apps temp folder.
-
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_temp_folder.py
-
-| State              | OS          | Description |
-| ------------------ |:-----------:| -----------:|
-| :white_check_mark: | **Linux**   | Works Ok    |
-| :white_check_mark: | **Os X**    | Works Ok    |
-| :white_check_mark: | **Windows** | Works Ok    |
-
-**Usage Example:**
-
-```python
->>> from anglerfish import get_temp_folder
->>> get_temp_folder("test")
-Temp folder for test is: /tmp/test.
-Creating new Temp folder: /tmp/test.
-'/tmp/test'
-```
-</details>
-
-
-
 ##### beep
 <details>
 
@@ -2301,6 +2265,70 @@ Size:27 Megabytes (28551168 Bytes)
 Time: 44 Seconds (0:00:44.837995).
 Finished:2017-05-15 14:39:10-03:00 (2017-05-15 14:39:10.989296)
 "example.iso"
+```
+</details>
+
+
+
+##### tinyslation
+<details>
+
+`anglerfish.tinyslation(s: str, to: str=getdefaultlocale()[0][:2], fm: str="en", falbck: dict={}, timeout: int=5)`
+
+**Description:**
+Tinyslation is smallest possible translation engine from Internet with fallback,
+it takes 1 string containing a word or a phrase of words of any length,
+`to` (eg. `"es"`) and `from` (eg. `"en"`) standard languages ISO Codes,
+and returns a translation from origin language to target language,
+an optional integer `timeout` on seconds can be provided,
+an optional dictionary `falbck` with `key:value` strings to use if translation fails,
+if translation and `falbck` dictionary both fail then the same string is returned.
+this conversion is fully free and legal to use for whatever you want.
+The request uses an empty string `""` for `"User-Agent"`, and Do Not Track.
+API has a Limit of 1.000 Words per Day, but in practice it works Ok even beyond that limit,
+I think is safe to work with it up to 1.000 Words per Day, and beyond that limit provide a fallback dictionary,
+or even on the worse case that everything fails strings will pass thru untouched.
+The service is based on user contributions, if you find a missing word feel free to add it yourself for free.
+This is not meant to replace manual translation.
+This is 100% Anonymous without Login, always uses SSL and does not require API Keys.
+This service does NOT connect to Google.
+
+**Arguments:**
+- `s`: A string containing a word or a phrase of words, string type, required.
+- `to`: Target language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to current default locale language uses `locale.getdefaultlocale()[0][:2]`, string type, required.
+- `fm`: Origin language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to English `"en"`, string type, required.
+- `timeout`: Timeout integer on seconds, defaults to `5`, integer type, optional.
+
+**Keyword Arguments:**
+- `falbck`: A Fallback dictionary containing words as `key:value` a word or a phrase of words, uses this is online translation fails if any, defaults to `{}`, dict type, optional.
+
+**Returns:** Translated string, string type.
+
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_tinyslation.py
+
+| State              | OS          | Description |
+| ------------------ |:-----------:| -----------:|
+| :white_check_mark: | **Linux**   | Works Ok    |
+| :white_check_mark: | **Os X**    | Works Ok    |
+| :white_check_mark: | **Windows** | Works Ok    |
+
+**Usage Example:**
+
+```python
+>>> from anglerfish import tinyslation
+>>> tinyslation("cute cat", "es")
+'lindo gato'
+>>> tinyslation("lindo gato", "en", "es")
+'cute cat'
+>>> tinyslation("cute cat", "it")
+'gatto carino'
+>>> tinyslation("cat beer wine eye hair skin computer", "es")
+'gato cervezas vino ojo pelo piel ordenador'
+>>>
+>>> # Fake a Gettext-like auto-translation:
+>>> _ = lambda s:  tinyslation(s, "es")
+>>> _("cute cat")
+'lindo gato'
 ```
 </details>
 
