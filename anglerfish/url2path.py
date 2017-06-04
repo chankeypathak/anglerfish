@@ -32,10 +32,10 @@ def _get_context():
     return _context
 
 
-def _download_simple(url, data, timeout, cafile, capath, filename):
+def _download_simple(url, data, timeout, filename):
     """Download without multiple concurrent downloads for the same file."""
-    with urlopen(url, data=data, timeout=timeout, cafile=cafile, capath=capath,
-                 context=_get_context()) as urly, open(filename, 'wb') as fyle:
+    with urlopen(url, data=data, timeout=timeout, context=_get_context()
+                 ) as urly, open(filename, 'wb') as fyle:
         fyle.write(urly.read())
         return filename
 
@@ -53,25 +53,22 @@ def _calculate_ranges(value, numsplits):
 
 def _get_size(url, data, timeout, cafile, capath):
     """Get the file Size in bytes from a remote URL."""
-    with urlopen(url, data=data, timeout=timeout, cafile=cafile, capath=capath,
-                 context=_get_context()) as urly:
-        size = int(urly.headers.get('content-length', 0))
+    with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
+        size = int(u.headers.get('content-length', 0))
     log.info("~{0} ({1} Bytes) Download.".format(bytes2human(size, "m"), size))
     log.info("Full Headers data:\n{0}.\n".format(urly.headers))
     return size
 
 
-def _download_a_chunk(idx, irange, dataDict, url,
-                      data, timeout, cafile, capath):
-    req = Request(url)
+def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
+    req = Request(url, headers={'User-Agent': '', 'DNT': 1})
     req.headers['Range'] = 'bytes={0}'.format(irange)
     print("Thread {0} is downloading {1}".format(idx, req.headers['Range']))
-    with urlopen(req, data=data, timeout=timeout, cafile=cafile, capath=capath,
-                 context=_get_context()) as urly:
-        dataDict[idx] = urly.read()
+    with urlopen(req, data=data, timeout=timeout, context=_get_context()) as u:
+        dataDict[idx] = u.read()
 
 
-def url2path(url, data=None, timeout=None, cafile=None, capath=None,
+def url2path(url, data=None, timeout=None,
              filename=None, suffix=None, name_from_url=False,
              concurrent_downloads=5, force_concurrent=False, checksum=False):
     if not url.lower().startswith(("https:", "http:", "ftps:", "ftp:")):
@@ -84,15 +81,13 @@ def url2path(url, data=None, timeout=None, cafile=None, capath=None,
     log.info("Angler download accelerator start.")
     log.info("From: {0}.\nTo: {1}.\nTime: {2} ({3}).".format(
         url, filename, get_human_datetime(start_time), start_time))
-    sizeInBytes = _get_size(url, data=data, timeout=timeout,
-                            cafile=cafile, capath=capath)
+    sizeInBytes = _get_size(url, data=data, timeout=timeout)
     # if sizeInBytes=0,Resume is not supported by server,use _download_simple()
     # if sizeInBytes < 1 Gigabytes,file is small,use _download_simple()
     if not int(sizeInBytes / 1024 / 1024 / 1024) >= 1 and not force_concurrent:
         log.info("Resume is Not supported by the server or file is too small.")
-        filename = _download_simple(
-            url, data=data, timeout=timeout,
-            cafile=cafile, capath=capath, filename=filename)
+        filename = _download_simple(url, data=data,
+                                    timeout=timeout, filename=filename)
         if checksum and autochecksum:
             log.info("Generating Anglers Auto-CheckSum for downloaded file.")
             filename = autochecksum(filename, update=True)
@@ -103,7 +98,7 @@ def url2path(url, data=None, timeout=None, cafile=None, capath=None,
     # multiple concurrent downloads for the same file.
     downloaders = [threading.Thread(
         target=_download_a_chunk,
-        args=(idx, irange, dataDict, url, data, timeout, cafile, capath), )
+        args=(idx, irange, dataDict, url, data, timeout), )
                    for idx, irange in enumerate(ranges)]
     for th in downloaders:
         th.start()
