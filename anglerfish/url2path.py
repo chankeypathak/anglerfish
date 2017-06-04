@@ -56,7 +56,7 @@ def _get_size(url, data, timeout, cafile, capath):
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
     log.info("~{0} ({1} Bytes) Download.".format(bytes2human(size, "m"), size))
-    log.info("Full Headers data:\n{0}.\n".format(urly.headers))
+    log.info("Full Headers data:\n{0}.\n".format(u.headers))
     return size
 
 
