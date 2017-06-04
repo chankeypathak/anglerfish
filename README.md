@@ -2401,9 +2401,10 @@ These are fully optional but enable extra features (most Linux distros already h
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
-# Name convention
+# Name convention: Obvius Names
 
 - For names we use: `get_*`, `set_*`, `check_*`, `make_*`, `is_*`, `has_*` and `*2*`.
+- Packages can have nice and cool names, but its classes, functions and methods must have obvious names.
 
 
 # Tests
