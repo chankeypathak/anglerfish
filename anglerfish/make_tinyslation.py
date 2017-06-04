@@ -10,14 +10,14 @@ from locale import getdefaultlocale
 from json import loads
 
 
-def tinyslation(s: str, to: str=getdefaultlocale()[0][:2], fm="en",
-                falbck={}, timeout=5):
+def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",
+                fallback_dict={}, timeout=5):
     """Translate from internet via API from mymemory.translated.net,legally."""
     api = "https://mymemory.translated.net/api/get?q={st}&langpair={fm}|{to}"
-    req = request.Request(url=api.format(st=parse.quote(s), fm=fm, to=to),
+    req = request.Request(url=api.format(st=parse.quote(strin), fm=frm, to=to),
                           headers={'User-Agent': '', 'DNT': 1})  # DoNotTrack
     try:
         responze = request.urlopen(req, timeout=timeout).read().decode("utf-8")
         return loads(responze)['responseData']['translatedText']
     except Exception:
-        return falbck.get(s.lower().strip(), s)
+        return fallback_dict.get(strin.lower().strip(), strin)
