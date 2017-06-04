@@ -2273,15 +2273,15 @@ Finished:2017-05-15 14:39:10-03:00 (2017-05-15 14:39:10.989296)
 ##### tinyslation
 <details>
 
-`anglerfish.tinyslation(s: str, to: str=getdefaultlocale()[0][:2], fm: str="en", falbck: dict={}, timeout: int=5)`
+`anglerfish.tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm: str="en", fallback_dict: dict={}, timeout: int=5)`
 
 **Description:**
 Tinyslation is smallest possible translation engine from Internet with fallback,
 it takes 1 string containing a word or a phrase of words of any length,
-`to` (eg. `"es"`) and `from` (eg. `"en"`) standard languages ISO Codes,
+`to` (eg. `"es"`) and `frm` (eg. `"en"`) standard languages ISO Codes,
 and returns a translation from origin language to target language,
 an optional integer `timeout` on seconds can be provided,
-an optional dictionary `falbck` with `key:value` strings to use if translation fails,
+an optional dictionary `fallback_dict` with `key:value` strings to use if translation fails,
 if translation and `falbck` dictionary both fail then the same string is returned.
 this conversion is fully free and legal to use for whatever you want.
 The request uses an empty string `""` for `"User-Agent"`, and Do Not Track.
@@ -2294,13 +2294,13 @@ This is 100% Anonymous without Login, always uses SSL and does not require API K
 This service does NOT connect to Google.
 
 **Arguments:**
-- `s`: A string containing a word or a phrase of words, string type, required.
+- `strin`: A string containing a word or a phrase of words, string type, required.
 - `to`: Target language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to current default locale language uses `locale.getdefaultlocale()[0][:2]`, string type, required.
-- `fm`: Origin language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to English `"en"`, string type, required.
+- `frm`: Origin language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to English `"en"`, string type, required.
 - `timeout`: Timeout integer on seconds, defaults to `5`, integer type, optional.
 
 **Keyword Arguments:**
-- `falbck`: A Fallback dictionary containing words as `key:value` a word or a phrase of words, uses this is online translation fails if any, defaults to `{}`, dict type, optional.
+- `fallback_dict`: A Fallback dictionary containing words as `key:value` a word or a phrase of words, uses this is online translation fails if any, defaults to `{}`, dict type, optional.
 
 **Returns:** Translated string, string type.
 
