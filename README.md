@@ -1989,7 +1989,7 @@ True
 We also checked latest Google Guetzli,
 but it can freeze a system with 99% CPU usage for several minutes, crazy slow,
 and in the end it outputs equal or bigger files, it does not support JPG for Web,
-since Progressive RGB its not supported by design..
+since Progressive RGB its not supported by design.
 We also checked latest Mozillas MozJPEG,
 but in the end it outputs equal or bigger files,
 the only one that really makes a difference is WebP.
