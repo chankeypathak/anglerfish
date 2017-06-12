@@ -5,12 +5,12 @@
 """Anglerfish."""
 
 
-import atexit
 import faulthandler
 import logging
 import os
 import sys
 import signal
+import time
 import zipfile
 
 from logging.handlers import TimedRotatingFileHandler
@@ -130,8 +130,8 @@ _ZIP_LOG_COMMENT = """ZIP Compressed Checksummed Unused Old Rotated Python Logs
 From {pc}, {so}, Python {py} to {pat} ({pat!r}) at ~{tyme} ({tym2}).\n"""
 
 _LOG_FORMAT = (
-"%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
-"(%(thread)d) %(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
+    "%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
+    "(%(thread)d) %(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
 
 _DESCRIPTION = """Python Logger created with the following capabilities:
 - Timed Self-Rotating and FileSize Self-Rotating utf-8 plaint text Log files.
@@ -171,7 +171,7 @@ class _ZipRotator(object):
         log.debug(_ZIP_LOG_COMMENT)
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
-            if password and len(self.password):
+            if self.password and len(self.password):
                 log_zip.setpassword(self.password)
             log_zip.write(origin.read_bytes())
             log_zip.printdir()
@@ -292,5 +292,5 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     if crashandler:
         log.debug("FaultHander ON,Logs Fatal Errors to:{}".format(crashandler))
         faulthandler.enable(crashandler)
-    log.debug(_DESCRIPTION.format(log_file))
+    log.debug(_DESCRIPTION.format(filename))
     return log
