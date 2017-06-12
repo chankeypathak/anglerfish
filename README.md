@@ -1358,39 +1358,6 @@ True
 
 
 
-##### make_test_terminal_color
-<details>
-
-`anglerfish.make_test_terminal_color()`
-
-**Description:** Test the Terminal True-Color.
-Prints 3 lines corresponding to Red, Green, Blue from darkest to brightest on the Terminal.
-Does not Log anything to logger.
-
-**Arguments:** None.
-
-**Keyword Arguments:** None.
-
-**Returns:** None.
-
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/make_test_terminal_color.py
-
-| State              | OS          | Description |
-| ------------------ |:-----------:| -----------:|
-| :white_check_mark: | **Linux**   | Works Ok    |
-| :question:         | **Os X**    | Works Ok    |
-| :x:                | **Windows** | No API      |
-
-**Usage Example:**
-
-```python
->>> from anglerfish import make_test_terminal_color
->>> make_test_terminal_color()
-```
-</details>
-
-
-
 ##### get_public_ip
 <details>
 

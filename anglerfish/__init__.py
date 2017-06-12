@@ -64,7 +64,6 @@ from anglerfish.make_chainable_future import ChainableFuture  # noqa
 
 from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
-from anglerfish.make_test_terminal_color import make_test_terminal_color
 from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.stealth2string import stealth2string  # noqa
 from anglerfish.exceptions import AnglerfishException, NamespaceConflictError
@@ -109,7 +108,7 @@ __all__ = (
     'set_display_off', 'set_process_name', 'set_single_instance',
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
-    'make_test_terminal_color', 'string2stealth', 'stealth2string',
+    'string2stealth', 'stealth2string',
     'get_public_ip', 'is_online', 'set_process_priority', 'number2currency',
     'get_random_pastelight_color', 'get_random_pasteldark_color',
     'get_random_pastel_color', 'get_random_handwriting_font',
@@ -229,7 +228,6 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     # Colors and Emoji.
     if not sys.platform.startswith("win") and sys.stderr.isatty() and color:
         log.debug("Colored Logs on current Terminal enabled.")
-        make_test_terminal_color()
 
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
