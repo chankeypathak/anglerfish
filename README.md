@@ -1986,6 +1986,14 @@ True
 **Description:** Convert `*.png, *.jpeg, *.jpg, *.tiff` Images to WebP `*.webp`.
 `anglerfish.DataURI()` internally uses `anglerfish.img2webp()` for conversions.
 
+We also checked latest Google Guetzli,
+but it can freeze a system with 99% CPU usage for several minutes, crazy slow,
+and in the end it outputs equal or bigger files, it does not support JPG for Web,
+since Progressive RGB its not supported by design..
+We also checked latest Mozillas MozJPEG,
+but in the end it outputs equal or bigger files,
+the only one that really makes a difference is WebP.
+
 **Arguments:**
 - `image_path`: Full path string to input `*.png, *.jpeg, *.jpg, *.tiff` image,
 if image is not `*.png, *.jpeg, *.jpg, *.tiff` then the same image format and filename is returned,
