@@ -1991,7 +1991,7 @@ but it can freeze a system with 99% CPU usage for several minutes, crazy slow,
 and in the end it outputs equal or bigger files, it does not support JPG for Web,
 since Progressive RGB its not supported by design.
 We also checked latest Mozillas MozJPEG,
-but in the end it outputs equal or bigger files,
+but in the end it outputs equal files most of the time,
 the only one that really makes a difference is WebP.
 
 **Arguments:**
