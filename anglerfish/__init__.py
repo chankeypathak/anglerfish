@@ -208,11 +208,11 @@ def make_logger(name, when='midnight', filename=None, interval=1,
                 backupCount=100, encoding="utf-8", delay=False, utc=False,
                 atTime=None, level=-1, slog=True, stder=True, crashandler=None,
                 emoji=False, checksum=False, password=None, color=True,
-                maxMegaBytes=1):
+                maxMegaBytes=1, *args, **kwargs):
     """Build and return a Logging Logger."""
     global log
     if not filename:
-        filename = gettempdir() / Path(name.lower() + ".log").as_posix()
+        filename = str(gettempdir() / Path(name.lower() + ".log"))
     # Handler with Rotator and Renamer.
     handler = SizedTimedRotatingFileHandler(
         filename=filename, when=when, interval=interval, delay=False,

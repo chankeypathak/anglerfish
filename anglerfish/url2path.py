@@ -51,7 +51,7 @@ def _calculate_ranges(value, numsplits):
     return tuple(lst)
 
 
-def _get_size(url, data, timeout, cafile, capath):
+def _get_size(url, data, timeout):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
@@ -79,7 +79,7 @@ def url2path(url, data=None, timeout=None,
     if not filename:  # Create a temporary file as the filename.
         filename = NamedTemporaryFile(suffix=suffix, prefix="angler_").name
     log.info("Angler download accelerator start.")
-    log.info("From: {0}.\nTo: {1}.\nTime: {2} ({3}).".format(
+    log.info("From: {0}.\nTo:   {1}.\nTime: {2} ({3}).".format(
         url, filename, get_human_datetime(start_time), start_time))
     sizeInBytes = _get_size(url, data=data, timeout=timeout)
     # if sizeInBytes=0,Resume is not supported by server,use _download_simple()
@@ -115,6 +115,6 @@ def url2path(url, data=None, timeout=None,
     log.info("Downloaded {0} binary data chunks total.".format(len(dataDict)))
     log.info("Finished writing downloaded output file: {0}.".format(filename))
     log.info('Size:{0} ({1} Bytes)'.format(bytes2human(fl_size, "m"), fl_size))
-    log.info("Time: {0} ({1}).".format(timedelta2human(fl_time), fl_time))
+    log.info("Time:    {0} ({1}).".format(timedelta2human(fl_time), fl_time))
     log.info("Finished:{0} ({1})".format(get_human_datetime(), datetime.now()))
     return filename

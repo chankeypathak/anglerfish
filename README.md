@@ -205,12 +205,15 @@ Converting 3284902384 Bytes to G.
 ```python
 >>> from anglerfish import check_encoding
 >>> check_encoding()
-STDIN Encoding: UTF-8.
-STDERR Encoding: UTF-8.
-STDOUT Encoding: UTF-8.
 Default Encoding: utf-8.
-FileSystem Encoding: utf-8.
-PYTHONIOENCODING Encoding: utf-8.
+STDIN   Encoding: UTF-8.
+STDERR  Encoding: UTF-8.
+STDOUT  Encoding: UTF-8.
+I/O File Systems Encoding: utf-8.
+PYTHONIOENCODING Encoding: ???.
+PYTHONLEGACYWINDOWSFSENCODING Encoding: ???.
+PYTHONLEGACYWINDOWSSTDIO      Encoding: ???.
+Default File Systems Encode Errors:     surrogateescape.
 True
 ```
 </details>
