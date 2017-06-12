@@ -17,6 +17,7 @@ from logging.handlers import TimedRotatingFileHandler
 from copy import copy
 from datetime import datetime
 from pathlib import Path
+from platform import platform, python_version, node
 from tempfile import gettempdir
 from random import choice
 
@@ -90,7 +91,7 @@ from anglerfish.make_tinyslation import tinyslation  # noqa
 ##############################################################################
 
 
-__version__ = '2.5.0'
+__version__ = '2.7.5'
 __license__ = ' GPLv3+ LGPLv3+ '
 __author__ = ' Juan Carlos '
 __email__ = ' juancarlospaco@gmail.com '
@@ -125,61 +126,109 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 ##############################################################################
 
 
-def __zip_old_logs(log_file, single_zip):
-    zf = Path(log_file.as_posix() + "s-old.zip")
-    comment = "ZIP Old Rotated Logs since: ~{0}.".format(get_human_datetime())
-    log.debug("Compressing to {0} ({0!r}). {1}".format(log_file, comment))
-    logs = [os.path.join(log_file.parent.as_posix(), _)
-            for _ in os.listdir(log_file.parent.as_posix())
-            if ".log." in _ and not _.endswith(".zip") and log_file.name in _]
-    if single_zip:  # If 1 ZIP for all Logs, put all *.log inside 1 *.zip
-        with zipfile.ZipFile(zf.as_posix(), 'a', zipfile.ZIP_DEFLATED) as lzip:
-            lzip.debug = 3  # Log ZIP inner working,and comment with time
-            lzip.comment = bytes(comment, encoding="utf-8")  # add a comment
-            for fyle in logs:
-                try:
-                    lzip.write(fyle, os.path.basename(fyle))
-                    os.remove(fyle)
-                except Exception:
-                    pass
-            lzip.printdir()
-    else:  # If not 1 ZIP, put 1 *.log inside 1 *.zip, multiple zips
-        for fyle in logs:
-            newzip = fyle + ".zip"
-            with zipfile.ZipFile(newzip, 'w', zipfile.ZIP_DEFLATED) as log_zip:
-                log_zip.debug = 3  # Log ZIP inner working
-                log_zip.comment = bytes(comment, encoding="utf-8")
-                try:
-                    log_zip.write(fyle, os.path.basename(fyle))
-                    os.remove(fyle)
-                except Exception:
-                    pass
-                # log_zip.printdir()
-    result = zf.as_posix() if single_zip else tuple([_ + ".zip" for _ in logs])
-    log.debug(result)
-    return result
+_ZIP_LOG_COMMENT = """ZIP Compressed Checksummed Unused Old Rotated Python Logs
+From {pc}, {so}, Python {py} to {pat} ({pat!r}) at ~{tyme} ({tym2}).\n"""
+
+_LOG_FORMAT = (
+"%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
+"(%(thread)d) %(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
+
+_DESCRIPTION = """Python Logger created with the following capabilities:
+- Timed Self-Rotating and FileSize Self-Rotating utf-8 plaint text Log files.
+- Automatic ZIP Compression, Automatic Checksumming and Automatic Encryption.
+Loggers Log file is at: {0}  ({0!r}).\n"""
 
 
-def make_logger(name, when='midnight', single_zip=False, log_file=None,
-                backup_count=100, emoji=False, crashandler=None):
+class _ChecksummingNamer(object):
+
+    """Log Renamer with automatic checksums."""
+
+    def __init__(self, checksum=False, *args, **kwargs):
+        """Init the class."""
+        self.checksum = bool(checksum)
+
+    def __call__(self, name):
+        """Log Renamer with optional autochecksum."""
+        if self.checksum and os.path.isfile(name):
+            name = autochecksum(name)
+        return name + ".zip"
+
+
+class _ZipRotator(object):
+
+    """Log Rotator with ZIP compression, comments, checksum and cipher."""
+
+    def __init__(self, password=None, *args, **kwargs):
+        """Init the class."""
+        self.password = bytes(str(password).strip().encode("utf-8"))
+
+    def __call__(self, origin, target):
+        """Log Rotator with ZIP compression, comments, checksum and cipher."""
+        origin, target = Path(origin), Path(target)
+        comment = bytes(_ZIP_LOG_COMMENT.format(
+            pc=node(), so=platform(), py=python_version(), pat=target,
+            tyme=get_human_datetime(), tym2=datetime.now()).encode("utf-8"))
+        log.debug(_ZIP_LOG_COMMENT)
+        with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
+            log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
+            if password and len(self.password):
+                log_zip.setpassword(self.password)
+            log_zip.write(origin.read_bytes())
+            log_zip.printdir()
+            origin.unlink()
+
+
+class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
+
+    """TimedRotatingFileHandler with added file size based rotation."""
+
+    def __init__(self, filename, maxMegaBytes=0, backupCount=0, encoding=None,
+                 delay=0, when='h', interval=1, utc=False, atTime=None):
+        """This is copy & paste just to overwrite the method shouldRollover."""
+        TimedRotatingFileHandler.__init__(
+            self, filename, when, interval, backupCount, encoding, delay, utc)
+        self.maxMegaBytes = int(abs(maxMegaBytes))  # Extra class attribute.
+
+    def shouldRollover(self, record):
+        """Determine if rollover should occur."""
+        if self.stream is None:  # Delay was set.
+            self.stream = self._open()
+        if self.maxMegaBytes > 0:  # Are we rolling over?.
+            msg = str(self.format(record))
+            self.stream.seek(0, 2)  # Non-posix-compliant Windows feature.
+            if self.stream.tell() + len(msg) > self.maxMegaBytes * 1024 * 1024:
+                return 1
+        t = int(time.time())
+        if t >= self.rolloverAt:
+            return 1
+        return 0
+
+
+def make_logger(name, when='midnight', filename=None, interval=1,
+                backupCount=100, encoding="utf-8", delay=False, utc=False,
+                atTime=None, level=-1, slog=True, stder=True, crashandler=None,
+                emoji=False, checksum=False, password=None, color=True,
+                maxMegaBytes=1):
     """Build and return a Logging Logger."""
     global log
-    if not log_file:
-        log_file = gettempdir() / Path(name.lower().strip() + ".log")
-    atexit.register(__zip_old_logs, log_file, single_zip)  # ZIP Old Logs
-    hand = TimedRotatingFileHandler(log_file.as_posix(), when=when,
-                                    backupCount=backup_count, encoding="utf-8")
-    hand.setLevel(-1)
-    _fmt = ("%(asctime)s %(levelname)s: "
-            "%(processName)s (%(process)d) %(threadName)s (%(thread)d) "
-            "%(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
-    hand.setFormatter(logging.Formatter(fmt=_fmt,
-                                        datefmt=r"%Y-%m-%d %H:%M:%S%z"))
+    if not filename:
+        filename = gettempdir() / Path(name.lower() + ".log").as_posix()
+    # Handler with Rotator and Renamer.
+    handler = SizedTimedRotatingFileHandler(
+        filename=filename, when=when, interval=interval, delay=False,
+        backupCount=backupCount, encoding=encoding, utc=utc, atTime=atTime,
+        maxMegaBytes=maxMegaBytes)
+    handler.setLevel(level)
+    handler.setFormatter(logging.Formatter(
+        fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
+    handler.rotator = _ZipRotator(password=password)  # Rotates,ZIP,Cipher.
+    handler.namer = _ChecksummingNamer(checksum=checksum)  # Renames,Checksums.
     log = logging.getLogger()
-    log.addHandler(hand)
-    log.setLevel(-1)
-    if not sys.platform.startswith("win") and sys.stderr.isatty():
-        log.debug("Enabled Colored Logs on current Terminal.")
+    log.addHandler(handler)
+    log.setLevel(level)
+    # Colors and Emoji.
+    if not sys.platform.startswith("win") and sys.stderr.isatty() and color:
+        log.debug("Colored Logs on current Terminal enabled.")
         make_test_terminal_color()
 
         def add_color_emit_ansi(fn):
@@ -196,7 +245,7 @@ def make_logger(name, when='midnight', single_zip=False, log_file=None,
                 if levelno >= 50:
                     color = '\x1b[31;5;7m\n '  # blinking red with black
                     if emoji:
-                        end += choice((' 😿 \n', ' 🙀 \n', ' 💩 \n', ' ☠ \n'))
+                        end += choice((' 😿\n', ' 🙀\n', ' 💩\n', ' ☠\n', ''))
                 elif levelno >= 40:
                     color = '\x1b[31m'  # red
                     if emoji:
@@ -223,22 +272,25 @@ def make_logger(name, when='midnight', single_zip=False, log_file=None,
             return new
         logging.StreamHandler.emit = add_color_emit_ansi(
             logging.StreamHandler.emit)
-
-    log.addHandler(logging.StreamHandler(sys.stderr))
-    if Path("/dev/log").exists() or Path("/var/run/syslog").exists():
+    # Std Error.
+    if stder:
+        log.addHandler(logging.StreamHandler(sys.stderr))
+    # SysLog server.
+    if Path("/dev/log").exists() or Path("/var/run/syslog").exists() and slog:
         is_linux = sys.platform.startswith("linux")
-        adrs = Path("/dev/log" if is_linux else "/var/run/syslog")
+        addrss = Path("/dev/log" if is_linux else "/var/run/syslog").as_posix()
         try:
-            handler = logging.handlers.SysLogHandler(address=str(adrs))
+            handler = logging.handlers.SysLogHandler(address=str(addrss))
             handler.setFormatter(logging.Formatter(
-                fmt=_fmt, datefmt="%Y-%m-%d %H:%M:%S"))
+                fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
         except Exception:
             log.debug("Unix SysLog Server not found,ignore Logging to SysLog.")
         else:
             log.addHandler(handler)
-            log.debug("Unix SysLog Server Logs to: {0}  ({0!r}).".format(adrs))
-    log.debug("Logger created with Log file at: {0} ({0!r}).".format(log_file))
+            log.debug("Unix SysLog Server Logs to: {0} ({0!r})".format(addrss))
+    # Fault handler.
     if crashandler:
         log.debug("FaultHander ON,Logs Fatal Errors to:{}".format(crashandler))
         faulthandler.enable(crashandler)
+    log.debug(_DESCRIPTION.format(log_file))
     return log
