@@ -2273,7 +2273,7 @@ Finished:2017-05-15 14:39:10-03:00 (2017-05-15 14:39:10.989296)
 ##### tinyslation
 <details>
 
-`anglerfish.tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm: str="en", fallback_dict: dict={}, timeout: int=5)`
+`anglerfish.tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm: str="en", fallback_dict: dict={}, , fallback_value=None, timeout: int=5)`
 
 **Description:**
 Tinyslation is smallest possible translation engine from Internet with fallback,
@@ -2298,6 +2298,7 @@ This service does NOT connect to Google.
 - `to`: Target language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to current default locale language uses `locale.getdefaultlocale()[0][:2]`, string type, required.
 - `frm`: Origin language as 2 letter standard languages ISO Codes, eg. `"es"`, defaults to English `"en"`, string type, required.
 - `timeout`: Timeout integer on seconds, defaults to `5`, integer type, optional.
+- `fallback_value`: A Fallback value string, if online translation fails and fallback dictionary fails you can optionally force this string to be the return value for all failing translations, so instead of the non-translated word you can set something like `"???"` or `" "` or `"ERROR"`, if not provided the words will pass thru, this is like a third layer of fallback, defaults to `None`, string type, optional.
 
 **Keyword Arguments:**
 - `fallback_dict`: A Fallback dictionary containing words as `key:value` a word or a phrase of words, uses this is online translation fails if any, defaults to `{}`, dict type, optional.

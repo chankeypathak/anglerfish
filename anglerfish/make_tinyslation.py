@@ -11,7 +11,7 @@ from json import loads
 
 
 def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",
-                fallback_dict={}, timeout=5):
+                fallback_dict={}, fallback_value=None, timeout=5):
     """Translate from internet via API from mymemory.translated.net,legally."""
     api = "https://mymemory.translated.net/api/get?q={st}&langpair={fm}|{to}"
     req = request.Request(url=api.format(st=parse.quote(strin), fm=frm, to=to),
@@ -20,4 +20,5 @@ def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",
         responze = request.urlopen(req, timeout=timeout).read().decode("utf-8")
         return loads(responze)['responseData']['translatedText']
     except Exception:
-        return fallback_dict.get(strin.lower().strip(), strin)
+        return fallback_dict.get(strin.lower().strip(),
+                                 fallback_value if fallback_value else strin)
