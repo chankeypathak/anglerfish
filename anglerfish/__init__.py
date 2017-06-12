@@ -138,21 +138,6 @@ _DESCRIPTION = """Python Logger created with the following capabilities:
 Loggers Log file is at: {0}  ({0!r}).\n"""
 
 
-class _ChecksummingNamer(object):
-
-    """Log Renamer with automatic checksums."""
-
-    def __init__(self, checksum=False, *args, **kwargs):
-        """Init the class."""
-        self.checksum = bool(checksum)
-
-    def __call__(self, name):
-        """Log Renamer with optional autochecksum."""
-        if self.checksum and os.path.isfile(name):
-            name = autochecksum(name)
-        return name + ".zip"
-
-
 class _ZipRotator(object):
 
     """Log Rotator with ZIP compression, comments, checksum and cipher."""
@@ -161,18 +146,18 @@ class _ZipRotator(object):
         """Init the class."""
         self.password = bytes(str(password).strip().encode("utf-8"))
 
-    def __call__(self, origin, target):
+    def __call__(self, origin, target, *args, **kwargs):
         """Log Rotator with ZIP compression, comments, checksum and cipher."""
-        origin, target = Path(origin), Path(target)
+        origin, target = Path(origin), Path(target + ".zip")
         comment = bytes(_ZIP_LOG_COMMENT.format(
             pc=node(), so=platform(), py=python_version(), pat=target,
             tyme=get_human_datetime(), tym2=datetime.now()).encode("utf-8"))
-        log.debug(_ZIP_LOG_COMMENT)
+        # print(comment)  # Dont use log here.
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
             if self.password and len(self.password):
                 log_zip.setpassword(self.password)
-            log_zip.write(origin.read_bytes())
+            log_zip.write(origin.as_posix(), arcname=origin.name)
             log_zip.printdir()
             origin.unlink()
 
@@ -185,7 +170,8 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
                  delay=0, when='h', interval=1, utc=False, atTime=None):
         """This is copy & paste just to overwrite the method shouldRollover."""
         TimedRotatingFileHandler.__init__(
-            self, filename, when, interval, backupCount, encoding, delay, utc)
+            self, filename=filename, when=when, interval=interval,
+            backupCount=backupCount, encoding=encoding, delay=delay, utc=utc)
         self.maxMegaBytes = int(abs(maxMegaBytes))  # Extra class attribute.
 
     def shouldRollover(self, record):
@@ -221,7 +207,6 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     handler.setFormatter(logging.Formatter(
         fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
     handler.rotator = _ZipRotator(password=password)  # Rotates,ZIP,Cipher.
-    handler.namer = _ChecksummingNamer(checksum=checksum)  # Renames,Checksums.
     log = logging.getLogger()
     log.addHandler(handler)
     log.setLevel(level)
