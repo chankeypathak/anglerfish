@@ -17,5 +17,5 @@ def number2currency(value, decimals=2, sign="$"):
     if int(decimal) == 0:
         currency_money = ','.join(parts) + sign
     else:
-        currency_money = "{}{}{}{}".format(','.join(parts), '.', decimal, sign)
+        currency_money = f"{','.join(parts)}.{decimal}{sign}"
     return currency_money
