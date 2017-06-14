@@ -22,5 +22,5 @@ def set_process_name(name):
         log.warning(error)
         return False  # this may fail on windows and its normal, so be silent.
     else:
-        log.debug("Process Name set to: {0}.".format(name))
+        log.debug(f"Process Name set to: {name}.")
         return True
