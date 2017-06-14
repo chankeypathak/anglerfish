@@ -50,7 +50,7 @@ def on_battery():
         upower = bus.get_object('org.freedesktop.UPower', upower_path)
         result = _get_prop(upower, upower_path, 'OnBattery')
         if result is None:  # Cannot read property, something is wrong.
-            print("Failed to read D-Bus property: {0}.".format(upower_path))
+            print(f"Failed to read D-Bus property: {upower_path}.")
             result = False  # Assume we are connected to a power supply.
         return result
     return False
