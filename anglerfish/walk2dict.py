@@ -8,7 +8,11 @@
 import os
 
 from collections import OrderedDict
-from json import dumps
+
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
 def walk2dict(folder, links=False, showhidden=False,

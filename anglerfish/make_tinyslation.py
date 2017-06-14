@@ -7,7 +7,11 @@
 
 from urllib import parse, request
 from locale import getdefaultlocale
-from json import loads
+
+try:
+    from ujson import loads
+except ImportError:
+    from json import loads
 
 
 def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",

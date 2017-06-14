@@ -7,7 +7,10 @@
 
 import logging as log
 
-from json import dumps
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
 def json_pretty(json_dict: dict) -> str:
