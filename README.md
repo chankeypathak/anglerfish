@@ -2335,7 +2335,7 @@ pip install anglerfish
 
 # Requisites:
 
-- [Python 3.5+](https://www.python.org "Python Homepage")
+- [Python 3.6+](https://www.python.org "Python Homepage")
 
 **Optional Suggested Extras:**
 
