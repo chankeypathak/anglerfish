@@ -17,9 +17,9 @@ except ImportError:
 def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",
                 fallback_dict={}, fallback_value=None, timeout=5):
     """Translate from internet via API from mymemory.translated.net,legally."""
-    api = "https://mymemory.translated.net/api/get?q={st}&langpair={fm}|{to}"
-    req = request.Request(url=api.format(st=parse.quote(strin), fm=frm, to=to),
-                          headers={'User-Agent': '', 'DNT': 1})  # DoNotTrack
+    st = parse.quote(strin)
+    api = f"https://mymemory.translated.net/api/get?q={st}&langpair={frm}|{to}"
+    req = request.Request(url=api, headers={'User-Agent': '', 'DNT': 1})
     try:
         responze = request.urlopen(req, timeout=timeout).read().decode("utf-8")
         return loads(responze)['responseData']['translatedText']
