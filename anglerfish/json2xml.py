@@ -17,9 +17,9 @@ def json2xml(json_obj, line_padding="", at_end=""):
     if json_obj_type is dict:
         for tag_name in json_obj:
             sub_obj = json_obj[tag_name]
-            _resultapend("{0}<{1}>".format(line_padding, tag_name))
+            _resultapend(f"{ line_padding }<{ tag_name }>")
             _resultapend(json2xml(sub_obj, "    " + line_padding))
-            _resultapend("{0}</{1}>{2}".format(line_padding, tag_name, at_end))
+            _resultapend(f"{ line_padding }</{ tag_name }>{ at_end }")
         return "\n".join(result_list)
 
-    return "{0}{1}".format(line_padding, json_obj)
+    return f"{ line_padding }{ json_obj }"
