@@ -13,8 +13,8 @@ from typing import NamedTuple
 
 def walk2list(where, target, omit, links=False, tuply=True, namedtuple=None):
     """Perform full walk of where, gather full path of all files."""
-    log.debug("Scan {},searching {},ignoring {},{}following SymLinks.".format(
-        where, target, omit, "" if links else "Not "))
+    log.debug(f"""Scanning on {where},searching for {target},ignoring {omit},
+              {'' if links else 'Not '} following any SymLinks.""")
     listy = [os.path.abspath(os.path.join(r, f))
              for r, d, fs in os.walk(where, followlinks=links)
              for f in fs if not f.startswith('.') and
