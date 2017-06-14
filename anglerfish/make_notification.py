@@ -20,7 +20,7 @@ except ImportError:
     pynotify = None
 
 
-def make_notification(title, message="", name="", icon="", timeout=3000):
+def make_notification(title, message="", name="", icon="", timeout=3_000):
     """Notification message with information,based on D-Bus,with Fallbacks."""
     if dbus:  # Theorically the standard universal way.
         log.debug("Sending Notification message via D-Bus API.")
@@ -34,24 +34,24 @@ def make_notification(title, message="", name="", icon="", timeout=3000):
         return pynotify.Notification(title, message).show()
     elif which("notify-send"):   # The non-standard non-universal sucky ways.
         log.debug("Sending Notification message via notify-send command.")
-        comand = (which("notify-send"), "--app-name=" + name,
-                  "--expire-time=" + str(timeout), title, message)
+        comand = (which("notify-send"), f"--app-name={name}",
+                  f"--expire-time={timeout}", title, message)
         return not bool(
-            run(comand, timeout=timeout // 1000 + 1, shell=True).returncode)
+            run(comand, timeout=timeout // 1_000 + 1, shell=True).returncode)
     elif which("kdialog"):
         log.debug("Sending Notification message via KDialog command.")
-        comand = (which("kdialog"), "--name=" + name, "--title=" + title,
-                  "--icon=" + icon, "--caption=" + name, "--passivepopup",
-                  title + message, str(timeout // 1000))
+        comand = (which("kdialog"), f"--name={name}", f"--title={title}",
+                  f"--icon={icon}", f"--caption={name}", "--passivepopup",
+                  title + message, str(timeout // 1_000))
         return not bool(
-            run(comand, timeout=timeout // 1000 + 1, shell=True).returncode)
+            run(comand, timeout=timeout // 1_000 + 1, shell=True).returncode)
     elif which("zenity"):
         log.debug("Sending Notification message via Zenity command.")
-        comand = (which("zenity"), "--name=" + name, "--title=" + title,
-                  "--notification", "--timeout=" + str(timeout // 1000),
-                  "--text=" + title + message)
+        comand = (which("zenity"), f"--name={name}", f"--title={title}",
+                  "--notification", f"--timeout={timeout // 1_000}",
+                  f"--text={title + message}")
         return not bool(
-            run(comand, timeout=timeout // 1000 + 1, shell=True).returncode)
+            run(comand, timeout=timeout // 1_000 + 1, shell=True).returncode)
     else:  # Windows and Mac dont have API for that, complain to them.
         log.warning("Sending Notifications not supported by this OS.")
         return False
