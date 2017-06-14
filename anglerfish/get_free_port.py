@@ -9,7 +9,7 @@ import logging as log
 import socket
 
 
-def get_free_port(port_range=(8000, 9000)):
+def get_free_port(port_range=(8_000, 9_000)):
     """Get and return a free unused port."""
     sockety = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sockety.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -21,5 +21,5 @@ def get_free_port(port_range=(8000, 9000)):
         else:
             sockety.close()
             del sockety
-            log.debug("Found free unused port number: {0}".format(port_number))
+            log.debug(f"Found 1 free unused port number: {port_number}.")
             return port_number
