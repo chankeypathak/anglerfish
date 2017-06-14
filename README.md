@@ -2337,6 +2337,10 @@ pip install anglerfish
 
 - [Python 3.5+](https://www.python.org "Python Homepage")
 
+**Optional Suggested Extras:**
+
+- [uJSON, speeds up JSON logic.](https://github.com/esnme/ultrajson#ultrajson)
+
 **Optional Suggested Linux-only Extras:**
 
 These are fully optional but enable extra features (most Linux distros already have them).
