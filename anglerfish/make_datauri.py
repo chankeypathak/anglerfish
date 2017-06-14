@@ -29,19 +29,19 @@ _DATA_URI_REGEX = (
     r'(?P<base64>\;base64)?' +
     r',(?P<data>.*)')
 _DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
-_EXTENSIONS = (".png", ".jpeg", ".jpg", ".tiff")  # WEBP-to-WEBP is Ok tho.
+_EXTENSIONS = {".png", ".jpeg", ".jpg", ".tiff"}
 
 
 def img2webp(image_path, webp_path=None, preset="text"):
     """Try to convert Image to WEBP for max performance."""
-    if not which("cwebp") or not image_path.lower().endswith(_EXTENSIONS):
+    _webp = which("cwebp")
+    if not _webp or not image_path.lower().endswith(_EXTENSIONS):
         return image_path  # CWEBP is not installed, return the same image.
     image_path, preset = os.path.abspath(image_path), preset.lower().strip()
     webp_path = webp_path if webp_path else image_path + ".webp"
     if preset not in "default photo picture drawing icon text":
         preset = "text"  # Text Preset is still Ok,looks like JPG,but tiny.
-    command = "{cwebp} -preset {preset} {yn} -o {out}".format(
-        cwebp=which("cwebp"), preset=preset, yn=image_path, out=webp_path)
+    command = f"{ _webp } -preset { preset } { image_path } -o { webp_path }"
     return image_path if run(
         command, shell=True, timeout=9).returncode else webp_path
 
@@ -56,7 +56,7 @@ class DataURI(str):
         parts = ['data:']
         if mimetype is not None:
             if not _MIMETYPE_RE.match(mimetype):
-                raise ValueError("Invalid MIME Type: {0}.".format(mimetype))
+                raise ValueError(f"Invalid MIME Type: {mimetype}.")
             parts.append(mimetype + ';charset=utf-8')
         if base64:
             parts.append(';base64')
@@ -70,7 +70,7 @@ class DataURI(str):
     def from_file(cls, filename, base64=True, webp=True):
         """Make a new Data URI Base64 string from a file."""
         filename = os.path.abspath(filename)
-        if webp and which("cwebp") and filename.lower().endswith(_EXTENSIONS):
+        if webp and filename.lower().endswith(_EXTENSIONS):
             filename = img2webp(filename)
         return cls.make(guess_type(filename, strict=False)[0],
                         base64, Path(filename).read_bytes())
@@ -90,7 +90,7 @@ class DataURI(str):
 
     def __repr__(self):
         """Represent as string the Data URI Base64."""
-        return 'DataURI({0})'.format(super(DataURI, self).__repr__(), )
+        return f"DataURI({ super(DataURI, self).__repr__() })"
 
     def wrap(self, width=80, newline="\n"):
         """Wrap Data URI Base64 string based on arguments using textwrap."""
@@ -121,7 +121,7 @@ class DataURI(str):
         """Auxiliary property method for attributes and parsing."""
         match = _DATA_URI_RE.match(self)
         if not match:
-            raise ValueError("Invalid or malformed Data URI:{0}.".format(self))
+            raise ValueError("Invalid or malformed Data URI: {self!r} {self}.")
         mimetype = match.group('mimetype') or None
         if match.group('base64'):
             data = urlsafe_b64decode(match.group('data').encode("utf-8"))
