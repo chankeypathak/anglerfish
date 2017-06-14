@@ -18,15 +18,14 @@ def set_process_priority(nice=True, ionice=False, cpulimit=0):
     w = " may delay I/O Operations, not recommended on user-facing GUI!."
     try:
         if nice:
-            old = os.getpriority(os.PRIO_PROCESS, 0)
+            _old = os.getpriority(os.PRIO_PROCESS, 0)
             os.nice(19)  # smooth cpu priority
-            log.debug("Process CPUs Priority set: from {0} to 19.".format(old))
+            log.debug(f"Process CPUs Priority set: from {_old} to 19.")
         elif ionice and which("ionice"):
             log.warning("ionice" + w)
-            command = "{0} --ignore --class 3 --pid {1}".format(
-                which("ionice"), os.getpid())
-            call(command, shell=True)  # I/O nice,should work on Linux and Os X
-            log.debug("Process I/O Priority set to: {0}.".format(command))
+            cmnd = f"{which('ionice')} --ignore --class 3 --pid {os.getpid()}"
+            call(cmnd, shell=True)  # I/O nice,should work on Linux and Os X
+            log.debug(f"Process I/O Priority set to: {cmnd}.")
         elif cpulimit and which("cpulimit"):
             log.warning("cpulimit" + w)
             log.debug("Launching 1 background 'cpulimit' child subprocess...")
@@ -35,7 +34,7 @@ def set_process_priority(nice=True, ionice=False, cpulimit=0):
                 which("cpulimit"), os.getpid(), cpulimit)
             proces = Popen(command, shell=True)  # This launch a subprocess.
             atexit.register(proces.kill)  # Force Kill subprocess at exit.
-            log.debug("Process CPUs Max Limits capped to: {0}".format(command))
+            log.debug(f"Process CPUs Max Limits capped to: {command}.")
     except Exception as error:
         log.warning(error)
         return False  # this may fail on windows and its normal, so be silent.
