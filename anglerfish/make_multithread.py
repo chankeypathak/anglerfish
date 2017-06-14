@@ -36,7 +36,7 @@ def _async(n, base_type, timeout=None):
         elif isinstance(n, base_type):
             pool = n
         else:
-            raise TypeError("Invalid Type: {}".format(type(base_type)))
+            raise TypeError(f"Invalid Type: {type(base_type)} for {base_type}")
 
         @wraps(f)
         def wrapped(*args, **kwargs):
