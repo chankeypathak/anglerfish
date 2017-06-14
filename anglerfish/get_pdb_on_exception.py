@@ -12,7 +12,7 @@ import traceback
 
 def pdb_on_exception(debugger="pdb", limit=100):
     """Install handler attach post-mortem pdb console on an exception."""
-    log.debug("Installing automatic Debugger on Exception:{}".format(debugger))
+    log.debug(f"Installing an automatic Debugger on Exceptions: {debugger}.")
 
     def pdb_excepthook(exc_type, exc_val, exc_tb):
         traceback.print_tb(exc_tb, limit=limit)
