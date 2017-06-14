@@ -13,10 +13,10 @@ def watch(file_path, callback=None, interval=60, backoff=1,
           timeout=None, repetitions=-1, silent=False, logger=None):
     """Watch a file path for changes run callback if modified. A WatchDog."""
     if not silent:
-        msg = "Watching for any changes on file path: {0}.".format(file_path)
+        msg = f"Watching for any changes on the file path: { file_path }."
         logger.debug(msg) if logger else print(msg)
     previous, file_path = int(os.stat(file_path).st_mtime), str(file_path)
-    _interval, msg = interval, "Modification detected on {0}".format(file_path)
+    _interval, msg = interval, f"Modification detected on path: { file_path }."
     end_time = time.time() + int(timeout) if timeout else None
     repetitions = int(repetitions) if repetitions > 0 else True
     while repetitions:
