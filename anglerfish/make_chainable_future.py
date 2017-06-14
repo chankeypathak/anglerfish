@@ -27,10 +27,9 @@ class ChainableFuture(Future):
 
     def _chain_to_another_future(self, base_future):
         """Chain a Future instance directly to another Future instance."""
-        msg = "Circular chain error.Future {} is already in resolved chain {}."
         if base_future in self._chained_future_log:
-            raise Exception(msg.format(base_future,
-                                       set(self._chained_future_log)))
+            raise Exception(f"""Circular chain error. Future { base_future } is
+            already in resolved chain { set(self._chained_future_log) }.""")
         else:
             self._chained_future_log.add(base_future)
 
