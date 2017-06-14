@@ -13,22 +13,19 @@ from getpass import getuser
 from platform import platform, python_version
 
 
-_MSG = """Python {ver} on {so}.\nChecking All System Encodings...
-Default Encoding: {d}.\nSTDIN   Encoding: {i}.
-STDERR  Encoding: {e}.\nSTDOUT  Encoding: {o}.
-I/O File Systems Encoding: {f}.\nPYTHONIOENCODING Encoding: {io}.
-PYTHONLEGACYWINDOWSFSENCODING Encoding: {leg}.
-PYTHONLEGACYWINDOWSSTDIO      Encoding: {wio}.
-Default File Systems Encode Errors:     {er}.""".format(
-    ver=python_version(), so=platform(), d=sys.getdefaultencoding(),
-    f=sys.getfilesystemencoding(), i=getattr(sys.stdin, "encoding", "???"),
-    e=getattr(sys.stderr, "encoding", "???"),
-    o=getattr(sys.stdout, "encoding", "???"),
-    io=os.environ.get("PYTHONIOENCODING", "???"),
-    leg=os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???"),
-    wio=os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???"),
-    er=sys.getfilesystemencodeerrors() if hasattr(
-        sys, "getfilesystemencodeerrors") else "???")
+_MSG = f"""
+Python { python_version() } on { platform() }.
+Default Encoding: { sys.getdefaultencoding()               }.
+STDIN   Encoding: { getattr(sys.stdin, "encoding", "???")  }.
+STDERR  Encoding: { getattr(sys.stderr, "encoding", "???") }.
+STDOUT  Encoding: { getattr(sys.stdout, "encoding", "???") }.
+I/O File Systems Encoding: { sys.getfilesystemencoding()   }.
+PYTHONIOENCODING Encoding: { os.environ.get("PYTHONIOENCODING", "???")}.
+Default File Systems Encode Errors: { sys.getfilesystemencodeerrors() }.
+PYTHONLEGACYWINDOWSFSENCODING Encoding:
+    { os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???") }.
+PYTHONLEGACYWINDOWSSTDIO Encoding:
+    { os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
 
 
 def check_encoding(check_root=True):
