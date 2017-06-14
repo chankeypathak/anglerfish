@@ -37,8 +37,8 @@ class TemplatePython(str):
                 lines = tuple(p.replace("%\\}", "%}").replace(
                     "{{", "spit(").replace("}}", "); ") .splitlines())
                 mar = min(len(_) - len(_.lstrip()) for _ in lines if _.strip())
-                al = "\n".join(line_of_code[mar:] for line_of_code in lines)
-                tokens.append((True, compile(al, "<t {}>".format(al), "exec")))
+                tmplt = "\n".join(line_of_code[mar:] for line_of_code in lines)
+                tokens.append((True, compile(tmplt, f"<tpl {tmplt}>", "exec")))
         return tokens
 
     def render(__self, __namespace={}, mini=False, **kw):
