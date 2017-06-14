@@ -55,15 +55,15 @@ def _get_size(url, data, timeout):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
-    log.info("~{0} ({1} Bytes) Download.".format(bytes2human(size, "m"), size))
-    log.info("Full Headers data:\n{0}.\n".format(u.headers))
+    log.info(f"Download Size: {bytes2human(size, 'm')} ({size}Bytes) Download")
+    log.info(f"Full HTTP Headers data:\n{ u.headers }.\n")
     return size
 
 
 def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
     req = Request(url, headers={'User-Agent': '', 'DNT': 1})
-    req.headers['Range'] = 'bytes={0}'.format(irange)
-    print("Thread {0} is downloading {1}".format(idx, req.headers['Range']))
+    req.headers['Range'] = f"bytes={ irange }"
+    print(f"Thread {idx} is downloading data: {req.headers['Range']}.")
     with urlopen(req, data=data, timeout=timeout, context=_get_context()) as u:
         dataDict[idx] = u.read()
 
@@ -71,16 +71,15 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
 def url2path(url, data=None, timeout=None,
              filename=None, suffix=None, name_from_url=False,
              concurrent_downloads=5, force_concurrent=False, checksum=False):
-    if not url.lower().startswith(("https:", "http:", "ftps:", "ftp:")):
+    if not url.lower().startswith({"https:", "http:", "ftps:", "ftp:"}):
         return url  # URL is a file path?.
     start_time, dataDict = datetime.now(), {}
     if not filename and bool(name_from_url):  # Get the filename from the URL.
         filename = url.split('/')[-1]
     if not filename:  # Create a temporary file as the filename.
         filename = NamedTemporaryFile(suffix=suffix, prefix="angler_").name
-    log.info("Angler download accelerator start.")
-    log.info("From: {0}.\nTo:   {1}.\nTime: {2} ({3}).".format(
-        url, filename, get_human_datetime(start_time), start_time))
+    log.info(f"""Angler download accelerator.\nFrom: {url}.\nTo:   {filename}.
+    Time: ~{get_human_datetime(start_time)} ({start_time}).""")
     sizeInBytes = _get_size(url, data=data, timeout=timeout)
     # if sizeInBytes=0,Resume is not supported by server,use _download_simple()
     # if sizeInBytes < 1 Gigabytes,file is small,use _download_simple()
@@ -94,7 +93,7 @@ def url2path(url, data=None, timeout=None,
         return filename
     splitBy = concurrent_downloads if concurrent_downloads in range(11) else 10
     ranges = _calculate_ranges(int(sizeInBytes), int(splitBy))
-    log.info("Using {0} async concurrent downloads for 1 file".format(splitBy))
+    log.info(f"Using {splitBy} async concurrent downloads for the same file.")
     # multiple concurrent downloads for the same file.
     downloaders = [threading.Thread(
         target=_download_a_chunk,
@@ -112,9 +111,9 @@ def url2path(url, data=None, timeout=None,
         filename = autochecksum(filename, update=True)
     # Log some nice info.
     fl_size, fl_time = os.path.getsize(filename), datetime.now() - start_time
-    log.info("Downloaded {0} binary data chunks total.".format(len(dataDict)))
-    log.info("Finished writing downloaded output file: {0}.".format(filename))
-    log.info('Size:{0} ({1} Bytes)'.format(bytes2human(fl_size, "m"), fl_size))
-    log.info("Time:    {0} ({1}).".format(timedelta2human(fl_time), fl_time))
-    log.info("Finished:{0} ({1})".format(get_human_datetime(), datetime.now()))
+    log.info(f"Downloaded { len(dataDict) } binary data chunks total.")
+    log.info(f"Finished writing downloaded output file: {filename}.")
+    log.info(f"Size:     {bytes2human(fl_size, 'm')} ({fl_size} Bytes).")
+    log.info(f"Time:     {timedelta2human(fl_time)} ({fl_time}).")
+    log.info(f"Finished: {get_human_datetime()} ({datetime.now()}).")
     return filename
