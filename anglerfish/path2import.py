@@ -38,23 +38,22 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
         try:
             name = name or pat.stem
             if check_namespace and name in set(globals().keys()):
-                e = "Module {0} already exist on global namespace".format(name)
                 if not ignore_exceptions:
-                    raise NamespaceConflictError(e)
+                    raise NamespaceConflictError(
+                        f"Module {name} already exist on the Global namespace")
             else:
                 spec = importlib.util.spec_from_file_location(name,
                                                               pat.as_posix())
                 if spec is None:
-                    e = 'Failed to load module {0} from {1}.'.format(name, pat)
                     if not ignore_exceptions:
-                        raise ImportError(e)
+                        raise ImportError(f"Failed to load {name} from {pat}.")
                 module = spec.loader.load_module()
         except Exception as error:
-            log.warning("Failed to Load Module {0} from {1}".format(name, pat))
+            log.warning(f"Failed to load the module {name} from {pat}.")
             log.warning(error)
             if not ignore_exceptions:
                 raise
             module = None
         else:
-            log.debug("Loading Module {0} from {1} ({1!r}).".format(name, pat))
+            log.debug(f"Loading the module {name} from {pat} ({pat!r}).")
     return module
