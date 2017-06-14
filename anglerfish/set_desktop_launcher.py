@@ -26,7 +26,7 @@ def set_desktop_launcher(app, desktop_file_content, autostart=False):
     fyle = config_dir / app + ".desktop"
     if config_dir.is_dir() and not fyle.is_file():
         if bool(autostart):
-            log.info("Writing Auto-Start file: {0} ({0!r}).".format(fyle))
+            log.info(f"Writing 1 Auto-Start desktop file: {fyle} ({fyle!r}).")
             fyle.write_text(desktop_file_txt, encoding="utf-8")
         fyle.chmod(0o776) if fyle.is_file() else log.debug("chmod: NO.")
     # Desktop Launcher file below.
@@ -34,7 +34,7 @@ def set_desktop_launcher(app, desktop_file_content, autostart=False):
     apps_dir.mkdir(parents=True, exist_ok=True)
     desktop_file = apps_dir / app + ".desktop"
     if apps_dir.is_dir() and not desktop_file.is_file():
-        log.info("Writing Launcher file: {0} ({0!r}).".format(desktop_file))
+        log.info(f"Writing 1 Launcher file: {desktop_file} ({desktop_file!r})")
         desktop_file.write_text(desktop_file_txt, encoding="utf-8")
         fyle.chmod(0o776) if fyle.is_file() else log.debug("chmod: NO.")
     return desktop_file
