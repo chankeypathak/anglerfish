@@ -16,21 +16,21 @@ def set_zip_comment(zip_path, comment=""):
         with ZipFile(str(zip_path).strip(), 'a') as myzip:
             myzip.comment = bytes(str(comment).strip().encode("utf-8"))
     except Exception as error:
-        log.warning("Failed to set comment to ZIP file: {0}.".format(zip_path))
+        log.warning(f"Failed to set comments to ZIP file: {zip_path}.")
         log.debug(error)
         return False
     else:
-        log.debug("Setting comment to ZIP file: {0}.".format(zip_path))
+        log.debug(f"Setting comments to ZIP file: {zip_path}.")
         return True
 
 
 def get_zip_comment(zip_path):
     """Get a ZIP comment."""
     try:
-        log.debug("Getting comment from ZIP file: {0}.".format(zip_path))
+        log.debug(f"Getting comments from ZIP file: {zip_path}.")
         with ZipFile(str(zip_path).strip(), 'r') as myzip:
             return str(myzip.comment.decode("utf-8")).strip()
     except Exception as error:
-        log.warning("Failed to get comment from ZIP: {0}.".format(zip_path))
+        log.warning(f"Failed to get comments from ZIP file: {zip_path}.")
         log.debug(error)
         return ""
