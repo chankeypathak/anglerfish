@@ -16,8 +16,8 @@ def stealth2string(stringy: str, rot13: bool=False) -> str:
 
     def __i2b(integ):  # int to bytes, do not touch.
         """Helper for string_to_stealth and stealth_to_string, dont touch!."""
-        __num = len(f"integ:x")  # Hex value, without the "0x" initial part.
-        return binascii.unhexlify(f"integ:x".zfill(__num + (__num & 1)))
+        __num = len("%x" % integ)
+        return binascii.unhexlify(str("%x" % integ).zfill(__num + (__num & 1)))
 
     _n = int(str(stringy).replace("\u200B", "0").replace("\uFEFF", "1"), 2)
     stringy = zlib.decompress(base64.b64decode(__i2b(_n))).decode('utf-8')
