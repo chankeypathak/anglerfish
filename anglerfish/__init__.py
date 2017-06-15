@@ -128,19 +128,10 @@ _LOG_FORMAT = (
     "%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
     "(%(thread)d) %(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
 
-_DESCRIPTION = """Python Logger created with the following capabilities:
-- Timed Self-Rotating and FileSize Self-Rotating utf-8 plaint text Log files.
-- Automatic ZIP Compression, Automatic Checksumming and Automatic Encryption.
-Loggers Log file is at: {0}  ({0!r}).\n"""
-
 
 class _ZipRotator(object):
 
-    """Log Rotator with ZIP compression, comments, checksum and cipher."""
-
-    def __init__(self, password=None, *args, **kwargs):
-        """Init the class."""
-        self.password = bytes(str(password).strip().encode("utf-8"))
+    """Log Rotator with ZIP compression."""
 
     def __call__(self, origin, target, *args, **kwargs):
         """Log Rotator with ZIP compression, comments, checksum and cipher."""
@@ -149,11 +140,8 @@ class _ZipRotator(object):
             From {node()}, {platform()}, Python {python_version()} to {target}
             ({target!r}) at ~{get_human_datetime()} ({datetime.now()}).
             """.encode("utf-8"))
-        # print(comment)  # Dont use log here.
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
-            if self.password and len(self.password):
-                log_zip.setpassword(self.password)
             log_zip.write(origin.as_posix(), arcname=origin.name)
             log_zip.printdir()
             origin.unlink()
@@ -189,8 +177,7 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
 def make_logger(name, when='midnight', filename=None, interval=1,
                 backupCount=100, encoding="utf-8", delay=False, utc=False,
                 atTime=None, level=-1, slog=True, stder=True, crashandler=None,
-                emoji=False, checksum=False, password=None, color=True,
-                maxMegaBytes=1, *args, **kwargs):
+                emoji=False, color=True, maxMegaBytes=1, *args **kwargs):
     """Build and return a Logging Logger."""
     global log
     if not filename:
@@ -203,7 +190,7 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     handler.setLevel(level)
     handler.setFormatter(logging.Formatter(
         fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
-    handler.rotator = _ZipRotator(password=password)  # Rotates,ZIP,Cipher.
+    handler.rotator = _ZipRotator
     log = logging.getLogger()
     log.addHandler(handler)
     log.setLevel(level)
@@ -276,5 +263,6 @@ def make_logger(name, when='midnight', filename=None, interval=1,
             log.waring(f"FaultHander {crashandler} Failed with error: {error}")
         else:
             log.debug(f"FaultHander ON!, Logs Fatal Errors to: {crashandler}.")
-    log.debug(_DESCRIPTION.format(filename))
+    log.debug("""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
+              Logger Log files write to: {filename}  ({filename!r}).""")
     return log
