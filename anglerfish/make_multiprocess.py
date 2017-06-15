@@ -57,7 +57,8 @@ def _multi_thread(argv):
         for _func_argv in _func_argvs:
             result.append(_func(_func_argv))
         return result
-    thread_pool = futures.ThreadPoolExecutor(max_workers=thread_num)
+    thread_pool = futures.ThreadPoolExecutor(max_workers=thread_num,
+                                             thread_name_prefix="angler")
     result = thread_pool.map(_func, _func_argvs, timeout=argv[4])
     return [r for r in result]
 
