@@ -124,9 +124,6 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 ##############################################################################
 
 
-_ZIP_LOG_COMMENT = """ZIP Compressed Checksummed Unused Old Rotated Python Logs
-From {pc}, {so}, Python {py} to {pat} ({pat!r}) at ~{tyme} ({tym2}).\n"""
-
 _LOG_FORMAT = (
     "%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
     "(%(thread)d) %(name)s.%(funcName)s: %(message)s %(pathname)s:%(lineno)d")
@@ -148,9 +145,10 @@ class _ZipRotator(object):
     def __call__(self, origin, target, *args, **kwargs):
         """Log Rotator with ZIP compression, comments, checksum and cipher."""
         origin, target = Path(origin), Path(target + ".zip")
-        comment = bytes(_ZIP_LOG_COMMENT.format(
-            pc=node(), so=platform(), py=python_version(), pat=target,
-            tyme=get_human_datetime(), tym2=datetime.now()).encode("utf-8"))
+        comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
+            From {node()}, {platform()}, Python {python_version()} to {target}
+            ({target!r}) at ~{get_human_datetime()} ({datetime.now()}).
+            """.encode("utf-8"))
         # print(comment)  # Dont use log here.
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
@@ -269,10 +267,14 @@ def make_logger(name, when='midnight', filename=None, interval=1,
             log.debug("Unix SysLog Server not found,ignore Logging to SysLog.")
         else:
             log.addHandler(handler)
-            log.debug("Unix SysLog Server Logs to: {0} ({0!r})".format(addrss))
+            log.debug(f"Unix SysLog Server Logs to: {addrss} ({addrss!r}).")
     # Fault handler.
     if crashandler:
-        log.debug("FaultHander ON,Logs Fatal Errors to:{}".format(crashandler))
-        faulthandler.enable(crashandler)
+        try:
+            faulthandler.enable(crashandler)
+        except Exception as error:
+            log.waring(f"FaultHander {crashandler} Failed with error: {error}")
+        else:
+            log.debug(f"FaultHander ON!, Logs Fatal Errors to: {crashandler}.")
     log.debug(_DESCRIPTION.format(filename))
     return log
