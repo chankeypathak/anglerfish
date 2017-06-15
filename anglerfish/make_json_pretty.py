@@ -16,7 +16,7 @@ except ImportError:
 def json_pretty(json_dict: dict) -> str:
     """Pretty-Printing JSON data from dictionary to string."""
     log.debug("Pretty-Printing JSON data string...")
-    _json = dumps(json_dict, sort_keys=1, indent=4, separators=(",\n", ": "))
+    _json = dumps(json_dict, sort_keys=1, indent=4)
     posible_ends = tuple('true false , " ] 0 1 2 3 4 5 6 7 8 9 \n'.split(" "))
     max_indent, justified_json = 1, ""
     for json_line in _json.splitlines():
