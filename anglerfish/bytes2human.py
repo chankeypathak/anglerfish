@@ -12,4 +12,4 @@ def bytes2human(bites, to, bsize=1_024):
         bitez = bitez / int(bsize)
     unit = {'k': "Kilo", 'm': "Mega", 'g': "Giga",
             't': "Tera", 'p': "Peta", 'e': "Exa"}[to]
-    return f"{bitez:.0f} {unit}bytes"
+    return f"{ int(bitez) } { unit }bytes"
