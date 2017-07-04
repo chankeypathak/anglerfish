@@ -2336,11 +2336,13 @@ pip install anglerfish
 
 # Requisites:
 
-- [Python 3.6+](https://www.python.org "Python Homepage")
+- [Python 3.6+](https://www.python.org "Official CPython 3.6 or higher supported")
+
 
 **Optional Suggested Extras:**
 
 - [uJSON, speeds up JSON logic.](https://github.com/esnme/ultrajson#ultrajson)
+
 
 **Optional Suggested Linux-only Extras:**
 
