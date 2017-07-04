@@ -2354,13 +2354,6 @@ These are fully optional but enable extra features (most Linux distros already h
 - `xorg-xset` Display support to turn OFF the display, if not installed ignores display off call.
 
 
-# Config Helper ?
-
-- Angler will NOT provide any kind of Configuration/Settings Helpers.
-- We recommend: https://github.com/ssato/python-anyconfig#python-anyconfig
-- `python-anyconfig` only requires Python Standard Library. Works with any kind of config file.
-
-
 # More must have helpers
 
 *All these tiny generic awesome helpers, utilities, etc only require Python standard lib.*
@@ -2376,7 +2369,6 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://github.com/amoffat/sh
 - https://github.com/pybuilder/pybuilder#pybuilder
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
-- https://github.com/JosephSalisbury/python-bittorrent#python-bittorent
 
 
 # Coding Style Guide:
