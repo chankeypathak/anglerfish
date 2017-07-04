@@ -2321,6 +2321,7 @@ pip install anglerfish
 - Use `sudo pip install anglerfish` for installing System-wide.
 - Use `python3 examples/basic.py` to run an example of all the functionalities.
 - This project is oriented to Developers, NOT end-users.
+- Angler can be used with Fades and/or FireJails and/or Docker.
 - Feel free to contact us if you need help integrating Angler on your project.
 
 
