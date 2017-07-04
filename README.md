@@ -2413,7 +2413,7 @@ pytest tests/
 
 # Licence:
 
-- GNU GPL Latest Version *AND* GNU LGPL Latest Version *AND* any Licence [YOU Request via Bug Report](https://github.com/juancarlospaco/css-html-js-minify/issues/new).
+- GNU GPL Latest Version *AND* GNU LGPL Latest Version *AND* any Licence [YOU Request via Bug Report](https://github.com/juancarlospaco/anglerfish/issues/new).
 
 
 # Ethics and Humanism Policy:
