@@ -2,6 +2,7 @@
 # pip install pre-commit pre-commit-hooks  # http://pre-commit.com
 # Use in Continuous Integration,or Force Run,use: pre-commit run --all-files
 # Auto-Update all hooks: pre-commit autoupdate
+# Also run all hooks on Push: pre-commit install --hook-type pre-push
 
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
