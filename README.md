@@ -2375,7 +2375,7 @@ These are fully optional but enable extra features (most Linux distros already h
 
 # Coding Style Guide:
 
-- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort) must Pass Ok. `pip install --upgrade pep8 pep257 pylama isort pytest`
+- Lint, [PEP-8](https://www.python.org/dev/peps/pep-0008), [PEP-257](https://www.python.org/dev/peps/pep-0257), [PyLama](https://github.com/klen/pylama#-pylama), [iSort](https://github.com/timothycrosley/isort), [Pre-Commit](http://pre-commit.com/hooks.html) must Pass Ok. `pip install --upgrade pep8 pep257 pylama isort pytest pre-commit pre-commit-hooks`
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
