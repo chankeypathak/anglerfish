@@ -34,8 +34,9 @@ def make_post_exec_msg(start_time=None, comment=None):
                   resource.getpagesize() if resource else 0)
         al = int(os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
                  if hasattr(os, "sysconf") else 0)
-        msg += f"""Total Max Memory Used: {bytes2human(use, "m")} ({use} bytes)
-                of {bytes2human(al, "m")} ({al} bytes) of total RAM Memory\n"""
+        msg += f"""Total Max Memory Used: ~{use / al:.2%} Percent.
+            {bytes2human(use, "m")} ({use} bytes) of
+            {bytes2human(al, "m")} ({al} bytes) of total RAM Memory.\n"""
         if start_time and datetime:
             _t = datetime.now() - start_time
             msg += f"Total Working Time: ~{ timedelta2human(_t) } ({ _t }).\n"
