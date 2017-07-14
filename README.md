@@ -2373,6 +2373,7 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
 - https://github.com/ColinDuquesnoy/QDarkStyleSheet#qdarkstylesheet
 - http://pre-commit.com
+- https://pydantic-docs.helpmanual.io
 
 
 # Coding Style Guide:
