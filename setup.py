@@ -103,6 +103,7 @@ setup(
     classifiers=[
 
         'Development Status :: 5 - Production/Stable',
+        'Development Status :: 6 - Mature',
 
         'Environment :: Console',
         'Environment :: X11 Applications',
