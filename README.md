@@ -2391,12 +2391,14 @@ These are fully optional but enable extra features (most Linux distros already h
 
 # Tests
 
-- Pull requests to improve tests are welcome.
+- Pull requests to improve tests are welcome!!!.
 
 ```bash
 python -m unittest discover --verbose --locals --start-directory "tests/"
 # OR
 python -m unittest
+# OR
+pytest tests/
 ```
 
 
