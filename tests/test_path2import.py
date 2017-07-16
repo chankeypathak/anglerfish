@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''Tests for path2import'''
+
+"""Tests for path2import."""
+
+
+from tempfile import NamedTemporaryFile
+from pathlib import Path
 
 import pytest
 
@@ -20,8 +25,9 @@ except NameError:
 
 
 def test_normal():
-    with TempFile('export = "anglerfish"') as tf:
-        my_module = path2import(tf.name)
+    with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
+        tf.write_text('export = "anglerfish"')
+        my_module = path2import(tf.as_posix())
         assert my_module.export == 'anglerfish'
 
 
@@ -63,10 +69,11 @@ def test_invaild_module():
 
 
 def test_reimport():
-    with TempFile('export = "anglerfish"') as tf:
-        my_module1 = path2import(tf.name)
+    with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
+        tf.write_text('export = "anglerfish"')
+        my_module1 = path2import(tf.as_posix())
         assert my_module1.export == 'anglerfish'
-        my_module2 = path2import(tf.name)
+        my_module2 = path2import(tf.as_posix())
         assert my_module1.export == my_module2.export
         assert my_module1 == my_module2
 
@@ -76,11 +83,12 @@ def test_check_namespace():
     global_module = None
     assert 'global_module' in globals()
 
-    with TempFile('export = "anglerfish"') as tf:
-        my_module1 = path2import(tf.name, 'global_module')
+    with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
+        tf.write_text('export = "anglerfish"')
+        my_module1 = path2import(tf.as_posix(), 'global_module')
         global_module = my_module1
 
-        my_module2 = path2import(tf.name, 'global_module', check_namespace=True)
+        my_module2 = path2import(tf.as_posix(), 'global_module', check_namespace=True)
         assert my_module2 == global_module
 
     with TempFile('export = "anglerfish"') as tf:
