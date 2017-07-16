@@ -5,11 +5,14 @@
 """Test for anglerfish.is_online()."""
 
 
+import unittest
+
 from anglerfish import is_online
 
+class TestName(unittest.TestCase):
 
-def test_is_online():
-    pass
-    # result = is_online()
-    # assert isinstance(result, bool)
-    # assert result
+    def test_is_online(self):
+        pass
+        # result = is_online()
+        # assert isinstance(result, bool)
+        # assert result
