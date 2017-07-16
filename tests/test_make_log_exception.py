@@ -5,15 +5,17 @@
 """Test for anglerfish.log_exception()."""
 
 
-import pytest
+import unittest
 
 from anglerfish import log_exception
 
 
-def test_log_exception():
-    pass # FIXME: pytest.raises() dont like try:...except:... ?
-    #  with pytest.raises(ZeroDivisionError):
-    #     try:
-    #         0 / 0
-    #     except Exception:
-    #         log_exception()
+class TestName(unittest.TestCase):
+
+    def test_log_exception(self):
+        pass # FIXME: pytest.raises() dont like try:...except:... ?
+        #  with pytest.raises(ZeroDivisionError):
+        #     try:
+        #         0 / 0
+        #     except Exception:
+        #         log_exception()

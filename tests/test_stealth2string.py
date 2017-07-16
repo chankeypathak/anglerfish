@@ -5,14 +5,18 @@
 """Test for anglerfish.stealth2string()."""
 
 
+import unittest
+
 from anglerfish import stealth2string, string2stealth
 
 
-def test_stealth2string():
-    word = string2stealth("cat")
-    stringy = stealth2string(word)
-    assert isinstance(stringy, str)
-    assert len(stringy) == 3
-    assert u"\u200B" not in stringy
-    assert u"\uFEFF" not in stringy
-    assert stringy == "cat"
+class TestName(unittest.TestCase):
+
+    def test_stealth2string(self):
+        word = string2stealth("cat")
+        stringy = stealth2string(word)
+        self.assertTrue(isinstance(stringy, str))  # bool(x) is True
+        self.assertEqual(len(stringy), 3)  # a == b
+        self.assertTrue(u"\u200B" not in stringy)
+        self.assertTrue(u"\uFEFF" not in stringy)
+        self.assertEqual(stringy, "cat")  # a == b
