@@ -12,7 +12,7 @@ before_install:
 
 
 install:
-  - pip install --upgrade pylama isort ujson --quiet
+  - pip install --upgrade pylama isort ujson pre-commit pre-commit-hooks --quiet
   - pip install .
 
 
@@ -22,6 +22,7 @@ before_script: rm --recursive --force --verbose *.py[cod]
 script:
   - python -m unittest discover --verbose --locals --start-directory "tests/"
   - pylama --linters "pep8,pyflakes,pycodestyle" anglerfish/*.py
+  - pre-commit run --all-files
 
 
 notifications:
