@@ -90,7 +90,7 @@ from anglerfish.make_tinyslation import tinyslation  # noqa
 
 __version__ = "3.0.0"
 __license__ = "GPLv3+ LGPLv3+"
-__author__ =  "Juan Carlos"
+__author__ = "Juan Carlos"
 __email__ = "juancarlospaco@gmail.com"
 __contact__ = "https://t.me/juancarlospaco"
 __maintainer__ = "Juan Carlos"
