@@ -2374,6 +2374,7 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://github.com/ColinDuquesnoy/QDarkStyleSheet#qdarkstylesheet
 - http://pre-commit.com
 - https://pydantic-docs.helpmanual.io
+- https://github.com/wolever/pprintpp#pprint-a-drop-in-replacement-for-pprint-thats-actually-pretty
 
 
 # Coding Style Guide:
