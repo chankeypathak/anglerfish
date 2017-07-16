@@ -2401,6 +2401,8 @@ python -m unittest
 pytest tests/
 ```
 
+- [Test Templates.](https://gist.github.com/juancarlospaco/040fbe326631e638f2a540fe8c1f2092)
+
 
 # Presentation
 
