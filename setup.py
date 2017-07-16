@@ -63,8 +63,8 @@ def find_this(search, source=SOURCE):
     if not search or not source:
         print("Not found on source: {what}.".format(what=search))
         return ""
-    return str(re.compile(r".*__{what}__ = '(.*?)'".format(
-        what=search), re.S).match(source).group(1)).strip().replace("'", "")
+    return str(re.compile(r'.*__{what}__ = "(.*?)"'.format(
+        what=search), re.S).match(source).group(1)).strip()
 
 
 print("Starting build of setuptools.setup().")
@@ -87,23 +87,27 @@ setup(
 
     author=find_this("author"),
     author_email=find_this("email"),
-    maintainer=find_this("author"),
+    maintainer=find_this("maintainer"),
     maintainer_email=find_this("email"),
 
     include_package_data=True,
     zip_safe=True,
 
-    tests_require=['pytest', 'isort', 'pylama'],
+    tests_require=['isort', 'pylama', 'pre-commit', 'pre-commit-hooks'],
+    extras_require={"full": ["ujson"]},
 
     packages=["anglerfish"],
 
-    keywords=['helper', 'boilerplate', 'utils', 'minimalism', 'utility'],
+    keywords="helper boilerplate utils minimalism utility",
 
     classifiers=[
 
         'Development Status :: 5 - Production/Stable',
 
         'Environment :: Console',
+        'Environment :: X11 Applications',
+        'Environment :: No Input/Output (Daemon)',
+        'Environment :: Other Environment',
 
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
@@ -123,12 +127,15 @@ setup(
 
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.6',
 
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
 
         'Topic :: Software Development',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Python Modules',
 
     ],
 )
