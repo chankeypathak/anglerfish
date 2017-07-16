@@ -5,8 +5,16 @@
 """Test for anglerfish.get_free_port()."""
 
 
+import unittest
+
 from anglerfish import get_free_port
 
 
-def get_free_port():
-    assert get_free_port((8000, 8005)) == 8000
+class TestName(unittest.TestCase):
+
+    def test_get_free_port(self):
+        self.assertEqual(get_free_port((8000, 8005)), 8000)  # a == b
+
+
+if __name__.__contains__("__main__"):
+    unittest.main()

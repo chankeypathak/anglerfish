@@ -5,12 +5,21 @@
 """Test for anglerfish.bytes2human()."""
 
 
+import unittest
+
 from anglerfish import bytes2human
 
 
-def test_bytes2human():
-    assert bytes2human(3284902384, "g") == '3 Gigabytes'
-    assert bytes2human(0, "m") == '0 Megabytes'
-    assert bytes2human(6666, "k") == '6 Kilobytes'
-    assert bytes2human(-6666, "k") == '6 Kilobytes'
-    assert bytes2human(1024, "k") == '1 Kilobytes'
+class TestName(unittest.TestCase):
+
+    def test_bytes2human(self):
+        self.assertMultiLineEqual(bytes2human(3284902384, "g"), '3 Gigabytes')
+        self.assertMultiLineEqual(bytes2human(0, "m"), '0 Megabytes')
+        self.assertMultiLineEqual(bytes2human(6666, "k"), '6 Kilobytes')
+        self.assertMultiLineEqual(bytes2human(-6666, "k"), '6 Kilobytes')
+        self.assertMultiLineEqual(bytes2human(1024, "k"), '1 Kilobytes')
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

@@ -5,10 +5,17 @@
 """Test for anglerfish.get_clipboard()."""
 
 
+import unittest
+
 from anglerfish import get_clipboard
 
+class TestName(unittest.TestCase):
 
-def test_set_terminal_title():
-    clipboard_copy, clipboard_paste = get_clipboard()
-    clipboard_copy == None  # Because no xclip on Travis, but its Ok.
-    clipboard_paste == None  # Because no xclip on Travis, but its Ok.
+    def test_dummy(self):
+        clipboard_copy, clipboard_paste = get_clipboard()
+        self.assertEqual(clipboard_copy, None)  # No xclip on Travis,but its Ok
+        self.assertEqual(clipboard_paste, None)
+
+
+if __name__.__contains__("__main__"):
+    unittest.main()
