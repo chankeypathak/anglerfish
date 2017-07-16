@@ -5,10 +5,11 @@
 """Tests for path2import."""
 
 
+import unittest
+
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-import pytest
 from anglerfish import path2import
 
 try:
@@ -16,13 +17,8 @@ try:
 except ImportError:
     NamespaceConflictError = Exception
 
-import unittest
-
 
 class TestName(unittest.TestCase):
-
-    def test_dummy(self):
-        pass
 
     def test_normal(self):
         with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
@@ -33,7 +29,7 @@ class TestName(unittest.TestCase):
     def test_syntax_error(self):
         with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
             tf.write_text('export = ')
-            with pytest.raises(SyntaxError):
+            with self.assertRaises(SyntaxError):
                 my_module = path2import(tf.as_posix())
                 print(my_module)  # to avoid warning "assigned but never used"
 
@@ -44,12 +40,12 @@ class TestName(unittest.TestCase):
         # FIXME: this should work, why is not working ?.
         # with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
         #     os.chmod(tf.as_posix(), 0o400)  # Reduce file permissions to non-readable
-        #     with pytest.raises(PermissionError):
+        #     with self.assertRaises(PermissionError):
         #         my_module = path2import(tf.as_posix())
         #         self.assertEqual(my_module.export, 'anglerfish')
 
     def test_not_found(self):
-        with pytest.raises(ModuleNotFoundError):
+        with self.assertRaises(ModuleNotFoundError):
             my_module = path2import('not_existed_module.py')
             print(my_module)  # to avoid warning "assigned but never used"
 
@@ -58,7 +54,7 @@ class TestName(unittest.TestCase):
     def test_invaild_module(self):
         with Path(NamedTemporaryFile("w", suffix=".txt", delete=False).name) as tf:
             tf.write_text('export = "anglerfish"')  # Not a .py module.
-            with pytest.raises(ImportError):
+            with self.assertRaises(ImportError):
                 my_module = path2import(tf.as_posix())
                 print(my_module)  # to avoid warning "assigned but never used"
 
@@ -88,7 +84,7 @@ class TestName(unittest.TestCase):
 
         with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
             tf.write_text('export = "anglerfish"')
-            with pytest.raises(NamespaceConflictError):
+            with self.assertRaises(NamespaceConflictError):
                 my_module3 = path2import(tf.as_posix(), name='os')
                 print(my_module3)  # to avoid warning "assigned but never used"
 

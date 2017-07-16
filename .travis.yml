@@ -12,7 +12,7 @@ before_install:
 
 
 install:
-  - pip install --upgrade pytest pylama isort ujson --quiet
+  - pip install --upgrade pylama isort ujson --quiet
   - pip install .
 
 
@@ -20,7 +20,7 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 
 script:
-  - pytest tests/
+  - python -m unittest discover --verbose --locals --start-directory "tests/"
   - pylama --linters "pep8,pyflakes,pycodestyle" anglerfish/*.py
 
 
