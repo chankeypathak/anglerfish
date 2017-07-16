@@ -6,15 +6,18 @@
 
 
 import os
+import unittest
 
 from anglerfish import set_process_priority
 
 
-def test_set_process_priority():
-    old_nice = os.getpriority(os.PRIO_PROCESS, 0)
-    prio_set = set_process_priority(ionice=True)
-    new_nice = os.getpriority(os.PRIO_PROCESS, 0)
-    assert old_nice == 0
-    assert isinstance(prio_set, bool)
-    assert prio_set
-    assert new_nice == 19
+class TestName(unittest.TestCase):
+
+    def test_set_process_priority(self):
+        old_nice = os.getpriority(os.PRIO_PROCESS, 0)
+        prio_set = set_process_priority(ionice=True)
+        new_nice = os.getpriority(os.PRIO_PROCESS, 0)
+        self.assertEqual(old_nice, 0)  # a == b
+        self.assertTrue(isinstance(prio_set, bool))  # bool(x) is True
+        self.assertTrue(prio_set)  # bool(x) is True
+        self.assertEqual(new_nice, 19)  # a == b

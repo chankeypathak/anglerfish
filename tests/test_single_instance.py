@@ -6,11 +6,14 @@
 
 
 import socket
+import unittest
 
 from anglerfish import set_single_instance
 
 
-def get_set_single_instance():
-    lock = set_single_instance("test")
-    assert isinstance(lock, socket.socket)
-    assert lock.getsockname().decode("utf-8") == r'\x00_test__lock'
+class TestName(unittest.TestCase):
+
+    def get_set_single_instance(self):
+        lock = set_single_instance("test")
+        self.assertTrue(isinstance(lock, socket.socket))  # bool(x) is True
+        self.assertEqual(lock.getsockname().decode("utf8"), r'\x00_test__lock')
