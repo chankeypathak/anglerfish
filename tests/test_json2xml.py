@@ -5,9 +5,12 @@
 """Test for anglerfish.json2xml()."""
 
 
+import unittest
+
 from anglerfish import json2xml
 
 
-def test_json2xml():
-    # assert json2xml({"foo": True, "bar": 42, "baz": []}) == r'<baz>\n\n</baz>\n<foo>\n    True\n</foo>\n<bar>\n    42\n</bar>'
-    assert json2xml({}) == ""
+class TestName(unittest.TestCase):
+
+    def test_json2xml(self):
+        self.assertEqual(json2xml({}), "")  # a == b
