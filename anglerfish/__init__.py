@@ -68,7 +68,6 @@ from anglerfish.stealth2string import stealth2string  # noqa
 from anglerfish.exceptions import AnglerfishException, NamespaceConflictError
 from anglerfish.get_public_ip import get_public_ip, is_online  # noqa
 from anglerfish.set_process_priority import set_process_priority  # noqa
-from anglerfish.number2currency import number2currency  # noqa
 from anglerfish.get_random_pastel_color import (get_random_pastelight_color,
                                                 get_random_pasteldark_color,
                                                 get_random_pastel_color)
@@ -89,11 +88,13 @@ from anglerfish.make_tinyslation import tinyslation  # noqa
 ##############################################################################
 
 
-__version__ = '3.0.0'
-__license__ = ' GPLv3+ LGPLv3+ '
-__author__ = ' Juan Carlos '
-__email__ = ' juancarlospaco@gmail.com '
-__url__ = 'https://github.com/juancarlospaco/anglerfish'
+__version__ = "3.0.0"
+__license__ = "GPLv3+ LGPLv3+"
+__author__ =  "Juan Carlos"
+__email__ = "juancarlospaco@gmail.com"
+__contact__ = "https://t.me/juancarlospaco"
+__maintainer__ = "Juan Carlos"
+__url__ = "https://github.com/juancarlospaco/anglerfish"
 __all__ = (
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder',
@@ -108,7 +109,7 @@ __all__ = (
     'set_terminal_title', 'set_zip_comment', 'start_time', 'threads',
     'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
     'string2stealth', 'stealth2string',
-    'get_public_ip', 'is_online', 'set_process_priority', 'number2currency',
+    'get_public_ip', 'is_online', 'set_process_priority',
     'get_random_pastelight_color', 'get_random_pasteldark_color',
     'get_random_pastel_color', 'get_random_handwriting_font',
     'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
@@ -116,6 +117,7 @@ __all__ = (
     'get_human_datetime', 'tinyslation',
     'AnglerfishException', 'NamespaceConflictError'  # Exceptions
 )
+
 
 sys.dont_write_bytecode, start_time = True, datetime.now()
 signal.signal(signal.SIGINT, signal.SIG_DFL)
