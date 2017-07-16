@@ -10,18 +10,12 @@ from pathlib import Path
 
 import pytest
 
-from _utils import TempFile
 from anglerfish import path2import
 
 try:
     from anglerfish.exceptions import NamespaceConflictError
 except ImportError:
     NamespaceConflictError = Exception
-
-try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
-    not_found_exception = ModuleNotFoundError
-except NameError:
-    not_found_exception = FileNotFoundError
 
 
 def test_normal():
@@ -32,12 +26,13 @@ def test_normal():
 
 
 def test_syntax_error():
-    with TempFile('export = ') as tf:  # invaild python statements
+    with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
+        tf.write_text('export = ')
         with pytest.raises(SyntaxError):
-            my_module = path2import(tf.name)
+            my_module = path2import(tf.as_posix())
             print(my_module)  # to avoid warning "assigned but never used"
 
-        assert path2import(tf.name, ignore_exceptions=True) is None
+        assert path2import(tf.as_posix(), ignore_exceptions=True) is None
 
 
 def test_permission_denied():
@@ -52,7 +47,7 @@ def test_permission_denied():
 
 
 def test_not_found():
-    with pytest.raises(not_found_exception):
+    with pytest.raises(ModuleNotFoundError):
         my_module = path2import('not_existed_module.py')
         print(my_module)  # to avoid warning "assigned but never used"
 
@@ -60,12 +55,13 @@ def test_not_found():
 
 
 def test_invaild_module():
-    with TempFile('export = "anglerfish"', suffix='.txt') as tf: # not a .py module
+    with Path(NamedTemporaryFile("w", suffix=".txt", delete=False).name) as tf:
+        tf.write_text('export = "anglerfish"')  # Not a .py module.
         with pytest.raises(ImportError):
-            my_module = path2import(tf.name)
+            my_module = path2import(tf.as_posix())
             print(my_module)  # to avoid warning "assigned but never used"
 
-        assert path2import(tf.name, ignore_exceptions=True) is None
+        assert path2import(tf.as_posix(), ignore_exceptions=True) is None
 
 
 def test_reimport():
@@ -91,12 +87,13 @@ def test_check_namespace():
         my_module2 = path2import(tf.as_posix(), 'global_module', check_namespace=True)
         assert my_module2 == global_module
 
-    with TempFile('export = "anglerfish"') as tf:
+    with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
+        tf.write_text('export = "anglerfish"')
         with pytest.raises(NamespaceConflictError):
-            my_module3 = path2import(tf.name, name='os')
+            my_module3 = path2import(tf.as_posix(), name='os')
             print(my_module3)  # to avoid warning "assigned but never used"
 
-        my_module4 = path2import(tf.name, name='os', ignore_exceptions=True) == None
+        my_module4 = path2import(tf.as_posix(), name='os', ignore_exceptions=True) == None
         print(my_module4)  # to avoid warning "assigned but never used"
 
     del(global_module)
