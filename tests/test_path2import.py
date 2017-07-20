@@ -12,11 +12,6 @@ from tempfile import NamedTemporaryFile
 
 from anglerfish import path2import
 
-try:
-    from anglerfish.exceptions import NamespaceConflictError
-except ImportError:
-    NamespaceConflictError = Exception
-
 
 class TestName(unittest.TestCase):
 
@@ -84,7 +79,7 @@ class TestName(unittest.TestCase):
 
         with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:
             tf.write_text('export = "anglerfish"')
-            with self.assertRaises(NamespaceConflictError):
+            with self.assertRaises(ImportWarning):
                 my_module3 = path2import(tf.as_posix(), name='os')
                 print(my_module3)  # to avoid warning "assigned but never used"
 
