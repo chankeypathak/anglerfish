@@ -5,11 +5,13 @@
 """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
 
 
-def bytes2human(bites, to, bsize=1_024):
+from math import log2
+
+
+def bytes2human(bites, *args):
     """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
-    bitez, to = float(abs(bites)), str(to).strip().lower()
-    for i in range({'k': 1, 'm': 2, 'g': 3, 't': 4, 'p': 5, 'e': 6}[to]):
-        bitez = bitez / int(bsize)
-    unit = {'k': "Kilo", 'm': "Mega", 'g': "Giga",
-            't': "Tera", 'p': "Peta", 'e': "Exa"}[to]
-    return f"{ int(bitez) } { unit }bytes"
+    size = int(abs(bites))
+    sfx = ('', 'Kilo', 'Mega', 'Giga', 'Tera', 'Peta', 'Exa', 'Zetta', 'Yotta')
+    order = int(log2(size) / 10) if size else 0
+    value = int(size / (1 << (order * 10)))
+    return f"{ value } { sfx[order] }bytes"
