@@ -65,7 +65,7 @@ from anglerfish.get_pdb_on_exception import (pdb_on_exception,  # noqa
                                              ipdb_on_exception)  # noqa
 from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.stealth2string import stealth2string  # noqa
-from anglerfish.exceptions import AnglerfishException, NamespaceConflictError
+from anglerfish.exceptions import AnglerfishException
 from anglerfish.get_public_ip import get_public_ip, is_online  # noqa
 from anglerfish.set_process_priority import set_process_priority  # noqa
 from anglerfish.get_random_pastel_color import (get_random_pastelight_color,
