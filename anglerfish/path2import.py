@@ -12,13 +12,6 @@ import os
 
 from pathlib import Path
 
-from .exceptions import NamespaceConflictError
-
-try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
-    not_found_exception = ModuleNotFoundError
-except NameError:
-    not_found_exception = FileNotFoundError
-
 
 def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     """Import a module from file path string.
@@ -29,7 +22,7 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     module, pat = None, Path(pat)
     if not pat.is_file():
         if not ignore_exceptions:
-            raise not_found_exception(
+            raise ModuleNotFoundError(
                 errno.ENOENT, os.strerror(errno.ENOENT), pat.as_posix())
     elif not os.access(pat.as_posix(), os.R_OK):
         if not ignore_exceptions:
@@ -37,9 +30,10 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     else:
         try:
             name = name or pat.stem
-            if check_namespace and name in set(globals().keys()):
+            exists = importlib.util.find_spec(name)
+            if check_namespace and name in set(globals().keys()) and exists:
                 if not ignore_exceptions:
-                    raise NamespaceConflictError(
+                    raise ImportWarning(
                         f"Module {name} already exist on the Global namespace")
             else:
                 spec = importlib.util.spec_from_file_location(name,
