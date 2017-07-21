@@ -15,41 +15,41 @@ import sys
 import logging as log
 
 from functools import wraps
-#
-#
-# class typecheck(object):
-#
-#     """Class that copies values of locals of a function or method."""
-#
-#     def __init__(self, func):
-#         """Init class."""
-#         self._locals, self.func = {}, func
-#
-#     def __call__(self, *args, **kwargs):
-#         """Calls the function but copy its values on return."""
-#         def tracer(frame, event, arg):
-#             if event == 'return':
-#                 self._locals = frame.f_locals.copy()
-#         _old_profile = sys.getprofile()
-#         sys.setprofile(tracer)  # tracer activate on next call,return,exception
-#         try:  # this try is used to always restore the sys.setprofile(None)
-#             res = self.func(*args, **kwargs)  # trace the function call
-#         finally:
-#             sys.setprofile(_old_profile)  # Disable tracer,replace with old one
-#         return res
-#
-#     def clear_locals(self, force_del=False):
-#         """Helper to clean. Optional force to 'del' all objects"""
-#         if force_del:
-#             for object_to_del in self._locals:
-#                 del object_to_del
-#         self._locals = {}
-#
-#     @property
-#     def locals(self):
-#         """Persistent values of locals of decorated functions."""
-#         return self._locals
-#
+
+
+class typecheck(object):
+
+    """Class that copies values of locals of a function or method."""
+
+    def __init__(self, func):
+        """Init class."""
+        self._locals, self.func = {}, func
+
+    def __call__(self, *args, **kwargs):
+        """Calls the function but copy its values on return."""
+        def tracer(frame, event, arg):
+            if event == 'return':
+                self._locals = frame.f_locals.copy()
+        _old_profile = sys.getprofile()
+        sys.setprofile(tracer)  # tracer activate on next call,return,exception
+        try:  # this try is used to always restore the sys.setprofile(None)
+            res = self.func(*args, **kwargs)  # trace the function call
+        finally:
+            sys.setprofile(_old_profile)  # Disable tracer,replace with old one
+        return res
+
+    def clear_locals(self, force_del=False):
+        """Helper to clean. Optional force to 'del' all objects"""
+        if force_del:
+            for object_to_del in self._locals:
+                del object_to_del
+        self._locals = {}
+
+    @property
+    def locals(self):
+        """Persistent values of locals of decorated functions."""
+        return self._locals
+
 
 
 
