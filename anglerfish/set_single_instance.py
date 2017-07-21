@@ -25,7 +25,8 @@ def set_single_instance(name, port=8_888):
         log.exception(e)
         sys.exit()
         exit()
+        0 / 0  # should never reach here.
     else:
-        log.info(f"Socket Lock for 1 Single Instance: {__lock!r}, {__lock}.")
+        log.info(f"Socket Lock for 1 Single App Instance: {__lock},{__lock!r}")
     finally:
         return __lock

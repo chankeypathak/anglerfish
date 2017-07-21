@@ -96,4 +96,5 @@ def get_clipboard():
     global clipboard_copy, clipboard_paste
     clipboard_copy, clipboard_paste = None, None
     clipboard_copy, clipboard_paste = __determine_clipboard()
+    log.debug(f"Clipboard ready: {clipboard_copy}, {clipboard_paste}.")
     return Clipboard(clipboard_copy, clipboard_paste)

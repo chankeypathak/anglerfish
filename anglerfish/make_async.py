@@ -69,7 +69,7 @@ class _AsyncThreadingCall(object):
         return self.tread
 
     async def _run_thread(self, sync_function, future):
-        tread = threading.Thread(target=self._run_future,
+        tread = threading.Thread(target=self._run_future, name="angler",
                                  args=(sync_function, future))
         tread.start()
         self.tread = tread

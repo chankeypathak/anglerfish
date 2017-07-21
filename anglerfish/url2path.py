@@ -33,7 +33,9 @@ def _get_context():
 
 
 def _download_simple(url, data, timeout, filename):
-    """Download without multiple concurrent downloads for the same file."""
+    """Download without multiple concurrent downloads for the same file.
+
+    urllib.request.urlretrieve() dont support 'context'/'timeout' argument."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()
                  ) as urly, open(filename, 'wb') as fyle:
         fyle.write(urly.read())
@@ -55,7 +57,7 @@ def _get_size(url, data, timeout):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
-    log.info(f"Download Size: {bytes2human(size)} ({size}Bytes) Download")
+    log.info(f"Download Size: {bytes2human(size)} ({size} Bytes) Download.")
     log.info(f"Full HTTP Headers data:\n{ u.headers }.\n")
     return size
 
@@ -88,7 +90,7 @@ def url2path(url, data=None, timeout=None,
         filename = _download_simple(url, data=data,
                                     timeout=timeout, filename=filename)
         if checksum and autochecksum:
-            log.info("Generating Anglers Auto-CheckSum for downloaded file.")
+            log.info(f"Generating Anglers Auto-CheckSum using {autochecksum}.")
             filename = autochecksum(filename, update=True)
         return filename
     splitBy = concurrent_downloads if concurrent_downloads in range(11) else 10
@@ -107,7 +109,7 @@ def url2path(url, data=None, timeout=None,
         for _idx, chunk in tuple(sorted(dataDict.items())):
             fh.write(chunk)
     if checksum and autochecksum:
-        log.info("Generating Anglers Auto-CheckSum for downloaded file.")
+        log.info(f"Generating Anglers Auto-CheckSum using {autochecksum}.")
         filename = autochecksum(filename, update=True)
     # Log some nice info.
     fl_size, fl_time = os.path.getsize(filename), datetime.now() - start_time

@@ -56,7 +56,7 @@ class DataURI(str):
         parts = ['data:']
         if mimetype is not None:
             if not _MIMETYPE_RE.match(mimetype):
-                raise ValueError(f"Invalid MIME Type: {mimetype}.")
+                raise ValueError(f"Invalid MIME: {mimetype}, {base64}, {cls}.")
             parts.append(mimetype + ';charset=utf-8')
         if base64:
             parts.append(';base64')

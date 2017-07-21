@@ -14,6 +14,8 @@ class AnglerfishException(Exception):
     https://github.com/juancarlospaco/anglerfish#angler
     Angler is on PyPI:
     https://pypi.python.org/pypi/anglerfish
+    Angler COC:
+    https://github.com/juancarlospaco/anglerfish/blob/master/code_of_conduct.md
 
     This Exception is meant to be used when Apps that use Angler fail.
     """

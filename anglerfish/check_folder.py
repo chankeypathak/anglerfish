@@ -34,11 +34,9 @@ def check_folder(folder_to_check=Path.home().as_posix(), check_space=1):
     elif disk_usage and folder.exists() and bool(check_space):
         hdd = int(disk_usage(folder.as_posix()).free)
         if int(hdd / 1_024 / 1_024 / 1_024) >= int(check_space):  # Check_space
-            log.info(m.format(
-                folder, bytes2human(hdd), hdd, check_space))
+            log.info(m.format(folder, bytes2human(hdd), hdd, check_space))
             return True
         else:  # < check_space Gb.
-            log.critical(m.format(
-                folder, bytes2human(hdd), hdd, check_space))
+            log.critical(m.format(folder, bytes2human(hdd), hdd, check_space))
             return False
     return False
