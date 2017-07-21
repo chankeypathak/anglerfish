@@ -21,11 +21,11 @@ STDERR  Encoding: { getattr(sys.stderr, "encoding", "???") }.
 STDOUT  Encoding: { getattr(sys.stdout, "encoding", "???") }.
 I/O File Systems Encoding: { sys.getfilesystemencoding()   }.
 PYTHONIOENCODING Encoding: { os.environ.get("PYTHONIOENCODING", "???")}.
-Default File Systems Encode Errors: { sys.getfilesystemencodeerrors() }.
-PYTHONLEGACYWINDOWSFSENCODING Encoding:
-    { os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???") }.
-PYTHONLEGACYWINDOWSSTDIO Encoding:
-    { os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
+Default File Systems Encoding Errors:     { sys.getfilesystemencodeerrors() }.
+PYTHONLEGACYWINDOWSFSENCODING Encoding: {
+    os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???") }.
+PYTHONLEGACYWINDOWSSTDIO Encoding:      {
+    os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
 
 
 def check_encoding(check_root=True):
