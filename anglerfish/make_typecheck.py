@@ -51,8 +51,6 @@ class typecheck(object):
         return self._locals
 
 
-
-
 def typecheck(f):
     """Decorator for PEP-526/PEP-484,Python Static Type hinting annotations."""
     def _check_annotations(tipe):
@@ -70,6 +68,7 @@ def typecheck(f):
         msg = "Type check error: {0} must be {1} but is {2} on function {3}()."
         notations, f_name = f.__annotations__.keys(), f.__code__.co_name
         doc = str(f.__doc__).splitlines()[0]  # Function DocString 1 line.
+        print(doc)
 
         # __import__("ptpdb").set_trace()
         for i, name in enumerate(f.__code__.co_varnames):
