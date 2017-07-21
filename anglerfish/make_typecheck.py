@@ -71,7 +71,7 @@ def typecheck(f):
         notations, f_name = f.__annotations__.keys(), f.__code__.co_name
         doc = str(f.__doc__).splitlines()[0]  # Function DocString 1 line.
 
-        __import__("ptpdb").set_trace()
+        # __import__("ptpdb").set_trace()
         for i, name in enumerate(f.__code__.co_varnames):
             if name not in set(notations):
                 continue  # this arg name has no annotation then skip it.
