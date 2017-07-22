@@ -13,9 +13,8 @@ from anglerfish import log_exception
 class TestName(unittest.TestCase):
 
     def test_log_exception(self):
-        pass  # FIXME: pytest.raises() dont like try:...except:... ?
-        #  with pytest.raises(ZeroDivisionError):
-        #     try:
-        #         0 / 0
-        #     except Exception:
-        #         log_exception()
+        with self.assertRaises(ZeroDivisionError):
+            try:
+                0 / 0
+            except Exception:
+                log_exception()
