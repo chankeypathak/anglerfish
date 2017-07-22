@@ -14,5 +14,4 @@ class TestName(unittest.TestCase):
 
     def test_get_public_ip(self):
         # Travis has an invalid certificate, and it fails because of that.
-        ip = get_public_ip()  # this works ok locally.
-        assert len(ip)
+        assert get_public_ip()
