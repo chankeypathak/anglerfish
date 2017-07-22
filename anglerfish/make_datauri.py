@@ -8,7 +8,6 @@
 import os
 import re
 import textwrap
-
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from mimetypes import guess_type
 from pathlib import Path
@@ -18,7 +17,6 @@ from tempfile import NamedTemporaryFile
 from typing import NamedTuple
 from urllib.parse import quote_plus, unquote_plus
 from urllib.request import urlretrieve
-
 
 _MIMETYPE_REGEX, _CHARSET_REGEX = r'[\w]+\/[\w\-\+\.]+', r'[\w\-\+\.]+'
 _MIMETYPE_RE = re.compile('^{0}$'.format(_MIMETYPE_REGEX))

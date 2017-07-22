@@ -155,7 +155,7 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
 
     def __init__(self, filename, maxMegaBytes=0, backupCount=0, encoding=None,
                  delay=0, when='h', interval=1, utc=False, atTime=None):
-        """This is copy & paste just to overwrite the method shouldRollover."""
+        """Overwrite the method shouldRollover."""
         TimedRotatingFileHandler.__init__(
             self, filename=filename, when=when, interval=interval,
             backupCount=backupCount, encoding=encoding, delay=delay, utc=utc)
@@ -203,7 +203,7 @@ def make_logger(name, when='midnight', filename=None, interval=1,
         def add_color_emit_ansi(fn):
             """Add methods we need to the class."""
             def new(*args):
-                """Method overload."""
+                """Overload."""
                 if len(args) == 2:
                     new_args = (args[0], copy(args[1]))
                 else:

@@ -8,7 +8,6 @@
 import logging as log
 import os
 import sys
-
 from pathlib import Path
 from shutil import which
 from subprocess import run

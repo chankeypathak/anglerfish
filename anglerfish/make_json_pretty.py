@@ -6,7 +6,6 @@
 
 
 import logging as log
-
 from json import dumps  # ujson dont support "separators" argument, dont use it
 
 

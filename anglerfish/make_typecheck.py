@@ -26,7 +26,7 @@ class typecheck2(object):
         self._locals, self.func = {}, func
 
     def __call__(self, *args, **kwargs):
-        """Calls the function but copy its values on return."""
+        """Call the function but copy its values on return."""
         def tracer(frame, event, arg):
             if event == 'return':
                 self._locals = frame.f_locals.copy()
@@ -39,7 +39,7 @@ class typecheck2(object):
         return res
 
     def clear_locals(self, force_del=False):
-        """Helper to clean. Optional force to 'del' all objects"""
+        """Help to clean. Optional force to 'del' all objects."""
         if force_del:
             for object_to_del in self._locals:
                 del object_to_del
@@ -47,14 +47,14 @@ class typecheck2(object):
 
     @property
     def locals(self):
-        """Persistent values of locals of decorated functions."""
+        """Persist values of locals of decorated functions."""
         return self._locals
 
 
 def typecheck(f):
-    """Decorator for PEP-526/PEP-484,Python Static Type hinting annotations."""
+    """Decorate for PEP-526/PEP-484,Python Static Type hinting annotations."""
     def _check_annotations(tipe):
-        """Checks argument types,return tuple of type and bool,True if Ok."""
+        """Check argument types,return tuple of type and bool,True if Ok."""
         _type, is_ok = None, isinstance(tipe, (type, tuple, type(None)))
         if is_ok:  # Annotations can be Type or Tuple or None
             _type = tipe if isinstance(tipe, tuple) else tuple((tipe, ))
@@ -64,7 +64,7 @@ def typecheck(f):
 
     @wraps(f)  # wrap a function or method to Type Check it.
     def decorated(*args, **kwargs):
-        """Decorator logic to extract '__annotations__' dict."""
+        """Decorate logic to extract '__annotations__' dict."""
         msg = "Type check error: {0} must be {1} but is {2} on function {3}()."
         notations, f_name = f.__annotations__.keys(), f.__code__.co_name
         doc = str(f.__doc__).splitlines()[0]  # Function DocString 1 line.

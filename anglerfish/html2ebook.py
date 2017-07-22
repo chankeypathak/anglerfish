@@ -7,7 +7,6 @@
 
 import os
 import zipfile
-
 from getpass import getuser
 from uuid import uuid4
 

@@ -7,7 +7,6 @@
 
 import sys
 import weakref
-
 from concurrent.futures import Future
 
 

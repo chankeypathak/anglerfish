@@ -9,10 +9,8 @@ import logging as log
 import os
 import subprocess
 import sys
-
 from shutil import which
 from typing import NamedTuple
-
 
 # Dot notation and static typed and built-in version of collections.namedtuple.
 Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),

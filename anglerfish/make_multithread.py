@@ -30,7 +30,7 @@ class _Threaded():
 def _async(n, base_type, timeout=None):
     """Async internal function for decorator."""
     def decorator(f):
-        """Decorator builder."""
+        """Decorate builder."""
         if isinstance(n, int):
             pool = base_type(n)
         elif isinstance(n, base_type):

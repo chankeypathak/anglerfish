@@ -25,7 +25,7 @@ except ImportError:
 
 
 def make_post_exec_msg(start_time=None, comment=None):
-    """Simple Post-Execution Message with information about RAM and Time."""
+    """Build Post-Execution Message with information about RAM and Time."""
     use, al, msg = 0, 0, ""
     if sys.platform.startswith(("win", "darwin")):
         msg = "No information about RAM usage available on non-Linux systems."
@@ -48,6 +48,6 @@ def make_post_exec_msg(start_time=None, comment=None):
 
 
 def app_is_ready(start_time):  # this goes at end of your apps __init__()
-    """Simple Post-StartUp Message with Start-Up time."""
+    """Print a Simple Post-StartUp Message with Start-Up time."""
     _t = datetime.now() - start_time
     log.debug(f"Total app cold start-up time: ~{timedelta2human(_t)} ({_t}).")

@@ -63,6 +63,7 @@ def _get_size(url, data, timeout):
 
 
 def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
+    """Download a single chunk of binary data from arguments."""
     req = Request(url, headers={'User-Agent': '', 'DNT': 1})
     req.headers['Range'] = f"bytes={ irange }"
     print(f"Thread {idx} is downloading data: {req.headers['Range']}.")
@@ -73,6 +74,7 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
 def url2path(url, data=None, timeout=None,
              filename=None, suffix=None, name_from_url=False,
              concurrent_downloads=5, force_concurrent=False, checksum=False):
+    """Download accelerator with multiple concurrent downloads for 1 file."""
     if not url.lower().startswith({"https:", "http:", "ftps:", "ftp:"}):
         return url  # URL is a file path?.
     start_time, dataDict = datetime.now(), {}
