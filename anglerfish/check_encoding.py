@@ -8,7 +8,6 @@
 import logging as log
 import os
 import sys
-
 from getpass import getuser
 from platform import platform, python_version
 

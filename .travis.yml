@@ -21,8 +21,8 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 script:
   - python -m unittest discover --verbose --locals --start-directory "tests/"
-  - pylama --linters "pyflakes,pycodestyle" anglerfish/*.py
-  - pre-commit run --all-files
+  - pylama anglerfish/*.py
+  - pre-commit run --all-files --verbose --show-diff-on-failure
 
 
 notifications:

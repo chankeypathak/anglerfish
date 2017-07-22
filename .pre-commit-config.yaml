@@ -7,6 +7,8 @@
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     sha: v0.9.1  # master
+    minimum_pre_commit_version: 0.15.3
+    description: Static analysis to check files for best practices.
     stages: [commit, push]  # When to run.
     hooks:
     -   id: end-of-file-fixer        # Check that Text files ends with new line.
