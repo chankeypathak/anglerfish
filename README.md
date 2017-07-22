@@ -2425,4 +2425,4 @@ pytest tests/
 # Ethics and Humanism Policy:
 
 - Politics and Religions is not allowed.
-- This project has Feminism Ally conduct.
+- [Contributing means you agree with the COC.](https://github.com/juancarlospaco/anglerfish/blob/master/code_of_conduct.md)
