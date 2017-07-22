@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+
+"""Minimum possible example demo for `anglerfish.Sync2Async()` class."""
+
+
 import time
 import asyncio
 

@@ -2080,6 +2080,7 @@ Please read Pythons `asyncio` official Documentation for more info.
 `run_async_on_thread()` runs the code as async on a separate Thread.
 `get_event_loop()` returns the current actual event loop in use, takes no arguments.
 `get_event_loop()` is similar to `asyncio.get_event_loop()`
+[For more info see this minimum possible example demo.](https://github.com/juancarlospaco/anglerfish/blob/master/examples/async.py)
 
 **Arguments:**
 - `sync_code`: A `Callable` object, a function or method or whatever callable,
@@ -2142,7 +2143,7 @@ easy to parse with standard pattern,not crypto secure but useful for checksum,
 is more human friendly than SHA512 checksum and its builtin on the filename,
 Adler32 is standard on all ZIP files and its builtin on Python std lib.
 The Checksum operation is `hex( zlib.adler32(data) )`.
-A standard pattern of a **Check** and a **Sum** `✔+` is appended to easy parse checksums from filenames.
+A standard pattern of a **Check** `.✔` is appended to easy parse checksums from filenames.
 I do this tired of people not using SHA512 on 1 separate txt file for checksum,
 this not require user command line skills to check the checksum, its automagic.
 
