@@ -11,10 +11,11 @@ class AnglerfishException(Exception):
 
     For more info, docs, bugs, ideas, feedback and source code of Angler:
     https://github.com/juancarlospaco/anglerfish#angler
-    Angler is on PyPI:
+    Angler on PyPI:
     https://pypi.python.org/pypi/anglerfish
+    Angler on Arch:
+    https://aur.archlinux.org/packages/python-anglerfish
 
     This Exception is meant to be used when Apps that use Angler fail.
     """
-
     pass
