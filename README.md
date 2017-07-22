@@ -17,22 +17,32 @@
 ##### make_logger
 <details>
 
-`anglerfish.make_logger(name: str, when: str='midnight', single_zip: bool=False, log_file: str=None, backup_count: int=100, emoji: bool=False)`
+`anglerfish.make_logger(name, when='midnight', filename=None, interval=1,
+                backupCount=100, slog=True, stder=True, crashandler=None,
+                emoji=False, color=True, maxMegaBytes=1)`
 
 **Description:** Returns a Logger, that has Colored output, logs to STDOUT, logs to Rotating File,
 it will try to Log to Unix SysLog Server if any, log file is based on App name,
 if the App ends correctly it will automatically ZIP compress the old unused rotated logs,
 Colored output may not be available on MS Windows OS,
 this should be the first one to use, since others may need a way to log out important info, you should always have a logger.
+Do not worry too much about the Arguments for `make_logger()`, the only required is `name`.
 Please use a unique and distinctive name for your app, and use the same name every time Angler needs an app name.
 
 **Arguments:**
 - `name` is a unique name of your App, like a unique identifier, string type.
 - `when` is one of 'midnight', 'S', 'M', 'H', 'D', 'W0'-'W6', optional will use 'midnight' if not provided, string type.
 - `single_zip` Unused Old Rotated Logs will be ZIP Compressed automagically, `True` equals 1 ZIP per Log, `False` equals 1 ZIP for *All* Logs, lets the user choose if you want a single ZIP or one per log file.
-- `log_file` log filename path or None, optional, defaults to `None`, `os.path.join(gettempdir(), name.lower().strip() + ".log")` will be used if left as `None`, log filename path on use will be printed to stdout automatically, string type.
+- `filename` log filename path or None, optional, defaults to `None`, `os.path.join(gettempdir(), name.lower().strip() + ".log")` will be used if left as `None`, log filename path on use will be printed to stdout automatically, string type.
 - `backup_count` number of log backups to keep, optional, defaults to `100`, meaning 100 backups, integer type.
 - `emoji` Kitten Emoji on logger *(ala [Yarn](https://yarnpkg.com) )*, Optional, defaults to `False`, boolean type.
+- `backupCount` Maximum number of backup copy old rotated unused logs to keep.
+- `slog` `True` to try to use systems SysLog server, if any, works Ok if no SysLog is found working on the system, optional, boolean type, defaults to `True`.
+- `stder` `True` to try to use systems Standard Output to log, optional, boolean type, defaults to `True`.
+- `crashandler` `True` to try to use a crashandler for Core Dumps and Critical errors, optional, defaults to `None`, advanced use, [see this Doc](https://devdocs.io/python~3.6/library/faulthandler#faulthandler.enable).
+- `color` `True` to use Pretty Colored Logs, optional, boolean type, defaults to `True`.
+- `maxMegaBytes` Maximum Megabytes of the Log files, when the log is bigger than this file size on Megabytes it gets automatically Rotated, 1 Megabyte of plain text is a lot of text, optional, boolean type, defaults to `1`.
+
 
 **Keyword Arguments:** None.
 
@@ -70,13 +80,18 @@ This is a Test.
 ##### get_free_port
 <details>
 
-`anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
+`anglerfish.get_free_port(port_range: None)`
 
 **Description:** Returns a free unused port number integer.
-Takes a tuple of 2 integers as argument, being the range of port numbers to scan.
+If Argument is `None`, then it ask for an OS-Provided Random port number,
+since this is *the best practice* from OS and inter-operability point of view.
+If Argument is provided, it takes a tuple of 2 positive integers as argument,
+being the range of port numbers to scan.
+When you ask for a free unused port number on your code try to use it ASAP,
+since it can get taken at any moment by any other App running on the system.
 
 **Arguments:**
-- `port_range` is the range of port numbers to scan, starting port and ending port numbers. 2 items only are allowed. Tuple type.
+- `port_range` is the range of port numbers to scan, starting port and ending port numbers. 2 items only are allowed, optional, Tuple type, eg. `(8000, 9000)`, defaults to `None`.
 
 **Keyword Arguments:** None.
 
@@ -107,7 +122,7 @@ Found free unused port number: 8000
 
 `anglerfish.make_notification(title: str, message: str="", name: str="", icon: str="", timeout: int=3000))`
 
-**Description:** Makes a Passive Notification Bubble (Passive Popup), it works cross-desktop, using one of DBus, PyNotify, notify-send, kdialog, zenity or xmessage.
+**Description:** Makes a Passive Notification Bubble (Passive Popup), it works cross-desktop, using one of DBus, PyNotify, notify-send, kdialog, or zenity.
 Should degrade nicely on operating systems that dont have any of those.
 Best results are with D-Bus.
 
@@ -144,15 +159,14 @@ Sending Notification message via D-Bus API.
 ##### bytes2human
 <details>
 
-`anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
+`anglerfish.bytes2human(bites: int)`
 
-**Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...),
-uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
+**Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...).
+This function does *Not* use `for` loops so its super fast, even for Yottabytes.
+Its basically a Bytes to 'Kilo', 'Mega', 'Giga', 'Tera', 'Peta', 'Exa', 'Zetta' and 'Yotta'.
 
 **Arguments:**
-- `bites` is the number of bytes, integer type.
-- `to` is one of 'k', 'm', 'g', 't', 'p', 'e', being KiloBytes, MegaBytes, GigaBytes (...), string type.
-- `bsize` is the Byte Size, defaults to `1024`, since tipically is the desired byte size, integer type.
+- `bites` is the number of bytes, integer type, required.
 
 **Keyword Arguments:** None.
 
@@ -170,8 +184,7 @@ uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaB
 
 ```python
 >>> from anglerfish import bytes2human
->>> bytes2human(3284902384, "g")
-Converting 3284902384 Bytes to G.
+>>> bytes2human(3284902384)
 "3 Gigabytes"
 ```
 </details>
@@ -183,10 +196,12 @@ Converting 3284902384 Bytes to G.
 
 `anglerfish.check_encoding(check_root: bool=True)`
 
-**Description:** Checks the all the Encodings of the System and Logs the results, to name a few like `STDIN`, `STDERR`, `STDOUT`, FileSystem, `PYTHONIOENCODING` and Default Encoding, takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac.
+**Description:** Checks the all the Encodings of the System and Logs the results, to name a few like `STDIN`, `STDERR`, `STDOUT`, FileSystem, `PYTHONIOENCODING`,
+`PYTHONLEGACYWINDOWSFSENCODING`, `PYTHONLEGACYWINDOWSSTDIO`  and Default Encoding,
+takes no arguments, requires a working Logger, all "UTF-8" should be ideal on Linux/Mac/Windows.
 
 **Arguments:**
-- `check_root` Check for root/administrator privileges, optional, boolean type.
+- `check_root` Check for root/Administrator privileges, optional, boolean type.
 
 **Keyword Arguments:** None.
 
@@ -305,7 +320,8 @@ Querying Copy/Paste Clipboard functionality.
 like old days Pc Speaker Buzzer Beep sound, meant for very long running operations and/or headless command line apps,
 it works on Linux, Windows and Mac and requires nothing to run.
 
-**Arguments:** `waveform` tuple containing integers, as the sinewave for the beep sound, defaults to `(79, 45, 32, 50, 99, 113, 126, 127)`.
+**Arguments:** `waveform` tuple containing integers, as the sinewave for the beep sound,
+defaults to `(79, 45, 32, 50, 99, 113, 126, 127)`, optional.
 
 **Keyword Arguments:** None.
 
@@ -709,8 +725,8 @@ with optional Timeout, on a quick and easy way.
 **Description:** Execute code on multiple Threads, with optional Timeout, on a quick and easy way.
 
 **Arguments:**
-- `n` number of Threads to use for the function execution, integer type,
-- `timeout` a Timeout on seconds or None.
+- `n` number of Threads to use for the function execution, integer type, required.
+- `timeout` a Timeout on seconds, optional, integer type, `None` for no timeout, defaults to `None`.
 
 **Keyword Arguments:** None.
 
@@ -1397,7 +1413,7 @@ Can be IPv4 or IPv6. See Python standard lib official Docs for more info.
 
 `anglerfish.is_online()`
 
-**Description:** Check if we got internet conectivity.
+**Description:** Check if we got internet connectivity.
 
 **Arguments:** None.
 
@@ -1653,6 +1669,7 @@ but this is useful for quick templating and boilerplate styling,
 too extreme weird font designs are not included, is a one-by-one curated list,
 from Design point of view this fonts are good for Titles/SubTitles/big text,
 as string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
@@ -1693,6 +1710,7 @@ too extreme weird font designs are not included, is a one-by-one curated list,
 the names of this fonts contain spaces ` `,
 from Design point of view this fonts are good for source code text,
 as string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
@@ -1731,6 +1749,7 @@ but this is useful for quick templating and boilerplate styling,
 too extreme weird font designs are not included, is a one-by-one curated list,
 from Design point of view this fonts are good "for Fun",
 as string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
@@ -1770,6 +1789,7 @@ but this is useful for quick templating and boilerplate styling,
 too extreme weird font designs are not included, is a one-by-one curated list,
 from Design point of view this fonts are good for serious stuff and formal text,
 as string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
@@ -1809,6 +1829,7 @@ but this is useful for quick templating and boilerplate styling,
 too extreme weird font designs are not included, is a one-by-one curated list,
 from Design point of view this fonts are good for serious stuff and formal text,
 as string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
@@ -1854,6 +1875,7 @@ this function calls `anglerfish.get_random_sans_font()` and
 `anglerfish.get_random_handwriting_font()` and
 `anglerfish.get_random_display_font()`.
 return a string, takes no arguments.
+Theres several third party Python packages to get full path of TTF files from Font Names.
 
 **Arguments:** None.
 
