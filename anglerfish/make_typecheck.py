@@ -17,7 +17,7 @@ import logging as log
 from functools import wraps
 
 
-class typecheck(object):
+class typecheck2(object):
 
     """Class that copies values of locals of a function or method."""
 
