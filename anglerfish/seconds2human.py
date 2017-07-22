@@ -20,8 +20,8 @@ def seconds2human(time_on_seconds=0, do_year=True,
     seco = "%02d" + str(unit_words.get("s", " Seconds "))
     years = int(int(days) / 365)
     if days and years and do_year and years > 1:
-            human_time_string += yea.format(years)
-            days = days - (365 * years)
+        human_time_string += yea.format(years)
+        days = days - (365 * years)
     if days:
         human_time_string += dayz % days
     if hours:

@@ -30,7 +30,7 @@ class __MultiProcessed():
         result_queue = cpu_pool.map(
             _multi_thread,
             [[_func, self.cpu_num, self.thread_num, job_queue[int(index[i][0]):
-              int(index[i][1] + 1)], timeout, process_bar, i]
+                                                              int(index[i][1] + 1)], timeout, process_bar, i]
              for i in range(len(index))])
         result = []
         for rl in result_queue:

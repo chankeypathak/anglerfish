@@ -9,6 +9,7 @@ import unittest
 
 from anglerfish import get_clipboard
 
+
 class TestName(unittest.TestCase):
 
     def test_dummy(self):

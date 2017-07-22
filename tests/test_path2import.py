@@ -83,7 +83,8 @@ class TestName(unittest.TestCase):
                 my_module3 = path2import(tf.as_posix(), name='os')
                 print(my_module3)  # to avoid warning "assigned but never used"
 
-            my_module4 = path2import(tf.as_posix(), name='os', ignore_exceptions=True) == None
+            my_module4 = path2import(
+                tf.as_posix(), name='os', ignore_exceptions=True) is None
             print(my_module4)  # to avoid warning "assigned but never used"
 
         del(global_module)

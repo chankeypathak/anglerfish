@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-import sys
+import time
+
 from datetime import datetime
+from zipfile import ZipFile
 
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))  # Use local
-from anglerfish import *
+# import sys
+# import os
+# sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))  # Local
+from anglerfish import *  # noqa
 
 
 start_time = datetime.now()
@@ -86,13 +90,16 @@ print(json_pretty({}))
 
 
 print("Running anglerfish.multiprocessed()")
-import time
+
+
 def process_job(job):  # a simple function for testing only
     time.sleep(1)
     count = 100
     while count > 0:
         count -= 1
     return job
+
+
 jobs = [str(i) for i in range(30)]  # a simple list
 # print(multiprocessed(process_job, jobs, cpu_num=1, thread_num=1))  # SLOW
 # print(multiprocessed(process_job, jobs, cpu_num=2, thread_num=2))  # SLOW
@@ -102,9 +109,13 @@ print(multiprocessed(process_job, jobs, cpu_num=4, thread_num=6))
 
 
 print("Running anglerfish.@threads")
+
+
 @threads(4)
 def process_job():  # a simple function for testing only
     return time.sleep(1)
+
+
 process_job()
 
 
@@ -127,8 +138,8 @@ print(seconds2human(0))
 print(seconds2human(42))
 print(seconds2human(-666))
 print(seconds2human(83490890))
-__unit_words={"y": " Anios ", "d": " Dias ",
-              "h": " Horas ", "m": " Minutos ", "s": " Segundos "}
+__unit_words = {"y": " Anios ", "d": " Dias ",
+                "h": " Horas ", "m": " Minutos ", "s": " Segundos "}
 print(seconds2human(0, do_year=False, unit_words=__unit_words))
 print(seconds2human(42, do_year=False, unit_words=__unit_words))
 print(seconds2human(-666, do_year=False, unit_words=__unit_words))
@@ -140,15 +151,19 @@ print(timedelta2human(start_time - datetime.now()))
 
 
 print("Running anglerfish.walk2dict()")
-print(walk2dict(".")) # dict
-print(walk2dict(".", ordereddict=True)) # ordered dict
-print(walk2dict(".", jsony=True, ordereddict=True)) # json
+print(walk2dict("."))  # dict
+print(walk2dict(".", ordereddict=True))  # ordered dict
+print(walk2dict(".", jsony=True, ordereddict=True))  # json
 
 
 print("Running anglerfish.@typecheck")
+
+
 @typecheck
 def test_typecheck(foo: int, bar: str) -> float:
     return float(foo)
+
+
 test_typecheck(42, "test")
 
 
@@ -192,7 +207,6 @@ print(on_battery())
 
 
 print("Running anglerfish.set_zip_comment()")
-from zipfile import ZipFile
 ZipFile("test.zip", 'w').close()
 print(set_zip_comment("test.zip", "This is a comment."))
 

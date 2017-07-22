@@ -9,6 +9,7 @@ import unittest
 
 from anglerfish import is_online
 
+
 class TestName(unittest.TestCase):
 
     def test_is_online(self):
