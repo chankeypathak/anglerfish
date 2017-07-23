@@ -34,7 +34,7 @@ def _get_context():
 def _download_simple(url, data, timeout, filename):
     """Download without multiple concurrent downloads for the same file.
 
-    urllib.request.urlretrieve() dont support 'context'/'timeout' argument."""
+    urllib.request.urlretrieve() dont support 'context','timeout' arguments."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()
                  ) as urly, open(filename, 'wb') as fyle:
         fyle.write(urly.read())
@@ -62,7 +62,10 @@ def _get_size(url, data, timeout):
 
 
 def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
-    """Download a single chunk of binary data from arguments."""
+    """Download a single chunk of binary data from arguments.
+
+    This should print detailed progress to std out as multiple progress bars.
+    This runs on multiple async Threads for simultaneous downloads."""
     req = Request(url, headers={'User-Agent': '', 'DNT': 1})
     req.headers['Range'] = f"bytes={ irange }"
     print(f"Thread {idx} is downloading data: {req.headers['Range']}.")
