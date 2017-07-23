@@ -32,7 +32,7 @@ _DATA_URI_REGEX = (
     r'(?P<base64>\;base64)?' +
     r',(?P<data>.*)')
 _DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
-_EXTENSIONS = {".png", ".jpeg", ".jpg", ".tiff"}
+_EXTENSIONS = frozenset({".png", ".jpeg", ".jpg", ".tiff"})
 
 
 def img2webp(image_path, webp_path=None, preset="text"):
