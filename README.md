@@ -2197,7 +2197,7 @@ True
 ##### url2path
 <details>
 
-`anglerfish.url2path(url, data=None, timeout=None, cafile=None, capath=None, filename=None, suffix=None, name_from_url=False, concurrent_downloads=5, force_concurrent=False, checksum=False)`
+`anglerfish.url2path(url, data=None, timeout=None, cafile=None, capath=None, filename=None, suffix=None, name_from_url=False, concurrent_downloads=5, force_concurrent=False, checksum=False, use_tqdm=True)`
 
 **Description:** Take an URL or Path filename, return path if its not an URL,
 download to a temporary file and return filename path if its an URL,
@@ -2227,6 +2227,10 @@ this is also designed to be able to use an URL as a path filename on command lin
 - `concurrent_downloads`: How many concurrent downloads to use to speed up, defaults to `5`, minimum is `2`, maximum is `10`, some servers tend to cut the connection for more than 10 connections per file, integer type, optional.
 - `force_concurrent`: Force to be concurrent even if its not needed, it can make downloads slower if the file is small, if set to `False` it will try to automatically determine the best based on file size, defaults to `False`, bool type, optional.
 - `checksum`: Automatically generate a checksum for the file, uses `anglerfish.autochecksum()`, this checksum is super fast to calculate, see `anglerfish.autochecksum()` documentation, defaults to `False`, bool type, optional.
+- `use_tqdm`: Use `tqdm` for multiple progress bars for downloads for each Thread,
+if its installed on the system it displays multiple download progress bars,
+if its not installed on the system it displays multiple `print()` with info,
+defaults to `True`, bool type, optional.
 
 **Keyword Arguments:** None.
 

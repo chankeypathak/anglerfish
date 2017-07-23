@@ -90,6 +90,7 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
                         iteration += 1
                         pbar.update(iteration)
         else:
+            print(f"Thread {idx} is downloading {req.headers['Range']}.")
             dataDict[idx] = u.read()
 
 
