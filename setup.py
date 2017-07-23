@@ -94,7 +94,7 @@ setup(
     zip_safe=True,
 
     tests_require=['isort', 'pylama', 'pre-commit', 'pre-commit-hooks'],
-    extras_require={"full": ["ujson"]},
+    extras_require={"full": ["ujson", "tqdm"]},
 
     packages=["anglerfish"],
 
