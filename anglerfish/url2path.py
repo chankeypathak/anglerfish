@@ -19,6 +19,11 @@ from anglerfish.bytes2human import bytes2human
 from anglerfish.seconds2human import timedelta2human
 from anglerfish.get_human_datetime import get_human_datetime
 
+try:
+    from tqdm import tqdm
+except ImportError:
+    tqdm = None
+
 
 __all__ = ("url2path", )
 
@@ -56,28 +61,44 @@ def _get_size(url, data, timeout):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
-    log.info(f"Download Size: {bytes2human(size)} ({size} Bytes) Download.")
+    log.info(f"Download Size: {bytes2human(size, to='m')} ({size} Bytes) Download.")
     log.info(f"Full HTTP Headers data:\n{ u.headers }.\n")
     return size
 
 
-def _download_a_chunk(idx, irange, dataDict, url, data, timeout):
+def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
     """Download a single chunk of binary data from arguments.
 
     This should print detailed progress to std out as multiple progress bars.
     This runs on multiple async Threads for simultaneous downloads."""
     req = Request(url, headers={'User-Agent': '', 'DNT': 1})
     req.headers['Range'] = f"bytes={ irange }"
-    print(f"Thread {idx} is downloading data: {req.headers['Range']}.")
+    print(f"Thread {idx} downloads {req.headers['Range']} ({timeout} timeout)")
     with urlopen(req, data=data, timeout=timeout, context=_get_context()) as u:
-        dataDict[idx] = u.read()
+        if use_tqdm and tqdm:
+            dataDict[idx] = bytes()  # Empty Bytes to fill up with data.
+            totalb = int(int(irange.split("-")[1]) - int(irange.split("-")[0]))
+            tota = int(totalb / 1024_000)  # Number of expected iterations.
+            with tqdm(total=tota, unit_scale=True, unit="Loop", position=idx,
+                      desc=f"Thread {idx}⟿{req.headers['Range']}") as pbar:
+                iteration = 0
+                while True:
+                    buffer = u.read(1024_000)  # 1 MegaBytes chunks.
+                    if not buffer:
+                        break
+                    else:
+                        dataDict[idx] += buffer
+                        iteration += 1
+                        pbar.update(iteration)
+        else:
+            dataDict[idx] = u.read()
 
 
-def url2path(url, data=None, timeout=None,
-             filename=None, suffix=None, name_from_url=False,
-             concurrent_downloads=5, force_concurrent=False, checksum=False):
+def url2path(url, data=None, timeout=None, filename=None, suffix=None,
+             name_from_url=False, concurrent_downloads=5,
+             force_concurrent=False, checksum=False, use_tqdm=True):
     """Download accelerator with multiple concurrent downloads for 1 file."""
-    if not url.lower().startswith({"https:", "http:", "ftps:", "ftp:"}):
+    if not url.lower().startswith(("https:", "http:", "ftps:", "ftp:")):
         return url  # URL is a file path?.
     start_time, dataDict = datetime.now(), {}
     if not filename and bool(name_from_url):  # Get the filename from the URL.
@@ -103,7 +124,7 @@ def url2path(url, data=None, timeout=None,
     # multiple concurrent downloads for the same file.
     downloaders = [threading.Thread(
         target=_download_a_chunk, name="angler",
-        args=(idx, irange, dataDict, url, data, timeout), )
+        args=(idx, irange, dataDict, url, data, timeout, use_tqdm), )
                    for idx, irange in enumerate(ranges)]
     for th in downloaders:
         th.start()
@@ -119,7 +140,7 @@ def url2path(url, data=None, timeout=None,
     fl_size, fl_time = os.path.getsize(filename), datetime.now() - start_time
     log.info(f"Downloaded { len(dataDict) } binary data chunks total.")
     log.info(f"Finished writing downloaded output file: {filename}.")
-    log.info(f"Size:     {bytes2human(fl_size)} ({fl_size} Bytes).")
+    log.info(f"Size:     {bytes2human(fl_size, to='m')} ({fl_size} Bytes).")
     log.info(f"Time:     {timedelta2human(fl_time)} ({fl_time}).")
     log.info(f"Finished: {get_human_datetime()} ({datetime.now()}).")
     return filename
