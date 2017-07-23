@@ -78,12 +78,12 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
         if use_tqdm and tqdm:
             dataDict[idx] = bytes()  # Empty Bytes to fill up with data.
             totalb = int(int(irange.split("-")[1]) - int(irange.split("-")[0]))
-            tota = int(totalb / 1_024_000)  # Number of expected iterations.
+            tota = int(totalb / 1_048_576)  # Number of expected iterations.
             with tqdm(total=tota, unit_scale=True, unit="Loop", position=idx,
                       desc=f"Thread {idx}⟿{req.headers['Range']}") as pbar:
                 iteration = 0
                 while True:
-                    buffer = u.read(1_024_000)  # 1 MegaBytes chunks.
+                    buffer = u.read(1_048_576)  # 1 MegaBytes chunks.
                     if not buffer:
                         break
                     else:
