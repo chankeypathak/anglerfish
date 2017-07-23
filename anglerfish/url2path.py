@@ -61,7 +61,7 @@ def _get_size(url, data, timeout):
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
-    log.info(f"Download Size: {bytes2human(size, to='m')} ({size} Bytes) Download.")
+    log.info(f"Download Size: {bytes2human(size)} ({size} Bytes) Download.")
     log.info(f"Full HTTP Headers data:\n{ u.headers }.\n")
     return size
 
@@ -139,7 +139,7 @@ def url2path(url, data=None, timeout=None, filename=None, suffix=None,
     fl_size, fl_time = os.path.getsize(filename), datetime.now() - start_time
     log.info(f"Downloaded { len(dataDict) } binary data chunks total.")
     log.info(f"Finished writing downloaded output file: {filename}.")
-    log.info(f"Size:     {bytes2human(fl_size, to='m')} ({fl_size} Bytes).")
+    log.info(f"Size:     {bytes2human(fl_size)} ({fl_size} Bytes).")
     log.info(f"Time:     {timedelta2human(fl_time)} ({fl_time}).")
     log.info(f"Finished: {get_human_datetime()} ({datetime.now()}).")
     return filename
