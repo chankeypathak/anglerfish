@@ -14,14 +14,8 @@ from datetime import datetime
 from tempfile import NamedTemporaryFile
 from urllib.request import Request, urlopen
 
-try:
-    from make_autochecksum import autochecksum
-    from bytes2human import bytes2human
-    from seconds2human import timedelta2human
-    from get_human_datetime import get_human_datetime
-except ImportError:
-    from anglerfish import (autochecksum, bytes2human,
-                            timedelta2human, get_human_datetime)
+from anglerfish import (autochecksum, bytes2human,
+                        timedelta2human, get_human_datetime)
 
 
 def _get_context():
