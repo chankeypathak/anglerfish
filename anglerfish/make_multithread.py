@@ -9,6 +9,9 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import wraps
 
 
+__all__ = ("threads", )
+
+
 class _Threaded():
 
     """Basic Threaded class."""

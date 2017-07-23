@@ -10,6 +10,9 @@ import sys
 from concurrent import futures
 
 
+__all__ = ("multiprocessed", )
+
+
 class __MultiProcessed():
 
     """Basic MultiProcessed class."""

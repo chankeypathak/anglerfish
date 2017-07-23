@@ -12,7 +12,7 @@ from getpass import getuser
 from platform import platform, python_version
 
 
-_MSG = f"""
+__MSG = f"""
 Python { python_version() } on { platform() }.
 Default Encoding: { sys.getdefaultencoding()               }.
 STDIN   Encoding: { getattr(sys.stdin, "encoding", "???")  }.
@@ -29,7 +29,7 @@ PYTHONLEGACYWINDOWSSTDIO Encoding:      {
 
 def check_encoding(check_root=True):
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
-    log.debug(_MSG)
+    log.debug(__MSG)
     os.environ["PYTHONIOENCODING"] = "utf-8"
     if sys.platform.startswith(("linux", "darwin")) and check_root:  # root
         if not os.geteuid():
