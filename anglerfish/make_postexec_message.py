@@ -17,7 +17,8 @@ try:
 except ImportError:
     resource = None  # MS Window dont have resource
 
-from anglerfish import bytes2human, timedelta2human
+from anglerfish.bytes2human import bytes2human
+from anglerfish.seconds2human import timedelta2human
 
 
 def make_post_exec_msg(start_time=None, comment=None):
