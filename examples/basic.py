@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
+"""Basic simple miminum possible examples of Angler usages."""
+
+
 import time
 
 from datetime import datetime
