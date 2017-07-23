@@ -16,3 +16,8 @@ class TestName(unittest.TestCase):
         result = is_online()
         assert isinstance(result, bool)
         assert result
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

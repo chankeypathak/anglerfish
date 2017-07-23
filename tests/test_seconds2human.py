@@ -18,3 +18,8 @@ class TestName(unittest.TestCase):
         self.assertEqual(seconds2human(-666), "11 Minutes 06 Seconds")
         self.assertEqual(seconds2human(83490890),
                          "2 Years 236 Days 07 Hours 54 Minutes 50 Seconds")
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

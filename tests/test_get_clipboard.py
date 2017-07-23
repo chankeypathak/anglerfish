@@ -19,4 +19,5 @@ class TestName(unittest.TestCase):
 
 
 if __name__.__contains__("__main__"):
+    print(__doc__)
     unittest.main()

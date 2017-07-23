@@ -88,3 +88,8 @@ class TestName(unittest.TestCase):
             print(my_module4)  # to avoid warning "assigned but never used"
 
         del(global_module)
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

@@ -16,3 +16,8 @@ class TestName(unittest.TestCase):
         sample = {"key_external": {"key_nested": ["abc", "def"]}, "another": 42}
         correct_output = {'key_external__key_nested': ['abc', 'def'], 'another': 42}
         self.assertEqual(make_json_flat(sample), correct_output)  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

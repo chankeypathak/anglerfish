@@ -18,3 +18,8 @@ class TestName(unittest.TestCase):
         ZipFile("test.zip", 'w').close()
         self.assertTrue(set_zip_comment("test.zip", "test"))  # bool(x) is True
         self.assertEqual(get_zip_comment("test.zip"), "test")  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

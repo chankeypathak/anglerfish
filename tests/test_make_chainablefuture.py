@@ -18,3 +18,8 @@ class TestName(unittest.TestCase):
         future1.set_result("a")
         self.assertEqual(future1.result(), "a")  # a == b
         self.assertEqual(future2.result(), "ab")  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

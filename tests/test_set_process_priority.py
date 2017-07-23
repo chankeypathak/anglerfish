@@ -21,3 +21,8 @@ class TestName(unittest.TestCase):
         self.assertTrue(isinstance(prio_set, bool))  # bool(x) is True
         self.assertTrue(prio_set)  # bool(x) is True
         self.assertEqual(new_nice, 19)  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

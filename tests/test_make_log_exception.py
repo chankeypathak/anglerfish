@@ -19,3 +19,8 @@ class TestName(unittest.TestCase):
         #         0 / 0
         #     except Exception:
         #         log_exception()
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

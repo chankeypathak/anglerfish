@@ -14,3 +14,8 @@ class TestName(unittest.TestCase):
 
     def test_json2xml(self):
         self.assertEqual(json2xml({}), "")  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

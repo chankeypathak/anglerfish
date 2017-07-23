@@ -20,3 +20,8 @@ class TestName(unittest.TestCase):
         self.assertTrue(u"\u200B" not in stringy)
         self.assertTrue(u"\uFEFF" not in stringy)
         self.assertEqual(stringy, "cat")  # a == b
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()

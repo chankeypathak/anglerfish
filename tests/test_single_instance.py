@@ -17,3 +17,8 @@ class TestName(unittest.TestCase):
         lock = set_single_instance("test")
         self.assertTrue(isinstance(lock, socket.socket))  # bool(x) is True
         self.assertEqual(lock.getsockname().decode("utf8"), r'\x00_test__lock')
+
+
+if __name__.__contains__("__main__"):
+    print(__doc__)
+    unittest.main()
