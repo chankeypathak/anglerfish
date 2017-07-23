@@ -77,7 +77,7 @@ def url2path(url, data=None, timeout=None,
     if not filename:  # Create a temporary file as the filename.
         filename = NamedTemporaryFile(suffix=suffix, prefix="angler_").name
     log.info(f"""Angler download accelerator.\nFrom: {url}.\nTo:   {filename}.
-    Time: ~{get_human_datetime(start_time)} ({start_time}).""")
+    Time: ~{ get_human_datetime(start_time) } ({ start_time }).""")
     sizeInBytes = _get_size(url, data=data, timeout=timeout)
     # if sizeInBytes=0,Resume is not supported by server,use _download_simple()
     # if sizeInBytes < 1 Gigabytes,file is small,use _download_simple()
@@ -94,7 +94,7 @@ def url2path(url, data=None, timeout=None,
     log.info(f"Using {splitBy} async concurrent downloads for the same file.")
     # multiple concurrent downloads for the same file.
     downloaders = [threading.Thread(
-        target=_download_a_chunk,
+        target=_download_a_chunk, name="angler",
         args=(idx, irange, dataDict, url, data, timeout), )
                    for idx, irange in enumerate(ranges)]
     for th in downloaders:
