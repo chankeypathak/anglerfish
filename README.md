@@ -2219,8 +2219,6 @@ this is also designed to be able to use an URL as a path filename on command lin
 - `url`: URL or Path, will download to file or pass thru if its already a path, will always return a path, string type, required.
 - `data`: data for `urlopen()`, pass thru to `urlopen()`, optional, see `urlopen()` documentation.
 - `timeout`: Timeout on integer for the download, defaults to `None`, integer type, optional.
-- `cafile`: `cafile` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
-- `capath`: `capath` for `urlopen()`, pass thru to `urlopen()`, defaults to `None`, optional, see `urlopen()` documentation.
 - `filename`: Path, will download remote URL to this file path, will always return this path, defaults to `None`, uses a temporary file if set to `None`, string type, optional.
 - `suffix`: File suffix, a file extension, defaults to `None`, string type, optional.
 - `name_from_url`: Try to determine the file name from the URL, uses `url.split('/')[-1]`, defaults to `False`, bool type, optional.
