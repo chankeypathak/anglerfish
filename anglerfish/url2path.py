@@ -73,7 +73,6 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
     This runs on multiple async Threads for simultaneous downloads."""
     req = Request(url, headers={'User-Agent': '', 'DNT': 1})
     req.headers['Range'] = f"bytes={ irange }"
-    print(f"Thread {idx} downloads {req.headers['Range']} ({timeout} timeout)")
     with urlopen(req, data=data, timeout=timeout, context=_get_context()) as u:
         if use_tqdm and tqdm:
             dataDict[idx] = bytes()  # Empty Bytes to fill up with data.
