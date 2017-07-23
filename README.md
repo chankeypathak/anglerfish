@@ -2365,6 +2365,7 @@ pip install anglerfish
 **Optional Suggested Extras:**
 
 - [uJSON, speeds up JSON logic.](https://github.com/esnme/ultrajson#ultrajson)
+- [tqdm, pretty progress bars for downloads.](https://github.com/tqdm/tqdm#tqdm)
 
 
 **Optional Suggested Linux-only Extras:**
