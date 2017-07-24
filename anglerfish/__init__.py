@@ -140,8 +140,7 @@ class _ZipRotator(object):
         origin, target = Path(origin), Path(target + ".zip")
         comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
             From {node()}, {platform()}, Python {python_version()} to {target}
-            ({target!r}) at ~{get_human_datetime()} ({datetime.now()}).
-            """.encode("utf-8"))
+            at ~{get_human_datetime()} ({datetime.now()}).""".encode("utf-8"))
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
             log_zip.write(origin.as_posix(), arcname=origin.name)
