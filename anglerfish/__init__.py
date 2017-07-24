@@ -264,6 +264,6 @@ def make_logger(name, when='midnight', filename=None, interval=1,
             log.waring(f"FaultHander {crashandler} Failed with error: {error}")
         else:
             log.debug(f"FaultHander ON!, Logs Fatal Errors to: {crashandler}.")
-    log.debug("""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
+    log.debug(f"""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
               Logger Log files write to: {filename}  ({filename!r}).""")
     return log
