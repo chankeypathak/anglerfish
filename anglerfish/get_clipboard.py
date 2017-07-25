@@ -12,6 +12,10 @@ import sys
 from shutil import which
 from typing import NamedTuple
 
+
+__all__ = ("get_clipboard", )
+
+
 # Dot notation and static typed and built-in version of collections.namedtuple.
 Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
                                             ("paste", callable)))
