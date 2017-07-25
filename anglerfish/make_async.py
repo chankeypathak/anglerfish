@@ -80,12 +80,12 @@ class _AsyncThreadingCall(object):
         future, results = asyncio.Future(), None
         asyncio.ensure_future(self._run_thread(sync_function, future),
                               loop=self.event_loop)
-        future_done, future_result = future.done, future.result  # Optimization
+        future_done, asyncio_sleep = future.done, asyncio.sleep  # Optimization
         while True:
             if future_done():
-                results = future_result()
+                results = future.result()
                 break
-            await asyncio.sleep(.1)
+            await asyncio_sleep(.1)
         return results
 
 
