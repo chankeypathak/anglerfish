@@ -8,10 +8,17 @@
 from math import log2
 
 
-def bytes2human(bites, *args):
+def bytes2human(bites, to=None):
     """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
     size = int(abs(bites))
-    sfx = ('', 'Kilo', 'Mega', 'Giga', 'Tera', 'Peta', 'Exa', 'Zetta', 'Yotta')
-    order = int(log2(size) / 10) if size else 0
-    value = int(size / (1 << (order * 10)))
-    return f"{ value } { sfx[order] }bytes"
+    if to:
+        for i in range({'k': 1, 'm': 2, 'g': 3, 't': 4, 'p': 5, 'e': 6}[to]):
+            size = size / 1_024
+        unit, value = {'k': "Kilo", 'm': "Mega", 'g': "Giga",
+                       't': "Tera", 'p': "Peta", 'e': "Exa"}[to], int(size)
+    else:
+        sfx = ('', 'Kilo', 'Mega', 'Giga', 'Tera',
+               'Peta', 'Exa', 'Zetta', 'Yotta')
+        order = int(log2(size) / 10) if size else 0
+        value, unit = int(size / (1 << (order * 10))), sfx[order]
+    return f"{ value } { unit }bytes"
