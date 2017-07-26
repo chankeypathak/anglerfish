@@ -2395,6 +2395,7 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://github.com/jsonpickle/jsonpickle#jsonpickle
 - https://github.com/theodox/spelchek#spelchek
 - https://github.com/amoffat/sh
+- https://github.com/jek/blinker#blinker
 - https://github.com/pybuilder/pybuilder#pybuilder
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
 
