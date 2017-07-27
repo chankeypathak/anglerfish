@@ -2353,10 +2353,8 @@ pip install anglerfish
 # Why?:
 
 - Too much repeated code across my projects, almost all of them doing tha same.
-- Look into other alternatives like Boltons but they dont solve or improve anything.
 - Lots of functionalities on Angler are a *"Must Have"* for modern Apps, like a Logger, etc.
-- No Dependencies at all, just Python 3 standard library, cross-platform.
-- Easy to use, KISS philosophy.
+- No Dependencies at all, just Python 3 standard library, cross-platform, Easy to use, KISS philosophy.
 
 
 # Requisites:
