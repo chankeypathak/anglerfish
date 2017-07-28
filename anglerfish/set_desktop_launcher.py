@@ -15,7 +15,7 @@ def set_desktop_launcher(app, desktop_file_content, autostart=False):
     """Add to autostart or launcher icon on the Desktop."""
     if not sys.platform.startswith("linux"):
         return  # .desktop files are Linux only AFAIK.
-    if not isinstance(str, app) or not isinstance(str, desktop_file_content):
+    if not isinstance(app, str) or not isinstance(desktop_file_content, str):
         raise TypeError("app or desktop_file_content are not String Types.")
     app, desktop_file_txt = app.strip().lower(), desktop_file_content.strip()
     if not len(app) or not len(desktop_file_txt):
