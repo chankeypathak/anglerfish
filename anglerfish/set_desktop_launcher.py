@@ -23,7 +23,7 @@ def set_desktop_launcher(app, desktop_file_content, autostart=False):
     # Auto-Start file below.
     config_dir = Path.home() / ".config" / "autostart"
     config_dir.mkdir(parents=True, exist_ok=True)
-    fyle = config_dir / app + ".desktop"
+    fyle = config_dir / (app + ".desktop")
     if config_dir.is_dir() and not fyle.is_file():
         if bool(autostart):
             log.info(f"Writing 1 Auto-Start desktop file: {fyle} ({fyle!r}).")
@@ -32,7 +32,7 @@ def set_desktop_launcher(app, desktop_file_content, autostart=False):
     # Desktop Launcher file below.
     apps_dir = Path.home() / ".local" / "share" / "applications"  # paths XDG.
     apps_dir.mkdir(parents=True, exist_ok=True)
-    desktop_file = apps_dir / app + ".desktop"
+    desktop_file = apps_dir / (app + ".desktop")
     if apps_dir.is_dir() and not desktop_file.is_file():
         log.info(f"Writing 1 Launcher file: {desktop_file} ({desktop_file!r})")
         desktop_file.write_text(desktop_file_txt, encoding="utf-8")
