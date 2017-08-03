@@ -16,6 +16,7 @@ __all__ = ("multiprocessed", )
 class __MultiProcessed():
 
     """Basic MultiProcessed class."""
+    __slots__ = ("cpu_num", "thread_num")
 
     def __init__(self, cpu_num, thread_num):
         self.cpu_num, self.thread_num = cpu_num, thread_num

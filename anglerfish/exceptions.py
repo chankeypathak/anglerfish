@@ -18,4 +18,5 @@ class AnglerfishException(Exception):
 
     This Exception is meant to be used when Apps that use Angler fail.
     """
+    __slots__ = ()
     pass

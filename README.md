@@ -2352,9 +2352,10 @@ pip install anglerfish
 
 # Why?:
 
-- Too much repeated code across my projects, almost all of them doing the same.
+- Too much repeated code across my projects, almost all of them doing tha same.
 - Lots of functionalities on Angler are a *"Must Have"* for modern Apps, like a Logger, etc.
-- No Dependencies, only Python 3 standard library, cross-platform, Easy to use, KISS philosophy.
+- No Dependencies at all, just Python 3 standard library, cross-platform, Easy to use, KISS philosophy.
+- KISS, every second a Developer spends writing and debugging code is wasted money.
 
 
 # Requisites:
@@ -2398,6 +2399,7 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://github.com/spulec/freezegun#freezegun-let-your-python-tests-travel-through-time
 - https://github.com/pybuilder/pybuilder#pybuilder
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
+- For Inmmutable Objects see: [`frozenset({1, 2, 3})`](https://devdocs.io/python~3.6/library/stdtypes#frozenset "Angler will Not add Inmmutable Objects, since they are Built-in"), [`namedtuple("_", "foo bar")(42 True)`](https://devdocs.io/python~3.6/library/collections#collections.namedtuple "Angler will Not add Inmmutable Objects, since they are Built-in"), [`MappingProxyType({"a": 1, "b": True})`](https://devdocs.io/python~3.6/library/types#types.MappingProxyType "Angler will Not add Inmmutable Objects, since they are Built-in").
 
 
 # Coding Style Guide:

@@ -134,8 +134,9 @@ _LOG_FORMAT = (
 class _ZipRotator(object):
 
     """Log Rotator with ZIP compression."""
+    __slots__ = ("origin", "target")
 
-    def __call__(self, origin, target, *args, **kwargs):
+    def __call__(self, origin, target):
         """Log Rotator with ZIP compression, comments, checksum and cipher."""
         origin, target = Path(origin), Path(target + ".zip")
         comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
@@ -151,13 +152,15 @@ class _ZipRotator(object):
 class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
 
     """TimedRotatingFileHandler with added file size based rotation."""
+    __slots__ = ("filename", "maxMegaBytes", "backupCount",
+                 "delay", "when", "interval", "utc", "atTime")
 
-    def __init__(self, filename, maxMegaBytes=0, backupCount=0, encoding=None,
+    def __init__(self, filename, maxMegaBytes=0, backupCount=0,
                  delay=0, when='h', interval=1, utc=False, atTime=None):
         """Overwrite the method shouldRollover."""
         TimedRotatingFileHandler.__init__(
             self, filename=filename, when=when, interval=interval,
-            backupCount=backupCount, encoding=encoding, delay=delay, utc=utc)
+            backupCount=backupCount, encoding="utf-8", delay=delay, utc=utc)
         self.maxMegaBytes = int(abs(maxMegaBytes))  # Extra class attribute.
 
     def shouldRollover(self, record):
@@ -176,7 +179,7 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
 
 
 def make_logger(name, when='midnight', filename=None, interval=1,
-                backupCount=100, encoding="utf-8", delay=False, utc=False,
+                backupCount=100, delay=False, utc=False,
                 atTime=None, level=-1, slog=True, stder=True, crashandler=None,
                 emoji=False, color=True, maxMegaBytes=1, *args, **kwargs):
     """Build and return a Logging Logger."""
@@ -185,9 +188,8 @@ def make_logger(name, when='midnight', filename=None, interval=1,
         filename = str(gettempdir() / Path(name.lower() + ".log"))
     # Handler with Rotator and Renamer.
     handler = SizedTimedRotatingFileHandler(
-        filename=filename, when=when, interval=interval, delay=False,
-        backupCount=backupCount, encoding=encoding, utc=utc, atTime=atTime,
-        maxMegaBytes=maxMegaBytes)
+        filename=filename, when=when, interval=interval, delay=False, utc=utc,
+        backupCount=backupCount, atTime=atTime, maxMegaBytes=maxMegaBytes)
     handler.setLevel(level)
     handler.setFormatter(logging.Formatter(
         fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))

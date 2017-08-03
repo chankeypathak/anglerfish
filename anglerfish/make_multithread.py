@@ -15,6 +15,7 @@ __all__ = ("threads", )
 class _Threaded():
 
     """Basic Threaded class."""
+    __slots__ = ("future", "timeout", "name")
 
     def __init__(self, future, timeout):
         """Init _Threaded class, set class attributes."""
