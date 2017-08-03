@@ -5,7 +5,10 @@
 """Make a JSON from Nested to Flat with an arbitrary delimiter."""
 
 
-def make_json_flat(jsony, delimiter="__"):
+from types import MappingProxyType
+
+
+def make_json_flat(jsony, delimiter="__", inmmutable=False):
     """Make a JSON from Nested to Flat with an arbitrary delimiter."""
     values = {}
     for item in jsony.keys():
@@ -15,4 +18,4 @@ def make_json_flat(jsony, delimiter="__"):
                 values[f"{item}{delimiter}{something}"] = get[something]
         else:
             values[item] = jsony[item]
-    return values
+    return MappingProxyType(values) if inmmutable else values
