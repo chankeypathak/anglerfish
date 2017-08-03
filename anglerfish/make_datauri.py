@@ -10,12 +10,12 @@ import re
 import textwrap
 
 from base64 import urlsafe_b64decode, urlsafe_b64encode
+from collections import namedtuple
 from mimetypes import guess_type
 from pathlib import Path
 from shutil import which
 from subprocess import run
 from tempfile import NamedTemporaryFile
-from collections import namedtuple
 from urllib.parse import quote_plus, unquote_plus
 from urllib.request import urlretrieve
 
