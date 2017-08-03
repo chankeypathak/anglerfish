@@ -15,7 +15,7 @@ from pathlib import Path
 from shutil import which
 from subprocess import run
 from tempfile import NamedTemporaryFile
-from typing import NamedTuple
+from collections import namedtuple
 from urllib.parse import quote_plus, unquote_plus
 from urllib.request import urlretrieve
 
@@ -130,7 +130,5 @@ class DataURI(str):
             data = urlsafe_b64decode(match.group('data').encode("utf-8"))
         else:
             data = unquote_plus(match.group('data'))
-        typed_tuple = NamedTuple(
-            'DataURI',
-            (('mimetype', str), ('is_base64', bool), ('data', bytes)))
-        return typed_tuple(mimetype, bool(match.group('base64')), data)
+        return namedtuple('DataURI', 'mimetype is_base64 data')(
+            mimetype, bool(match.group('base64')), data)
