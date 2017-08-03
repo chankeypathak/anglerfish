@@ -5,7 +5,7 @@
 """Retry calling the decorated function using an exponential backoff."""
 
 
-import functools
+from functools import wraps
 import time
 
 
@@ -14,7 +14,7 @@ def retry(tries=5, delay=3, backoff=2, timeout=None,
     """Retry calling the decorated function using an exponential backoff."""
     def deco_retry(f):
 
-        @functools.wraps(f)
+        @wraps(f)
         def f_retry(*args, **kwargs):
             mtries, mdelay = int(tries), int(delay)
             end_time = time.time() + int(timeout) if timeout else None
