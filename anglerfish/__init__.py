@@ -83,6 +83,7 @@ from anglerfish.make_async import Sync2Async  # noqa
 from anglerfish.make_autochecksum import get_autochecksum, autochecksum  # noqa
 from anglerfish.url2path import url2path  # noqa
 from anglerfish.make_tinyslation import tinyslation  # noqa
+from anglerfish.autoslots_meta import AutoSlots_meta  # noqa
 
 
 ##############################################################################
@@ -96,6 +97,7 @@ __contact__ = "https://t.me/juancarlospaco"
 __maintainer__ = "Juan Carlos"
 __url__ = "https://github.com/juancarlospaco/anglerfish"
 __all__ = (
+    'AutoSlots_meta',  # Those are Meta-Classes.
     'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
     'beep', 'bytes2human', 'check_encoding', 'check_folder',
     'get_clipboard', 'get_free_port', 'app_is_ready', 'url2path',

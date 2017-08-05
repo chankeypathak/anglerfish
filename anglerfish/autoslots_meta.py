@@ -17,7 +17,7 @@ from inspect import getsource
 import _ast
 
 
-class Autoslots_meta(type):
+class AutoSlots_meta(type):
 
     """Autoslots get __init__ args,make __slot__ variable for all attrs."""
     __slots__ = ()

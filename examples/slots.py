@@ -5,10 +5,10 @@
 """Basic simple miminum possible examples of Angler AutoSlots."""
 
 
-from anglerfish import Autoslots_meta
+from anglerfish import AutoSlots_meta
 
 
-class TestinClass(metaclass=Autoslots_meta):
+class TestinClass(metaclass=AutoSlots_meta):
     def __init__(self):
         self.a = 1
         self.b = 2
