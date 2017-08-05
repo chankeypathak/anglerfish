@@ -10,15 +10,10 @@ import os
 import subprocess
 import sys
 from shutil import which
-from typing import NamedTuple
+from collections import namedtuple
 
 
 __all__ = ("get_clipboard", )
-
-
-# Dot notation and static typed and built-in version of collections.namedtuple.
-Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
-                                            ("paste", callable)))
 
 
 def __osx_clipboard():
@@ -95,8 +90,6 @@ def __determine_clipboard():
 def get_clipboard():
     """Crossplatform crossdesktop Clipboard."""
     log.debug("Querying Copy / Paste Clipboard functionality from the OS.")
-    global clipboard_copy, clipboard_paste
-    clipboard_copy, clipboard_paste = None, None
-    clipboard_copy, clipboard_paste = __determine_clipboard()
-    log.debug(f"Clipboard ready: {clipboard_copy}, {clipboard_paste}.")
-    return Clipboard(clipboard_copy, clipboard_paste)
+    clipboardcopy, clipboardpaste = __determine_clipboard()
+    log.debug(f"Clipboard ready: {clipboardcopy}, {clipboardpaste}.")
+    return namedtuple("Clipboard", "copy paste")(clipboardcopy, clipboardpaste)
