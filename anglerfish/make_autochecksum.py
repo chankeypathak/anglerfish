@@ -29,7 +29,7 @@ def get_autochecksum(filepath):
 def autochecksum(filepath, update=False):
     """Make a automagic-checksuming file using Adler32 Hash and Hexadecimal."""
     filepath = Path(filepath)
-    ext = "".join([_ for _ in filepath.suffixes if _STANDARD_PATTERN not in _])
+    ext = "".join((_ for _ in filepath.suffixes if _STANDARD_PATTERN not in _))
     checksum = get_autochecksum(filepath.as_posix())  # Get a selfchecksum str.
     if _STANDARD_PATTERN in filepath.as_posix() and filepath.is_file():
         if checksum in filepath.as_posix():
