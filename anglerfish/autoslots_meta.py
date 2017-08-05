@@ -30,8 +30,7 @@ class AutoSlots_meta(type):
         if '__init__' in dictionary:
             init_src = getsource(type.__new__(cls, name, bases, dictionary))
             ast = compile(init_src, "", 'exec', _ast.PyCF_ONLY_AST, optimize=2)
-            stmts = tuple(ast.body[0].body)
-            for declaration in stmts:
+            for declaration in tuple(ast.body[0].body):
                 if isinstance(declaration, _ast.FunctionDef):
                     nombre = declaration.name
                     if nombre == '__init__':
