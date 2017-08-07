@@ -12,6 +12,8 @@ from anglerfish import get_public_ip
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_get_public_ip(self):
         # Travis has an invalid certificate, and it fails because of that.
         assert get_public_ip()

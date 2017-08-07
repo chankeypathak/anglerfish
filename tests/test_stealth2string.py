@@ -12,6 +12,8 @@ from anglerfish import stealth2string, string2stealth
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_stealth2string(self):
         word = string2stealth("cat")
         stringy = stealth2string(word)

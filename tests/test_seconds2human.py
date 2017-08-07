@@ -12,6 +12,8 @@ from anglerfish import seconds2human
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_seconds2human(self):
         self.assertEqual(seconds2human(0), "00 Seconds")  # a == b
         self.assertEqual(seconds2human(42), "42 Seconds")  # a == b

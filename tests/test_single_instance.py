@@ -13,6 +13,8 @@ from anglerfish import set_single_instance
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def get_set_single_instance(self):
         lock = set_single_instance("test")
         self.assertTrue(isinstance(lock, socket.socket))  # bool(x) is True

@@ -12,6 +12,8 @@ from anglerfish import log_exception
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_log_exception(self):
         print(log_exception)
         # with self.assertRaises(ZeroDivisionError):  # Fails on Travis.

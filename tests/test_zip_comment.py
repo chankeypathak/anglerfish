@@ -14,6 +14,8 @@ from anglerfish import set_zip_comment, get_zip_comment
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_zip_comment(self):
         ZipFile("test.zip", 'w').close()
         self.assertTrue(set_zip_comment("test.zip", "test"))  # bool(x) is True

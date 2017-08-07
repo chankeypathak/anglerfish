@@ -12,6 +12,8 @@ from anglerfish import get_free_port
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_get_free_port(self):
         self.assertEqual(get_free_port((8000, 8005)), 8000)  # a == b
 

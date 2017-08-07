@@ -12,6 +12,8 @@ from anglerfish import json_pretty
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_json_pretty(self):
         self.assertEqual(json_pretty({}), "{}")  # a == b
         self.assertEqual(

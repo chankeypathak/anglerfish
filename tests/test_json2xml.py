@@ -12,6 +12,8 @@ from anglerfish import json2xml
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_json2xml(self):
         self.assertEqual(json2xml({}), "")  # a == b
 

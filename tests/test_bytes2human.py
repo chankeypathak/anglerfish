@@ -12,6 +12,8 @@ from anglerfish import bytes2human
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_bytes2human(self):
         self.assertMultiLineEqual(bytes2human(3284902384), '3 Gigabytes')
         self.assertMultiLineEqual(bytes2human(0), '0 bytes')

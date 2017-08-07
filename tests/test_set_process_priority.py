@@ -13,6 +13,8 @@ from anglerfish import set_process_priority
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_set_process_priority(self):
         old_nice = os.getpriority(os.PRIO_PROCESS, 0)
         prio_set = set_process_priority(ionice=True)

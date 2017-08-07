@@ -6,14 +6,20 @@
 
 
 import unittest
-
 from pathlib import Path
+from random import randint
 from tempfile import NamedTemporaryFile
 
 from anglerfish import path2import
 
 
+# Random order for tests runs. (Original is: -1 if x<y, 0 if x==y, 1 if x>y).
+unittest.TestLoader.sortTestMethodsUsing = lambda _, x, y: randint(-1, 1)
+
+
 class TestName(unittest.TestCase):
+
+    maxDiff, __slots__ = None, ()
 
     def test_normal(self):
         with Path(NamedTemporaryFile("w", suffix=".py", delete=False).name) as tf:

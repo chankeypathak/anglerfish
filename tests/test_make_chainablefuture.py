@@ -12,6 +12,8 @@ from anglerfish import ChainableFuture
 
 class TestName(unittest.TestCase):
 
+    maxDiff, __slots__ = None, ()
+
     def test_ChainableFuture(self):
         future1 = ChainableFuture()
         future2 = future1.then(lambda arg: arg + "b")
