@@ -35,9 +35,9 @@ _DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
 _EXTENSIONS = frozenset({".png", ".jpeg", ".jpg", ".tiff"})
 
 
-def img2webp(image_path, webp_path=None, preset="text"):
+def img2webp(image_path, webp_path=None, preset="text", cwebp="cwebp"):
     """Try to convert Image to WEBP for max performance."""
-    _webp = which("cwebp")
+    _webp = which(cwebp)
     if not _webp or not image_path.lower().endswith(_EXTENSIONS):
         return image_path  # CWEBP is not installed, return the same image.
     image_path, preset = os.path.abspath(image_path), preset.lower().strip()
