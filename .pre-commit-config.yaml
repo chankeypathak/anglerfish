@@ -1,13 +1,17 @@
 # Automagic Multi-Language Static Analysis on Commit, before Push.
-# pip install pre-commit pre-commit-hooks  # http://pre-commit.com
-# Use in Continuous Integration,or Force Run,use: pre-commit run --all-files
-# Auto-Update all hooks: pre-commit autoupdate
-# Also run all hooks on Push: pre-commit install --hook-type pre-push
+# Install on local:         pip install pre-commit pre-commit-hooks
+# Use in C.I.;Force Run:    pre-commit run --all-files
+# Auto-Update all hooks:    pre-commit autoupdate
+# Run all hooks on Push:    pre-commit install --hook-type pre-push
+# Run all hooks on Commit:  pre-commit install
+# Drop all hooks on Push:   pre-commit uninstall --hook-type pre-push
+# Drop all hooks on Commit: pre-commit uninstall
+# http://pre-commit.com     https://github.com/pre-commit
 
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    sha: v0.9.1  # master
-    minimum_pre_commit_version: 0.15.3
+    sha: master  #  v0.9.1  # Or SemVer of latest release. Or SHA1.
+    minimum_pre_commit_version: 0.16.2  # From: pre-commit --version
     description: Static analysis to check files for best practices.
     stages: [commit, push]  # When to run.
     hooks:
