@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-"""Get and return a free unused port."""
+"""Get and return a free unused port or check if a port is free to use."""
 
 
 import logging as log
@@ -31,3 +31,19 @@ def get_free_port(port_range=None):
         del sockety
         log.debug(f"Found 1 free unused port number: { port_number }.")
         return port_number
+
+
+def is_port_free(port_number: int) -> bool:
+    """Check if a port_number is free to use."""
+    sockety = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sockety.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        sockety.bind(("127.0.0.1", int(port_number)))
+    except (socket.error, Exception):
+        port_free = False
+    else:
+        port_free = True
+    finally:
+        sockety.close()
+        del sockety
+        return port_free
