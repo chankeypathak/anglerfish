@@ -10,7 +10,7 @@ import logging as log
 from ctypes import byref, cdll, create_string_buffer
 
 
-def set_process_name(name):
+def set_process_name(name: str) -> bool:
     """Set process name and cpu priority."""
     name = str(name).lower().strip()
     try:
