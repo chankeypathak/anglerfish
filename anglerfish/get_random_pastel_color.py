@@ -13,7 +13,7 @@
 from random import choice
 
 
-def get_random_pastelight_color():
+def get_random_pastelight_color() -> str:
     """Get a random pastel light color as string, useful for CSS styling."""
     return choice((
         'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige',
@@ -25,7 +25,7 @@ def get_random_pastelight_color():
         'peachpuff', 'seashell', 'skyblue', 'snow', 'thistle', 'white'))
 
 
-def get_random_pasteldark_color():
+def get_random_pasteldark_color() -> str:
     """Get a random dark color as string, useful for CSS styling."""
     return choice((
         'brown', 'chocolate', 'crimson', 'darkblue', 'darkgoldenrod',
@@ -36,7 +36,7 @@ def get_random_pasteldark_color():
         'saddlebrown', 'seagreen', 'sienna', 'slategray', 'teal'))
 
 
-def get_random_pastel_color():
+def get_random_pastel_color() -> str:
     """Get a random dark or light color as string, useful for CSS styling."""
     return choice((get_random_pastelight_color(),
                    get_random_pasteldark_color()))
