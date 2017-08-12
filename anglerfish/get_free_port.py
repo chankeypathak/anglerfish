@@ -9,7 +9,7 @@ import logging as log
 import socket
 
 
-def get_free_port(port_range=None):
+def get_free_port(port_range: tuple=None) -> int:
     """Get and return a free unused port."""
     sockety = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sockety.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
