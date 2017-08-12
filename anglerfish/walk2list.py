@@ -11,7 +11,8 @@ import os
 from typing import NamedTuple
 
 
-def walk2list(where, target, omit, links=False, tuply=True, namedtuple=None):
+def walk2list(where: str, target: tuple, omit: tuple, links: bool=False,
+              tuply: bool=True, namedtuple: str=None) -> list:
     """Perform full walk of where, gather full path of all files."""
     log.debug(f"""Scanning on {where},searching for {target},ignoring {omit},
               {'' if links else 'Not '} following any SymLinks.""")
