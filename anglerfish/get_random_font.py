@@ -14,7 +14,7 @@
 from random import choice
 
 
-def get_random_handwriting_font():
+def get_random_handwriting_font() -> str:
     """Get a random handwriting font name as string. For Titles/SubTitles."""
     return choice((
         "Molle", "Pacifico", "Yellowtail", "Dekko", "Courgette", "Satisfy",
@@ -27,7 +27,7 @@ def get_random_handwriting_font():
         "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi"))
 
 
-def get_random_mono_font():
+def get_random_mono_font() -> str:
     """Get a random monospaced font name as string. Few fonts. For Code."""
     return choice((
         "Inconsolata", "Cousine", "Roboto Mono", "Source Code Pro",
@@ -36,7 +36,7 @@ def get_random_mono_font():
         "Fira Mono"))
 
 
-def get_random_display_font():
+def get_random_display_font() -> str:
     """Get a random decorative display cosmetic font name as string.For Fun."""
     return choice((
         "Mirza", "Lobster", "Buda", "Comfortaa", "Righteous", "Chewy", "Allan",
@@ -57,7 +57,7 @@ def get_random_display_font():
         "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock"))
 
 
-def get_random_sans_font():
+def get_random_sans_font() -> str:
     """Get a random sans font name as string. These are for serious stuff."""
     return choice((
         "Roboto", "Oswald", "Montserrat", "Raleway", "Ubuntu", "Arimo", "Muli",
@@ -76,7 +76,7 @@ def get_random_sans_font():
         "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato"))
 
 
-def get_random_serif_font():
+def get_random_serif_font() -> str:
     """Get a random serif font name as string. These are for serious stuff."""
     return choice((
         "Bitter", "Arvo", "Alegreya", "Vollkorn", "Rokkitt", "Cinzel", "Ovo",
@@ -93,7 +93,7 @@ def get_random_serif_font():
         "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana"))
 
 
-def get_random_font():
+def get_random_font() -> str:
     """Get a random font name as string. Any kind of font."""
     return choice((get_random_handwriting_font(), get_random_mono_font(),
                    get_random_display_font(), get_random_sans_font(),
