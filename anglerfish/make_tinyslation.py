@@ -18,7 +18,7 @@ def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2],
                 frm: str="en", fallback_dict: dict={},
                 fallback_value: str=None, timeout: int=5) -> str:
     """Translate from internet via API from mymemory.translated.net,legally."""
-    if frm == to:  # if frm==to response 'PLEASE SELECT TWO DISTINCT LANGUAGES'
+    if frm.lower() == to.lower():  # 'PLEASE SELECT TWO DISTINCT LANGUAGES'
         raise AttributeError(f"2 different languages required: {frm} == {to}.")
     st = parse.quote(strin)
     api = f"https://mymemory.translated.net/api/get?q={st}&langpair={frm}|{to}"
