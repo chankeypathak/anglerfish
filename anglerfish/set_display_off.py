@@ -12,7 +12,7 @@ from shutil import which
 from subprocess import run
 
 
-def set_display_off():
+def set_display_off() -> bool:
     """Set Monitor Display OFF, it should Auto-ON when needed, return Bool."""
     _xset = which("xset")
     log.debug(f"Setting Monitor Display OFF using: {_xset} ({_xset!r}).")
