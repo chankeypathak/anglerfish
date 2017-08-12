@@ -18,10 +18,10 @@ class __MultiProcessed():
     """Basic MultiProcessed class."""
     __slots__ = ("cpu_num", "thread_num")
 
-    def __init__(self, cpu_num, thread_num):
+    def __init__(self, cpu_num: int, thread_num: int):
         self.cpu_num, self.thread_num = cpu_num, thread_num
 
-    def _multi_cpu(self, _func, job_queue, timeout):
+    def _multi_cpu(self, _func, job_queue: list, timeout: int) -> list:
         if _getLen(job_queue) == 0:
             return []
         index = _get_index(job_queue, self.cpu_num)
@@ -67,11 +67,11 @@ def _multi_thread(argv):
     return [r for r in result]
 
 
-def _getLen(_list):
+def _getLen(_list: list) -> int:
     return 0 if _list is None else len(_list)
 
 
-def _get_index(job_queue, split_num):
+def _get_index(job_queue: list, split_num: int) -> int:
     job_num = _getLen(job_queue)
     if job_num < split_num:
         split_num = job_num
@@ -85,7 +85,8 @@ def _get_index(job_queue, split_num):
     return index
 
 
-def multiprocessed(function, arguments, cpu_num=1, thread_num=1, timeout=None):
+def multiprocessed(function, arguments: list, cpu_num: int=1,
+                   thread_num: int=1, timeout: int=None) -> __MultiProcessed:
     """Run on multiple processes and threads the given callable."""
     multicpu_instance = __MultiProcessed(cpu_num, thread_num)
     return multicpu_instance._multi_cpu(function, arguments, timeout)
