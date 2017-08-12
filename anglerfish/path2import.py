@@ -13,7 +13,8 @@ import os
 from pathlib import Path
 
 
-def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
+def path2import(pat: str, name: str=None, ignore_exceptions: bool=False,
+                check_namespace: bool=True) -> object:
     """Import a module from file path string.
 
     This is "as best as it can be" way to load a module from a file path string
