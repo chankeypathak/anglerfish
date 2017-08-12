@@ -10,7 +10,7 @@ import socket
 import sys
 
 
-def set_single_instance(name, port=8_888):
+def set_single_instance(name: str, port: int=8_888) -> socket.socket:
     """Set process name and cpu priority,return socket.socket or None."""
     try:  # Single instance app ~crossplatform, uses udp socket.
         log.info("Creating Abstract UDP Socket Lock for Single Instance.")
