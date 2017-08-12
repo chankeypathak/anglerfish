@@ -20,7 +20,8 @@ except ImportError:
     pynotify = None
 
 
-def make_notification(title, message="", name="", icon="", timeout=3_000):
+def make_notification(title: str, message: str="", name: str="",
+                      icon: str="", timeout: int=3_000) -> bool:
     """Notification message with information,based on D-Bus,with Fallbacks."""
     if dbus:  # Theorically the standard universal way.
         log.debug(f"Sending Notification message using the API of {dbus}.")
