@@ -5,7 +5,7 @@
 """Convert JSON to XML."""
 
 
-def json2xml(json_obj, line_padding="", at_end=""):
+def json2xml(json_obj: dict, line_padding: str="", at_end: str="") -> str:
     """Convert JSON to XML."""
     result_list, json_obj_type = [], type(json_obj)
     _resultapend = result_list.append  # Optimization.
