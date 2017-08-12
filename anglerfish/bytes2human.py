@@ -8,7 +8,7 @@
 from math import log2
 
 
-def bytes2human(bites, to=None):
+def bytes2human(bites: int, to: str=None) -> str:
     """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
     size = int(abs(bites))
     if to:  # Force a specific data unit from args.
