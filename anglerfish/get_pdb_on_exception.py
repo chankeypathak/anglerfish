@@ -10,7 +10,7 @@ import sys
 import traceback
 
 
-def pdb_on_exception(debugger="pdb", limit=100):
+def pdb_on_exception(debugger: str="pdb", limit: int=100) -> None:
     """Install handler attach post-mortem pdb console on an exception."""
     log.debug(f"Installing an automatic Debugger on Exceptions: {debugger}.")
 
@@ -21,7 +21,7 @@ def pdb_on_exception(debugger="pdb", limit=100):
     sys.excepthook = pdb_excepthook
 
 
-def ipdb_on_exception(debugger="ipdb", limit=100):
+def ipdb_on_exception(debugger: str="ipdb", limit: int=100) -> None:
     """pdb_on_exception but using iPDB instead."""
     return pdb_on_exception("ipdb", limit=limit)
 
