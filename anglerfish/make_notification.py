@@ -25,10 +25,10 @@ def make_notification(title: str, message: str="", name: str="",
     """Notification message with information,based on D-Bus,with Fallbacks."""
     if dbus:  # Theorically the standard universal way.
         log.debug(f"Sending Notification message using the API of {dbus}.")
-        return dbus.Interface(dbus.SessionBus().get_object(
+        return bool(dbus.Interface(dbus.SessionBus().get_object(
             "org.freedesktop.Notifications", "/org/freedesktop/Notifications"),
             "org.freedesktop.Notifications").Notify(
-                name, 0, icon, title, message, [], [], timeout)
+                name, 0, icon, title, message, [], [], timeout))
     elif pynotify:  # The non-standard non-universal way.
         log.debug(f"Sending Notification message using the API of {pynotify}.")
         pynotify.init(name.lower() if name else title.lower())
