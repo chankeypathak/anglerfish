@@ -20,7 +20,7 @@ except ImportError:
     Beep = None
 
 
-def beep(waveform=(79, 45, 32, 50, 99, 113, 126, 127)):
+def beep(waveform: tuple=(79, 45, 32, 50, 99, 113, 126, 127)) -> bool:
     """Cross-platform Sound Playing with StdLib only,No Sound file required."""
     if sys.platform.startswith("win") and Beep:
         Beep(randint(37, 32_767), 3)
