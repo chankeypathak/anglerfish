@@ -15,8 +15,9 @@ except ImportError:
     from json import dumps
 
 
-def walk2dict(folder, links=False, showhidden=False,
-              strip=False, jsony=False, ordereddict=False):
+def walk2dict(folder: str, links: bool=False,
+              showhidden: bool=False, strip: bool=False,
+              jsony: bool=False, ordereddict: bool=False) -> dict:
     """Return Nested Dictionary represents folder/file structure of folder."""
     ret = []
     for path, dirs, files in os.walk(folder, followlinks=links):
