@@ -28,7 +28,7 @@ except ImportError:
 __all__ = ("url2path", )
 
 
-def _get_context():
+def _get_context() -> object:
     """Return a context for the downloaders."""
     _context = ssl.create_default_context()
     _context.check_hostname = False  # Do NOT Check server Hostnames
@@ -36,7 +36,7 @@ def _get_context():
     return _context
 
 
-def _download_simple(url, data, timeout, filename):
+def _download_simple(url: str, data: dict, timeout: int, filename: str) -> str:
     """Download without multiple concurrent downloads for the same file.
 
     urllib.request.urlretrieve() dont support 'context','timeout' arguments."""
@@ -46,7 +46,7 @@ def _download_simple(url, data, timeout, filename):
         return filename
 
 
-def _calculate_ranges(value, numsplits):
+def _calculate_ranges(value: int, numsplits: int) -> tuple:
     """Calculate the number of ranges of bytes, return a list of ranges."""
     lst = []
     for i in range(numsplits):
@@ -57,7 +57,7 @@ def _calculate_ranges(value, numsplits):
     return tuple(lst)
 
 
-def _get_size(url, data, timeout):
+def _get_size(url: str, data: dict, timeout: int) -> int:
     """Get the file Size in bytes from a remote URL."""
     with urlopen(url, data=data, timeout=timeout, context=_get_context()) as u:
         size = int(u.headers.get('content-length', 0))
@@ -66,7 +66,8 @@ def _get_size(url, data, timeout):
     return size
 
 
-def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
+def _download_a_chunk(idx: int, irange: str, dataDict: dict, url: str,
+                      data: dict, timeout: int, use_tqdm: bool) -> None:
     """Download a single chunk of binary data from arguments.
 
     This should print detailed progress to std out as multiple progress bars.
@@ -94,9 +95,10 @@ def _download_a_chunk(idx, irange, dataDict, url, data, timeout, use_tqdm):
             dataDict[idx] = u.read()
 
 
-def url2path(url, data=None, timeout=None, filename=None, suffix=None,
-             name_from_url=False, concurrent_downloads=5,
-             force_concurrent=False, checksum=False, use_tqdm=True):
+def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
+             suffix: str=None, name_from_url: bool=False,
+             concurrent_downloads: int=5, force_concurrent: bool=False,
+             checksum: bool=False, use_tqdm: bool=True) -> str:
     """Download accelerator with multiple concurrent downloads for 1 file."""
     if not url.lower().startswith(("https:", "http:", "ftps:", "ftp:")):
         return url  # URL is a file path?.
