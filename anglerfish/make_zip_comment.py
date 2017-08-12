@@ -10,7 +10,7 @@ import logging as log
 from zipfile import ZipFile
 
 
-def set_zip_comment(zip_path, comment=""):
+def set_zip_comment(zip_path: str, comment: str="") -> bool:
     """Set a ZIP comment."""
     try:
         with ZipFile(str(zip_path).strip(), 'a') as myzip:
@@ -24,7 +24,7 @@ def set_zip_comment(zip_path, comment=""):
         return True
 
 
-def get_zip_comment(zip_path):
+def get_zip_comment(zip_path: str) -> str:
     """Get a ZIP comment."""
     try:
         log.debug(f"Getting comments from ZIP file: {zip_path}.")
