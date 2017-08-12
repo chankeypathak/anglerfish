@@ -21,7 +21,7 @@ from anglerfish.bytes2human import bytes2human
 from anglerfish.seconds2human import timedelta2human
 
 
-def make_post_exec_msg(start_time=None, comment=None):
+def make_post_exec_msg(start_time: datetime=None, comment: str=None) -> str:
     """Build Post-Execution Message with information about RAM and Time."""
     use, al, msg = 0, 0, ""
     if sys.platform.startswith(("win", "darwin")):
@@ -34,7 +34,7 @@ def make_post_exec_msg(start_time=None, comment=None):
         msg += f"""Total Max Memory Used: ~{use / al:.2%} Percent.
             { bytes2human(use) } ({ use } bytes) of
             { bytes2human(al) } ({ al } bytes) of total RAM Memory.\n"""
-        if start_time and datetime:
+        if start_time:
             _t = datetime.now() - start_time
             msg += f"Total Working Time: ~{ timedelta2human(_t) } ({ _t }).\n"
     if comment:
