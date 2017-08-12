@@ -21,7 +21,7 @@ class typecheck2(object):
 
     """Class that copies values of locals of a function or method."""
 
-    def __init__(self, func):
+    def __init__(self, func: object):
         """Init class."""
         self._locals, self.func = {}, func
 
@@ -38,7 +38,7 @@ class typecheck2(object):
             sys.setprofile(_old_profile)  # Disable tracer,replace with old one
         return res
 
-    def clear_locals(self, force_del=False):
+    def clear_locals(self, force_del: bool=False):
         """Help to clean. Optional force to 'del' all objects."""
         if force_del:
             for object_to_del in self._locals:
