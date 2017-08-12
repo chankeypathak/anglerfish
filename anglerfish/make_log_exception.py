@@ -10,7 +10,7 @@ import sys
 import traceback
 
 
-def log_exception():
+def log_exception() -> str:
     """Log Exceptions but pretty printing with more info, return string."""
     unfriendly_names = {"<module>": "Unnamed Anonymous Module Function",
                         "<stdin>": "System Standard Input Function"}
