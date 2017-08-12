@@ -16,7 +16,7 @@ except ImportError:
 
 
 def __get_prop(obj, iface, prop):
-    """Get object interface properties."""
+    """Get object interface properties. Internal use only, dont touch."""
     if not dbus:
         log.warning("D-Bus module not found or not supported on this OS.")
         return  # Windows probably.
@@ -27,7 +27,7 @@ def __get_prop(obj, iface, prop):
         return
 
 
-def has_battery():
+def has_battery() -> bool:
     """Check if we are connected to a AC power or Battery."""
     log.debug("Checking if connected to AC-Power or Battery.")
     battery_path = Path("/sys/class/power_supply")  # is universal on Linux ?
@@ -41,7 +41,7 @@ def has_battery():
     return False
 
 
-def on_battery():
+def on_battery() -> bool:
     """Check if we are running on Battery power."""
     log.debug("Checking if running on Battery power.")
     if has_battery():
