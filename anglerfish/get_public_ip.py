@@ -9,12 +9,12 @@ from ipaddress import ip_address
 from urllib.request import urlopen
 
 
-def get_public_ip():
+def get_public_ip() -> ip_address:
     """Get current public IP as string."""
     return ip_address(urlopen("https://api.ipify.org").read().decode("utf-8"))
 
 
-def is_online():
+def is_online() -> bool:
     """Check if we got internet conectivity."""
     try:
         get_public_ip()
