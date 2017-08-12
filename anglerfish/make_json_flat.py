@@ -8,7 +8,8 @@
 from types import MappingProxyType
 
 
-def make_json_flat(jsony, delimiter="__", inmmutable=False):
+def make_json_flat(jsony: dict, delimiter: str="__",
+                   inmmutable: bool=False) -> dict:
     """Make a JSON from Nested to Flat with an arbitrary delimiter."""
     values = {}
     for item in jsony.keys():
