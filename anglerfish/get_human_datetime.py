@@ -11,10 +11,10 @@ ISO-8601 standard:Its permitted to omit the 'T' character by mutual agreement.
 import datetime
 
 
-def get_iso_datetime(date_time: datetime.datetime=None) -> str:
+def get_iso_datetime(date_time: datetime.datetime=None, sepa: str=" ") -> str:
     """Get a Human string representation of datetime with UTC info."""
     if date_time and isinstance(date_time, datetime.datetime):  # arg datetime
-        return date_time.replace(microsecond=0).astimezone().isoformat(" ")
+        return date_time.replace(microsecond=0).astimezone().isoformat(sepa)
     else:  # now datetime
         return datetime.datetime.now(datetime.timezone.utc).replace(
-            microsecond=0).astimezone().isoformat(" ")
+            microsecond=0).astimezone().isoformat(sepa)
