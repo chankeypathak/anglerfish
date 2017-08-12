@@ -67,7 +67,7 @@ def __win32_clibboard():
     return copy_win32, paste_win32
 
 
-def __determine_clipboard():
+def __determine_clipboard() -> tuple:
     """Determine OS and set copy() and paste() functions accordingly."""
     if sys.platform.startswith("darwin"):
         return __osx_clipboard()
@@ -87,7 +87,7 @@ def __determine_clipboard():
         return None, None  # install Qt or GTK or Tk or XClip.
 
 
-def get_clipboard():
+def get_clipboard() -> namedtuple:
     """Crossplatform crossdesktop Clipboard."""
     log.debug("Querying Copy / Paste Clipboard functionality from the OS.")
     clipboardcopy, clipboardpaste = __determine_clipboard()
