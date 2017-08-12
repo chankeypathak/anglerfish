@@ -17,7 +17,15 @@ class AnglerfishException(Exception):
     Angler on Arch:
         https://aur.archlinux.org/packages/python-anglerfish
 
+    AnglerfishException object is inmmutable (read-only) to avoid bugs,
+    its '__setattr__', '__delattr__' and '__slots__' are all set to nothing.
+
     This Exception is meant to be used when Apps that use Angler fail.
     """
     __slots__ = ()
-    pass
+
+    def __setattr__(self, *args, **kwargs):
+        raise TypeError("AnglerfishException object is inmmutable read-only.")
+
+    def __delattr__(self, *args, **kwargs):
+        raise TypeError("AnglerfishException object is inmmutable read-only.")
