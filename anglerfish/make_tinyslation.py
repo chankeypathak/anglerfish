@@ -14,8 +14,9 @@ except ImportError:
     from json import loads
 
 
-def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2], frm="en",
-                fallback_dict={}, fallback_value=None, timeout=5):
+def tinyslation(strin: str, to: str=getdefaultlocale()[0][:2],
+                frm: str="en", fallback_dict: dict={},
+                fallback_value: str=None, timeout: int=5) -> str:
     """Translate from internet via API from mymemory.translated.net,legally."""
     st = parse.quote(strin)
     api = f"https://mymemory.translated.net/api/get?q={st}&langpair={frm}|{to}"
