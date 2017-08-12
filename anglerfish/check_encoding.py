@@ -27,7 +27,7 @@ PYTHONLEGACYWINDOWSSTDIO Encoding:      {
     os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
 
 
-def check_encoding(check_root=True):
+def check_encoding(check_root: bool=True) -> bool:
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
     log.debug(__MSG)
     os.environ["PYTHONIOENCODING"] = "utf-8"
