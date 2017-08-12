@@ -35,7 +35,8 @@ _DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
 _EXTENSIONS = frozenset({".png", ".jpeg", ".jpg", ".tiff"})
 
 
-def img2webp(image_path, webp_path=None, preset="text", cwebp="cwebp"):
+def img2webp(image_path: str, webp_path: str=None,
+             preset: str="text", cwebp: str="cwebp") -> str:
     """Try to convert Image to WEBP for max performance."""
     _webp = which(cwebp)
     if not _webp or not image_path.lower().endswith(_EXTENSIONS):
@@ -54,7 +55,7 @@ class DataURI(str):
     """Data URI Base64 string, designed for Images, WebP autoconversion."""
 
     @classmethod
-    def make(cls, mimetype, base64, data):
+    def make(cls, mimetype: str, base64: bool, data: str) -> str:
         """Make a new Data URI Base64 string from arguments."""
         parts = ['data:']
         if mimetype is not None:
@@ -70,7 +71,8 @@ class DataURI(str):
         return cls(''.join(parts))
 
     @classmethod
-    def from_file(cls, filename, base64=True, webp=True):
+    def from_file(cls, filename: str,
+                  base64: bool=True, webp: bool=True) -> str:
         """Make a new Data URI Base64 string from a file."""
         filename = os.path.abspath(filename)
         if webp and filename.lower().endswith(_EXTENSIONS):
@@ -79,13 +81,13 @@ class DataURI(str):
                         base64, Path(filename).read_bytes())
 
     @classmethod
-    def from_url(cls, url, base64=True, webp=True):
+    def from_url(cls, url: str, base64: bool=True, webp: bool=True) -> str:
         """Make a new Data URI Base64 string from a remote HTTP URL."""
         _temp = NamedTemporaryFile(suffix=os.path.basename(url)).name
         return cls.from_file(urlretrieve(url, _temp)[0],
                              base64=base64, webp=webp)
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs) -> str:
         """Make a new Data URI Base64 string from arguments."""
         uri = super(DataURI, cls).__new__(cls, *args, **kwargs)
         uri._parse  # Trigger any ValueErrors on instantiation.
@@ -95,32 +97,32 @@ class DataURI(str):
         """Represent as string the Data URI Base64."""
         return f"DataURI({ super(DataURI, self).__repr__() })"
 
-    def wrap(self, width=80, newline="\n"):
+    def wrap(self, width: int=80, newline: str="\n") -> str:
         """Wrap Data URI Base64 string based on arguments using textwrap."""
         return type(self)(newline.join(textwrap.wrap(self, int(width))))
 
     @property
-    def mimetype(self):
+    def mimetype(self) -> str:
         """Return the file MIME Type of the Data URI Base64 string."""
         return self._parse.mimetype
 
     @property
-    def charset(self):
+    def charset(self) -> str:
         """Return the file Encoding of the Data URI Base64 string. UTF-8."""
         return "utf-8"
 
     @property
-    def is_base64(self):
+    def is_base64(self) -> bool:
         """Return True if its Base64."""
         return self._parse.is_base64
 
     @property
-    def data(self):
+    def data(self) -> str:
         """Return the raw Binary Data of the Data URI Base64 string."""
         return self._parse.data
 
     @property
-    def _parse(self):
+    def _parse(self) -> namedtuple:
         """Auxiliary property method for attributes and parsing."""
         match = _DATA_URI_RE.match(self)
         if not match:
