@@ -17,11 +17,11 @@ class _Threaded():
     """Basic Threaded class."""
     __slots__ = ("future", "timeout", "name")
 
-    def __init__(self, future, timeout):
+    def __init__(self, future, timeout: int):
         """Init _Threaded class, set class attributes."""
         self._future, self._timeout = future, timeout
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str) -> str:
         """Get and return the name attribute."""
         result = self._wait()
         return result.__getattribute__(name)
@@ -31,7 +31,7 @@ class _Threaded():
         return self._future.result(self._timeout)
 
 
-def _async(n, base_type, timeout=None):
+def _async(n, base_type: object, timeout: int=None) -> object:
     """Async internal function for decorator."""
     def decorator(f):
         """Decorate builder."""
@@ -51,6 +51,6 @@ def _async(n, base_type, timeout=None):
     return decorator
 
 
-def threads(n, timeout=None):
+def threads(n, timeout: int=None) -> object:
     """Convert a simple function to multrithreading."""
     return _async(n, ThreadPoolExecutor, timeout)
