@@ -16,6 +16,8 @@ class TemplatePython(str):
 
     """Tiny Template Engine that Render and Runs native Python."""
 
+    __slots__ = ("template", "fl", "__namespace", "mini", "t", "kw")
+
     def __init__(self, template: str):
         """Init the Template class."""
         self.tokens = self.compile(template.strip())
@@ -58,5 +60,11 @@ class TemplatePython(str):
         for is_code, value in __self.tokens:
             eval(value, __namespace) if is_code else html_append(value)
         return re.sub('>\s+<', '> <', "".join(html)) if mini else "".join(html)
+
+    def __setattr__(self, *args, **kwargs):
+        raise TypeError("TemplatePython object is inmmutable read-only.")
+
+    def __delattr__(self, *args, **kwargs):
+        raise TypeError("TemplatePython object is inmmutable read-only.")
 
     __call__ = render  # shorthand
