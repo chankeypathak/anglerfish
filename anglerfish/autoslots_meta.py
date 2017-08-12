@@ -22,7 +22,7 @@ class AutoSlots_meta(type):
     """Autoslots get __init__ args,make __slot__ variable for all attrs."""
     __slots__ = ()
 
-    def __new__(cls, name, bases, dictionary):
+    def __new__(cls, name: str, bases: list, dictionary: dict) -> object:
         slots, original_slots = dictionary.get('__slots__', []), []
         for base in bases:
             if hasattr(base, "__slots__"):
