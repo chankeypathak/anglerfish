@@ -10,7 +10,7 @@ import time
 from collections import namedtuple
 
 
-def seconds2human(time_on_seconds: int):
+def seconds2human(time_on_seconds: int) -> namedtuple:
     """Calculate time, with precision from seconds to days."""
     # Calculate all time units from time_on_seconds positive integer.
     seconds = int(abs(time_on_seconds))  # 1 Seconds    = 1 Seconds.
@@ -54,11 +54,11 @@ def seconds2human(time_on_seconds: int):
     return namedtuple("Times", "human_time time_units")(human_time, time_units)
 
 
-def timedelta2human(time_delta):  # Just a shortcut :)
+def timedelta2human(time_delta) -> namedtuple:  # Just a shortcut :)
     """Convert a timedelta object to human string representation."""
     return seconds2human(time_delta.total_seconds())
 
 
-def datetime2human(date_time):  # Just a shortcut :)
+def datetime2human(date_time) -> namedtuple:  # Just a shortcut :)
     """Convert a datetime object to human string representation."""
     return seconds2human(time.mktime(date_time.timetuple()))
