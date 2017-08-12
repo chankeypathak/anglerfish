@@ -13,15 +13,14 @@ from collections import namedtuple
 def seconds2human(time_on_seconds: int) -> namedtuple:
     """Calculate time, with precision from seconds to days."""
     # Calculate all time units from time_on_seconds positive integer.
-    seconds = int(abs(time_on_seconds))  # 1 Seconds    = 1 Seconds.
-    minutes = divmod(seconds, 60)[0]     # 1 Minutes    = 60 Seconds.
-    hours = divmod(minutes, 60)[0]       # 1 Hours      = 60 Minutes.
-    days = divmod(hours, 24)[0]          # 1 Days       = 24 Hours.
-    weeks = divmod(days, 7)[0]           # 1 Weeks      = 7 Days.
-    months = divmod(weeks, 4)[0]         # 1 Months     = 4 Weeks.
-    years = divmod(months, 12)[0]        # 1 Years      = 12 Months.
-    decades = divmod(years, 10)[0]       # 1 Decade     = 10 Years.
-    centuries = divmod(decades, 10)[0]   # 1 Century    = 10 decades.
+    minutes, seconds = divmod(int(abs(time_on_seconds)), 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    weeks, days = divmod(days, 7)
+    months, weeks = divmod(weeks, 4)
+    years, months = divmod(months, 12)
+    decades, years = divmod(years, 10)
+    centuries, decades = divmod(decades, 10)
 
     # Build a namedtuple with all named time units and all its integer values.
     time_units = namedtuple(
@@ -31,25 +30,25 @@ def seconds2human(time_on_seconds: int) -> namedtuple:
     )
 
     # Build a human friendly time string with frequent time units.
-    human_time_parts = []
+    t_parts = []
     if centuries:
-        human_time_parts += f"{ centuries } Centuries"
+        t_parts.append(f"{centuries} Centur{'ies' if centuries > 1 else 'y'}")
     if decades:
-        human_time_parts += f"{ decades } Decades"
+        t_parts.append(f"{decades} Decade{'s' if decades > 1 else ''}")
     if years:
-        human_time_parts += f"{ years } Years"
+        t_parts.append(f"{years} Year{'s' if years > 1 else ''}")
     if months:
-        human_time_parts += f"{ months } Months"
+        t_parts.append(f"{months} Month{'s' if months > 1 else ''}")
     if weeks:
-        human_time_parts += f"{ weeks } Weeks"
+        t_parts.append(f"{weeks} Week{'s' if weeks > 1 else ''}")
     if days:
-        human_time_parts += f"{ days } Days"
+        t_parts.append(f"{days} Day{'s' if days > 1 else ''}")
     if hours:
-        human_time_parts += f"{ hours } Hours"
+        t_parts.append(f"{hours} Hour{'s' if hours > 1 else ''}")
     if minutes:
-        human_time_parts += f"{ minutes } minutes"
-    human_time_parts += f"{ seconds } Seconds"
-    human_time = " ".join(human_time_parts)
+        t_parts.append(f"{minutes} minute{'s' if minutes > 1 else ''}")
+    t_parts.append(f"{seconds} Second{'s' if seconds > 1 else ''}")
+    human_time = " ".join(t_parts)
 
     return namedtuple("Times", "human_time time_units")(human_time, time_units)
 
