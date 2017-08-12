@@ -13,7 +13,8 @@ from shutil import which
 from subprocess import Popen, call
 
 
-def set_process_priority(nice=True, ionice=False, cpulimit=0):
+def set_process_priority(nice: bool=True, ionice: bool=False,
+                         cpulimit: int=0) -> bool:
     """Set process name and cpu priority."""
     w = " may delay I/O Operations, not recommended on user-facing GUI!."
     try:
