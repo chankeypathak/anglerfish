@@ -13,6 +13,7 @@ import threading
 from datetime import datetime
 from tempfile import NamedTemporaryFile
 from urllib.request import Request, urlopen
+from pathlib import Path
 
 from anglerfish.make_autochecksum import autochecksum
 from anglerfish.bytes2human import bytes2human
@@ -98,7 +99,7 @@ def _download_a_chunk(idx: int, irange: str, dataDict: dict, url: str,
 def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
              suffix: str=None, name_from_url: bool=False,
              concurrent_downloads: int=5, force_concurrent: bool=False,
-             checksum: bool=False, use_tqdm: bool=True) -> str:
+             checksum: bool=False, use_tqdm: bool=True) -> Path:
     """Download accelerator with multiple concurrent downloads for 1 file."""
     if not url.lower().startswith(("https:", "http:", "ftps:", "ftp:")):
         return url  # URL is a file path?.
@@ -119,7 +120,7 @@ def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
         if checksum and autochecksum:
             log.info(f"Generating Anglers Auto-CheckSum using {autochecksum}.")
             filename = autochecksum(filename, update=True)
-        return filename
+        return Path(filename)
     splitBy = concurrent_downloads if concurrent_downloads in range(11) else 10
     ranges = _calculate_ranges(int(sizeInBytes), int(splitBy))
     log.info(f"Using {splitBy} async concurrent downloads for the same file.")
@@ -145,4 +146,4 @@ def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
     log.info(f"Size:     {bytes2human(fl_size)} ({fl_size} Bytes).")
     log.info(f"Time:     {timedelta2human(fl_time)} ({fl_time}).")
     log.info(f"Finished: {get_human_datetime()} ({datetime.now()}).")
-    return filename
+    return Path(filename)
