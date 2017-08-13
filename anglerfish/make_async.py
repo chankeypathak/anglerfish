@@ -9,7 +9,7 @@ Forces any module NOT compatible with asyncio to run Ok with asyncio.
 
 
 import asyncio
-import atexit
+# import atexit
 import functools
 import threading
 
@@ -20,6 +20,7 @@ import threading
 class _AsyncCall(object):
 
     """Represents a low level sync code fragment to be run asynchronously."""
+    __slots__ = ("event_loop", "sync_code", "args", "kwargs")
 
     def __init__(self, event_loop, sync_code):
         self.event_loop, self.sync_code = event_loop, sync_code
@@ -35,6 +36,7 @@ class _AsyncCall(object):
 class _AsyncProcessingCall(object):
 
     """A low level sync code fragment to be run asynchronously on a Process."""
+    __slots__ = ("event_loop", "sync_code", "args", "kwargs")
 
     def __init__(self, event_loop, sync_code):
         self.event_loop, self.sync_code = event_loop, sync_code
@@ -51,6 +53,7 @@ class _AsyncProcessingCall(object):
 class _AsyncThreadingCall(object):
 
     """A low level sync code fragment to be run asynchronously on a Thread."""
+    __slots__ = ("event_loop", "sync_code", "args", "kwargs", "tread")
 
     def __init__(self, event_loop, sync_code, tread=None):
         self.event_loop, self.sync_code = event_loop, sync_code
@@ -95,9 +98,10 @@ class _AsyncThreadingCall(object):
 class Sync2Async(object):
 
     """Run Sync code as Async."""
+    __slots__ = ("args", "kwargs")
 
     event_loop = asyncio.get_event_loop()
-    atexit.register(asyncio.get_event_loop().close)
+    # atexit.register(asyncio.get_event_loop().close)  # Use if hangs at exit.
 
     @classmethod
     def get_event_loop(cls, *args, **kwargs):
@@ -128,3 +132,9 @@ class Sync2Async(object):
             event_loop, sync_code, args = args[0], args[1], args[2:]
         return await _AsyncThreadingCall(
             event_loop, sync_code)(*args, **kwargs)
+
+    def __setattr__(self, *args, **kwargs):
+        raise TypeError("Anglers Sync2Async object is inmmutable read-only.")
+
+    def __delattr__(self, *args, **kwargs):
+        raise TypeError("Anglers Sync2Async object is inmmutable read-only.")
