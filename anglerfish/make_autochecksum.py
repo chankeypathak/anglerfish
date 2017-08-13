@@ -25,7 +25,7 @@ def get_autochecksum(filepath: str, pattern: str=_STANDARD_PATTERN) -> str:
     return pattern + hex(adler32(Path(filepath).read_bytes()) & 0xffffffff)[2:]
 
 
-def autochecksum(filepath: str, update: bool=False) -> str:
+def autochecksum(filepath: str, update: bool=False) -> Path:
     """Make a automagic-checksuming file using Adler32 Hash and Hexadecimal."""
     filepath = Path(filepath)
     ext = "".join((_ for _ in filepath.suffixes if _STANDARD_PATTERN not in _))
@@ -39,9 +39,9 @@ def autochecksum(filepath: str, update: bool=False) -> str:
             new_file = "{0}{1}{2}".format(
                 filepath.as_posix().split(_STANDARD_PATTERN)[0], checksum, ext)
             filepath.rename(new_file)
-            return new_file  # SelfChecksum Wrong,Update checksum.
+            return filepath  # SelfChecksum Wrong,Update checksum.
     elif filepath.is_file():  # File has no selfchecksum,get selfchecksum
         new_file = "{0}{1}{2}".format(
             filepath.as_posix().replace(ext, ""), checksum, ext)
         filepath.rename(new_file)
-        return new_file
+        return filepath
