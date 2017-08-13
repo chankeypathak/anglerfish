@@ -13,7 +13,6 @@ this not require user command line skills to check the checksum, its automagic.
 """
 
 
-import os
 from pathlib import Path
 from zlib import adler32
 
@@ -40,10 +39,10 @@ def autochecksum(filepath: str, update: bool=False) -> str:
         elif checksum not in filepath.as_posix() and update:
             new_file = "{0}{1}{2}".format(
                 filepath.as_posix().split(_STANDARD_PATTERN)[0], checksum, ext)
-            os.rename(filepath.as_posix(), new_file)
+            filepath.rename(new_file)
             return new_file  # SelfChecksum Wrong,Update checksum.
     elif filepath.is_file():  # File has no selfchecksum,get selfchecksum
         new_file = "{0}{1}{2}".format(
             filepath.as_posix().replace(ext, ""), checksum, ext)
-        os.rename(filepath.as_posix(), new_file)
+        filepath.rename(new_file)
         return new_file
