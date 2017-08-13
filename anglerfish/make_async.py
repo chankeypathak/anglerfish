@@ -10,7 +10,7 @@ This enables to seamlessly mix sync and async code, see docs for examples.
 
 
 import asyncio
-# import atexit
+# import atexit  # See Line 105.
 import functools
 import threading
 
