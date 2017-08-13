@@ -5,6 +5,7 @@
 """Run synchronous code as asynchronous.
 
 Forces any module NOT compatible with asyncio to run Ok with asyncio.
+This enables to seamlessly mix sync and async code, see docs for examples.
 """
 
 
