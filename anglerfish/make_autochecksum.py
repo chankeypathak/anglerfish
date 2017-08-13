@@ -20,10 +20,9 @@ from zlib import adler32
 _STANDARD_PATTERN = ".✔"  # (check mark) use this to signal a selfchecksum
 
 
-def get_autochecksum(filepath: str) -> str:
+def get_autochecksum(filepath: str, pattern: str=_STANDARD_PATTERN) -> str:
     """Get a standard autochecksum string from file path argument."""
-    return _STANDARD_PATTERN + hex(adler32(
-        Path(filepath).read_bytes()) & 0xffffffff)[2:]
+    return pattern + hex(adler32(Path(filepath).read_bytes()) & 0xffffffff)[2:]
 
 
 def autochecksum(filepath: str, update: bool=False) -> str:
