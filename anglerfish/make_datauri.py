@@ -32,22 +32,20 @@ _DATA_URI_REGEX = (
     r'(?P<base64>\;base64)?' +
     r',(?P<data>.*)')
 _DATA_URI_RE = re.compile(r'^{0}$'.format(_DATA_URI_REGEX), re.DOTALL)
-_EXTENSIONS = (".png", ".jpeg", ".jpg", ".tiff")
 
 
-def img2webp(image_path: str, webp_path: str=None,
-             preset: str="text", cwebp: str="cwebp") -> str:
+def img2webp(image_path: str, webp_path: str=None, preset: str="text",
+             cwebp: str=which("cwebp"), timeout: int=60) -> str:
     """Try to convert Image to WEBP for max performance."""
-    _webp = which(cwebp)
-    if not _webp or not image_path.lower().endswith(_EXTENSIONS):
-        return image_path  # CWEBP is not installed, return the same image.
-    image_path, preset = os.path.abspath(image_path), preset.lower().strip()
-    webp_path = webp_path if webp_path else image_path + ".webp"
+    imagepath = Path(image_path)
+    if not cwebp or imagepath.suffix not in (".png", ".jpeg", ".jpg", ".tiff"):
+        return imagepath  # CWEBP is not installed, return the same image.
     if preset not in "default photo picture drawing icon text":
         preset = "text"  # Text Preset is still Ok,looks like JPG,but tiny.
-    command = f"{ _webp } -preset { preset } { image_path } -o { webp_path }"
-    return image_path if run(
-        command, shell=True, timeout=9).returncode else webp_path
+    webppath = Path(webp_path) if webp_path else imagepath.with_suffix(".webp")
+    command = f"{ cwebp } -preset { preset } { imagepath } -o { webppath }"
+    return imagepath if run(
+        command, shell=True, timeout=timeout).returncode else webppath
 
 
 class DataURI(str):
@@ -74,11 +72,11 @@ class DataURI(str):
     def from_file(cls, filename: str,
                   base64: bool=True, webp: bool=True) -> str:
         """Make a new Data URI Base64 string from a file."""
-        filename = os.path.abspath(filename)
-        if webp and filename.lower().endswith(_EXTENSIONS):
+        filename = Path(filename)
+        if webp and filename.suffix in (".png", ".jpeg", ".jpg", ".tiff"):
             filename = img2webp(filename)
-        return cls.make(guess_type(filename, strict=False)[0],
-                        base64, Path(filename).read_bytes())
+        return cls.make(guess_type(filename.suffix, strict=False)[0],
+                        base64, filename.read_bytes())
 
     @classmethod
     def from_url(cls, url: str, base64: bool=True, webp: bool=True) -> str:
