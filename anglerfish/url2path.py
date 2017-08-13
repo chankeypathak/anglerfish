@@ -11,14 +11,14 @@ import ssl
 import threading
 
 from datetime import datetime
+from pathlib import Path
 from tempfile import NamedTemporaryFile
 from urllib.request import Request, urlopen
-from pathlib import Path
 
-from anglerfish.make_autochecksum import autochecksum
 from anglerfish.bytes2human import bytes2human
-from anglerfish.seconds2human import timedelta2human
 from anglerfish.get_human_datetime import get_human_datetime
+from anglerfish.make_autochecksum import autochecksum
+from anglerfish.seconds2human import timedelta2human
 
 try:
     from tqdm import tqdm
