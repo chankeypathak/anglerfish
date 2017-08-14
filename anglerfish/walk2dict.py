@@ -50,6 +50,7 @@ def walk2dict(folder: Path, topdown: bool=True,
         a['parent'] = parent
         a['dirs'] = dirs
         a['files'] = []
+
         for fyle in files:
             try:  # sometimes os.stat(ff) just fails,breaking all the loop.
                 f = {}
@@ -74,5 +75,4 @@ def walk2dict(folder: Path, topdown: bool=True,
     dict_f = ret[0]
 
     return namedtuple("walk2dict", "dict json OrderedDict MappingProxyType")(
-        dict_f, dumps(dict_f), OrderedDict(dict_f), MappingProxyType(dict_f)
-    )
+        dict_f, dumps(dict_f), OrderedDict(dict_f), MappingProxyType(dict_f))
