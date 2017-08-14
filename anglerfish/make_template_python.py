@@ -9,6 +9,7 @@
 
 import re
 
+from collections import deque
 from pathlib import Path
 
 
@@ -29,7 +30,7 @@ class TemplatePython(str):
 
     def compile(self, t: str) -> list:
         """Parse and Compile all Tokens found on the template string t."""
-        tokens = []
+        tokens = deque()  # []
         for i, p in enumerate(re.compile("\{\%(.*?)\%\}", re.DOTALL).split(t)):
             if not p or not p.strip():
                 continue
@@ -41,11 +42,11 @@ class TemplatePython(str):
                 mar = min(len(_) - len(_.lstrip()) for _ in lines if _.strip())
                 tmplt = "\n".join(line_of_code[mar:] for line_of_code in lines)
                 tokens.append((True, compile(tmplt, f"<tpl {tmplt}>", "exec")))
-        return tokens
+        return list(tokens)
 
     def render(__self, __namespace: dict={}, mini: bool=False, **kw) -> str:
         """Render template from __namespace dict + **kw added to namespace."""
-        html = []
+        html = deque()  # []
         html_append = html.append  # Optimization.
         __namespace.update(kw, **globals())
 
