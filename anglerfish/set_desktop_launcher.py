@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 def set_desktop_launcher(app: str, desktop_file_content: str,
-                         autostart: bool=False) -> str:
+                         autostart: bool=False) -> namedtuple:
     """Add to autostart or launcher icon on the Desktop."""
     if not sys.platform.startswith("linux"):
         return  # .desktop files are Linux only AFAIK.
