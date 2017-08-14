@@ -5,7 +5,7 @@
 """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
 
 
-from collections import namedtuple, deque
+from collections import deque, namedtuple
 from types import MappingProxyType
 
 try:
