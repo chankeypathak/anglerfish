@@ -9,8 +9,14 @@ ISO-8601 standard:Its permitted to omit 'T' character by mutual agreement."""
 
 import time
 
-from collections import namedtuple, deque
+from collections import deque, namedtuple
 from datetime import datetime
+from types import MappingProxyType
+
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
 def timestamp2human(timestamp_on_seconds: int, iso_sep: str=" ") -> namedtuple:
@@ -91,8 +97,17 @@ def timestamp2human(timestamp_on_seconds: int, iso_sep: str=" ") -> namedtuple:
     iso_datetime = datetime.fromtimestamp(timestamp_on_seconds).replace(
         microsecond=0).astimezone().isoformat(iso_sep)
 
-    return namedtuple("HumanTimes", "human_time time_units auto iso")(
-        " ".join(time_parts), time_units, human_time_auto, iso_datetime)
+    time_dict = {
+        "seconds": seconds, "minutes": minutes, "hours": hours, "days": days,
+        "weeks": weeks, "months": months, "years": years, "decades": decades,
+        "centuries": centuries, "millenniums": millenniums,
+    }
+
+    return namedtuple(
+        "HumanTimes",
+        "human_time time_units auto iso dict json inmmutable ")(
+        " ".join(time_parts), time_units, human_time_auto, iso_datetime,
+        time_dict, dumps(time_dict), MappingProxyType(time_dict))
 
 
 def timedelta2human(time_delta) -> namedtuple:  # Just a shortcut :)
