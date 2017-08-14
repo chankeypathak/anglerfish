@@ -6,6 +6,12 @@
 
 
 from collections import namedtuple, deque
+from types import MappingProxyType
+
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
 def bytes2human(integer_bytes: int) -> namedtuple:
@@ -73,5 +79,13 @@ def bytes2human(integer_bytes: int) -> namedtuple:
         bytes_short = f"{bites}b"
     bytes_parts.append(f"{bites} Byte{'s' if bites > 1 else ''}")
 
-    return namedtuple("HumanBytes", "human_bytes bytes_units auto short")(
-        " ".join(bytes_parts), bytes_units, human_bytes_auto, bytes_short)
+    bytes_dict = {
+        "byte": bites, "kilo": kilo, "mega": mega, "giga": giga,
+        "tera": tera, "peta": peta, "exa": exa, "zetta": zetta, "yotta": yotta,
+    }
+
+    return namedtuple(
+        "HumanBytes",
+        "human_bytes bytes_units auto short dict json inmmutable")(
+        " ".join(bytes_parts), bytes_units, human_bytes_auto, bytes_short,
+        bytes_dict, dumps(bytes_dict), MappingProxyType(bytes_dict))
