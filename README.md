@@ -2398,6 +2398,7 @@ These are fully optional but enable extra features (most Linux distros already h
 - https://github.com/jpaugh/agithub (ignore the name, check the project, bad name)
 - https://github.com/spulec/freezegun#freezegun-let-your-python-tests-travel-through-time
 - https://github.com/pybuilder/pybuilder#pybuilder
+- https://github.com/czheo/syntax_sugar_python#syntax_sugar--
 - https://docs.python.org/3/library/zipapp.html#zipapp.create_archive
 - For Inmmutable Objects see: [`frozenset({1, 2, 3})`](https://devdocs.io/python~3.6/library/stdtypes#frozenset "Angler will Not add Inmmutable Objects, since they are Built-in"), [`namedtuple("_", "foo bar")(42 True)`](https://devdocs.io/python~3.6/library/collections#collections.namedtuple "Angler will Not add Inmmutable Objects, since they are Built-in"), [`MappingProxyType({"a": 1, "b": True})`](https://devdocs.io/python~3.6/library/types#types.MappingProxyType "Angler will Not add Inmmutable Objects, since they are Built-in").
 
