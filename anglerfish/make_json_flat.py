@@ -25,5 +25,5 @@ def make_json_flat(jsony: dict, delimiter: str="__") -> namedtuple:
         else:
             values[item] = jsony[item]
 
-    return namedtuple("walk2dict", "dict json OrderedDict MappingProxyType")(
+    return namedtuple("JSON_Flat", "dict json OrderedDict MappingProxyType")(
         values, dumps(values), OrderedDict(values), MappingProxyType(values))
