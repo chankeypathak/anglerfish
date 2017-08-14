@@ -9,7 +9,7 @@ from collections import namedtuple, deque
 
 
 def bytes2human(integer_bytes: int) -> namedtuple:
-    """Convert bytes to kilobytes, megabytes, gigabytes, etc."""
+    """Calculate Bytes, with precision from Bytes to Yottabytes."""
     # Calculate all Byte units from integer_bytes positive integer.
     kilo, bites = divmod(int(abs(integer_bytes)), 1_024)
     mega, kilo = divmod(kilo, 1_024)
