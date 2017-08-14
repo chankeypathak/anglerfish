@@ -5,28 +5,34 @@
 """Perform full walk of where, gather full path of all files."""
 
 
-import logging as log
 import os
+from collections import namedtuple
 
-from typing import NamedTuple
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
-def walk2list(where: str, target: tuple, omit: tuple, links: bool=False,
-              tuply: bool=True, namedtuple: str=None) -> list:
-    """Perform full walk of where, gather full path of all files."""
-    log.debug(f"""Scanning on {where},searching for {target},ignoring {omit},
-              {'' if links else 'Not '} following any SymLinks.""")
+def walk2list(folder: str, target: tuple, omit: tuple=(),
+              showhidden: bool=False, topdown: bool=True,
+              onerror: object=None, followlinks: bool=False) -> namedtuple:
+    """Perform full walk, gather full path of all files,
+    based on os.walk with multiple output types & extras.
+
+    Returns a namedtuple 'walk2list' with multiple output types:
+    - List represents folder/file structure of folder.
+    - JSON dumps string of the list, uses uJSON if installed.
+    - tuple of the list.
+    - set of the list.
+    - frozenset of the list."""
+    oswalk = os.walk(folder, topdown=topdown,
+                     onerror=onerror, followlinks=followlinks)
     listy = [os.path.abspath(os.path.join(r, f))
-             for r, d, fs in os.walk(where, followlinks=links)
-             for f in fs if not f.startswith('.') and
+             for r, d, fs in oswalk
+             for f in fs if not f.startswith(() if showhidden else ".") and
              not f.endswith(omit) and
-             f.endswith(target)]  # only target files,no hidden files
-    list_of_files = listy
-    if tuply:  # Return a Tuple.
-        list_of_files = tuple(listy)
-    if namedtuple:  # Return a NamedTuple with static typing.
-        namedtuple_of_files = NamedTuple(  # You can work comfortably using
-            str(namedtuple).strip(),  # myfolder.path_9 instead of myfolder[9]
-            fields=(("path_{0}".format(i), str) for i in range(len(listy))))
-        list_of_files = namedtuple_of_files(*listy)
-    return list_of_files
+             f.endswith(target)]
+
+    return namedtuple("walk2list", "list tuple json set frozenset")(
+        list, tuple(listy), dumps(listy), set(listy), frozenset(listy))
