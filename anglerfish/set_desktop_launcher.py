@@ -8,6 +8,7 @@
 import logging as log
 import sys
 
+from collections import namedtuple
 from pathlib import Path
 
 
@@ -21,6 +22,7 @@ def set_desktop_launcher(app: str, desktop_file_content: str,
     app, desktop_file_txt = app.strip().lower(), desktop_file_content.strip()
     if not len(app) or not len(desktop_file_txt):
         raise ValueError("app or desktop_file_content can not be Empty value.")
+
     # Auto-Start file below.
     config_dir = Path.home() / ".config" / "autostart"
     config_dir.mkdir(parents=True, exist_ok=True)
@@ -30,6 +32,7 @@ def set_desktop_launcher(app: str, desktop_file_content: str,
             log.info(f"Writing 1 Auto-Start desktop file: {fyle} ({fyle!r}).")
             fyle.write_text(desktop_file_txt, encoding="utf-8")
         fyle.chmod(0o776) if fyle.is_file() else log.debug("chmod: NO.")
+
     # Desktop Launcher file below.
     apps_dir = Path.home() / ".local" / "share" / "applications"  # paths XDG.
     apps_dir.mkdir(parents=True, exist_ok=True)
@@ -38,4 +41,5 @@ def set_desktop_launcher(app: str, desktop_file_content: str,
         log.info(f"Writing 1 Launcher file: {desktop_file} ({desktop_file!r})")
         desktop_file.write_text(desktop_file_txt, encoding="utf-8")
         fyle.chmod(0o776) if fyle.is_file() else log.debug("chmod: NO.")
-    return desktop_file
+
+    return namedtuple("DesktopFiles", "launcher autostart")(desktop_file, fyle)
