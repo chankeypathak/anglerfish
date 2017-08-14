@@ -23,10 +23,8 @@ def bytes2human(integer_bytes: int) -> namedtuple:
     # Build a namedtuple with all named bytes units and all its integer values.
     bytes_units = namedtuple(
         "AllHumanFriendlyFrequentByteUnits",
-        "byte kilo mega giga tera peta exa zetta yotta"
-    )(
-        bites, kilo, mega, giga, tera, peta, exa, zetta, yotta
-    )
+        "byte kilo mega giga tera peta exa zetta yotta")(
+        bites, kilo, mega, giga, tera, peta, exa, zetta, yotta)
 
     # Build a human friendly bytes string with frequent bytes units.
     bytes_parts, human_bytes_auto = deque(), None  # []
