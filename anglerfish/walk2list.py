@@ -28,6 +28,7 @@ def walk2list(folder: str, target: tuple, omit: tuple=(),
     - frozenset of the list."""
     oswalk = os.walk(folder, topdown=topdown,
                      onerror=onerror, followlinks=followlinks)
+
     listy = [os.path.abspath(os.path.join(r, f))
              for r, d, fs in oswalk
              for f in fs if not f.startswith(() if showhidden else ".") and
@@ -35,4 +36,4 @@ def walk2list(folder: str, target: tuple, omit: tuple=(),
              f.endswith(target)]
 
     return namedtuple("walk2list", "list tuple json set frozenset")(
-        list, tuple(listy), dumps(listy), set(listy), frozenset(listy))
+        listy, tuple(listy), dumps(listy), set(listy), frozenset(listy))
