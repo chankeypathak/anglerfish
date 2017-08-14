@@ -7,7 +7,7 @@
 
 import time
 
-from collections import namedtuple
+from collections import namedtuple, deque
 
 
 def seconds2human(time_on_seconds: int) -> namedtuple:
@@ -30,7 +30,7 @@ def seconds2human(time_on_seconds: int) -> namedtuple:
     )
 
     # Build a human friendly time string with frequent time units.
-    t_parts = []
+    t_parts = deque()  # []
     if centuries:
         t_parts.append(f"{centuries} Centur{'ies' if centuries > 1 else 'y'}")
     if decades:
