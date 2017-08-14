@@ -5,11 +5,16 @@
 """Make a JSON from Nested to Flat with an arbitrary delimiter."""
 
 
+from collections import OrderedDict, namedtuple
 from types import MappingProxyType
 
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
-def make_json_flat(jsony: dict, delimiter: str="__",
-                   inmmutable: bool=False) -> dict:
+
+def make_json_flat(jsony: dict, delimiter: str="__") -> namedtuple:
     """Make a JSON from Nested to Flat with an arbitrary delimiter."""
     values = {}
     for item in jsony.keys():
@@ -19,4 +24,6 @@ def make_json_flat(jsony: dict, delimiter: str="__",
                 values[f"{item}{delimiter}{something}"] = get[something]
         else:
             values[item] = jsony[item]
-    return MappingProxyType(values) if inmmutable else values
+
+    return namedtuple("walk2dict", "dict json OrderedDict MappingProxyType")(
+        values, dumps(values), OrderedDict(values), MappingProxyType(values))
