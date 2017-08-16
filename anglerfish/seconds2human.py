@@ -105,7 +105,7 @@ def timestamp2human(timestamp_on_seconds: int, iso_sep: str=" ") -> namedtuple:
 
     return namedtuple(
         "HumanTimes",
-        "human_time time_units auto iso dict json inmmutable ")(
+        "human units auto iso dict json inmmutable ")(
         " ".join(time_parts), time_units, human_time_auto, iso_datetime,
         time_dict, dumps(time_dict), MappingProxyType(time_dict))
 
