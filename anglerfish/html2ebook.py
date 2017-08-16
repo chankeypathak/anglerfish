@@ -17,8 +17,10 @@ from platform import node, platform
 from uuid import uuid4
 
 try:
+    from .make_autochecksum import autochecksum
     from .stealth2string import stealth2string
 except ImportError:
+    from anglerfish import autochecksum
     from anglerfish import stealth2string
 
 
@@ -30,7 +32,8 @@ TOC_NCX = stealth2string("​﻿﻿​​﻿​﻿​﻿​​﻿﻿﻿​​﻿
 
 def html2ebook(files_list: tuple, epub_file: Path=Path(uuid4().hex + ".epub"),
                extensions: tuple=(".html", ".htm", ".xhtml"),
-               compression: int=8, metadata_dict: dict={}) -> Path:
+               compression: int=8, checksum: bool=False,
+               metadata_dict: dict={}) -> Path:
     """Take a tuple of files,with HTMLs,and convert them into 1 eBook ePub."""
 
     manifest, spine, toc, toc2 = deque(), deque(), deque(), deque()
@@ -78,4 +81,4 @@ def html2ebook(files_list: tuple, epub_file: Path=Path(uuid4().hex + ".epub"),
                 datetime.now().replace(microsecond=0).astimezone().isoformat())
         ))
 
-    return Path(epub_file)  # Return file name Path of the new eBook *.epub.
+    return Path(autochecksum(epub_file, update=1) if checksum else epub_file)
