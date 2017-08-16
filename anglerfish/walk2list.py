@@ -6,7 +6,7 @@
 
 
 import os
-from collections import namedtuple
+from collections import deque, namedtuple
 
 try:
     from ujson import dumps
@@ -25,15 +25,16 @@ def walk2list(folder: str, target: tuple, omit: tuple=(),
     - JSON dumps string of the list, uses uJSON if installed.
     - tuple of the list.
     - set of the list.
-    - frozenset of the list."""
+    - frozenset of the list.
+    - collections.deque of the list."""
     oswalk = os.walk(folder, topdown=topdown,
                      onerror=onerror, followlinks=followlinks)
 
-    listy = [os.path.abspath(os.path.join(r, f))
-             for r, d, fs in oswalk
-             for f in fs if not f.startswith(() if showhidden else ".") and
-             not f.endswith(omit) and
-             f.endswith(target)]
+    lst = [os.path.abspath(os.path.join(r, f))
+           for r, d, fs in oswalk
+           for f in fs if not f.startswith(() if showhidden else ".") and
+           not f.endswith(omit) and
+           f.endswith(target)]
 
-    return namedtuple("walk2list", "list tuple json set frozenset")(
-        listy, tuple(listy), dumps(listy), set(listy), frozenset(listy))
+    return namedtuple("walk2list", "list tuple json set frozenset deque")(
+        lst, tuple(lst), dumps(lst), set(lst), frozenset(lst), deque(lst))
