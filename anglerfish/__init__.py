@@ -48,7 +48,8 @@ from anglerfish.set_single_instance import set_single_instance  # noqa
 from anglerfish.set_terminal_title import set_terminal_title  # noqa
 from anglerfish.bytes2human import bytes2human  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
-from anglerfish.seconds2human import seconds2human, timedelta2human  # noqa
+from anglerfish.seconds2human import (timestamp2human, timedelta2human,
+                                      now2human, datetime2human)  # noqa
 from anglerfish.html2ebook import html2ebook  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.get_free_port import get_free_port  # noqa
@@ -78,7 +79,6 @@ from anglerfish.get_random_font import (get_random_handwriting_font,
                                         get_random_serif_font,
                                         get_random_font)  # noqa
 from anglerfish.make_datauri import DataURI, img2webp  # noqa
-from anglerfish.get_human_datetime import get_human_datetime  # noqa
 from anglerfish.make_async import Sync2Async  # noqa
 from anglerfish.make_autochecksum import get_autochecksum, autochecksum  # noqa
 from anglerfish.url2path import url2path  # noqa
@@ -97,27 +97,26 @@ __contact__ = "https://t.me/juancarlospaco"
 __maintainer__ = "Juan Carlos"
 __url__ = "https://github.com/juancarlospaco/anglerfish"
 __all__ = (
-    'AutoSlots_meta',  # Those are Meta-Classes.
-    'ChainableFuture', 'TemplatePython', 'Sync2Async',  # Those are Classes.
-    'beep', 'bytes2human', 'check_encoding', 'check_folder',
-    'get_clipboard', 'get_free_port', 'app_is_ready', 'url2path',
-    'get_autochecksum', 'autochecksum',  # Functions.
-    'get_zip_comment', 'has_battery', 'html2ebook',
-    'ipdb_on_exception', 'json2xml', 'json_pretty', 'log_exception',
-    'make_json_flat', 'make_logger', 'make_notification', 'make_post_exec_msg',
-    'multiprocessed', 'on_battery', 'path2import', 'pdb_on_exception',
-    'retry', 'seconds2human', 'set_desktop_launcher',
-    'set_display_off', 'set_process_name', 'set_single_instance',
-    'set_terminal_title', 'set_zip_comment', 'threads',
-    'timedelta2human', 'typecheck', 'walk2dict', 'walk2list', 'watch',
-    'string2stealth', 'stealth2string',
-    'get_public_ip', 'is_online', 'set_process_priority',
-    'get_random_pastelight_color', 'get_random_pasteldark_color',
-    'get_random_pastel_color', 'get_random_handwriting_font',
-    'get_random_mono_font', 'get_random_display_font', 'get_random_sans_font',
-    'get_random_serif_font', 'get_random_font', 'DataURI', 'img2webp',
-    'get_human_datetime', 'tinyslation',
-    'AnglerfishException',  # Exceptions
+    'AnglerfishException',  # Exceptions.
+    'AutoSlots_meta',       # MetaClasses.
+    'ChainableFuture', 'DataURI', 'Sync2Async', 'TemplatePython',  # Classes.
+    'app_is_ready', 'autochecksum', 'beep', 'bytes2human',         # Functions.
+    'check_encoding', 'check_folder', 'datetime2human', 'get_autochecksum',
+    'get_clipboard', 'get_free_port', 'get_public_ip',
+    'get_random_display_font', 'get_random_font',
+    'get_random_handwriting_font', 'get_random_mono_font',
+    'get_random_pastel_color', 'get_random_pasteldark_color',
+    'get_random_pastelight_color', 'get_random_sans_font',
+    'get_random_serif_font', 'get_zip_comment', 'has_battery', 'html2ebook',
+    'img2webp', 'ipdb_on_exception', 'is_online', 'json2xml', 'json_pretty',
+    'log_exception', 'make_json_flat', 'make_logger', 'make_notification',
+    'make_post_exec_msg', 'multiprocessed', 'now2human', 'on_battery',
+    'path2import', 'pdb_on_exception', 'retry', 'set_desktop_launcher',
+    'set_display_off', 'set_process_name', 'set_process_priority',
+    'set_single_instance', 'set_terminal_title', 'set_zip_comment',
+    'stealth2string', 'string2stealth', 'threads', 'timedelta2human',
+    'timestamp2human', 'tinyslation', 'typecheck', 'url2path', 'walk2dict',
+    'walk2list', 'watch',
 )
 
 
@@ -143,12 +142,18 @@ class _ZipRotator(object):
         origin, target = Path(origin), Path(target + ".zip")
         comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
             From {node()}, {platform()}, Python {python_version()} to {target}
-            at ~{get_human_datetime()} ({datetime.now()}).""".encode("utf-8"))
+            at ~{now2human().human} ({datetime.now()}).""".encode("utf-8"))
         with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
             log_zip.write(origin.as_posix(), arcname=origin.name)
             log_zip.printdir()
             origin.unlink()
+
+    def __setattr__(self, *args, **kwargs):
+        raise TypeError("Internal _ZipRotator object is inmmutable read-only.")
+
+    def __delattr__(self, *args, **kwargs):
+        raise TypeError("Internal _ZipRotator object is inmmutable read-only.")
 
 
 class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
