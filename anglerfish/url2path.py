@@ -10,15 +10,15 @@ import os
 import ssl
 import threading
 
+from collections import namedtuple
 from datetime import datetime
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from urllib.request import Request, urlopen
 
 from anglerfish.bytes2human import bytes2human
-from anglerfish.get_human_datetime import get_human_datetime
 from anglerfish.make_autochecksum import autochecksum
-from anglerfish.seconds2human import timedelta2human
+from anglerfish.seconds2human import datetime2human, now2human, timedelta2human
 
 try:
     from tqdm import tqdm
@@ -109,7 +109,7 @@ def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
     if not filename:  # Create a temporary file as the filename.
         filename = NamedTemporaryFile(suffix=suffix, prefix="angler_").name
     log.info(f"""Angler download accelerator.\nFrom: {url}.\nTo:   {filename}.
-    Time: ~{ get_human_datetime(start_time) } ({ start_time }).""")
+    Time: ~{ datetime2human(start_time).human } ({ start_time }).""")
     sizeInBytes = _get_size(url, data=data, timeout=timeout)
     # if sizeInBytes=0,Resume is not supported by server,use _download_simple()
     # if sizeInBytes < 1 Gigabytes,file is small,use _download_simple()
@@ -139,11 +139,28 @@ def url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
     if checksum and autochecksum:
         log.info(f"Generating Anglers Auto-CheckSum using {autochecksum}.")
         filename = autochecksum(filename, update=True)
-    # Log some nice info.
+    # Humanize units.
     fl_size, fl_time = os.path.getsize(filename), datetime.now() - start_time
-    log.info(f"Downloaded { len(dataDict) } binary data chunks total.")
-    log.info(f"Finished writing downloaded output file: {filename}.")
-    log.info(f"Size:     {bytes2human(fl_size)} ({fl_size} Bytes).")
-    log.info(f"Time:     {timedelta2human(fl_time)} ({fl_time}).")
-    log.info(f"Finished: {get_human_datetime()} ({datetime.now()}).")
-    return Path(filename)
+    size = bytes2human(fl_size)
+    time_elapsed = timedelta2human(fl_time)
+    time_started = datetime2human(start_time)
+    time_finished = now2human()
+    # Log some nice info.
+    log.info(f"Downloaded:   { len(dataDict) } binary data chunks total.")
+    log.info(f"Outputs file: { filename }.")
+    log.info(f"Size (human): { size.human } ({ fl_size } Bytes).")
+    log.info(f"Time Elapsed: { time_elapsed.human }.")
+    log.info(f"Time Started: { time_started.human }.")
+    log.info(f"Time Elapsed: { time_finished.human }.")
+    log.info(f"Time Timeout: { timeout }.")
+
+    return namedtuple(
+        "URL2Path",
+        ("path string url chunks size time_elapsed "
+         "time_started time_finished ranges data timeout suffix "
+         "name_from_url concurrent_downloads force_concurrent checksum")
+    )(
+        Path(filename), str(filename), url, len(dataDict), size, time_elapsed,
+        time_started, time_finished, ranges, data, timeout, suffix,
+        name_from_url, concurrent_downloads, force_concurrent, checksum,
+    )
