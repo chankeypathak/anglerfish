@@ -243,7 +243,7 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     # Init a logger.
     log = logging.getLogger()
     log.addHandler(sized_timed_rotating_file_handler)
-    log.setLevel(level)
+    log.setLevel(level or -1)
     # Colors and Emoji.
     if not sys.platform.startswith("win") and sys.stderr.isatty() and color:
         log.debug("Colored Logs on current Terminal enabled.")
@@ -298,7 +298,8 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     if syslog_handler:
         log.addHandler(syslog_handler)
     # Fault handler.
-    _add_faulthandler(crashandler)
+    crash_handler = _add_faulthandler(crashandler)
+    print(crash_handler)
 
     log.debug(f"""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
               Logger Log files write to: {filename}  ({filename!r}).""")
