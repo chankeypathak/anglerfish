@@ -120,12 +120,11 @@ __all__ = (
 )
 
 
-sys.dont_write_bytecode = True
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-
-
 ##############################################################################
 
+
+sys.dont_write_bytecode = True
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 _LOG_FORMAT = (
     "%(asctime)s %(levelname)s: %(processName)s (%(process)d) %(threadName)s "
@@ -184,6 +183,9 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
         if t >= self.rolloverAt:
             return 1
         return 0
+
+
+##############################################################################
 
 
 def make_logger(name, when='midnight', filename=None, interval=1,
