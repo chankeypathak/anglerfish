@@ -143,11 +143,12 @@ class _ZipRotator(object):
         comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
             From {node()}, {platform()}, Python {python_version()} to {target}
             at ~{now2human().human} ({datetime.now()}).""".encode("utf-8"))
-        with zipfile.ZipFile(target.as_posix(), 'w', compression=8) as log_zip:
+        with zipfile.ZipFile(target, 'w', compression=8) as log_zip:
             log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
             log_zip.write(origin.as_posix(), arcname=origin.name)
             log_zip.printdir()
             origin.unlink()
+        return target
 
     def __setattr__(self, *args, **kwargs):
         raise TypeError("Internal _ZipRotator object is inmmutable read-only.")
