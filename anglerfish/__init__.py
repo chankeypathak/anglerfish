@@ -188,6 +188,45 @@ class SizedTimedRotatingFileHandler(TimedRotatingFileHandler):
 ##############################################################################
 
 
+def _get_handler(filename: str, when: str, interval: int, delay: bool,
+                 utc: bool, backupCount: int, atTime: bool, maxMegaBytes: int,
+                 level: int) -> SizedTimedRotatingFileHandler:
+    """Handler with Rotator and Renamer."""
+    handler = SizedTimedRotatingFileHandler(
+        filename=filename, when=when, interval=interval, delay=delay, utc=utc,
+        backupCount=backupCount, atTime=atTime, maxMegaBytes=maxMegaBytes)
+    handler.setLevel(level or -1)
+    handler.setFormatter(logging.Formatter(
+        fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
+    handler.rotator = _ZipRotator
+    return handler
+
+
+def _add_stderr(stder: bool) -> object:
+    """Add standard error to the logger log."""
+    return logging.StreamHandler(sys.stderr) if stder else None
+
+
+def _add_faulthandler(crashandler: object) -> object:
+    """Add faulthandler to the logger log."""
+    return faulthandler.enable(crashandler) if crashandler else None
+
+
+def _add_syslog(slog: bool) -> object:
+    """Add Syslog to the logger log."""
+    if Path("/dev/log").exists() or Path("/var/run/syslog").exists() and slog:
+        is_linux = sys.platform.startswith("linux")
+        addrss = Path("/dev/log" if is_linux else "/var/run/syslog").as_posix()
+        try:
+            handler = logging.handlers.SysLogHandler(address=str(addrss))
+            handler.setFormatter(logging.Formatter(
+                fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
+        except Exception:
+            return None
+        else:
+            return handler
+
+
 def make_logger(name, when='midnight', filename=None, interval=1,
                 backupCount=100, delay=False, utc=False,
                 atTime=None, level=-1, slog=True, stder=True, crashandler=None,
@@ -197,15 +236,13 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     if not filename:
         filename = str(gettempdir() / Path(name.lower() + ".log"))
     # Handler with Rotator and Renamer.
-    handler = SizedTimedRotatingFileHandler(
-        filename=filename, when=when, interval=interval, delay=False, utc=utc,
-        backupCount=backupCount, atTime=atTime, maxMegaBytes=maxMegaBytes)
-    handler.setLevel(level)
-    handler.setFormatter(logging.Formatter(
-        fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
-    handler.rotator = _ZipRotator
+    sized_timed_rotating_file_handler = _get_handler(
+        filename=filename, when=when, interval=interval,
+        delay=delay, utc=utc, backupCount=backupCount,
+        atTime=atTime, maxMegaBytes=maxMegaBytes, level=level)
+    # Init a logger.
     log = logging.getLogger()
-    log.addHandler(handler)
+    log.addHandler(sized_timed_rotating_file_handler)
     log.setLevel(level)
     # Colors and Emoji.
     if not sys.platform.startswith("win") and sys.stderr.isatty() and color:
@@ -252,30 +289,17 @@ def make_logger(name, when='midnight', filename=None, interval=1,
             return new
         logging.StreamHandler.emit = add_color_emit_ansi(
             logging.StreamHandler.emit)
-    # Std Error.
-    if stder:
-        log.addHandler(logging.StreamHandler(sys.stderr))
-    # SysLog server.
-    if Path("/dev/log").exists() or Path("/var/run/syslog").exists() and slog:
-        is_linux = sys.platform.startswith("linux")
-        addrss = Path("/dev/log" if is_linux else "/var/run/syslog").as_posix()
-        try:
-            handler = logging.handlers.SysLogHandler(address=str(addrss))
-            handler.setFormatter(logging.Formatter(
-                fmt=_LOG_FORMAT, datefmt=r"%Y-%m-%d %H:%M:%S%z"))
-        except Exception:
-            log.debug("Unix SysLog Server not found,ignore Logging to SysLog.")
-        else:
-            log.addHandler(handler)
-            log.debug(f"Unix SysLog Server Logs to: {addrss} ({addrss!r}).")
+    # Standard Error handler.
+    stder_handler = _add_stderr(stder=stder)
+    if stder_handler:
+        log.addHandler(stder_handler)
+    # SysLog handler.
+    syslog_handler = _add_syslog(slog)
+    if syslog_handler:
+        log.addHandler(syslog_handler)
     # Fault handler.
-    if crashandler:
-        try:
-            faulthandler.enable(crashandler)
-        except Exception as error:
-            log.waring(f"FaultHander {crashandler} Failed with error: {error}")
-        else:
-            log.debug(f"FaultHander ON!, Logs Fatal Errors to: {crashandler}.")
+    _add_faulthandler(crashandler)
+
     log.debug(f"""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
               Logger Log files write to: {filename}  ({filename!r}).""")
     return log
