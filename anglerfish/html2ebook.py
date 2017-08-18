@@ -33,7 +33,7 @@ TOC_NCX = stealth2string("​﻿﻿​​﻿​﻿​﻿​​﻿﻿﻿​​﻿
 
 
 def html2ebook(files_list: tuple, epub_file: Path=Path(uuid4().hex + ".epub"),
-               extensions: tuple=(".html", ".htm", ".xhtml"),
+               extensions: tuple=(".html", ".htm", ".xhtml", ".txt"),
                compression: int=8, checksum: bool=False,
                zip_comment: str=None, metadata_dict: dict={}) -> Path:
     """Take a tuple of files,with HTMLs,and convert them into 1 eBook ePub."""

@@ -14,6 +14,8 @@ import zipfile
 
 from copy import copy
 from datetime import datetime
+from getpass import getuser
+from locale import getdefaultlocale
 from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 from platform import node, platform, python_version
@@ -139,15 +141,21 @@ class _ZipRotator(object):
     def __call__(self, origin, target):
         """Log Rotator with ZIP compression, comments, checksum and cipher."""
         origin, target = Path(origin), Path(target + ".zip")
-        comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
-            From {node()}, {platform()}, Python {python_version()} to {target}
-            at ~{now2human().human} ({datetime.now()}).""".encode("utf-8"))
+
+        zip_comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
+            From {node()}, {platform()}, Python {python_version()}, ({self}),
+            from file {origin}, to file {target}, at ~ {now2human().human},
+            ({datetime.now().replace(microsecond=0).astimezone().isoformat()}),
+            Author {getuser().capitalize()}, Language {getdefaultlocale()[0]},
+            """.encode("utf-8"))
+
         with zipfile.ZipFile(target, 'w', compression=8) as log_zip:
-            log_zip.comment, log_zip.debug = comment, 3  # ZIP debug
+            log_zip.comment, log_zip.debug = zip_comment, 3  # ZIP debug
             log_zip.write(origin.as_posix(), arcname=origin.name)
             log_zip.printdir()
             origin.unlink()
-        return target
+
+        return str(target)
 
     def __setattr__(self, *args, **kwargs):
         raise TypeError("Internal _ZipRotator object is inmmutable read-only.")
