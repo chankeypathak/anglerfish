@@ -144,9 +144,9 @@ class _ZipRotator(object):
 
         zip_comment = bytes(f"""ZIP Compressed Unused Old Rotated Python Logs.
             From {node()}, {platform()}, Python {python_version()}, ({self}),
-            from file {origin}, to file {target}, at ~ {now2human().human},
+            from file {origin}, to file {target}, at time ~{now2human().human},
             ({datetime.now().replace(microsecond=0).astimezone().isoformat()}),
-            Author {getuser().capitalize()}, Language {getdefaultlocale()[0]},
+            Author {getuser().capitalize()}, Language {getdefaultlocale()[0]}.
             """.encode("utf-8"))
 
         with zipfile.ZipFile(target, 'w', compression=8) as log_zip:
