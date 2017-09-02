@@ -70,7 +70,7 @@ This is a Test.
 ##### get_free_port
 <details>
 
-`anglerfish.get_free_port(port_range: tuple=(8000, 9000))`
+`anglerfish.get_free_port(port_range: tuple=None)`
 
 **Description:** Returns a free unused port number integer.
 Takes a tuple of 2 integers as argument, being the range of port numbers to scan.
