@@ -426,7 +426,7 @@ Thats all we know about the error, check the LOG file and StdOut.
 ##### ipdb_on_exception
 <details>
 
-`anglerfish.ipdb_on_exception(debugger: str="ipdb")`
+`anglerfish.ipdb_on_exception(debugger: str="ipdb", limit: int=100)`
 
 **Description:** Automatic iPDB Debugger when an Exception happens,
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
