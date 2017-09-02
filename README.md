@@ -223,7 +223,8 @@ True
 ##### check_folder
 <details>
 
-`anglerfish.check_folder(folder_to_check: str, check_space: int=1)`
+`anglerfish.check_folder(folder_to_check: str=Path.home().as_posix(),
+                 check_space: int=1)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
