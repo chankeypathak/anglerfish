@@ -462,7 +462,7 @@ Installing an automatic Debugger upon Exceptions...
 ##### seconds2human
 <details>
 
-`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.seconds2human(ttimestamp_on_seconds: int, iso_sep: str=" ")`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
@@ -499,7 +499,7 @@ useful for internationalization of the output string, defaults to English, optio
 ##### timedelta2human
 <details>
 
-`anglerfish.timedelta2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.timedelta2human(timestamp_on_seconds: int, iso_sep: str=" ")`
 
 **Description:** Convert a TimeDelta object to human string representation.
 From `timedelta` object to very human friendly string representation,
@@ -576,7 +576,9 @@ True
 ##### walk2list
 <details>
 
-`anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True, namedtuple: bool=False)`
+`anglerfish.walk2list(folder: str, target: tuple, omit: tuple=(),
+              showhidden: bool=False, topdown: bool=True,
+              onerror: object=None, followlinks: bool=False)`
 
 **Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
