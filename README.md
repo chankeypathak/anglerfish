@@ -622,7 +622,8 @@ this is not an Angler Bug but a limitation of Python itself.
 ##### walk2dict
 <details>
 
-`anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False, ordereddict: bool=False)`
+`anglerfish.walk2dict(folder: Path, topdown: bool=True,onerror: object=None, followlinks: bool=False,
+ showhidden: bool=False, strip: bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
