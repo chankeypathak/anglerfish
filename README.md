@@ -261,7 +261,7 @@ True
 ##### get_clipboard
 <details>
 
-`anglerfish.get_clipboard()`
+`anglerfish.osx_clipboard`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
 
@@ -300,7 +300,7 @@ Querying Copy/Paste Clipboard functionality.
 ##### beep
 <details>
 
-`anglerfish.beep(waveform: tuple)`
+`anglerfish.beep(waveform: tuple=(79, 45, 32, 50, 99, 113, 126, 127))`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
 like old days Pc Speaker Buzzer Beep sound, meant for very long running operations and/or headless command line apps,
