@@ -144,7 +144,7 @@ Sending Notification message via D-Bus API.
 ##### bytes2human
 <details>
 
-`anglerfish.bytes2human(bites: int, to: str, bsize: int=1024)`
+`anglerfish.bytes2human(integer_bytes: int)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...),
 uses a Byte Size of `1024` by default. Its basically a Bytes to KiloBytes, MegaBytes, GigaBytes (...).
