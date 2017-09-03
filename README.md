@@ -864,7 +864,10 @@ This is an anglerfish.ChainableFuture demo using ChainableFuture.then() !!!.
 ##### html2ebook
 <details>
 
-`anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
+`anglerfish.html2ebook(files_list: tuple, epub_file: Path=Path(uuid4().hex + ".epub"),
+               extensions: tuple=(".html", ".htm", ".xhtml", ".txt"),
+               compression: int=8, checksum: bool=False,
+               zip_comment: str=None, metadata_dict: dict={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
 If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly CSS.
@@ -883,6 +886,7 @@ If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly C
 - `date` Date and Time ISO format of eBook creation (Fallbacks to Current Date and Time if not provided).
 
 **Returns:** a string with the file path of the new eBook file.
+**Source Code file:**https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/html2ebook.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
@@ -1140,7 +1144,7 @@ so if your Terminal app wont work fill a bug for them, not an Angler problem.
 ##### json2xml
 <details>
 
-`anglerfish.json2xml(json_obj: dict, line_padding: str="")`
+`anglerfish.json2xml(json_obj: dict, line_padding: str="", at_end: str="")`
 
 **Description:** Takes a JSON and returns an XML, optional custom line paddings.
 
@@ -1235,7 +1239,7 @@ True
 ##### get_zip_comment
 <details>
 
-`anglerfish.get_zip_comment(zip_path: str)`
+`anglerfish.get_zip_comment(zip_path: str, comment: str="")`
 
 **Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
 ZIP file must be Valid.
@@ -1456,7 +1460,7 @@ recommended use for background or non-critical apps, optional, integer type.
 
 **Returns:** `True` if its working, bool type.
 
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_process_priority.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
@@ -1478,7 +1482,7 @@ True
 ##### string2stealth
 <details>
 
-`anglerfish.string2stealth(stringy)`
+`anglerfish.string2stealth(stringy: str, rot13: bool=False)`
 
 **Description:** Stealth Strings, hidden and dangerous.
 No information is lost, both ways, supports everything that UTF-8 supports.
@@ -1515,7 +1519,7 @@ String Unicode :fast_forward: ZLib Compress :fast_forward: Base64 :fast_forward:
 ##### stealth2string
 <details>
 
-`anglerfish.stealth2string(stringy)`
+`anglerfish.stealth2string((stringy: str, rot13: bool=False)`
 
 **Description:** Stealth Strings, hidden and dangerous.
 No information is lost, both ways, supports everything that UTF-8 supports.
@@ -1888,7 +1892,7 @@ return a string, takes no arguments.
 <details>
 
 - `anglerfish.DataURI`
-- `anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
+- `anglerfish.DataURI.make(cls, mimetype: str, base64: bool, data: str)`
 - `anglerfish.DataURI.from_file(filename: str, base64: bool=True, webp: bool=True)`
 - `anglerfish.DataURI.from_url(url: str, base64: bool=True, webp: bool=True)`
 - `anglerfish.DataURI.wrap(width: int=80, newline: str="\n")`
@@ -1955,7 +1959,8 @@ True
 ##### img2webp
 <details>
 
-`anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text")`
+`anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text",
+             cwebp: str=which("cwebp"), timeout: int=60)`
 
 **Description:** Convert `*.png, *.jpeg, *.jpg, *.tiff` Images to WebP `*.webp`.
 `anglerfish.DataURI()` internally uses `anglerfish.img2webp()` for conversions.
@@ -2004,10 +2009,10 @@ optional, string type.
 
 
 
-##### get_human_datetime
+##### now2human
 <details>
 
-`anglerfish.get_human_datetime(date_time: datetime.datetime=None)`
+anglerfish.now2human(utc: bool=False)`
 
 **Description:**
 Get a Human string ISO-8601 representation of datetime.datetime with UTC info.
@@ -2017,14 +2022,13 @@ Internally is a shortcut to:
 `datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).astimezone().isoformat(" ")`
 
 **Arguments:**
-- `date_time`: A `datetime.datetime` object,
-optional, if omitted an UTC-aware `datetime.datetime.now()` will be used.
+- 
 
 **Keyword Arguments:** None.
 
 **Returns:** Human friendly ISO-8601 date, time and UTC info string, string type.
 
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_human_datetime.py
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
