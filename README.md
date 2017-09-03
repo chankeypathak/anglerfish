@@ -2182,7 +2182,10 @@ True
 ##### url2path
 <details>
 
-`anglerfish.url2path(url, data=None, timeout=None, cafile=None, capath=None, filename=None, suffix=None, name_from_url=False, concurrent_downloads=5, force_concurrent=False, checksum=False)`
+`anglerfish.url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
+             suffix: str=None, name_from_url: bool=False,
+             concurrent_downloads: int=5, force_concurrent: bool=False,
+             checksum: bool=False, use_tqdm: bool=True)`
 
 **Description:** Take an URL or Path filename, return path if its not an URL,
 download to a temporary file and return filename path if its an URL,
