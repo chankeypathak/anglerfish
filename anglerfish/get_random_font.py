@@ -14,9 +14,9 @@
 from random import choice
 
 
-def get_random_handwriting_font() -> str:
+def get_random_handwriting_font(black_list: list=None) -> str:
     """Get a random handwriting font name as string. For Titles/SubTitles."""
-    return choice((
+    fonts_tuple = (
         "Molle", "Pacifico", "Yellowtail", "Dekko", "Courgette", "Satisfy",
         "Cookie", "Handlee", "Sacramento", "Tangerine", "Damion", "Kalam",
         "Neucha", "Calligraffitti", "Rancho", "Allura", "Niconne", "Rochester",
@@ -24,21 +24,27 @@ def get_random_handwriting_font() -> str:
         "Arizonia", "Montez", "Sriracha", "Delius", "Qwigley", "Itim", "Julee",
         "Quintessential", "Fondamento", "Ruthie", "Condiment", "Amita",
         "Yesteryear", "Aladin", "Norican", "Engagement", "Stalemate", "Meddon",
-        "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi"))
+        "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi")
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
 
 
-def get_random_mono_font() -> str:
+def get_random_mono_font(black_list: list=None) -> str:
     """Get a random monospaced font name as string. Few fonts. For Code."""
-    return choice((
+    fonts_tuple = (
         "Inconsolata", "Cousine", "Roboto Mono", "Source Code Pro",
         "Droid Sans Mono", "Space Mono", "PT Mono", "Ubuntu Mono", "Nova Mono",
         "Share Tech Mono", "Anonymous Pro", "Oxygen Mono", "Cutive Mono",
-        "Fira Mono"))
+        "Fira Mono")
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
 
 
-def get_random_display_font() -> str:
+def get_random_display_font(black_list: list=None) -> str:
     """Get a random decorative display cosmetic font name as string.For Fun."""
-    return choice((
+    fonts_tuple = (
         "Mirza", "Lobster", "Buda", "Comfortaa", "Righteous", "Chewy", "Allan",
         "Audiowide", "Boogaloo", "Playball", "Bangers", "Bevan", "Shrikhand",
         "Coda", "Share", "Overlock", "Arbutus", "Limelight", "Pompiere",
@@ -54,12 +60,15 @@ def get_random_display_font() -> str:
         "Peralta", "Miniver", "Trochut", "Lancelot", "Risque", "Gorditas",
         "Kenia", "Margarine", "Underdog", "Smythe", "Ranchers", "Astloch",
         "Fascinate", "Miltonian", "Warnes", "Combo", "Spirax", "Aubrey",
-        "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock"))
+        "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock")
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
 
 
-def get_random_sans_font() -> str:
+def get_random_sans_font(black_list: list=None) -> str:
     """Get a random sans font name as string. These are for serious stuff."""
-    return choice((
+    fonts_tuple = (
         "Roboto", "Oswald", "Montserrat", "Raleway", "Ubuntu", "Arimo", "Muli",
         "Dosis", "Oxygen", "Nunito", "Hind", "Cabin", "Catamaran", "Abel",
         "Asap", "Quicksand", "Karla", "Signika", "Questrial", "Exo", "Acme",
@@ -73,12 +82,15 @@ def get_random_sans_font() -> str:
         "Anaheim", "Tauri", "Metrophobic", "Strait", "Belleza", "Inder", "Geo",
         "Capriola", "Assistant", "Prompt", "Lekton", "Imprima", "Orienta",
         "Gafata", "Shanti", "Federo", "Englebert", "Rationale", "Numans",
-        "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato"))
+        "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato")
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
 
 
-def get_random_serif_font() -> str:
+def get_random_serif_font(black_list: list=None) -> str:
     """Get a random serif font name as string. These are for serious stuff."""
-    return choice((
+    fonts_tuple = (
         "Bitter", "Arvo", "Alegreya", "Vollkorn", "Rokkitt", "Cinzel", "Ovo",
         "Domine", "Sanchez", "Vidaloka", "Tinos", "Arapey", "Cardo", "Kreon",
         "Glegoo", "Neuton", "Adamina", "Volkhov", "Copse", "Alice", "Prata",
@@ -90,11 +102,17 @@ def get_random_serif_font() -> str:
         "Belgrano", "Cambo", "Tienne", "Balthazar", "Italiana", "Podkova",
         "Amethysta", "Ledger", "Buenard", "Habibi", "Esteban", "Inika", "Sura",
         "Artifika", "Rosarivo", "Stoke", "Almendra", "Laila", "Kadwa",
-        "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana"))
+        "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana")
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
 
 
-def get_random_font() -> str:
+def get_random_font(black_list: list=None) -> str:
     """Get a random font name as string. Any kind of font."""
-    return choice((get_random_handwriting_font(), get_random_mono_font(),
+    fonts_tuple = (get_random_handwriting_font(), get_random_mono_font(),
                    get_random_display_font(), get_random_sans_font(),
-                   get_random_serif_font()))
+                   get_random_serif_font())
+    if black_list:
+        fonts_tuple = tuple(set(fonts_tuple).difference(set(black_list)))
+    return choice(fonts_tuple)
