@@ -13,30 +13,38 @@
 from random import choice
 
 
-def get_random_pastelight_color() -> str:
+def get_random_pastelight_color(black_list: list=None) -> str:
     """Get a random pastel light color as string, useful for CSS styling."""
-    return choice((
+    colors_tuple = (
         'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige',
-        'cornsilk', 'floralwhite', 'ghostwhite', 'grey',
-        'honeydew', 'ivory', 'lavender',
-        'lavenderblush', 'lemonchiffon', 'lightcyan',
+        'cornsilk', 'floralwhite', 'ghostwhite', 'grey', 'honeydew', 'ivory',
+        'lavender', 'lavenderblush', 'lemonchiffon', 'lightcyan',
         'lightgoldenrodyellow', 'lightgrey', 'lightpink', 'lightskyblue',
         'lightyellow', 'linen', 'mint', 'mintcream', 'oldlace', 'papayawhip',
-        'peachpuff', 'seashell', 'skyblue', 'snow', 'thistle', 'white'))
+        'peachpuff', 'seashell', 'skyblue', 'snow', 'thistle', 'white')
+    if black_list:
+        colors_tuple = tuple(set(colors_tuple).difference(set(black_list)))
+    return choice(colors_tuple)
 
 
-def get_random_pasteldark_color() -> str:
+def get_random_pasteldark_color(black_list: list=None) -> str:
     """Get a random dark color as string, useful for CSS styling."""
-    return choice((
+    colors_tuple = (
         'brown', 'chocolate', 'crimson', 'darkblue', 'darkgoldenrod',
         'darkgray', 'darkgreen', 'darkolivegreen', 'darkorange', 'darkred',
         'darkslateblue', 'darkslategray', 'dimgray', 'dodgerblue',
         'firebrick', 'forestgreen', 'indigo', 'maroon', 'mediumblue',
         'midnightblue', 'navy', 'olive', 'olivedrab', 'royalblue',
-        'saddlebrown', 'seagreen', 'sienna', 'slategray', 'teal'))
+        'saddlebrown', 'seagreen', 'sienna', 'slategray', 'teal')
+    if black_list:
+        colors_tuple = tuple(set(colors_tuple).difference(set(black_list)))
+    return choice(colors_tuple)
 
 
-def get_random_pastel_color() -> str:
+def get_random_pastel_color(black_list: list=None) -> str:
     """Get a random dark or light color as string, useful for CSS styling."""
-    return choice((get_random_pastelight_color(),
-                   get_random_pasteldark_color()))
+    colors_tuple = (get_random_pastelight_color(),
+                    get_random_pasteldark_color())
+    if black_list:
+        colors_tuple = tuple(set(colors_tuple).difference(set(black_list)))
+    return choice(colors_tuple)
