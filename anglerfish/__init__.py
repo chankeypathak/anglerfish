@@ -307,8 +307,13 @@ def make_logger(name, when='midnight', filename=None, interval=1,
         log.addHandler(syslog_handler)
     # Fault handler.
     crash_handler = _add_faulthandler(crashandler)
-    print(crash_handler)
 
-    log.debug(f"""ZIP-Compressed Timed-Rotating and FileSize-Rotating Logger.
-              Logger Log files write to: {filename}  ({filename!r}).""")
+    log.debug(f"""Logger created by Angler.
+        Plain text Log Files at: {filename}       ({filename!r}).
+        ZIP-Compressing Rotator: {_ZipRotator}    ({_ZipRotator!r}).
+        SysLog handler (if any): {syslog_handler} ({syslog_handler!r}).
+        Faults/Crashes handlers: {crash_handler}  ({crash_handler!r}).
+        Standard Error handlers: {crash_handler}  ({crash_handler!r}).
+        Sized+Timed Rotating File Handler: {sized_timed_rotating_file_handler}.
+    """)
     return log
