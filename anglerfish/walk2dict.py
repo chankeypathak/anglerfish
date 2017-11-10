@@ -9,7 +9,7 @@ import os
 
 from collections import OrderedDict, namedtuple
 from pathlib import Path
-from types import MappingProxyType
+from types import MappingProxyType as frozendict
 
 try:
     from ujson import dumps
@@ -75,4 +75,4 @@ def walk2dict(folder: Path, topdown: bool=True,
     dict_f = ret[0]
 
     return namedtuple("walk2dict", "dict json OrderedDict inmmutable")(
-        dict_f, dumps(dict_f), OrderedDict(dict_f), MappingProxyType(dict_f))
+        dict_f, dumps(dict_f), OrderedDict(dict_f), frozendict(dict_f))

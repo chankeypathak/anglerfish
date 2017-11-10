@@ -11,7 +11,7 @@ import time
 
 from collections import deque, namedtuple
 from datetime import datetime
-from types import MappingProxyType
+from types import MappingProxyType as frozendict
 
 try:
     from ujson import dumps
@@ -107,7 +107,7 @@ def timestamp2human(timestamp_on_seconds: int, iso_sep: str=" ") -> namedtuple:
         "HumanTimes",
         "human units auto iso dict json inmmutable ")(
         " ".join(time_parts), time_units, human_time_auto, iso_datetime,
-        time_dict, dumps(time_dict), MappingProxyType(time_dict))
+        time_dict, dumps(time_dict), frozendict(time_dict))
 
 
 def timedelta2human(time_delta) -> namedtuple:  # Just a shortcut :)

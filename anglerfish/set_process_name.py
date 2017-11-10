@@ -5,6 +5,7 @@
 """Set process name and cpu priority."""
 
 
+import os
 import logging as log
 
 from ctypes import byref, cdll, create_string_buffer
@@ -22,5 +23,5 @@ def set_process_name(name: str) -> bool:
         log.warning(error)
         return False  # this may fail on windows and its normal, so be silent.
     else:
-        log.debug(f"Process Name set to: {name}.")
+        log.debug(f"Process with PID {os.getpid()} Name set to: {name}.")
         return True
