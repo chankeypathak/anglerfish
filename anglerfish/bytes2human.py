@@ -6,7 +6,7 @@
 
 
 from collections import deque, namedtuple
-from types import MappingProxyType
+from types import MappingProxyType as frozendict
 
 try:
     from ujson import dumps
@@ -88,4 +88,4 @@ def bytes2human(integer_bytes: int) -> namedtuple:
         "HumanBytes",
         "human units auto short dict json inmmutable")(
         " ".join(bytes_parts), bytes_units, human_bytes_auto, bytes_short,
-        bytes_dict, dumps(bytes_dict), MappingProxyType(bytes_dict))
+        bytes_dict, dumps(bytes_dict), frozendict(bytes_dict))
