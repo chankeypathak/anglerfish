@@ -6,7 +6,7 @@
 
 
 from collections import OrderedDict, namedtuple
-from types import MappingProxyType
+from types import MappingProxyType as frozendict
 
 try:
     from ujson import dumps
@@ -25,5 +25,5 @@ def make_json_flat(jsony: dict, delimiter: str="__") -> namedtuple:
         else:
             values[item] = jsony[item]
 
-    return namedtuple("JSON_Flat", "dict json OrderedDict MappingProxyType")(
-        values, dumps(values), OrderedDict(values), MappingProxyType(values))
+    return namedtuple("JSON_Flat", "dict json OrderedDict frozendict")(
+        values, dumps(values), OrderedDict(values), frozendict(values))
