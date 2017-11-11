@@ -52,7 +52,7 @@ Library to help Developers create Apps or Scripts faster, better and easily."""
 try:
     with open(str(MODULE_PATH), "r", encoding="utf-8-sig") as source_code_file:
         SOURCE = source_code_file.read()
-except:
+except Exception:
     with open(str(MODULE_PATH),  "r") as source_code_file:
         SOURCE = source_code_file.read()
 
@@ -93,7 +93,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
 
-    tests_require=['isort', 'pylama', 'pre-commit', 'pre-commit-hooks'],
+    tests_require=['isort', 'prospector', 'pre-commit', 'pre-commit-hooks'],
     extras_require={"full": ["ujson", "tqdm"]},
 
     packages=["anglerfish"],
