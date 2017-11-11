@@ -9,17 +9,19 @@ max-line-length: 80
 ignore-paths:
   - docs/
   - tests/
+  - examples/
 
 # ignore-patterns:
 #   - (^|/)skip(this)?(/|$)
 
 frosted:
-  run: true
+  run: false
 
 pyroma:
-  run: true
+  run: false
 
 pylint:
+  run: false
   disable:
     - missing-docstring
     # - bad-builtin
@@ -31,7 +33,18 @@ pylint:
 pep8:
   full: true
   disable:
+    - E501
+    - D101
+    - D102
+    - D105
+    - E121
+    - E123
     - E126
+    - E226
+    - E24
+    - E704
+    - W503
+    - W504
   options:
     max-line-length: 80
 
@@ -44,6 +57,11 @@ pep257:
     - D205
     - D400
     - D401
+    - D211
+    - D204
+    - D107
+    - D202
+    - D105
 
 mccabe:
   run: false
