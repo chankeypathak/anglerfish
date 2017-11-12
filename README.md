@@ -2413,6 +2413,7 @@ These are fully optional but enable extra features (most Linux distros already h
 
 - For names we use: `get_*`, `set_*`, `check_*`, `make_*`, `is_*`, `has_*` and `*2*`.
 - Packages can have nice and cool names, but its classes, functions and methods must have obvious names.
+- `MappingProxyType` is imported and used as `frozendict` on Docs and Code, since no one seems to know whats a `MappingProxyType` but a `frozendict` you already infer is a `dict`, just like `set` and `frozenset`, its imported as `from types import MappingProxyType as frozendict`.
 
 
 # Tests
