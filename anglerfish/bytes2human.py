@@ -86,6 +86,6 @@ def bytes2human(integer_bytes: int) -> namedtuple:
 
     return namedtuple(
         "HumanBytes",
-        "human units auto short dict json inmmutable")(
+        "human units auto short dict json frozendict")(
         " ".join(bytes_parts), bytes_units, human_bytes_auto, bytes_short,
         bytes_dict, dumps(bytes_dict), frozendict(bytes_dict))

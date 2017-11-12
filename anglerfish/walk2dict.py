@@ -74,5 +74,5 @@ def walk2dict(folder: Path, topdown: bool=True,
         ret.append(a)
     dict_f = ret[0]
 
-    return namedtuple("walk2dict", "dict json OrderedDict inmmutable")(
+    return namedtuple("walk2dict", "dict json OrderedDict frozendict")(
         dict_f, dumps(dict_f), OrderedDict(dict_f), frozendict(dict_f))
