@@ -208,8 +208,7 @@ def _process_color(colors_tuple: tuple, black_list: list) -> namedtuple:
         round(hsv[0], 2), round(hsv[1], 2), round(hsv[2], 2))
     yiq = namedtuple("YIQ", "y i q")(
         round(yiq[0], 2), round(yiq[1], 2), round(yiq[2], 2))
-
-    def per(value): return int(value * 100 / 255)  # To Percentage, 0~255 > 0~100%
+    per = lambda value: int(value * 100 / 255)  # To Percentage, 0~255 > 0~100%
     return namedtuple("PastelColor", "name hex rgb hls hsv yiq css css_prcnt")(
         color, hexa, rgb, hls, hsv, yiq,
         f"rgb({rgb.red},{rgb.green},{rgb.blue})",  # rgb(int, int, int)
