@@ -133,6 +133,7 @@ NAMED2HEX = frozendict({
     'mediumvioletred': '#c71585',
     'midnightblue': '#191970',
     'mintcream': '#f5fffa',
+    'mint': '#f5fffa',
     'mistyrose': '#ffe4e1',
     'moccasin': '#ffe4b5',
     'navajowhite': '#ffdead',
