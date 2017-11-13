@@ -194,15 +194,40 @@ def hex2rgb(hex_color: str) -> namedtuple:
         int(s[:2], 16), int(s[2:4], 16), int(s[4:], 16))
 
 
-def _process_color(colors_tuple: tuple, black_list: list) -> namedtuple:
+def get_random_pastel_color(tone=None, black_list: list=None) -> namedtuple:
+    """Get a random dark or light color as string, useful for CSS styling."""
+    light_colors_tuple = (
+        'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige',
+        'cornsilk', 'floralwhite', 'ghostwhite', 'grey', 'honeydew', 'ivory',
+        'lavender', 'lavenderblush', 'lemonchiffon', 'lightcyan',
+        'lightgoldenrodyellow', 'lightgrey', 'lightpink', 'lightskyblue',
+        'lightyellow', 'linen', 'mint', 'mintcream', 'oldlace', 'papayawhip',
+        'peachpuff', 'seashell', 'skyblue', 'snow', 'thistle', 'white')
+    dark_colors_tuple = (
+        'brown', 'chocolate', 'crimson', 'darkblue', 'darkgoldenrod',
+        'darkgray', 'darkgreen', 'darkolivegreen', 'darkorange', 'darkred',
+        'darkslateblue', 'darkslategray', 'dimgray', 'dodgerblue',
+        'firebrick', 'forestgreen', 'indigo', 'maroon', 'mediumblue',
+        'midnightblue', 'navy', 'olive', 'olivedrab', 'royalblue',
+        'saddlebrown', 'seagreen', 'sienna', 'slategray', 'teal')
+
+    if tone.lower() == "light":
+        colors_tuple = light_colors_tuple
+    elif tone.lower() == "dark":
+        colors_tuple = dark_colors_tuple
+    else:
+        colors_tuple = light_colors_tuple + dark_colors_tuple
+
     if black_list:
         colors_tuple = tuple(set(colors_tuple).difference(set(black_list)))
+
     color = choice(colors_tuple)
     hexa = NAMED2HEX[color]
     rgb = hex2rgb(hexa)
     hls = rgb_to_hls(rgb.red, rgb.green, rgb.blue)
     hsv = rgb_to_hsv(rgb.red, rgb.green, rgb.blue)
     yiq = rgb_to_yiq(rgb.red, rgb.green, rgb.blue)
+
     hls = namedtuple("HLS", "h l s")(  # Round bcause default precision is huge
         round(hls[0], 2), round(hls[1], 2), round(hls[2], 2))
     hsv = namedtuple("HSV", "h s v")(
@@ -210,38 +235,8 @@ def _process_color(colors_tuple: tuple, black_list: list) -> namedtuple:
     yiq = namedtuple("YIQ", "y i q")(
         round(yiq[0], 2), round(yiq[1], 2), round(yiq[2], 2))
     per = lambda value: int(value * 100 / 255)  # To Percentage, 0~255 > 0~100%
+
     return namedtuple("PastelColor", "name hex rgb hls hsv yiq css css_prcnt")(
         color, hexa, rgb, hls, hsv, yiq,
         f"rgb({rgb.red},{rgb.green},{rgb.blue})",  # rgb(int, int, int)
         f"rgb({per(rgb.red)}%,{per(rgb.green)}%,{per(rgb.blue)}%)")  # rgb(%,%)
-
-
-def get_random_pastelight_color(black_list: list=None) -> namedtuple:
-    """Get a random pastel light color as string, useful for CSS styling."""
-    colors_tuple = (
-        'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige',
-        'cornsilk', 'floralwhite', 'ghostwhite', 'grey', 'honeydew', 'ivory',
-        'lavender', 'lavenderblush', 'lemonchiffon', 'lightcyan',
-        'lightgoldenrodyellow', 'lightgrey', 'lightpink', 'lightskyblue',
-        'lightyellow', 'linen', 'mint', 'mintcream', 'oldlace', 'papayawhip',
-        'peachpuff', 'seashell', 'skyblue', 'snow', 'thistle', 'white')
-    return _process_color(colors_tuple, black_list)
-
-
-def get_random_pasteldark_color(black_list: list=None) -> namedtuple:
-    """Get a random dark color as string, useful for CSS styling."""
-    colors_tuple = (
-        'brown', 'chocolate', 'crimson', 'darkblue', 'darkgoldenrod',
-        'darkgray', 'darkgreen', 'darkolivegreen', 'darkorange', 'darkred',
-        'darkslateblue', 'darkslategray', 'dimgray', 'dodgerblue',
-        'firebrick', 'forestgreen', 'indigo', 'maroon', 'mediumblue',
-        'midnightblue', 'navy', 'olive', 'olivedrab', 'royalblue',
-        'saddlebrown', 'seagreen', 'sienna', 'slategray', 'teal')
-    return _process_color(colors_tuple, black_list)
-
-
-def get_random_pastel_color(black_list: list=None) -> namedtuple:
-    """Get a random dark or light color as string, useful for CSS styling."""
-    colors_tuple = (get_random_pastelight_color().name,
-                    get_random_pasteldark_color().name)
-    return _process_color(colors_tuple, black_list)

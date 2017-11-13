@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-"""Get and return a free unused port or check if a port is free to use."""
+"""Get and return a free unused port or check if a port is free to use.
+
+NOTE: See https://github.com/joewalnes/port-sharding#what-is-this for info."""
 
 
 import logging as log
