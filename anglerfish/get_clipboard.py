@@ -9,8 +9,8 @@ import logging as log
 import os
 import subprocess
 import sys
-from shutil import which
 from collections import namedtuple
+from shutil import which
 
 
 __all__ = ("get_clipboard", )

@@ -4,8 +4,8 @@
 """Minimum possible example demo for `anglerfish.Sync2Async()` class."""
 
 
-import time
 import asyncio
+import time
 
 from anglerfish import Sync2Async
 

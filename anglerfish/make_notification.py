@@ -9,6 +9,7 @@ import logging as log
 from shutil import which
 from subprocess import run
 
+
 try:
     import dbus
 except ImportError:

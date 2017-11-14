@@ -8,7 +8,6 @@
 import atexit
 import logging as log
 import os
-
 from shutil import which
 from subprocess import Popen, call
 

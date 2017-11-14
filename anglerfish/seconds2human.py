@@ -8,10 +8,10 @@ ISO-8601 standard:Its permitted to omit 'T' character by mutual agreement."""
 
 
 import time
-
 from collections import deque, namedtuple
 from datetime import datetime
 from types import MappingProxyType as frozendict
+
 
 try:
     from ujson import dumps

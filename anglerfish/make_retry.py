@@ -5,8 +5,8 @@
 """Retry calling the decorated function using an exponential backoff."""
 
 
-from functools import wraps
 import time
+from functools import wraps
 
 
 def retry(tries: int=5, delay: int=3, backoff: int=2,

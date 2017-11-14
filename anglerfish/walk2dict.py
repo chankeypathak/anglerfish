@@ -6,10 +6,10 @@
 
 
 import os
-
 from collections import OrderedDict, namedtuple
 from pathlib import Path
 from types import MappingProxyType as frozendict
+
 
 try:
     from ujson import dumps

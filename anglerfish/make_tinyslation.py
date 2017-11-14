@@ -5,8 +5,9 @@
 """Tinyslations, smallest possible Translations from Internet with fallback."""
 
 
-from urllib import parse, request
 from locale import getdefaultlocale
+from urllib import parse, request
+
 
 try:
     from ujson import loads

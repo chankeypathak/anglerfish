@@ -9,16 +9,16 @@ import atexit
 import logging as log
 import os
 import sys
-
 from datetime import datetime
+
+from anglerfish.bytes2human import bytes2human
+from anglerfish.seconds2human import timedelta2human
+
 
 try:
     import resource
 except ImportError:
     resource = None  # MS Window dont have resource
-
-from anglerfish.bytes2human import bytes2human
-from anglerfish.seconds2human import timedelta2human
 
 
 def make_post_exec_msg(start_time: datetime=None, comment: str=None) -> str:

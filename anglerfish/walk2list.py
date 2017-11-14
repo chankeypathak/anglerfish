@@ -8,6 +8,7 @@
 import os
 from collections import deque, namedtuple
 
+
 try:
     from ujson import dumps
 except ImportError:

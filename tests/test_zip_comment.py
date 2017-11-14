@@ -6,10 +6,9 @@
 
 
 import unittest
-
 from zipfile import ZipFile
 
-from anglerfish import set_zip_comment, get_zip_comment
+from anglerfish import get_zip_comment, set_zip_comment
 
 
 class TestName(unittest.TestCase):

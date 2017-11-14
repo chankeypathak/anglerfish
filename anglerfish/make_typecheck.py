@@ -10,10 +10,8 @@
 # Ideas welcome. We keep it without annotations itself. Checks Variables too!.
 
 
-import sys
-
 import logging as log
-
+import sys
 from functools import wraps
 
 

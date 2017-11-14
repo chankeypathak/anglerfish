@@ -8,7 +8,6 @@
 import os
 import re
 import textwrap
-
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from collections import namedtuple
 from mimetypes import guess_type

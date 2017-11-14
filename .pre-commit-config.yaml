@@ -37,3 +37,16 @@
         args: ['--statistics', '--ignore=E501,D101,D102,D105,E121,E123,E126,E226,E24,E704,W503,W504,E731']
     -   id: autopep8-wrapper         # Fix all PEP8 Lint Errors on Python files.
         args: ['--in-place', '--list-fixes', '--ignore=E501,D101,D102,D105,E121,E123,E126,E226,E24,E704,W503,W504,E731']
+
+
+-   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+    sha: master
+    hooks:
+    -   id: python-import-sorter
+        args: ['--silent-overwrite']
+
+
+# -   repo: git://github.com/guykisel/prospector-mirror
+#     sha: master
+#     hooks:
+#     -   id: prospector

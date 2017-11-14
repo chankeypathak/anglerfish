@@ -8,6 +8,7 @@
 from collections import deque, namedtuple
 from types import MappingProxyType as frozendict
 
+
 try:
     from ujson import dumps
 except ImportError:

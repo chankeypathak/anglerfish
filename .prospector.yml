@@ -45,10 +45,13 @@ pep8:
     - E704
     - W503
     - W504
+    - N813
+    - E731
   options:
     max-line-length: 80
 
 pep257:
+  run: false
   disable:
     - D100
     - D101
@@ -62,6 +65,8 @@ pep257:
     - D107
     - D202
     - D105
+    - D209
+    - D213
 
 mccabe:
   run: false

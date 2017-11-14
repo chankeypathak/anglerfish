@@ -7,5 +7,6 @@
 
 from anglerfish import set_single_instance
 
+
 lock = set_single_instance("test")
 input(" Waiting... ")

@@ -8,12 +8,12 @@
 import logging as log
 import os
 import sys
-
 from collections import deque
 from pathlib import Path
 from shutil import which
 from subprocess import run
 from tempfile import gettempdir
+
 
 try:
     from winsound import Beep

@@ -7,7 +7,6 @@
 
 import os
 import zipfile
-
 from collections import deque
 from datetime import datetime
 from getpass import getuser
@@ -15,6 +14,7 @@ from locale import getdefaultlocale
 from pathlib import Path
 from platform import node, platform
 from uuid import uuid4
+
 
 try:
     from .make_autochecksum import autochecksum

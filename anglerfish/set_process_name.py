@@ -5,9 +5,8 @@
 """Set process name and cpu priority."""
 
 
-import os
 import logging as log
-
+import os
 from ctypes import byref, cdll, create_string_buffer
 
 

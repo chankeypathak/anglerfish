@@ -9,7 +9,6 @@ import logging as log
 import os
 import ssl
 import threading
-
 from collections import namedtuple
 from datetime import datetime
 from pathlib import Path
@@ -19,6 +18,7 @@ from urllib.request import Request, urlopen
 from anglerfish.bytes2human import bytes2human
 from anglerfish.make_autochecksum import autochecksum
 from anglerfish.seconds2human import datetime2human, now2human, timedelta2human
+
 
 try:
     from tqdm import tqdm

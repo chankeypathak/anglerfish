@@ -6,7 +6,6 @@
 
 
 import sys
-
 from shutil import which
 from subprocess import run
 

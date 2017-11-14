@@ -6,7 +6,6 @@
 
 
 import logging as log
-
 from zipfile import ZipFile
 
 
