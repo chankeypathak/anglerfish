@@ -8,12 +8,11 @@
 import logging as log
 import os
 import sys
-
 from getpass import getuser
 from platform import platform, python_version
 
 
-_MSG = f"""
+__MSG = f"""
 Python { python_version() } on { platform() }.
 Default Encoding: { sys.getdefaultencoding()               }.
 STDIN   Encoding: { getattr(sys.stdin, "encoding", "???")  }.
@@ -21,16 +20,16 @@ STDERR  Encoding: { getattr(sys.stderr, "encoding", "???") }.
 STDOUT  Encoding: { getattr(sys.stdout, "encoding", "???") }.
 I/O File Systems Encoding: { sys.getfilesystemencoding()   }.
 PYTHONIOENCODING Encoding: { os.environ.get("PYTHONIOENCODING", "???")}.
-Default File Systems Encode Errors: { sys.getfilesystemencodeerrors() }.
-PYTHONLEGACYWINDOWSFSENCODING Encoding:
-    { os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???") }.
-PYTHONLEGACYWINDOWSSTDIO Encoding:
-    { os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
+Default File Systems Encoding Errors:     { sys.getfilesystemencodeerrors() }.
+PYTHONLEGACYWINDOWSFSENCODING Encoding: {
+    os.environ.get("PYTHONLEGACYWINDOWSFSENCODING", "???") }.
+PYTHONLEGACYWINDOWSSTDIO Encoding:      {
+    os.environ.get("PYTHONLEGACYWINDOWSSTDIO", "???") }."""
 
 
-def check_encoding(check_root=True):
+def check_encoding(check_root: bool=True) -> bool:
     """Debug and Log Encodings and Check for root/administrator,return Bool."""
-    log.debug(_MSG)
+    log.debug(__MSG)
     os.environ["PYTHONIOENCODING"] = "utf-8"
     if sys.platform.startswith(("linux", "darwin")) and check_root:  # root
         if not os.geteuid():

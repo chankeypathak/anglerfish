@@ -9,23 +9,20 @@ import atexit
 import logging as log
 import os
 import sys
-
 from datetime import datetime
+
+from anglerfish.bytes2human import bytes2human
+from anglerfish.seconds2human import timedelta2human
+
 
 try:
     import resource
 except ImportError:
     resource = None  # MS Window dont have resource
 
-try:
-    from anglerfish.bytes2human import bytes2human
-    from anglerfish.seconds2human import timedelta2human
-except ImportError:
-    from anglerfish import bytes2human, timedelta2human
 
-
-def make_post_exec_msg(start_time=None, comment=None):
-    """Simple Post-Execution Message with information about RAM and Time."""
+def make_post_exec_msg(start_time: datetime=None, comment: str=None) -> str:
+    """Build Post-Execution Message with information about RAM and Time."""
     use, al, msg = 0, 0, ""
     if sys.platform.startswith(("win", "darwin")):
         msg = "No information about RAM usage available on non-Linux systems."
@@ -34,9 +31,10 @@ def make_post_exec_msg(start_time=None, comment=None):
                   resource.getpagesize() if resource else 0)
         al = int(os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
                  if hasattr(os, "sysconf") else 0)
-        msg += f"""Total Max Memory Used: {bytes2human(use, "m")} ({use} bytes)
-                of {bytes2human(al, "m")} ({al} bytes) of total RAM Memory\n"""
-        if start_time and datetime:
+        msg += f"""Total Max Memory Used: ~{use / al:.2%} Percent.
+            { bytes2human(use) } ({ use } bytes) of
+            { bytes2human(al) } ({ al } bytes) of total RAM Memory.\n"""
+        if start_time:
             _t = datetime.now() - start_time
             msg += f"Total Working Time: ~{ timedelta2human(_t) } ({ _t }).\n"
     if comment:
@@ -47,6 +45,6 @@ def make_post_exec_msg(start_time=None, comment=None):
 
 
 def app_is_ready(start_time):  # this goes at end of your apps __init__()
-    """Simple Post-StartUp Message with Start-Up time."""
+    """Print a Simple Post-StartUp Message with Start-Up time."""
     _t = datetime.now() - start_time
     log.debug(f"Total app cold start-up time: ~{timedelta2human(_t)} ({_t}).")

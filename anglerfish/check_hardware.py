@@ -7,8 +7,8 @@
 
 import logging as log
 import os
-
 from pathlib import Path
+
 
 try:
     import dbus
@@ -16,8 +16,8 @@ except ImportError:
     dbus = None
 
 
-def _get_prop(obj, iface, prop):
-    """Get object interface properties."""
+def __get_prop(obj, iface, prop):
+    """Get object interface properties. Internal use only, dont touch."""
     if not dbus:
         log.warning("D-Bus module not found or not supported on this OS.")
         return  # Windows probably.
@@ -28,7 +28,7 @@ def _get_prop(obj, iface, prop):
         return
 
 
-def has_battery():
+def has_battery() -> bool:
     """Check if we are connected to a AC power or Battery."""
     log.debug("Checking if connected to AC-Power or Battery.")
     battery_path = Path("/sys/class/power_supply")  # is universal on Linux ?
@@ -42,13 +42,13 @@ def has_battery():
     return False
 
 
-def on_battery():
+def on_battery() -> bool:
     """Check if we are running on Battery power."""
     log.debug("Checking if running on Battery power.")
     if has_battery():
         bus, upower_path = dbus.SystemBus(), '/org/freedesktop/UPower'
         upower = bus.get_object('org.freedesktop.UPower', upower_path)
-        result = _get_prop(upower, upower_path, 'OnBattery')
+        result = __get_prop(upower, upower_path, 'OnBattery')
         if result is None:  # Cannot read property, something is wrong.
             print(f"Failed to read D-Bus property: {upower_path}.")
             result = False  # Assume we are connected to a power supply.
@@ -63,7 +63,7 @@ def on_battery():
 #         manager = bus.get_object('org.freedesktop.NetworkManager',
 #                                  '/org/freedesktop/NetworkManager')
 #          # FIXME this returns int, I dunno what they mean ?, investigate.
-#         return _get_prop(manager, 'org.freedesktop.NetworkManager',
+#         return __get_prop(manager, 'org.freedesktop.NetworkManager',
 #                          'WirelessEnabled')
 #     except Exception:
 #         return False

@@ -9,14 +9,11 @@ import logging as log
 import os
 import subprocess
 import sys
-
+from collections import namedtuple
 from shutil import which
-from typing import NamedTuple
 
 
-# Dot notation and static typed and built-in version of collections.namedtuple.
-Clipboard = NamedTuple("Clipboard", fields=(("copy", callable),
-                                            ("paste", callable)))
+__all__ = ("get_clipboard", )
 
 
 def __osx_clipboard():
@@ -70,7 +67,7 @@ def __win32_clibboard():
     return copy_win32, paste_win32
 
 
-def __determine_clipboard():
+def __determine_clipboard() -> tuple:
     """Determine OS and set copy() and paste() functions accordingly."""
     if sys.platform.startswith("darwin"):
         return __osx_clipboard()
@@ -90,10 +87,9 @@ def __determine_clipboard():
         return None, None  # install Qt or GTK or Tk or XClip.
 
 
-def get_clipboard():
+def get_clipboard() -> namedtuple:
     """Crossplatform crossdesktop Clipboard."""
     log.debug("Querying Copy / Paste Clipboard functionality from the OS.")
-    global clipboard_copy, clipboard_paste
-    clipboard_copy, clipboard_paste = None, None
-    clipboard_copy, clipboard_paste = __determine_clipboard()
-    return Clipboard(clipboard_copy, clipboard_paste)
+    clipboardcopy, clipboardpaste = __determine_clipboard()
+    log.debug(f"Clipboard ready: {clipboardcopy}, {clipboardpaste}.")
+    return namedtuple("Clipboard", "copy paste")(clipboardcopy, clipboardpaste)

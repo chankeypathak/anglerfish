@@ -9,27 +9,20 @@ import errno
 import importlib.util
 import logging as log
 import os
-
 from pathlib import Path
 
-from .exceptions import NamespaceConflictError
 
-try:  # https://docs.python.org/3.6/library/exceptions.html#ModuleNotFoundError
-    not_found_exception = ModuleNotFoundError
-except NameError:
-    not_found_exception = FileNotFoundError
-
-
-def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
+def path2import(pat: str, name: str=None, ignore_exceptions: bool=False,
+                check_namespace: bool=True) -> object:
     """Import a module from file path string.
 
     This is "as best as it can be" way to load a module from a file path string
-    that I can find from the official Python Docs, for Python 3.5+.
+    that I can find from the official Python Docs, for Python 3.6+.
     """
     module, pat = None, Path(pat)
     if not pat.is_file():
         if not ignore_exceptions:
-            raise not_found_exception(
+            raise ModuleNotFoundError(
                 errno.ENOENT, os.strerror(errno.ENOENT), pat.as_posix())
     elif not os.access(pat.as_posix(), os.R_OK):
         if not ignore_exceptions:
@@ -37,9 +30,10 @@ def path2import(pat, name=None, ignore_exceptions=False, check_namespace=True):
     else:
         try:
             name = name or pat.stem
-            if check_namespace and name in set(globals().keys()):
+            exists = importlib.util.find_spec(name)
+            if check_namespace and name in set(globals().keys()) and exists:
                 if not ignore_exceptions:
-                    raise NamespaceConflictError(
+                    raise ImportWarning(
                         f"Module {name} already exist on the Global namespace")
             else:
                 spec = importlib.util.spec_from_file_location(name,

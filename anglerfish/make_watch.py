@@ -9,8 +9,9 @@ import os
 import time
 
 
-def watch(file_path, callback=None, interval=60, backoff=1,
-          timeout=None, repetitions=-1, silent=False, logger=None):
+def watch(file_path: str, callback=None, interval: int=60,
+          backoff: int=1, timeout: int=None, repetitions: int=-1,
+          silent: bool=False, logger: object=None) -> object:
     """Watch a file path for changes run callback if modified. A WatchDog."""
     if not silent:
         msg = f"Watching for any changes on the file path: { file_path }."

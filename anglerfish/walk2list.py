@@ -5,27 +5,37 @@
 """Perform full walk of where, gather full path of all files."""
 
 
-import logging as log
 import os
+from collections import deque, namedtuple
 
-from typing import NamedTuple
+
+try:
+    from ujson import dumps
+except ImportError:
+    from json import dumps
 
 
-def walk2list(where, target, omit, links=False, tuply=True, namedtuple=None):
-    """Perform full walk of where, gather full path of all files."""
-    log.debug(f"""Scanning on {where},searching for {target},ignoring {omit},
-              {'' if links else 'Not '} following any SymLinks.""")
-    listy = [os.path.abspath(os.path.join(r, f))
-             for r, d, fs in os.walk(where, followlinks=links)
-             for f in fs if not f.startswith('.') and
-             not f.endswith(omit) and
-             f.endswith(target)]  # only target files,no hidden files
-    list_of_files = listy
-    if tuply:  # Return a Tuple.
-        list_of_files = tuple(listy)
-    if namedtuple:  # Return a NamedTuple with static typing.
-        namedtuple_of_files = NamedTuple(  # You can work comfortably using
-            str(namedtuple).strip(),  # myfolder.path_9 instead of myfolder[9]
-            fields=(("path_{0}".format(i), str) for i in range(len(listy))))
-        list_of_files = namedtuple_of_files(*listy)
-    return list_of_files
+def walk2list(folder: str, target: tuple, omit: tuple=(),
+              showhidden: bool=False, topdown: bool=True,
+              onerror: object=None, followlinks: bool=False) -> namedtuple:
+    """Perform full walk, gather full path of all files,
+    based on os.walk with multiple output types & extras.
+
+    Returns a namedtuple 'walk2list' with multiple output types:
+    - List represents folder/file structure of folder.
+    - JSON dumps string of the list, uses uJSON if installed.
+    - tuple of the list.
+    - set of the list.
+    - frozenset of the list.
+    - collections.deque of the list."""
+    oswalk = os.walk(folder, topdown=topdown,
+                     onerror=onerror, followlinks=followlinks)
+
+    lst = [os.path.abspath(os.path.join(r, f))
+           for r, d, fs in oswalk
+           for f in fs if not f.startswith(() if showhidden else ".") and
+           not f.endswith(omit) and
+           f.endswith(target)]
+
+    return namedtuple("walk2list", "list tuple json set frozenset deque")(
+        lst, tuple(lst), dumps(lst), set(lst), frozenset(lst), deque(lst))

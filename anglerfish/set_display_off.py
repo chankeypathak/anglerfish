@@ -7,15 +7,14 @@
 
 import logging as log
 import sys
-
 from shutil import which
 from subprocess import run
 
 
-def set_display_off():
+def set_display_off() -> bool:
     """Set Monitor Display OFF, it should Auto-ON when needed, return Bool."""
-    log.debug("Setting Monitor Display OFF.")
     _xset = which("xset")
+    log.debug(f"Setting Monitor Display OFF using: {_xset} ({_xset!r}).")
     if sys.platform.startswith('linux') and _xset:
         return not bool(run(f"{_xset} dpms force off", shell=True).returncode)
     elif sys.platform.startswith('darwin'):

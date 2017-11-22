@@ -12,7 +12,7 @@ before_install:
 
 
 install:
-  - pip install --upgrade pytest pylama isort ujson --quiet
+  - pip install --upgrade prospector isort ujson pre-commit pre-commit-hooks --quiet
   - pip install .
 
 
@@ -20,8 +20,9 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 
 script:
-  - pytest tests/
-  - pylama --linters "pep8,pyflakes,pycodestyle" anglerfish/*.py
+  - python -m unittest discover --verbose --locals --start-directory "tests/"
+  - pre-commit run --all-files --verbose --show-diff-on-failure
+  # - prospector
 
 
 notifications:

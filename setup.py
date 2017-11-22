@@ -52,7 +52,7 @@ Library to help Developers create Apps or Scripts faster, better and easily."""
 try:
     with open(str(MODULE_PATH), "r", encoding="utf-8-sig") as source_code_file:
         SOURCE = source_code_file.read()
-except:
+except Exception:
     with open(str(MODULE_PATH),  "r") as source_code_file:
         SOURCE = source_code_file.read()
 
@@ -63,8 +63,8 @@ def find_this(search, source=SOURCE):
     if not search or not source:
         print("Not found on source: {what}.".format(what=search))
         return ""
-    return str(re.compile(r".*__{what}__ = '(.*?)'".format(
-        what=search), re.S).match(source).group(1)).strip().replace("'", "")
+    return str(re.compile(r'.*__{what}__ = "(.*?)"'.format(
+        what=search), re.S).match(source).group(1)).strip()
 
 
 print("Starting build of setuptools.setup().")
@@ -87,23 +87,28 @@ setup(
 
     author=find_this("author"),
     author_email=find_this("email"),
-    maintainer=find_this("author"),
+    maintainer=find_this("maintainer"),
     maintainer_email=find_this("email"),
 
     include_package_data=True,
     zip_safe=True,
 
-    tests_require=['pytest', 'isort', 'pylama'],
+    tests_require=['isort', 'prospector', 'pre-commit', 'pre-commit-hooks'],
+    extras_require={"full": ["ujson", "tqdm"]},
 
     packages=["anglerfish"],
 
-    keywords=['helper', 'boilerplate', 'utils', 'minimalism', 'utility'],
+    keywords="helper boilerplate utils minimalism utility",
 
     classifiers=[
 
         'Development Status :: 5 - Production/Stable',
+        'Development Status :: 6 - Mature',
 
         'Environment :: Console',
+        'Environment :: X11 Applications',
+        'Environment :: No Input/Output (Daemon)',
+        'Environment :: Other Environment',
 
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
@@ -123,12 +128,15 @@ setup(
 
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.6',
 
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
 
         'Topic :: Software Development',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Python Modules',
 
     ],
 )

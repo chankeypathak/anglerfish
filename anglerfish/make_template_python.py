@@ -8,7 +8,7 @@
 
 
 import re
-
+from collections import deque
 from pathlib import Path
 
 
@@ -16,18 +16,20 @@ class TemplatePython(str):
 
     """Tiny Template Engine that Render and Runs native Python."""
 
-    def __init__(self, template):
+    __slots__ = ("template", "fl", "__namespace", "mini", "t", "kw")
+
+    def __init__(self, template: str):
         """Init the Template class."""
         self.tokens = self.compile(template.strip())
 
     @classmethod
-    def from_file(cls, fl):
+    def from_file(cls, fl: str) -> str:
         """Load template from file.A str/file-like object supporting read()."""
         return cls(Path(fl).read_text() if isinstance(fl, str) else fl.read())
 
-    def compile(self, t):
+    def compile(self, t: str) -> list:
         """Parse and Compile all Tokens found on the template string t."""
-        tokens = []
+        tokens = deque()  # []
         for i, p in enumerate(re.compile("\{\%(.*?)\%\}", re.DOTALL).split(t)):
             if not p or not p.strip():
                 continue
@@ -39,11 +41,11 @@ class TemplatePython(str):
                 mar = min(len(_) - len(_.lstrip()) for _ in lines if _.strip())
                 tmplt = "\n".join(line_of_code[mar:] for line_of_code in lines)
                 tokens.append((True, compile(tmplt, f"<tpl {tmplt}>", "exec")))
-        return tokens
+        return list(tokens)
 
-    def render(__self, __namespace={}, mini=False, **kw):
+    def render(__self, __namespace: dict={}, mini: bool=False, **kw) -> str:
         """Render template from __namespace dict + **kw added to namespace."""
-        html = []
+        html = deque()  # []
         html_append = html.append  # Optimization.
         __namespace.update(kw, **globals())
 
@@ -58,5 +60,11 @@ class TemplatePython(str):
         for is_code, value in __self.tokens:
             eval(value, __namespace) if is_code else html_append(value)
         return re.sub('>\s+<', '> <', "".join(html)) if mini else "".join(html)
+
+    def __setattr__(self, *args, **kwargs):
+        raise TypeError("TemplatePython object is inmmutable read-only.")
+
+    def __delattr__(self, *args, **kwargs):
+        raise TypeError("TemplatePython object is inmmutable read-only.")
 
     __call__ = render  # shorthand

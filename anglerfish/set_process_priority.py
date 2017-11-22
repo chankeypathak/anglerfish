@@ -8,12 +8,12 @@
 import atexit
 import logging as log
 import os
-
 from shutil import which
 from subprocess import Popen, call
 
 
-def set_process_priority(nice=True, ionice=False, cpulimit=0):
+def set_process_priority(nice: bool=True, ionice: bool=False,
+                         cpulimit: int=0) -> bool:
     """Set process name and cpu priority."""
     w = " may delay I/O Operations, not recommended on user-facing GUI!."
     try:
@@ -25,7 +25,7 @@ def set_process_priority(nice=True, ionice=False, cpulimit=0):
             log.warning("ionice" + w)
             cmnd = f"{which('ionice')} --ignore --class 3 --pid {os.getpid()}"
             call(cmnd, shell=True)  # I/O nice,should work on Linux and Os X
-            log.debug(f"Process I/O Priority set to: {cmnd}.")
+            log.debug(f"Process PID {os.getpid()} I/O Priority set to: {cmnd}")
         elif cpulimit and which("cpulimit"):
             log.warning("cpulimit" + w)
             log.debug("Launching 1 background 'cpulimit' child subprocess...")

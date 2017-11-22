@@ -6,12 +6,11 @@
 
 
 import sys
-
 from shutil import which
 from subprocess import run
 
 
-def set_terminal_title(titlez=""):
+def set_terminal_title(titlez: str="") -> str:
     """Set or Reset CLI Window Titlebar Title."""
     if titlez and isinstance(titlez, str) and len(titlez.strip()):
         if sys.platform.startswith('win') and which("title"):  # Windows

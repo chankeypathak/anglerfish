@@ -15,7 +15,7 @@ def stealth2string(stringy: str, rot13: bool=False) -> str:
     """Stealth to string,stealth is a hidden string,both str type and ttf-8."""
 
     def __i2b(integ):  # int to bytes, do not touch.
-        """Helper for string_to_stealth and stealth_to_string, dont touch!."""
+        """Help for string_to_stealth and stealth_to_string,dont touch!."""
         __num = len("%x" % integ)
         return binascii.unhexlify(str("%x" % integ).zfill(__num + (__num & 1)))
 

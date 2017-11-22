@@ -9,6 +9,7 @@ import logging as log
 from shutil import which
 from subprocess import run
 
+
 try:
     import dbus
 except ImportError:
@@ -20,16 +21,17 @@ except ImportError:
     pynotify = None
 
 
-def make_notification(title, message="", name="", icon="", timeout=3_000):
+def make_notification(title: str, message: str="", name: str="",
+                      icon: str="", timeout: int=3_000) -> bool:
     """Notification message with information,based on D-Bus,with Fallbacks."""
     if dbus:  # Theorically the standard universal way.
-        log.debug("Sending Notification message via D-Bus API.")
-        return dbus.Interface(dbus.SessionBus().get_object(
+        log.debug(f"Sending Notification message using the API of {dbus}.")
+        return bool(dbus.Interface(dbus.SessionBus().get_object(
             "org.freedesktop.Notifications", "/org/freedesktop/Notifications"),
             "org.freedesktop.Notifications").Notify(
-                name, 0, icon, title, message, [], [], timeout)
+                name, 0, icon, title, message, [], [], timeout))
     elif pynotify:  # The non-standard non-universal way.
-        log.debug("Sending Notification message via PyNotify API.")
+        log.debug(f"Sending Notification message using the API of {pynotify}.")
         pynotify.init(name.lower() if name else title.lower())
         return pynotify.Notification(title, message).show()
     elif which("notify-send"):   # The non-standard non-universal sucky ways.
