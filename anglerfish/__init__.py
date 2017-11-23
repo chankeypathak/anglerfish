@@ -68,7 +68,6 @@ from anglerfish.make_postexec_message import app_is_ready, make_post_exec_msg
 from anglerfish.make_retry import retry  # noqa
 from anglerfish.make_template_python import TemplatePython  # noqa
 from anglerfish.make_tinyslation import tinyslation  # noqa
-from anglerfish.make_typecheck import typecheck  # noqa
 from anglerfish.make_watch import watch  # noqa
 from anglerfish.make_zip_comment import (get_zip_comment,  # noqa
                                          set_zip_comment)
@@ -117,7 +116,7 @@ __all__ = (
     'set_display_off', 'set_process_name', 'set_process_priority',
     'set_single_instance', 'set_terminal_title', 'set_zip_comment',
     'stealth2string', 'string2stealth', 'threads', 'timedelta2human',
-    'timestamp2human', 'tinyslation', 'typecheck', 'url2path', 'walk2dict',
+    'timestamp2human', 'tinyslation', 'url2path', 'walk2dict',
     'walk2list', 'watch',
 )
 
