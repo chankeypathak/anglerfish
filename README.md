@@ -80,7 +80,7 @@ This is a Test.
 ##### get_free_port
 <details>
 
-`anglerfish.get_free_port(port_range: None)`
+`anglerfish.get_free_port(port_range: tuple=None)`
 
 **Description:** Returns a free unused port number integer.
 If Argument is `None`, then it ask for an OS-Provided Random port number,
@@ -159,7 +159,7 @@ Sending Notification message via D-Bus API.
 ##### bytes2human
 <details>
 
-`anglerfish.bytes2human(bites: int)`
+`anglerfish.bytes2human(integer_bytes: int)`
 
 **Description:** Returns a Human Friendly string containing the argument integer bytes expressed as KiloBytes, MegaBytes, GigaBytes (...).
 This function does *Not* use `for` loops so its super fast, even for Yottabytes.
@@ -238,7 +238,8 @@ True
 ##### check_folder
 <details>
 
-`anglerfish.check_folder(folder_to_check: str, check_space: int=1)`
+`anglerfish.check_folder(folder_to_check: str=Path.home().as_posix(),
+                 check_space: int=1)`
 
 **Description:** Checks a working folder from `folder_to_check` argument for everything that can go wrong,
 like no Read Permissions, that the folder does not exists, and no space left on it, etc etc. Returns Boolean.
@@ -275,7 +276,7 @@ True
 ##### get_clipboard
 <details>
 
-`anglerfish.get_clipboard()`
+`anglerfish.osx_clipboard`
 
 **Description:** Cross-platform cross-desktop Clipboard functionality, takes no arguments.
 
@@ -314,7 +315,7 @@ Querying Copy/Paste Clipboard functionality.
 ##### beep
 <details>
 
-`anglerfish.beep(waveform: tuple)`
+`anglerfish.beep(waveform: tuple=(79, 45, 32, 50, 99, 113, 126, 127))`
 
 **Description:** A "Beep" sound, a Cross-platform sound playing with Standard Lib only, No Sound file is required,
 like old days Pc Speaker Buzzer Beep sound, meant for very long running operations and/or headless command line apps,
@@ -441,7 +442,7 @@ Thats all we know about the error, check the LOG file and StdOut.
 ##### ipdb_on_exception
 <details>
 
-`anglerfish.ipdb_on_exception(debugger: str="ipdb")`
+`anglerfish.ipdb_on_exception(debugger: str="ipdb", limit: int=100)`
 
 **Description:** Automatic iPDB Debugger when an Exception happens,
 it install a handler to attach a post-mortem ipdb console on an exception on the fly at runtime,
@@ -477,7 +478,7 @@ Installing an automatic Debugger upon Exceptions...
 ##### seconds2human
 <details>
 
-`anglerfish.seconds2human(time_on_seconds: int, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.seconds2human(ttimestamp_on_seconds: int, iso_sep: str=" ")`
 
 **Description:** From Time on seconds to very human friendly string representation,
 calculates time with precision from seconds to days, returns the string with representation.
@@ -514,7 +515,7 @@ useful for internationalization of the output string, defaults to English, optio
 ##### timedelta2human
 <details>
 
-`anglerfish.timedelta2human(time_delta, do_year: bool=True, unit_words: dict={"y": " Years ", "d": " Days ", "h": " Hours ", "m": " Minutes ", "s": " Seconds "})`
+`anglerfish.timedelta2human(timestamp_on_seconds: int, iso_sep: str=" ")`
 
 **Description:** Convert a TimeDelta object to human string representation.
 From `timedelta` object to very human friendly string representation,
@@ -591,7 +592,9 @@ True
 ##### walk2list
 <details>
 
-`anglerfish.walk2list(where: str, target: str, omit: str, links: Bool=False, tuply: Bool=True, namedtuple: bool=False)`
+`anglerfish.walk2list(folder: str, target: tuple, omit: tuple=(),
+              showhidden: bool=False, topdown: bool=True,
+              onerror: object=None, followlinks: bool=False)`
 
 **Description:** Perform full recursive walk of `where` folder path,
 search for `target` like files, ignoring `omit` like files, follow symbolic links if `links` is `True`,
@@ -635,7 +638,8 @@ this is not an Angler Bug but a limitation of Python itself.
 ##### walk2dict
 <details>
 
-`anglerfish.walk2dict(folder: str, links: Bool=False, showhidden: Bool=False, strip: Bool=False, jsony: Bool=False, ordereddict: bool=False)`
+`anglerfish.walk2dict(folder: Path, topdown: bool=True,onerror: object=None, followlinks: bool=False,
+ showhidden: bool=False, strip: bool=False)`
 
 **Description:** Return Nested Dictionary that represents the folders and files structure of the folder,
 
@@ -876,7 +880,10 @@ This is an anglerfish.ChainableFuture demo using ChainableFuture.then() !!!.
 ##### html2ebook
 <details>
 
-`anglerfish.html2ebook(files: list, fyle: str=uuid4().hex + ".epub", meta={})`
+`anglerfish.html2ebook(files_list: tuple, epub_file: Path=Path(uuid4().hex + ".epub"),
+               extensions: tuple=(".html", ".htm", ".xhtml", ".txt"),
+               compression: int=8, checksum: bool=False,
+               zip_comment: str=None, metadata_dict: dict={})`
 
 **Description:** Convert a folder with HTML5/CSS3 to eBook ePub. JavaScript does not Work on ePub.
 If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly CSS.
@@ -895,6 +902,7 @@ If you want a "Print Quality" or "Print-Ready" eBook just use a Print-friendly C
 - `date` Date and Time ISO format of eBook creation (Fallbacks to Current Date and Time if not provided).
 
 **Returns:** a string with the file path of the new eBook file.
+**Source Code file:**https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/html2ebook.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
@@ -1152,7 +1160,7 @@ so if your Terminal app wont work fill a bug for them, not an Angler problem.
 ##### json2xml
 <details>
 
-`anglerfish.json2xml(json_obj: dict, line_padding: str="")`
+`anglerfish.json2xml(json_obj: dict, line_padding: str="", at_end: str="")`
 
 **Description:** Takes a JSON and returns an XML, optional custom line paddings.
 
@@ -1247,7 +1255,7 @@ True
 ##### get_zip_comment
 <details>
 
-`anglerfish.get_zip_comment(zip_path: str)`
+`anglerfish.get_zip_comment(zip_path: str, comment: str="")`
 
 **Description:** Get a comment metadata from a ZIP file, UTF-8 string type.
 ZIP file must be Valid.
@@ -1468,7 +1476,7 @@ recommended use for background or non-critical apps, optional, integer type.
 
 **Returns:** `True` if its working, bool type.
 
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_public_ip.py
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/set_process_priority.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
@@ -1490,7 +1498,7 @@ True
 ##### string2stealth
 <details>
 
-`anglerfish.string2stealth(stringy)`
+`anglerfish.string2stealth(stringy: str, rot13: bool=False)`
 
 **Description:** Stealth Strings, hidden and dangerous.
 No information is lost, both ways, supports everything that UTF-8 supports.
@@ -1527,7 +1535,7 @@ String Unicode :fast_forward: ZLib Compress :fast_forward: Base64 :fast_forward:
 ##### stealth2string
 <details>
 
-`anglerfish.stealth2string(stringy)`
+`anglerfish.stealth2string((stringy: str, rot13: bool=False)`
 
 **Description:** Stealth Strings, hidden and dangerous.
 No information is lost, both ways, supports everything that UTF-8 supports.
@@ -1906,7 +1914,7 @@ Theres several third party Python packages to get full path of TTF files from Fo
 <details>
 
 - `anglerfish.DataURI`
-- `anglerfish.DataURI.make(mimetype: str, base64: str, data: bytes)`
+- `anglerfish.DataURI.make(cls, mimetype: str, base64: bool, data: str)`
 - `anglerfish.DataURI.from_file(filename: str, base64: bool=True, webp: bool=True)`
 - `anglerfish.DataURI.from_url(url: str, base64: bool=True, webp: bool=True)`
 - `anglerfish.DataURI.wrap(width: int=80, newline: str="\n")`
@@ -1973,7 +1981,8 @@ True
 ##### img2webp
 <details>
 
-`anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text")`
+`anglerfish.img2webp(image_path: str, webp_path: str=None, preset: str="text",
+             cwebp: str=which("cwebp"), timeout: int=60)`
 
 **Description:** Convert `*.png, *.jpeg, *.jpg, *.tiff` Images to WebP `*.webp`.
 `anglerfish.DataURI()` internally uses `anglerfish.img2webp()` for conversions.
@@ -2022,10 +2031,10 @@ optional, string type.
 
 
 
-##### get_human_datetime
+##### now2human
 <details>
 
-`anglerfish.get_human_datetime(date_time: datetime.datetime=None)`
+anglerfish.now2human(utc: bool=False)`
 
 **Description:**
 Get a Human string ISO-8601 representation of datetime.datetime with UTC info.
@@ -2035,14 +2044,13 @@ Internally is a shortcut to:
 `datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).astimezone().isoformat(" ")`
 
 **Arguments:**
-- `date_time`: A `datetime.datetime` object,
-optional, if omitted an UTC-aware `datetime.datetime.now()` will be used.
+- 
 
 **Keyword Arguments:** None.
 
 **Returns:** Human friendly ISO-8601 date, time and UTC info string, string type.
 
-**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/get_human_datetime.py
+**Source Code file:** https://github.com/juancarlospaco/anglerfish/blob/master/anglerfish/seconds2human.py
 
 | State              | OS          | Description |
 | ------------------ |:-----------:| -----------:|
@@ -2197,7 +2205,10 @@ True
 ##### url2path
 <details>
 
-`anglerfish.url2path(url, data=None, timeout=None, cafile=None, capath=None, filename=None, suffix=None, name_from_url=False, concurrent_downloads=5, force_concurrent=False, checksum=False, use_tqdm=True)`
+`anglerfish.url2path(url: str, data: dict=None, timeout: int=None, filename: str=None,
+             suffix: str=None, name_from_url: bool=False,
+             concurrent_downloads: int=5, force_concurrent: bool=False,
+             checksum: bool=False, use_tqdm: bool=True)`
 
 **Description:** Take an URL or Path filename, return path if its not an URL,
 download to a temporary file and return filename path if its an URL,
