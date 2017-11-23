@@ -2396,6 +2396,7 @@ These are fully optional but enable extra features (most Linux distros already h
 
 *All these tiny generic awesome helpers, utilities, etc only require Python standard lib.*
 
+- https://github.com/Stewori/pytypes#quick-manual
 - https://github.com/shazow/unstdlib.py#unstandard-library-for-python
 - https://github.com/hynek/attrs#attrs-attributes-without-boilerplate
 - https://github.com/ssato/python-anyconfig#python-anyconfig
