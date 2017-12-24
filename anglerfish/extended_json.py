@@ -3,7 +3,10 @@
 
 
 """JSON encoder with support for datetime, date, timedelta, Decimal,
-IntEnum, Enum, MappingProxyType, deque, Exception, set, frozenset."""
+IntEnum, Enum, MappingProxyType, deque, Exception, set, frozenset.
+
+Pretty-Printing JSON to String with a YAML-like syntax but still Valid JSON.
+Uses a simple string replace to a unicode utf-8 character."""
 
 
 from collections import deque
@@ -11,10 +14,11 @@ from datetime import date, datetime, timedelta
 from decimal import Decimal
 from enum import Enum, IntEnum
 from functools import singledispatch
+from json import dumps, loads  # ujson dont support "separators" argument.
 from types import MappingProxyType
 
 
-__all__ = ("extended_JSON_encoder", )
+__all__ = ("extended_JSON_encoder", "loadz", "dumpz")
 
 
 @singledispatch
@@ -70,3 +74,18 @@ def _serialize_exception(object_to_serialize: Exception) -> dict:
             "__repr__": object_to_serialize.__repr__(),
             "__str__": object_to_serialize.__str__(),
             "__slots__": getattr(object_to_serialize, "__slots__", None)}
+
+
+##############################################################################
+
+
+def dumpz(json_dict: dict, compatible: bool=True, *args, **kwargs) -> str:
+    json_str = dumps(
+        json_dict, sort_keys=True, indent=4,
+        separators=("\n,", ":  ") if compatible else ("\n\ufeff", "\u200b\t"),
+        default=extended_JSON_encoder, *args, **kwargs)
+    return f"\n{json_str}\n"
+
+
+def loadz(json_str: str) -> dict:
+    return loads(json_str.replace("\ufeff", ",").replace("\u200b", ":"))
