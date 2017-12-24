@@ -5,7 +5,7 @@
 """Make a JSON from Nested to Flat with an arbitrary delimiter."""
 
 
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 from types import MappingProxyType as frozendict
 
 
@@ -26,5 +26,5 @@ def make_json_flat(jsony: dict, delimiter: str="__") -> namedtuple:
         else:
             values[item] = jsony[item]
 
-    return namedtuple("JSONFlat", "dict json OrderedDict frozendict")(
-        values, dumps(values), OrderedDict(values), frozendict(values))
+    return namedtuple("JSONFlat", "dict json frozendict")(
+        values, dumps(values), frozendict(values))
