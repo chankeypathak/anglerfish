@@ -59,7 +59,6 @@ from anglerfish.make_beep import beep  # noqa
 from anglerfish.make_chainable_future import ChainableFuture  # noqa
 from anglerfish.make_datauri import DataURI, img2webp  # noqa
 from anglerfish.make_json_flat import make_json_flat  # noqa
-from anglerfish.make_json_pretty import json_pretty  # noqa
 from anglerfish.make_log_exception import log_exception  # noqa
 from anglerfish.make_multiprocess import multiprocessed  # noqa
 from anglerfish.make_multithread import threads  # noqa
@@ -85,7 +84,7 @@ from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.url2path import url2path  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
 from anglerfish.walk2list import walk2list  # noqa
-from anglerfish.extended_json import extended_JSON_encoder  # noqa
+from anglerfish.extended_json import extended_JSON_encoder, dumpz, loadz
 
 
 ##############################################################################
@@ -108,7 +107,7 @@ __all__ = (
     'get_random_pastel_color', 'get_random_pasteldark_color',
     'get_random_pastelight_color', 'get_random_sans_font',
     'get_random_serif_font', 'get_zip_comment', 'has_battery', 'html2ebook',
-    'img2webp', 'ipdb_on_exception', 'is_online', 'json2xml', 'json_pretty',
+    'img2webp', 'ipdb_on_exception', 'is_online', 'json2xml',
     'log_exception', 'make_json_flat', 'make_logger', 'make_notification',
     'make_post_exec_msg', 'multiprocessed', 'now2human', 'on_battery',
     'path2import', 'pdb_on_exception', 'retry', 'set_desktop_launcher',
@@ -116,7 +115,7 @@ __all__ = (
     'set_single_instance', 'set_terminal_title', 'set_zip_comment',
     'stealth2string', 'string2stealth', 'threads', 'timedelta2human',
     'timestamp2human', 'tinyslation', 'url2path', 'walk2dict', 'walk2list',
-    'watch',
+    'watch', 'dumpz', 'loadz',
 )
 
 
@@ -250,6 +249,7 @@ def make_logger(name, when='midnight', filename=None, interval=1,
     log = logging.getLogger()
     log.addHandler(sized_timed_rotating_file_handler)
     log.setLevel(level or -1)
+
     # Colors and Emoji.
     if not sys.platform.startswith("win") and sys.stderr.isatty() and color:
         log.debug("Colored Logs on current Terminal enabled.")
@@ -295,6 +295,7 @@ def make_logger(name, when='midnight', filename=None, interval=1,
             return new
         logging.StreamHandler.emit = add_color_emit_ansi(
             logging.StreamHandler.emit)
+
     # Standard Error handler.
     stder_handler = _add_stderr(stder=stder)
     if stder_handler:
