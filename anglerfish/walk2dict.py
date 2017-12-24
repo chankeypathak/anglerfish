@@ -6,7 +6,7 @@
 
 
 import os
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 from pathlib import Path
 from types import MappingProxyType as frozendict
 
@@ -26,7 +26,6 @@ def walk2dict(folder: Path, topdown: bool=True,
     Returns a namedtuple 'walk2dict' with multiple output types:
     - Nested common dictionary represents folder/file structure of folder.
     - JSON dumps string of the dictionary, uses uJSON if installed.
-    - collections.OrderedDict() of the dictionary.
     - types.MappingProxyType() inmmutable of the dictionary."""
     ret = []
     for path, dirs, files in os.walk(folder, topdown=topdown,
@@ -74,5 +73,5 @@ def walk2dict(folder: Path, topdown: bool=True,
         ret.append(a)
     dict_f = ret[0]
 
-    return namedtuple("walk2dict", "dict json OrderedDict frozendict")(
-        dict_f, dumps(dict_f), OrderedDict(dict_f), frozendict(dict_f))
+    return namedtuple("walk2dict", "dict json frozendict")(
+        dict_f, dumps(dict_f), frozendict(dict_f))
