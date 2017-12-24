@@ -10,7 +10,8 @@
 # but this is useful for quick templating and boilerplates styling.
 
 
-import re
+import codecs
+import struct
 from collections import namedtuple
 from colorsys import rgb_to_hls, rgb_to_hsv, rgb_to_yiq
 from random import choice
@@ -188,10 +189,9 @@ NAMED2HEX = frozendict({
 # HEX2NAMED = frozendict({value: key for key, value in NAMED2HEX.items()})
 
 
-def hex2rgb(hex_color: str) -> namedtuple:
-    s = re.search(r"#([a-f0-9]+)", str(hex_color)[:7].lower()).group(1)
-    return namedtuple("RGB", "red green blue")(
-        int(s[:2], 16), int(s[2:4], 16), int(s[4:], 16))
+def hex2rgb(color_hex: str) -> namedtuple:
+    return namedtuple("RGB", "red green blue")(*struct.unpack(
+        'BBB', codecs.decode(bytes(color_hex, "utf-8"), "hex")))
 
 
 def get_random_pastel_color(tone=None, black_list: list=None) -> namedtuple:
