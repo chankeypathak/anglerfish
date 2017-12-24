@@ -85,6 +85,7 @@ from anglerfish.string2stealth import string2stealth  # noqa
 from anglerfish.url2path import url2path  # noqa
 from anglerfish.walk2dict import walk2dict  # noqa
 from anglerfish.walk2list import walk2list  # noqa
+from anglerfish.extended_json import extended_JSON_encoder  # noqa
 
 
 ##############################################################################
@@ -98,14 +99,12 @@ __contact__ = "https://t.me/juancarlospaco"
 __maintainer__ = "Juan Carlos"
 __url__ = "https://github.com/juancarlospaco/anglerfish"
 __all__ = (
-    'AnglerfishException',  # Exceptions.
-    'AutoSlots_meta',       # MetaClasses.
-    'ChainableFuture', 'DataURI', 'Sync2Async', 'TemplatePython',  # Classes.
-    'app_is_ready', 'autochecksum', 'beep', 'bytes2human',         # Functions.
-    'check_encoding', 'check_folder', 'datetime2human', 'get_autochecksum',
-    'get_clipboard', 'get_free_port', 'get_public_ip',
-    'get_random_display_font', 'get_random_font',
-    'get_random_handwriting_font', 'get_random_mono_font',
+    'AnglerfishException', 'AutoSlots_meta', 'ChainableFuture', 'DataURI',
+    'Sync2Async', 'TemplatePython', 'app_is_ready', 'autochecksum', 'beep',
+    'bytes2human', 'check_encoding', 'check_folder', 'datetime2human',
+    'extended_JSON_encoder', 'get_autochecksum', 'get_clipboard',
+    'get_free_port', 'get_public_ip', 'get_random_display_font',
+    'get_random_font', 'get_random_handwriting_font', 'get_random_mono_font',
     'get_random_pastel_color', 'get_random_pasteldark_color',
     'get_random_pastelight_color', 'get_random_sans_font',
     'get_random_serif_font', 'get_zip_comment', 'has_battery', 'html2ebook',
@@ -116,8 +115,8 @@ __all__ = (
     'set_display_off', 'set_process_name', 'set_process_priority',
     'set_single_instance', 'set_terminal_title', 'set_zip_comment',
     'stealth2string', 'string2stealth', 'threads', 'timedelta2human',
-    'timestamp2human', 'tinyslation', 'url2path', 'walk2dict',
-    'walk2list', 'watch',
+    'timestamp2human', 'tinyslation', 'url2path', 'walk2dict', 'walk2list',
+    'watch',
 )
 
 
