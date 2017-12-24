@@ -48,15 +48,15 @@ def _serialize_decimal(object_to_serialize: Decimal) -> str:
     return float(object_to_serialize)
 
 
+@extended_JSON_encoder.register(MappingProxyType)
+def _serialize_mappingproxytype(object_to_serialize: MappingProxyType) -> dict:
+    return dict(object_to_serialize)
+
+
 @extended_JSON_encoder.register(IntEnum)
 @extended_JSON_encoder.register(Enum)
 def _serialize_enum(object_to_serialize: Enum) -> str:
     return object_to_serialize.value
-
-
-@extended_JSON_encoder.register(MappingProxyType)
-def _serialize_mappingproxytype(object_to_serialize: MappingProxyType) -> dict:
-    return dict(object_to_serialize)
 
 
 @extended_JSON_encoder.register(set)
@@ -87,5 +87,16 @@ def dumpz(json_dict: dict, compatible: bool=True, *args, **kwargs) -> str:
     return f"\n{json_str}\n"
 
 
-def loadz(json_str: str) -> dict:
-    return loads(json_str.replace("\ufeff", ",").replace("\u200b", ":"))
+def loadz(json_str: str, comment_start: str=None, *args, **kwargs) -> dict:
+    if comment_start and isinstance(comment_start, str):
+        json_lst = []
+        for line in json_str.splitlines():
+            if line.lstrip().startswith(comment_start):
+                continue
+            elif len(line.strip().split(comment_start)) >= 2:
+                json_lst.append(line.split(comment_start)[0])
+            else:
+                json_lst.append(line)
+        json_str = "\n".join(json_lst)
+    return loads(json_str.replace("\ufeff", ",").replace("\u200b", ":"),
+                 *args, **kwargs)
